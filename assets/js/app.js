@@ -9,7 +9,10 @@ const state = {
   cows: [],
   collected: JSON.parse(localStorage.getItem('hc_collected') || '[]'),
   bingo: JSON.parse(localStorage.getItem('hc_bingo') || '{}'),
+  crowd: JSON.parse(localStorage.getItem('hc_crowd') || '{}'),
+  sadCount: parseInt(localStorage.getItem('hc_sad') || '0'),
   moanLevel: parseFloat(localStorage.getItem('hc_moan') || '0.5'),
+  dark: localStorage.getItem('hc_dark') === 'true',
   todaySeed: dateSeed(),
 };
 
@@ -97,6 +100,7 @@ function getCowForDay(daySeed) {
   const rng = seededRandom(daySeed);
   const idx = Math.floor(rng() * 30);
   const isImpostor = IMPOSTORS.includes(idx);
+  const cowRng = seededRandom(daySeed + idx * 100);
   return {
     id: idx,
     name: COW_NAMES[idx],
@@ -105,7 +109,13 @@ function getCowForDay(daySeed) {
     tagline: isImpostor ? IMPOSTOR_TAGLINE[idx] : null,
     collected: state.collected.includes(idx),
     isImpostor: isImpostor,
-    image: `assets/cows/cow-${idx}.png`
+    image: `assets/cows/cow-${idx}.png`,
+    stats: {
+      "Drink Capacity": Math.floor(cowRng() * 7 + 4) + "/10",
+      "Dance Moves": Math.floor(cowRng() * 10) + 1 + "/10",
+      "Will Call You Tomorrow": Math.floor(cowRng() * 10) + 1 + "/10",
+      "Bar Stool Mastery": Math.floor(cowRng() * 10) + 1 + "/10"
+    }
   };
 }
 
@@ -217,8 +227,11 @@ function render() {
   // ── Venue List ──
   renderVenues();
 
-  // ── Cow icon click → modal ──
-  document.getElementById('cow-icon').onclick = () => openModal('cow-modal');
+  // ── Cow icon click → modal + moo ──
+  document.getElementById('cow-icon').onclick = () => {
+    playMoo(0.5);
+    openModal('cow-modal');
+  };
   setupCowModal(todayCow);
 
   // ── Feature buttons ──
@@ -227,6 +240,20 @@ function render() {
   document.getElementById('btn-moan').onclick = () => { openModal('moan-modal'); setupMoanMeter(); };
   document.getElementById('btn-tip').onclick = () => { openModal('tip-modal'); };
   document.getElementById('btn-quiz').onclick = () => { openModal('quiz-modal'); };
+
+  // ── Mystery Drink ──
+  document.getElementById('mystery-btn').onclick = doMysteryDrink;
+
+  // ── Crowd Bar ──
+  renderCrowdBar();
+
+  // ── Sad Hour ──
+  renderSadHour();
+
+  // ── Dark Mode ──
+  if (state.dark) document.body.classList.add('dark');
+  document.getElementById('dark-toggle').textContent = state.dark ? '☀️' : '🌙';
+  document.getElementById('dark-toggle').onclick = toggleDark;
 
   // ── Roulette ──
   document.getElementById('roulette-btn').onclick = doRoulette;
@@ -342,6 +369,7 @@ function renderVenueCard(venue, container) {
         ${venue.website ? `<a href="${venue.website}" target="_blank" style="font-size:0.75rem;color:var(--cow-spot-2);">🔗 Website</a>` : ''}
         <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;">Noise: ${venue.noise_level} · ${venue.mood}</span>
       </div>
+      <div style="margin-top:6px;"><button class="crowd-pill" style="font-size:0.7rem;padding:4px 10px;cursor:pointer;" onclick="event.stopPropagation();tapIn('${venue.id}')">👋 I'm Here</button> <span style="font-size:0.7rem;color:var(--text-dim);" id="crowd-${venue.id}"></span></div>
     </div>
   `;
   container.appendChild(card);
@@ -386,6 +414,16 @@ function setupCowModal(cow) {
   document.getElementById('cow-modal-name').textContent = cow.name;
   document.getElementById('cow-modal-mood').textContent = `Mood: ${cow.mood}`;
   document.getElementById('cow-modal-prophecy').textContent = `"${cow.prophecy}"`;
+
+  // RPG Stats
+  const statsContainer = document.getElementById('rpg-stats');
+  statsContainer.innerHTML = '';
+  Object.entries(cow.stats || {}).forEach(([key, val]) => {
+    const s = document.createElement('span');
+    s.className = 'rpg-stat';
+    s.textContent = `${key}: ${val}`;
+    statsContainer.appendChild(s);
+  });
 
   // Impostor badge
   const impostorBadge = document.getElementById('cow-modal-impostor');
@@ -605,6 +643,102 @@ function handleQuiz(e) {
 function formatDate(iso) {
   const d = new Date(iso);
   return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric' });
+}
+
+// ─── Mystery Drink ───
+function doMysteryDrink() {
+  if (!state.data) return;
+  const allSpecials = [];
+  state.data.venues.forEach(v => {
+    v.specials.forEach(s => {
+      allSpecials.push({ ...s, venue: v.name });
+    });
+  });
+  const pick = allSpecials[Math.floor(Math.random() * allSpecials.length)];
+  const btn = document.getElementById('mystery-btn');
+  btn.textContent = `🍸 ${pick.item} — $${pick.price.toFixed(2)} at ${pick.venue}! Tap for another`;
+  setTimeout(() => {
+    btn.textContent = "🍸 I'll Have What They're Having — Surprise Me";
+  }, 8000);
+}
+
+// ─── Crowd Bar ───
+function renderCrowdBar() {
+  if (!state.data) return;
+  const bar = document.getElementById('crowd-bar');
+  bar.innerHTML = '';
+
+  // Clean expired entries (older than 2 hours)
+  const now = Date.now();
+  let changed = false;
+  Object.keys(state.crowd).forEach(id => {
+    if (now - state.crowd[id].ts > 7200000) {
+      delete state.crowd[id];
+      changed = true;
+    }
+  });
+  if (changed) localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
+
+  state.data.venues.forEach(v => {
+    const crowd = state.crowd[v.id];
+    const count = crowd && (now - crowd.ts < 7200000) ? crowd.count : 0;
+    const pill = document.createElement('span');
+    pill.className = 'crowd-pill';
+    pill.innerHTML = `${v.name} <span class="count">${count > 0 ? '👤' + count : '○'}</span>`;
+    pill.onclick = () => {
+      if (!state.crowd[v.id] || now - state.crowd[v.id].ts > 7200000) {
+        state.crowd[v.id] = { count: 1, ts: now };
+      } else {
+        state.crowd[v.id].count += 1;
+        state.crowd[v.id].ts = now;
+      }
+      localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
+      renderCrowdBar();
+    };
+    bar.appendChild(pill);
+  });
+}
+
+// ─── Sad Hour ───
+function renderSadHour() {
+  if (!state.data) return;
+  const anyLive = state.data.venues.some(v => isHHLive(v.hours) === 'live');
+  const banner = document.getElementById('sad-hour');
+  if (!anyLive) {
+    banner.style.display = 'block';
+    document.getElementById('sad-count').textContent = state.sadCount;
+    // Only count once per session per day
+    if (!state._sadCounted) {
+      state.sadCount += 1;
+      localStorage.setItem('hc_sad', state.sadCount.toString());
+      state._sadCounted = true;
+    }
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+// ─── Dark Mode ───
+function toggleDark() {
+  state.dark = !state.dark;
+  document.body.classList.toggle('dark', state.dark);
+  document.getElementById('dark-toggle').textContent = state.dark ? '☀️' : '🌙';
+  localStorage.setItem('hc_dark', state.dark);
+}
+
+// ─── Tap In (I'm Here) ───
+function tapIn(venueId) {
+  const now = Date.now();
+  if (!state.crowd[venueId] || now - state.crowd[venueId].ts > 7200000) {
+    state.crowd[venueId] = { count: 1, ts: now };
+  } else {
+    state.crowd[venueId].count += 1;
+    state.crowd[venueId].ts = now;
+  }
+  localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
+  const el = document.getElementById(`crowd-${venueId}`);
+  if (el) el.textContent = `👤${state.crowd[venueId].count} here`;
+  renderCrowdBar();
 }
 
 // ─── Init ───

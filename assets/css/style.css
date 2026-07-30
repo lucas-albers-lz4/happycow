@@ -425,3 +425,118 @@ body {
 }
 .footer a { color: var(--cow-spot-2); }
 .footer .cow-counter { margin-top: 4px; font-size: 0.8rem; }
+
+/* ─── Dark Mode ─── */
+.dark-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--card);
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.3s;
+}
+
+body.dark {
+  --cow-spot-1: #d4a04a;
+  --cow-spot-2: #c48450;
+  --cream: #1a1410;
+  --bg: #120e0a;
+  --card: #1e1814;
+  --text: #e8ddd0;
+  --text-dim: #8b7a6a;
+  --green: #5a9c69;
+  --gold: #c48450;
+  --red: #d46a6a;
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+body.dark .tag { background: #2a2218; }
+body.dark .bingo-cell { background: #2a2218; }
+body.dark .tip-result { background: #2a2218; }
+body.dark .special-row { border-color: #2a2218; }
+body.dark .status-pill { border-color: #3a3228; }
+body.dark .controls input, body.dark .controls select { border-color: #3a3228; }
+body.dark .feature-btn { border-color: #3a3228; }
+body.dark .feature-btn:active { background: #2a2218; }
+body.dark .deal-day-title { opacity: 0.7; }
+body.dark .hh-status.live { background: #1a3a2a; color: #7ac99a; }
+body.dark .hh-status.soon { background: #3a2a1a; color: #d4a04a; }
+body.dark .hh-status.closed { background: #2a1a1a; color: #c46a6a; }
+
+/* ─── Mystery Drink ─── */
+.mystery-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 0 16px 16px;
+  padding: 12px;
+  background: var(--card);
+  color: var(--text);
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mystery-btn:active { background: var(--cream); }
+
+/* ─── Crowd Bar ─── */
+.crowd-bar {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.crowd-bar::-webkit-scrollbar { display: none; }
+.crowd-pill {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--card);
+  border: 1px solid #e0d5c5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.crowd-pill:active { background: var(--cream); }
+.crowd-pill .count { color: var(--green); margin-left: 4px; }
+:root .crowd-pill { border-color: #e0d5c5; }
+
+/* ─── Sad Hour Banner ─── */
+.sad-hour {
+  margin: 0 16px 12px;
+  padding: 10px 14px;
+  background: #2a1a1a;
+  color: #c46a6a;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  text-align: center;
+  display: none;
+}
+body.dark .sad-hour { background: #1a0a0a; }
+
+/* ─── Cow RPG Stats in Modal ─── */
+.rpg-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px 0;
+}
+.rpg-stat {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: #f0e8d8;
+}
+body.dark .rpg-stat { background: #2a2218; }
+

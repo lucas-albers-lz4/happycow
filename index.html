@@ -33,10 +33,19 @@
     <div class="deal-day-text" id="deal-text">Loading...</div>
   </div>
 
+  <!-- ═══ Sad Hour Banner ═══ -->
+  <div class="sad-hour" id="sad-hour">😔 Sad Hour — no happy hours running right now. <span id="sad-count"></span> people have checked in during sad hour.</div>
+
+  <!-- ═══ Mystery Drink ═══ -->
+  <button class="mystery-btn" id="mystery-btn">🍸 I'll Have What They're Having — Surprise Me</button>
+
   <!-- ═══ Status Bar ═══ -->
   <div class="status-bar" id="status-bar">
     <span class="status-pill">Loading...</span>
   </div>
+
+  <!-- ═══ Crowd Bar ═══ -->
+  <div class="crowd-bar" id="crowd-bar"></div>
 
   <!-- ═══ Features ═══ -->
   <div class="feature-bar">
@@ -82,6 +91,7 @@
       <img id="cow-modal-img" src="" alt="Cow" style="width:120px;height:120px;border-radius:50%;margin-bottom:12px;border:3px solid var(--gold);">
       <div class="modal-title" id="cow-modal-name">Cow Name</div>
       <div class="horoscope-sign" id="cow-modal-mood">Mood: chill</div>
+      <div class="rpg-stats" id="rpg-stats"></div>
       <div class="horoscope-card" id="cow-modal-prophecy">"Prophecy"</div>
       <div style="background:#fff0e0;border:1px solid var(--red);border-radius:var(--radius-sm);padding:8px 12px;margin:8px 0;font-size:0.8rem;font-weight:600;color:var(--red);display:none;" id="cow-modal-impostor"></div>
       <div style="margin:8px 0;font-size:0.85rem;" id="cow-modal-status">◎ Not yet collected</div>
@@ -154,6 +164,9 @@
       <div class="tip-result" id="quiz-result" style="margin-top:8px;"></div>
     </div>
   </div>
+
+  <!-- ═══ Dark Mode Toggle ═══ -->
+  <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode">🌙</button>
 
   <!-- ═══ Footer ═══ -->
   <div class="footer">
