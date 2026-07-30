@@ -1,0 +1,118 @@
+{
+  "last_updated": "2026-07-30T20:00:00Z",
+  "city": "Bozeman, MT",
+  "population": 55000,
+  "venues": [
+    {
+      "id": "the-garage",
+      "name": "The Garage",
+      "address": "339 E Main St",
+      "phone": "",
+      "website": "https://thegaragebar.com",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Mon-Sat 4-7pm",
+      "tags": ["dive", "pool", "darts"],
+      "noise_level": "loud",
+      "mood": "dim-lit-and-dirty",
+      "specials": [
+        { "item": "Well drinks", "price": 4.00, "category": "drinks", "description": "All well whiskey, vodka, gin, rum" },
+        { "item": "Draft beers", "price": 3.50, "category": "drinks", "description": "Rotating local taps" },
+        { "item": "Domestic bottles", "price": 3.00, "category": "drinks", "description": "PBR, Coors, Bud" },
+        { "item": "Taco plate", "price": 6.00, "category": "food", "description": "3 street tacos, your choice" },
+        { "item": "Nachos", "price": 5.00, "category": "food", "description": "Half off loaded nachos" }
+      ]
+    },
+    {
+      "id": "whiskey-bar",
+      "name": "Whiskey Bar",
+      "address": "115 W Main St",
+      "phone": "",
+      "website": "",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Mon-Fri 5-7pm",
+      "tags": ["whiskey", "classy", "date-night"],
+      "noise_level": "moderate",
+      "mood": "dark-wood-and-leather",
+      "specials": [
+        { "item": "House whiskey", "price": 5.00, "category": "drinks", "description": "All house whiskey pours" },
+        { "item": "Old Fashioned", "price": 7.00, "category": "drinks", "description": "Made with Bulleit rye" },
+        { "item": "Wine by the glass", "price": 5.00, "category": "drinks", "description": "House red or white" },
+        { "item": "Pretzel board", "price": 8.00, "category": "food", "description": "Soft pretzels with beer cheese" }
+      ]
+    },
+    {
+      "id": "the-local-taproom",
+      "name": "The Local Taproom",
+      "address": "111 S Grand Ave",
+      "phone": "",
+      "website": "",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Daily 4-6pm",
+      "tags": ["craft-beer", "patio", "dog-friendly"],
+      "noise_level": "moderate",
+      "mood": "sunny-and-buzzy",
+      "specials": [
+        { "item": "Local pint", "price": 4.00, "category": "drinks", "description": "Any Montana craft beer" },
+        { "item": "Flight of 4", "price": 6.00, "category": "drinks", "description": "Pick any 4 taps" },
+        { "item": "House wine", "price": 5.00, "category": "drinks", "description": "Red, white, or rosé" },
+        { "item": "Pub pretzel", "price": 4.00, "category": "food", "description": "Warm soft pretzel with mustard" },
+        { "item": "House burger", "price": 9.00, "category": "food", "description": "Half-pound angus with fries" }
+      ]
+    },
+    {
+      "id": "elks-lodge",
+      "name": "Elks Lodge",
+      "address": "12 S Willson Ave",
+      "phone": "",
+      "website": "",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Thu-Sat 4-6pm",
+      "tags": ["old-school", "cheap", "hidden"],
+      "noise_level": "quiet",
+      "mood": "vintage-basement",
+      "specials": [
+        { "item": "Rail drinks", "price": 3.00, "category": "drinks", "description": "Any well liquor" },
+        { "item": "PBR tallboy", "price": 2.50, "category": "drinks", "description": "Ice cold" },
+        { "item": "Wine", "price": 4.00, "category": "drinks", "description": "House red or white" },
+        { "item": "Popcorn", "price": 0.00, "category": "food", "description": "Free popcorn with any drink" }
+      ]
+    },
+    {
+      "id": "dive-bar",
+      "name": "Dive Bar",
+      "address": "105 N Rouse Ave",
+      "phone": "",
+      "website": "",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Daily 3-6pm",
+      "tags": ["dive", "cash-only", "late-night"],
+      "noise_level": "loud",
+      "mood": "sticky-floor-classic",
+      "specials": [
+        { "item": "Well drinks", "price": 3.00, "category": "drinks", "description": "All wells, no exceptions" },
+        { "item": "Canned beer", "price": 2.00, "category": "drinks", "description": "PBR, Rainier, Hamm's" },
+        { "item": "Shot + beer", "price": 5.00, "category": "drinks", "description": "Your choice well shot + PBR" },
+        { "item": "Pizza slice", "price": 3.00, "category": "food", "description": "Costco pizza reheated with love" }
+      ]
+    },
+    {
+      "id": "tequila-house",
+      "name": "Tequila House",
+      "address": "234 E Main St",
+      "phone": "",
+      "website": "",
+      "maps": "https://maps.app.goo.gl/example",
+      "hours": "Mon-Sat 4-7pm",
+      "tags": ["margaritas", "patio", "lively"],
+      "noise_level": "loud",
+      "mood": "fiesta",
+      "specials": [
+        { "item": "House margarita", "price": 6.00, "category": "drinks", "description": "Fresh lime, reposado" },
+        { "item": "Tequila shot", "price": 5.00, "category": "drinks", "description": "Any well tequila" },
+        { "item": "Pacifico", "price": 4.00, "category": "drinks", "description": "Bottle or can" },
+        { "item": "Taco trio", "price": 8.00, "category": "food", "description": "3 tacos, your choice of meat" },
+        { "item": "Guac & chips", "price": 5.00, "category": "food", "description": "Made tableside" }
+      ]
+    }
+  ]
+}
