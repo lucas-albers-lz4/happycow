@@ -3,12 +3,21 @@
 // ========================================
 
 // ─── State ───
+function readStore(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw == null ? fallback : JSON.parse(raw);
+  } catch (e) {
+    return fallback;
+  }
+}
+
 const state = {
   data: null,
   expanded: null,
   cows: [],
-  collected: JSON.parse(localStorage.getItem('hc_collected') || '[]'),
-  bingo: JSON.parse(localStorage.getItem('hc_bingo') || '{}'),
+  collected: readStore('hc_collected', []),
+  bingo: readStore('hc_bingo', {}),
   dark: localStorage.getItem('hc_dark') === 'true',
   todaySeed: dateSeed(),
   dealRevealed: false,
@@ -107,7 +116,7 @@ function getCowForDay(daySeed) {
     tagline: isImpostor ? IMPOSTOR_TAGLINE[idx] : null,
     collected: state.collected.includes(idx),
     isImpostor: isImpostor,
-    image: `assets/cows/cow-${idx}.png`,
+    image: assetUrl(`assets/cows/cow-${idx}.png`),
     stats: {
       "Drink Capacity": Math.floor(cowRng() * 7 + 4) + "/10",
       "Dance Moves": Math.floor(cowRng() * 10) + 1 + "/10",
@@ -118,14 +127,42 @@ function getCowForDay(daySeed) {
 }
 
 // ─── Load Data ───
+function pageBaseUrl() {
+  // GitHub project pages: /happycow or /happycow/ or /happycow/index.html
+  const { origin, pathname } = window.location;
+  if (pathname.endsWith('/')) return origin + pathname;
+  if (/\.html?$/i.test(pathname)) return origin + pathname.replace(/\/[^/]+$/, '/');
+  return origin + pathname + '/';
+}
+
+function assetUrl(relPath) {
+  return new URL(relPath, pageBaseUrl()).toString();
+}
+
 async function loadData() {
+  const url = assetUrl('data/happy_hour_data.json');
   try {
-    const resp = await fetch('data/happy_hour_data.json');
+    const resp = await fetch(url, { cache: 'no-cache' });
+    if (!resp.ok) {
+      throw new Error(`HTTP ${resp.status} fetching ${url}`);
+    }
     state.data = await resp.json();
+  } catch (e) {
+    console.error('Happy Cow data load failed:', e);
+    document.body.innerHTML = `<div style="padding:40px;text-align:center;font-size:1.1rem;max-width:28rem;margin:0 auto;line-height:1.5">
+      🐄 Couldn't load happy hour data.<br>
+      <span style="font-size:0.85rem;color:#8b7355">${(e && e.message) || e}</span><br><br>
+      <span style="font-size:0.85rem;color:#8b7355">If you opened this as a file, run:<br><code>python3 -m http.server 8000</code></span>
+    </div>`;
+    return;
+  }
+  try {
     render();
-  } catch(e) {
-    document.body.innerHTML = `<div style="padding:40px;text-align:center;font-size:1.2rem">
-      🐄 Couldn't find the happy hour data. Make sure you're running from a server (not file://).
+  } catch (e) {
+    console.error('Happy Cow render failed:', e);
+    document.body.innerHTML = `<div style="padding:40px;text-align:center;font-size:1.1rem">
+      🐄 Data loaded, but the page failed to render.<br>
+      <span style="font-size:0.85rem;color:#8b7355">${(e && e.message) || e}</span>
     </div>`;
   }
 }
@@ -572,7 +609,7 @@ let mooAudio = null;
 function playMoo() {
   try {
     // Fresh instance so overlapping taps can stack / vary independently
-    const a = new Audio('assets/sounds/moo.mp3');
+    const a = new Audio(assetUrl('assets/sounds/moo.mp3'));
     // Random bovine: pitch + loudness drift so each tap is different
     a.playbackRate = 0.75 + Math.random() * 0.7; // ~0.75–1.45
     a.volume = 0.55 + Math.random() * 0.45;
