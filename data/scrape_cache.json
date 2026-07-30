@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T03:45:41Z",
+  "updated_at": "2026-07-30T15:48:12Z",
   "venues": {
     "ale-works": {
       "content_hash": "ca974991ff9f7a51",
@@ -689,7 +689,7 @@
     },
     "mountains-walking-brewery": {
       "content_hash": "aae5ed14211f0656",
-      "fetched_at": "2026-07-30T03:45:27Z",
+      "fetched_at": "2026-07-30T15:48:01Z",
       "sources": [
         "https://mthappyhour.com/locations/mountains-walking-brewery/"
       ],
