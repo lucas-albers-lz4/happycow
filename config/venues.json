@@ -5,81 +5,95 @@
   "discovery_seeds": [
     {
       "id": "mthappyhour-bozeman",
-      "url": "https://mthappyhour.com/cities/bozeman/",
-      "note": "Directory of Montana happy hours; use to discover new venue URLs"
+      "url": "https://mthappyhour.com/happy-hours-near/bozeman/",
+      "note": "Hand-curated for now; this directory is the primary scrape source"
     }
   ],
   "venues": [
     {
-      "id": "bacchus-pub",
-      "name": "Bacchus Pub",
-      "address": "100 W Main St",
+      "id": "ale-works",
+      "name": "Ale Works",
+      "address": "611 E Main St",
+      "phone": "406-587-7700",
+      "website": "https://www.montanaaleworks.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/ale-works/",
+        "https://www.montanaaleworks.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Ale%20Works%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "applebees-bozeman",
+      "name": "Applebee\u2019s Bozeman",
+      "address": "1108 N 7th Ave",
+      "phone": "406-587-3445",
+      "website": "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/applebees-bozeman/",
+        "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Applebee%E2%80%99s%20Bozeman%20Bozeman%20MT",
+      "tags": [
+        "sports"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "bar-ix",
+      "name": "Bar IX",
+      "address": "311 E Main Street",
+      "phone": "406-551-2185",
+      "website": "https://bar-ix.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bar-ix/",
+        "https://bar-ix.com"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bar%20IX%20Bozeman%20MT",
+      "tags": [
+        "dive"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "bitterroot-bistro",
+      "name": "Bitterroot Bistro",
+      "address": "19 S Willson Ave",
       "phone": "",
-      "website": "https://www.bacchuspub.com",
+      "website": "https://www.bitterrootbistro.com",
       "scrape_urls": [
-        "https://www.bacchuspub.com/happy-hour"
+        "https://mthappyhour.com/locations/bitterroot-bistro/",
+        "https://www.bitterrootbistro.com"
       ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bacchus+Pub+Bozeman+MT",
-      "tags": ["pub", "patio", "classy"],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bitterroot%20Bistro%20Bozeman%20MT",
+      "tags": [
+        "classy"
+      ],
       "noise_level": "moderate",
-      "mood": "historic-downtown"
+      "mood": "bozeman-local"
     },
     {
-      "id": "devils-toboggan",
-      "name": "Devil's Toboggan",
-      "address": "113 E Oak St #2B",
-      "phone": "(406) 587-4829",
-      "website": "https://www.devilstoboggan.com",
+      "id": "blackbird",
+      "name": "Blackbird",
+      "address": "140 E Main St, Bozeman, MT",
+      "phone": "406.586.0010",
+      "website": "https://www.blackbirdkitchen.com/",
       "scrape_urls": [
-        "https://www.devilstoboggan.com/",
-        "https://mthappyhour.com/locations/devils-toboggan/"
+        "https://mthappyhour.com/locations/blackbird/",
+        "https://www.blackbirdkitchen.com/"
       ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Devil%27s+Toboggan+Bozeman+MT",
-      "tags": ["classy", "cocktails", "hidden"],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Blackbird%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
-      "mood": "speakeasy"
-    },
-    {
-      "id": "revelry",
-      "name": "Revelry",
-      "address": "Bozeman, MT",
-      "phone": "",
-      "website": "https://www.revelrymt.com",
-      "scrape_urls": [
-        "https://www.revelrymt.com/happy-hours"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry+Bozeman+MT",
-      "tags": ["patio", "classy", "wine"],
-      "noise_level": "moderate",
-      "mood": "lively-and-polished"
-    },
-    {
-      "id": "brigade",
-      "name": "Brigade",
-      "address": "233 E Main St #201",
-      "phone": "(406) 624-6161",
-      "website": "https://brigadebozeman.com",
-      "scrape_urls": [
-        "https://mthappyhour.com/locations/brigade/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade+Bozeman+MT",
-      "tags": ["cocktails", "patio", "downtown"],
-      "noise_level": "moderate",
-      "mood": "rooftop-vibes"
-    },
-    {
-      "id": "bozeman-taproom",
-      "name": "The Bozeman Taproom",
-      "address": "Bozeman, MT",
-      "phone": "",
-      "website": "https://www.bozemantaproom.com",
-      "scrape_urls": [
-        "https://www.bozemantaproom.com/bozeman-happy-hour"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman+Taproom+Bozeman+MT",
-      "tags": ["craft-beer", "patio", "sports"],
-      "noise_level": "loud",
-      "mood": "sunny-and-buzzy"
+      "mood": "bozeman-local"
     },
     {
       "id": "bourbon",
@@ -91,24 +105,344 @@
         "https://mthappyhour.com/locations/bourbon/",
         "https://bourbonmt.com"
       ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon+Bozeman+MT",
-      "tags": ["whiskey", "bbq", "classy"],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon%20Bozeman%20MT",
+      "tags": [
+        "whiskey"
+      ],
       "noise_level": "moderate",
-      "mood": "dark-wood-and-smoke"
+      "mood": "bozeman-local"
     },
     {
-      "id": "r-bar",
-      "name": "R Bar",
-      "address": "270 W Main St",
-      "phone": "",
-      "website": "https://www.rbarbozeman.com",
+      "id": "bozeman-brewing-company",
+      "name": "Bozeman Brewing Company",
+      "address": "504 N Broadway Ave",
+      "phone": "406-585-9142",
+      "website": "https://bozemanbrewing.com/",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/r-bar/"
+        "https://mthappyhour.com/locations/bozeman-brewing-company/",
+        "https://bozemanbrewing.com/"
       ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=R+Bar+Bozeman+MT",
-      "tags": ["dive", "downtown", "late-night"],
-      "noise_level": "loud",
-      "mood": "sticky-floor-classic"
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Brewing%20Company%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "bozeman-spirits-distillery",
+      "name": "Bozeman Spirits Distillery",
+      "address": "121 W Main St, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Spirits%20Distillery%20Bozeman%20MT",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "bozeman-taproom",
+      "name": "Bozeman Taproom",
+      "address": "101 N Rouse Ave, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bozeman-taproom/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Taproom%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "bridger-brewing",
+      "name": "Bridger Brewing",
+      "address": "1609 S 11th Ave",
+      "phone": "406-587-2124",
+      "website": "http://www.bridgerbrewing.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bridger-brewing/",
+        "http://www.bridgerbrewing.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bridger%20Brewing%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "brigade",
+      "name": "Brigade",
+      "address": "233 E Main Street #201",
+      "phone": "(406) 624-6161",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/brigade/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "daves-sushi",
+      "name": "Dave\u2019s Sushi",
+      "address": "115 N Bozeman Ave",
+      "phone": "406-556-1351",
+      "website": "http://daves-sushi.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/daves-sushi/",
+        "http://daves-sushi.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Dave%E2%80%99s%20Sushi%20Bozeman%20MT",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "devils-toboggan",
+      "name": "Devils Toboggan",
+      "address": "113 E Oak St #2b, Bozeman, MT 59715",
+      "phone": "406 587 4829",
+      "website": "https://www.devilstoboggan.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/devils-toboggan/",
+        "https://www.devilstoboggan.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Devils%20Toboggan%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "dry-hills-distillery",
+      "name": "Dry Hills Distillery",
+      "address": "106 Village Center Lane, Bozeman, MT 59718",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/dry-hills-distillery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Dry%20Hills%20Distillery%20Bozeman%20MT",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "est-1864-noir-bar-restaurant",
+      "name": "Est.1864 Noir Bar & Restaurant",
+      "address": "233 E Main St",
+      "phone": "(406) 404-1066",
+      "website": "http://www.est1864bozeman.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/",
+        "http://www.est1864bozeman.com"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Est.1864%20Noir%20Bar%20%26%20Restaurant%20Bozeman%20MT",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "finks-deli",
+      "name": "Finks Deli",
+      "address": "600 N Wallace Ave Suite 4, Bozeman, MT 59715-3001",
+      "phone": "406.577.2706",
+      "website": "https://www.finksdeli.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/finks-deli/",
+        "https://www.finksdeli.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Finks%20Deli%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "la-brasserie",
+      "name": "La Brasserie",
+      "address": "31 S Willson Ave",
+      "phone": "",
+      "website": "https://www.labrasseriemt.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/la-brasserie/",
+        "https://www.labrasseriemt.com"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=La%20Brasserie%20Bozeman%20MT",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "map-brewing",
+      "name": "MAP Brewing Company",
+      "address": "510 Manley Rd",
+      "phone": "406-587-4070",
+      "website": "https://www.mapbrewing.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/map-brewing/",
+        "https://www.mapbrewing.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=MAP%20Brewing%20Company%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "mountains-walking-brewery",
+      "name": "Mountains Walking Brewery",
+      "address": "422 Plum Ave, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/mountains-walking-brewery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "revelry",
+      "name": "Revelry",
+      "address": "24 N Tracy Ave, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/revelry/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry%20Bozeman%20MT",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "rocking-r",
+      "name": "Rocking R Bar",
+      "address": "211 E Main St",
+      "phone": "406-587-9355",
+      "website": "https://rockingrbar.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/rocking-r/",
+        "https://rockingrbar.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Rocking%20R%20Bar%20Bozeman%20MT",
+      "tags": [
+        "dive"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "shine-beer-sanctuary",
+      "name": "Shine Beer Sanctuary",
+      "address": "451 E Main St, Bozeman, MT 59715",
+      "phone": "4065512019",
+      "website": "https://www.shinebeer.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/shine-beer-sanctuary/",
+        "https://www.shinebeer.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Shine%20Beer%20Sanctuary%20Bozeman%20MT",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "the-bacchus-pub",
+      "name": "The Bacchus Pub",
+      "address": "105 W Main St Suite 1A, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-bacchus-pub/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bacchus%20Pub%20Bozeman%20MT",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "the-club",
+      "name": "The Club Tavern & Grill",
+      "address": "1325 N 7th Ave",
+      "phone": "406-556-6212",
+      "website": "https://www.theclubtavernandgrill.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-club/",
+        "https://www.theclubtavernandgrill.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Club%20Tavern%20%26%20Grill%20Bozeman%20MT",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "urban-kitchen",
+      "name": "Urban Kitchen",
+      "address": "5 W Mendenhall St Suite 102, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/urban-kitchen/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Urban%20Kitchen%20Bozeman%20MT",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
+    },
+    {
+      "id": "wild-rye-distilling",
+      "name": "Wild Rye Distilling",
+      "address": "111 E Oak St Suite 1E Bozeman, Montana",
+      "phone": "406.577.2288",
+      "website": "https://www.wildryedistilling.com/",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/wild-rye-distilling/",
+        "https://www.wildryedistilling.com/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Wild%20Rye%20Distilling%20Bozeman%20MT",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     }
   ]
 }

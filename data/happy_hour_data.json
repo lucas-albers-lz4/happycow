@@ -1,161 +1,154 @@
 {
-  "last_updated": "2026-07-30T03:15:55Z",
+  "last_updated": "2026-07-30T03:38:32Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
     {
-      "id": "bacchus-pub",
-      "name": "Bacchus Pub",
-      "address": "100 W Main St",
-      "phone": "",
-      "website": "https://www.bacchuspub.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bacchus+Pub+Bozeman+MT",
-      "hours": "Sun-Thu 3-6pm",
+      "id": "ale-works",
+      "name": "Ale Works",
+      "address": "611 E Main St",
+      "phone": "406-587-7700",
+      "website": "https://www.montanaaleworks.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Ale%20Works%20Bozeman%20MT",
+      "hours": "",
       "tags": [
-        "pub",
-        "patio",
-        "classy"
-      ],
-      "noise_level": "moderate",
-      "mood": "historic-downtown",
-      "specials": [
-        {
-          "item": "Beer",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "Happy hour beer pricing"
-        },
-        {
-          "item": "Well drinks",
-          "price": 4.0,
-          "category": "drinks",
-          "description": "Well drink special"
-        },
-        {
-          "item": "Curry fries",
-          "price": 0.0,
-          "category": "food",
-          "description": "Half off signature curry fries"
-        }
-      ]
-    },
-    {
-      "id": "devils-toboggan",
-      "name": "Devil's Toboggan",
-      "address": "113 E Oak St #2B",
-      "phone": "(406) 587-4829",
-      "website": "https://www.devilstoboggan.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Devil%27s+Toboggan+Bozeman+MT",
-      "hours": "Daily 4-6pm",
-      "tags": [
-        "classy",
-        "cocktails",
-        "hidden"
-      ],
-      "noise_level": "moderate",
-      "mood": "speakeasy",
-      "specials": [
-        {
-          "item": "Beer",
-          "price": 3.5,
-          "category": "drinks",
-          "description": "$3\u2013$4 beers"
-        },
-        {
-          "item": "House wine",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "House wine pour"
-        },
-        {
-          "item": "Well drink",
-          "price": 4.0,
-          "category": "drinks",
-          "description": "Single well drinks"
-        }
-      ]
-    },
-    {
-      "id": "revelry",
-      "name": "Revelry",
-      "address": "Bozeman, MT",
-      "phone": "",
-      "website": "https://www.revelrymt.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry+Bozeman+MT",
-      "hours": "Daily 3-5pm",
-      "tags": [
-        "patio",
-        "classy",
-        "wine"
-      ],
-      "noise_level": "moderate",
-      "mood": "lively-and-polished",
-      "specials": [
-        {
-          "item": "Happy hour wine",
-          "price": 8.0,
-          "category": "drinks",
-          "description": "Bubbles, white, ros\u00e9, or red"
-        },
-        {
-          "item": "Local beer",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "Select local drafts"
-        },
-        {
-          "item": "Smash burger",
-          "price": 0.0,
-          "category": "food",
-          "description": "Happy hour food special \u2014 confirm price on site"
-        }
-      ]
-    },
-    {
-      "id": "brigade",
-      "name": "Brigade",
-      "address": "233 E Main St #201",
-      "phone": "(406) 624-6161",
-      "website": "https://brigadebozeman.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade+Bozeman+MT",
-      "hours": "Daily 3-6pm",
-      "tags": [
-        "cocktails",
-        "patio",
         "downtown"
       ],
       "noise_level": "moderate",
-      "mood": "rooftop-vibes",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "applebees-bozeman",
+      "name": "Applebee\u2019s Bozeman",
+      "address": "1108 N 7th Ave",
+      "phone": "406-587-3445",
+      "website": "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Applebee%E2%80%99s%20Bozeman%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "sports"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "bar-ix",
+      "name": "Bar IX",
+      "address": "311 E Main Street",
+      "phone": "406-551-2185",
+      "website": "https://bar-ix.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bar%20IX%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "dive"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "bitterroot-bistro",
+      "name": "Bitterroot Bistro",
+      "address": "19 S Willson Ave",
+      "phone": "",
+      "website": "https://www.bitterrootbistro.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bitterroot%20Bistro%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "blackbird",
+      "name": "Blackbird",
+      "address": "140 E Main St, Bozeman, MT",
+      "phone": "406.586.0010",
+      "website": "https://www.blackbirdkitchen.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Blackbird%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "bourbon",
+      "name": "Bourbon",
+      "address": "515 W Aspen St",
+      "phone": "(406) 586-3443",
+      "website": "https://bourbonmt.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon%20Bozeman%20MT",
+      "hours": "Daily 4-6pm",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Martini",
-          "price": 3.0,
+          "item": "Drink specials",
+          "price": 0.0,
           "category": "drinks",
-          "description": "Happy hour martini"
+          "description": "Craft whiskey cocktails on special"
         },
         {
-          "item": "Draft beer",
-          "price": 3.0,
-          "category": "drinks",
-          "description": "Draft beer special"
+          "item": "Food specials",
+          "price": 0.0,
+          "category": "food",
+          "description": "BBQ bites during happy hour"
         }
       ]
     },
     {
+      "id": "bozeman-brewing-company",
+      "name": "Bozeman Brewing Company",
+      "address": "504 N Broadway Ave",
+      "phone": "406-585-9142",
+      "website": "https://bozemanbrewing.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Brewing%20Company%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "bozeman-spirits-distillery",
+      "name": "Bozeman Spirits Distillery",
+      "address": "121 W Main St, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Spirits%20Distillery%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
       "id": "bozeman-taproom",
-      "name": "The Bozeman Taproom",
-      "address": "Bozeman, MT",
+      "name": "Bozeman Taproom",
+      "address": "101 N Rouse Ave, Bozeman, MT 59715",
       "phone": "",
       "website": "https://www.bozemantaproom.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman+Taproom+Bozeman+MT",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Taproom%20Bozeman%20MT",
       "hours": "Sun-Thu 3-6pm",
       "tags": [
-        "craft-beer",
-        "patio",
-        "sports"
+        "craft-beer"
       ],
-      "noise_level": "loud",
-      "mood": "sunny-and-buzzy",
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
       "specials": [
         {
           "item": "Craft beer",
@@ -178,50 +171,234 @@
       ]
     },
     {
-      "id": "bourbon",
-      "name": "Bourbon",
-      "address": "515 W Aspen St",
-      "phone": "(406) 586-3443",
-      "website": "https://bourbonmt.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon+Bozeman+MT",
-      "hours": "Daily 4-6pm",
+      "id": "bridger-brewing",
+      "name": "Bridger Brewing",
+      "address": "1609 S 11th Ave",
+      "phone": "406-587-2124",
+      "website": "http://www.bridgerbrewing.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bridger%20Brewing%20Bozeman%20MT",
+      "hours": "",
       "tags": [
-        "whiskey",
-        "bbq",
-        "classy"
+        "craft-beer"
       ],
       "noise_level": "moderate",
-      "mood": "dark-wood-and-smoke",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "brigade",
+      "name": "Brigade",
+      "address": "233 E Main Street #201",
+      "phone": "(406) 624-6161",
+      "website": "https://brigadebozeman.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade%20Bozeman%20MT",
+      "hours": "Daily 3-6pm",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Drink specials",
-          "price": 0.0,
+          "item": "Martini",
+          "price": 3.0,
           "category": "drinks",
-          "description": "Craft whiskey cocktails on special"
+          "description": "Happy hour martini"
         },
         {
-          "item": "Food specials",
-          "price": 0.0,
-          "category": "food",
-          "description": "BBQ bites during happy hour"
+          "item": "Draft beer",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "Draft beer special"
         }
       ]
     },
     {
-      "id": "r-bar",
-      "name": "R Bar",
-      "address": "270 W Main St",
+      "id": "daves-sushi",
+      "name": "Dave\u2019s Sushi",
+      "address": "115 N Bozeman Ave",
+      "phone": "406-556-1351",
+      "website": "http://daves-sushi.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Dave%E2%80%99s%20Sushi%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "devils-toboggan",
+      "name": "Devils Toboggan",
+      "address": "113 E Oak St #2b, Bozeman, MT 59715",
+      "phone": "406 587 4829",
+      "website": "https://www.devilstoboggan.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Devils%20Toboggan%20Bozeman%20MT",
+      "hours": "Daily 4-6pm",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": [
+        {
+          "item": "Beer",
+          "price": 3.5,
+          "category": "drinks",
+          "description": "$3\u2013$4 beers"
+        },
+        {
+          "item": "House wine",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "House wine pour"
+        },
+        {
+          "item": "Well drink",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Single well drinks"
+        }
+      ]
+    },
+    {
+      "id": "dry-hills-distillery",
+      "name": "Dry Hills Distillery",
+      "address": "106 Village Center Lane, Bozeman, MT 59718",
       "phone": "",
-      "website": "https://www.rbarbozeman.com",
-      "maps": "https://www.google.com/maps/search/?api=1&query=R+Bar+Bozeman+MT",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Dry%20Hills%20Distillery%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "est-1864-noir-bar-restaurant",
+      "name": "Est.1864 Noir Bar & Restaurant",
+      "address": "233 E Main St",
+      "phone": "(406) 404-1066",
+      "website": "http://www.est1864bozeman.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Est.1864%20Noir%20Bar%20%26%20Restaurant%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "finks-deli",
+      "name": "Finks Deli",
+      "address": "600 N Wallace Ave Suite 4, Bozeman, MT 59715-3001",
+      "phone": "406.577.2706",
+      "website": "https://www.finksdeli.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Finks%20Deli%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "la-brasserie",
+      "name": "La Brasserie",
+      "address": "31 S Willson Ave",
+      "phone": "",
+      "website": "https://www.labrasseriemt.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=La%20Brasserie%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "map-brewing",
+      "name": "MAP Brewing Company",
+      "address": "510 Manley Rd",
+      "phone": "406-587-4070",
+      "website": "https://www.mapbrewing.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=MAP%20Brewing%20Company%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "mountains-walking-brewery",
+      "name": "Mountains Walking Brewery",
+      "address": "422 Plum Ave, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "revelry",
+      "name": "Revelry",
+      "address": "24 N Tracy Ave, Bozeman, MT 59715",
+      "phone": "",
+      "website": "https://www.revelrymt.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry%20Bozeman%20MT",
+      "hours": "Daily 3-5pm",
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": [
+        {
+          "item": "Happy hour wine",
+          "price": 8.0,
+          "category": "drinks",
+          "description": "Bubbles, white, ros\u00e9, or red"
+        },
+        {
+          "item": "Local beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Select local drafts"
+        },
+        {
+          "item": "Smash burger",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy hour food special \u2014 confirm price on site"
+        }
+      ]
+    },
+    {
+      "id": "rocking-r",
+      "name": "Rocking R Bar",
+      "address": "211 E Main St",
+      "phone": "406-587-9355",
+      "website": "https://rockingrbar.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Rocking%20R%20Bar%20Bozeman%20MT",
       "hours": "Mon-Fri 4-7pm",
       "tags": [
-        "dive",
-        "downtown",
-        "late-night"
+        "dive"
       ],
-      "noise_level": "loud",
-      "mood": "sticky-floor-classic",
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
       "specials": [
         {
           "item": "Mule / martini / cocktail",
@@ -242,6 +419,100 @@
           "description": "App specials during weekday HH"
         }
       ]
+    },
+    {
+      "id": "shine-beer-sanctuary",
+      "name": "Shine Beer Sanctuary",
+      "address": "451 E Main St, Bozeman, MT 59715",
+      "phone": "4065512019",
+      "website": "https://www.shinebeer.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Shine%20Beer%20Sanctuary%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "the-bacchus-pub",
+      "name": "The Bacchus Pub",
+      "address": "105 W Main St Suite 1A, Bozeman, MT 59715",
+      "phone": "",
+      "website": "https://www.bacchuspub.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bacchus%20Pub%20Bozeman%20MT",
+      "hours": "Sun-Thu 3-6pm",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": [
+        {
+          "item": "Beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Happy hour beer pricing"
+        },
+        {
+          "item": "Well drinks",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Well drink special"
+        },
+        {
+          "item": "Curry fries",
+          "price": 0.0,
+          "category": "food",
+          "description": "Half off signature curry fries"
+        }
+      ]
+    },
+    {
+      "id": "the-club",
+      "name": "The Club Tavern & Grill",
+      "address": "1325 N 7th Ave",
+      "phone": "406-556-6212",
+      "website": "https://www.theclubtavernandgrill.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Club%20Tavern%20%26%20Grill%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "urban-kitchen",
+      "name": "Urban Kitchen",
+      "address": "5 W Mendenhall St Suite 102, Bozeman, MT 59715",
+      "phone": "",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Urban%20Kitchen%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "wild-rye-distilling",
+      "name": "Wild Rye Distilling",
+      "address": "111 E Oak St Suite 1E Bozeman, Montana",
+      "phone": "406.577.2288",
+      "website": "https://www.wildryedistilling.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Wild%20Rye%20Distilling%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
     }
   ]
 }

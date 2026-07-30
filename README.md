@@ -13,19 +13,23 @@ A self-funding happy hour directory for small cities. 30 rotating cow cartoons, 
 ## Scrape pipeline
 
 Curated venues live in `config/venues.json` (static fields: tags, maps, scrape URLs).
+Primary source pages are [Montana Happy Hour](https://mthappyhour.com/happy-hours-near/bozeman/) location URLs — venue own-sites are fallback only.
 `.github/workflows/scrape.yml` runs Sun + Thu ~8am MT:
 
-1. Fetch each venue's `scrape_urls`
-2. DeepSeek Flash extracts hours + specials (`prompts/extract_happy_hour.txt`)
-3. Merges into `data/happy_hour_data.json` (keeps previous on failure)
-4. Commits to `main` → Pages redeploys
+1. Fetch each venue's `scrape_urls` (`httpx` + retries)
+2. Trim page text with `trafilatura` (happy-hour section only)
+3. Skip DeepSeek when content hash matches `data/scrape_cache.json`
+4. Otherwise DeepSeek Flash extracts hours + specials; `pydantic` validates (+ 1 retry)
+5. Merge into `data/happy_hour_data.json` (keeps previous on failure)
+6. Commit data + cache to `main` → Pages redeploys
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 export DEEPSEEK_API_KEY=...
 python scripts/scrape_happy_hours.py --dry-run
-python scripts/scrape_happy_hours.py --venue bacchus-pub
+python scripts/scrape_happy_hours.py --venue brigade
+python scripts/scrape_happy_hours.py --force   # ignore cache
 ```
 
 Required repo secret: `DEEPSEEK_API_KEY` (same key as sre-ai-llm-work).
