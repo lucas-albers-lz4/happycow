@@ -13,7 +13,7 @@ A self-funding happy hour directory for small cities. 30 rotating cow cartoons, 
 ## Scrape pipeline
 
 Curated venues live in `config/venues.json` (static fields: tags, maps, scrape URLs).
-`.github/workflows/scrape.yml` runs Mon + Thu ~8am MT:
+`.github/workflows/scrape.yml` runs Sun + Thu ~8am MT:
 
 1. Fetch each venue's `scrape_urls`
 2. DeepSeek Flash extracts hours + specials (`prompts/extract_happy_hour.txt`)
