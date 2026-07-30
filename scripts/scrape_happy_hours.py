@@ -182,11 +182,13 @@ def extract_venue(venue: dict, city: str, prompt_tmpl: str) -> dict | None:
         return None
 
     page_text = "\n\n".join(chunks)[: MAX_PAGE_CHARS * 2]
-    prompt = prompt_tmpl.format(
-        name=venue["name"],
-        city=city,
-        urls=", ".join(urls),
-        page_text=page_text,
+    # Use replace (not str.format) — the prompt contains JSON braces.
+    prompt = (
+        prompt_tmpl
+        .replace("{name}", venue["name"])
+        .replace("{city}", city)
+        .replace("{urls}", ", ".join(urls))
+        .replace("{page_text}", page_text)
     )
     print(f"  extract via {MODEL}")
     raw = call_deepseek(prompt)
