@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T03:38:32Z",
+  "last_updated": "2026-07-30T03:41:40Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -10,13 +10,38 @@
       "phone": "406-587-7700",
       "website": "https://www.montanaaleworks.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Ale%20Works%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 4-6pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Draft beers",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1.00 off"
+        },
+        {
+          "item": "Wine by the glass",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1.00 off"
+        },
+        {
+          "item": "Well drinks",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3.00 well drinks"
+        },
+        {
+          "item": "Double shot signature cocktails",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "Hop the tracks, Rosemary Poloma, Cherry wine sour, Rasberrie cosmo, Kaffir gin and tonic"
+        }
+      ]
     },
     {
       "id": "applebees-bozeman",
@@ -25,13 +50,44 @@
       "phone": "406-587-3445",
       "website": "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019",
       "maps": "https://www.google.com/maps/search/?api=1&query=Applebee%E2%80%99s%20Bozeman%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon-Fri 3-6pm",
       "tags": [
         "sports"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Appetizers",
+          "price": 0.0,
+          "category": "food",
+          "description": "Half price"
+        },
+        {
+          "item": "Long Island Ice Teas",
+          "price": 4.0,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Margaritas",
+          "price": 3.25,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Domestic Beer",
+          "price": 3.5,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "House Wine",
+          "price": 3.5,
+          "category": "drinks",
+          "description": ""
+        }
+      ]
     },
     {
       "id": "bar-ix",
@@ -40,13 +96,50 @@
       "phone": "406-551-2185",
       "website": "https://bar-ix.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%20IX%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 2-7pm",
       "tags": [
         "dive"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "2-for-1 drinks",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Two drinks for the price of one"
+        },
+        {
+          "item": "Jello shots",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 jello shots, Saturday 8-10pm"
+        },
+        {
+          "item": "Car bombs",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5 car bombs, Saturday 8-10pm"
+        },
+        {
+          "item": "Shot specials",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "$4 shot specials, Saturday 8-10pm"
+        },
+        {
+          "item": "Svedka Vodka",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3 Svedka Vodka, Saturday 8-10pm"
+        },
+        {
+          "item": "Bulleit Bourbon",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3 Bulleit Bourbon, Saturday 8-10pm"
+        }
+      ]
     },
     {
       "id": "bitterroot-bistro",
@@ -55,7 +148,7 @@
       "phone": "",
       "website": "https://www.bitterrootbistro.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bitterroot%20Bistro%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 2-5pm",
       "tags": [
         "classy"
       ],
@@ -70,13 +163,20 @@
       "phone": "406.586.0010",
       "website": "https://www.blackbirdkitchen.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Blackbird%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 4:30-5:30pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Select bottles of wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Half price select bottles of wine"
+        }
+      ]
     },
     {
       "id": "bourbon",
@@ -93,16 +193,10 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Drink specials",
-          "price": 0.0,
-          "category": "drinks",
-          "description": "Craft whiskey cocktails on special"
-        },
-        {
-          "item": "Food specials",
-          "price": 0.0,
+          "item": "Dry Rubbed Smoked Wings",
+          "price": 7.0,
           "category": "food",
-          "description": "BBQ bites during happy hour"
+          "description": "6 for $7 on Wednesdays"
         }
       ]
     },
@@ -113,13 +207,26 @@
       "phone": "406-585-9142",
       "website": "https://bozemanbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Brewing%20Company%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Fri 12-8pm",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "64oz growler refills",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$2 off (exceptions may apply)"
+        },
+        {
+          "item": "Pint",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8pm)"
+        }
+      ]
     },
     {
       "id": "bozeman-spirits-distillery",
@@ -128,13 +235,50 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Spirits%20Distillery%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Fri 3-6pm",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Men's drinks",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Mondays: Men\u2019s night, $7 for all mens drinks"
+        },
+        {
+          "item": "Mule",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Tuesdays: Live Music and $7 Mules"
+        },
+        {
+          "item": "Whiskey drink",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Whiskey Wednesdays: $7 for any whiskey drink"
+        },
+        {
+          "item": "Women's drinks",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Thursday: Ladies night all day. $7 for all women\u2019s drinks"
+        },
+        {
+          "item": "All drinks",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Friday: 3pm -6pm happy hour. All drinks are $7"
+        },
+        {
+          "item": "Huckleberry drinks",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Sunday: All huckleberry drinks are $7"
+        }
+      ]
     },
     {
       "id": "bozeman-taproom",
@@ -143,7 +287,7 @@
       "phone": "",
       "website": "https://www.bozemantaproom.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Taproom%20Bozeman%20MT",
-      "hours": "Sun-Thu 3-6pm",
+      "hours": "Daily 11am-3pm",
       "tags": [
         "craft-beer"
       ],
@@ -151,22 +295,46 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Craft beer",
-          "price": 0.0,
-          "category": "drinks",
-          "description": "Select craft beers at happy hour pricing"
-        },
-        {
-          "item": "House wine",
-          "price": 0.0,
-          "category": "drinks",
-          "description": "House wine special"
-        },
-        {
-          "item": "Apps",
-          "price": 0.0,
+          "item": "Lunch with 10 oz beer",
+          "price": 10.0,
           "category": "food",
-          "description": "Pretzel bites, nachos, and more"
+          "description": "$8 lunches, add on a 10 oz beer for $2. Options include 1/2 sandwich (Turkey Club or Dagwood) with chips and pickle, 1/4 lb Cheeseburger with chips and pickle, Sausage with chips and pickle, Taco Combo (2 tacos with tortilla chips and salsa), or Soup and Salad Combo."
+        },
+        {
+          "item": "1/2 sandwich lunch",
+          "price": 8.0,
+          "category": "food",
+          "description": "Turkey Club or Dagwood with chips and a pickle"
+        },
+        {
+          "item": "1/4 lb Cheeseburger lunch",
+          "price": 8.0,
+          "category": "food",
+          "description": "with chips and a pickle"
+        },
+        {
+          "item": "Sausage lunch",
+          "price": 8.0,
+          "category": "food",
+          "description": "with chips and a pickle"
+        },
+        {
+          "item": "Taco Combo",
+          "price": 8.0,
+          "category": "food",
+          "description": "2 tacos with tortilla chips and salsa"
+        },
+        {
+          "item": "Soup and Salad Combo",
+          "price": 8.0,
+          "category": "food",
+          "description": "soup and salad"
+        },
+        {
+          "item": "10 oz beer add-on",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "Add a 10 oz beer to any lunch special"
         }
       ]
     },
@@ -177,13 +345,20 @@
       "phone": "406-587-2124",
       "website": "http://www.bridgerbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bridger%20Brewing%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 2-4pm",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Beers",
+          "price": 1.0,
+          "category": "drinks",
+          "description": "$1 off beers"
+        }
+      ]
     },
     {
       "id": "brigade",
@@ -200,16 +375,76 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Martini",
+          "item": "Martinis (vodka, gin, cosmo, infused berry)",
           "price": 3.0,
           "category": "drinks",
-          "description": "Happy hour martini"
+          "description": "$3 Martinis (vodka, gin, cosmo, infused berry)"
         },
         {
-          "item": "Draft beer",
+          "item": "Draft Beers",
           "price": 3.0,
           "category": "drinks",
-          "description": "Draft beer special"
+          "description": "$3 Draft Beers"
+        },
+        {
+          "item": "Oysters (chef's choice)",
+          "price": 3.0,
+          "category": "food",
+          "description": "$3 Oysters (chef's choice)"
+        },
+        {
+          "item": "Fresh Baguette (chef's choice of daily butter)",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Fresh Baguette"
+        },
+        {
+          "item": "Warm Marinated Olives",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Warm Marinated Olives"
+        },
+        {
+          "item": "Onion Rings",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Onion Rings"
+        },
+        {
+          "item": "Truffle Fries",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Truffle Fries"
+        },
+        {
+          "item": "French Onion Soup",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on French Onion Soup"
+        },
+        {
+          "item": "Edamame Hummus",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Edamame Hummus"
+        },
+        {
+          "item": "Shrimp Cocktail",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Shrimp Cocktail"
+        },
+        {
+          "item": "Charcuterie",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Charcuterie"
+        },
+        {
+          "item": "Brigade Burger",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy Hour Prices on Brigade Burger"
         }
       ]
     },
@@ -220,13 +455,20 @@
       "phone": "406-556-1351",
       "website": "http://daves-sushi.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Dave%E2%80%99s%20Sushi%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon 3pm-close",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Beer, Wine, & Sake",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "1/2 off \u2013 3:00pm to close"
+        }
+      ]
     },
     {
       "id": "devils-toboggan",
@@ -243,22 +485,28 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Beer",
-          "price": 3.5,
+          "item": "Beers",
+          "price": 3.0,
           "category": "drinks",
-          "description": "$3\u2013$4 beers"
+          "description": "$3.00 - $4.00 beers"
         },
         {
-          "item": "House wine",
+          "item": "House wines",
           "price": 5.0,
           "category": "drinks",
-          "description": "House wine pour"
+          "description": "$5.00 house wines"
         },
         {
-          "item": "Well drink",
+          "item": "Single well drinks",
           "price": 4.0,
           "category": "drinks",
-          "description": "Single well drinks"
+          "description": "$4.00 single well drinks"
+        },
+        {
+          "item": "Appetizer specials",
+          "price": 0.0,
+          "category": "food",
+          "description": "Appetizer specials (price not specified)"
         }
       ]
     },
@@ -269,13 +517,56 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Dry%20Hills%20Distillery%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Tue 4-8pm",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "All Cocktails",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 off all cocktails, plus free pool"
+        },
+        {
+          "item": "Whiskey Cocktails",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5 whiskey cocktails all day"
+        },
+        {
+          "item": "All Cocktails (Ladies Night)",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 off all cocktails"
+        },
+        {
+          "item": "Drink (Date Night)",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Buy one drink, get one free with purchase of locally sourced meat & cheese board from 4-8pm"
+        },
+        {
+          "item": "Moscow Mule",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Any mules just $5 all day"
+        },
+        {
+          "item": "Bloody Mary or Caesar",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 off a Bloody Mary or a Caesar"
+        },
+        {
+          "item": "Screwdriver",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5 Screwdrivers all day"
+        }
+      ]
     },
     {
       "id": "est-1864-noir-bar-restaurant",
@@ -284,13 +575,38 @@
       "phone": "(406) 404-1066",
       "website": "http://www.est1864bozeman.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Est.1864%20Noir%20Bar%20%26%20Restaurant%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Thu-Sat 4-6pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Cocktails",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5 cocktails"
+        },
+        {
+          "item": "Wine",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3 wine"
+        },
+        {
+          "item": "Beers",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 beers"
+        },
+        {
+          "item": "Late-Night Bites",
+          "price": 0.0,
+          "category": "food",
+          "description": "late-night bites"
+        }
+      ]
     },
     {
       "id": "finks-deli",
@@ -299,13 +615,26 @@
       "phone": "406.577.2706",
       "website": "https://www.finksdeli.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Finks%20Deli%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 2-4pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Beer",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 Off"
+        },
+        {
+          "item": "Canned Wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 Off"
+        }
+      ]
     },
     {
       "id": "la-brasserie",
@@ -314,13 +643,38 @@
       "phone": "",
       "website": "https://www.labrasseriemt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=La%20Brasserie%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 4-6pm",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Wine",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "Select wines at special prices"
+        },
+        {
+          "item": "Beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Select beer at special prices"
+        },
+        {
+          "item": "Cocktails",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "Select cocktails at special prices"
+        },
+        {
+          "item": "Small Plates",
+          "price": 0.0,
+          "category": "food",
+          "description": "Select small plates at special prices (price not specified)"
+        }
+      ]
     },
     {
       "id": "map-brewing",
@@ -329,13 +683,20 @@
       "phone": "406-587-4070",
       "website": "https://www.mapbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=MAP%20Brewing%20Company%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon-Thu 2-4pm",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Pints",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 off pints"
+        }
+      ]
     },
     {
       "id": "mountains-walking-brewery",
@@ -359,7 +720,7 @@
       "phone": "",
       "website": "https://www.revelrymt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Revelry%20Bozeman%20MT",
-      "hours": "Daily 3-5pm",
+      "hours": "Daily 2:30-4pm",
       "tags": [
         "downtown"
       ],
@@ -367,22 +728,58 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Happy hour wine",
-          "price": 8.0,
+          "item": "Rainier",
+          "price": 2.0,
           "category": "drinks",
-          "description": "Bubbles, white, ros\u00e9, or red"
+          "description": "Beer"
         },
         {
-          "item": "Local beer",
+          "item": "Modelo",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "Beer"
+        },
+        {
+          "item": "MAP IPA",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Beer"
+        },
+        {
+          "item": "Meadowlark Ole Gus Scotch Rye",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Beer"
+        },
+        {
+          "item": "Bubbles",
           "price": 5.0,
           "category": "drinks",
-          "description": "Select local drafts"
+          "description": "Wine"
         },
         {
-          "item": "Smash burger",
+          "item": "White",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Wine"
+        },
+        {
+          "item": "Red",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Wine"
+        },
+        {
+          "item": "Rose",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Wine"
+        },
+        {
+          "item": "Bottles",
           "price": 0.0,
-          "category": "food",
-          "description": "Happy hour food special \u2014 confirm price on site"
+          "category": "drinks",
+          "description": "30% off"
         }
       ]
     },
@@ -401,22 +798,28 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Mule / martini / cocktail",
+          "item": "Drafts",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Select $4 drafts"
+        },
+        {
+          "item": "Mules + Martinis",
           "price": 7.0,
           "category": "drinks",
-          "description": "$7 mules, martinis, and cocktails"
+          "description": "$7 mules and martinis"
         },
         {
-          "item": "Beer & wine",
-          "price": 0.0,
+          "item": "Wine + Handcrafted Cocktails",
+          "price": 7.0,
           "category": "drinks",
-          "description": "Happy hour beer and wine specials"
+          "description": "$7 wine and handcrafted cocktails"
         },
         {
-          "item": "Apps",
-          "price": 0.0,
-          "category": "food",
-          "description": "App specials during weekday HH"
+          "item": "Boozy Milkshakes",
+          "price": 10.0,
+          "category": "drinks",
+          "description": "$10 boozy milkshakes"
         }
       ]
     },
@@ -427,7 +830,7 @@
       "phone": "4065512019",
       "website": "https://www.shinebeer.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Shine%20Beer%20Sanctuary%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 3-5pm",
       "tags": [
         "craft-beer"
       ],
@@ -442,7 +845,7 @@
       "phone": "",
       "website": "https://www.bacchuspub.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bacchus%20Pub%20Bozeman%20MT",
-      "hours": "Sun-Thu 3-6pm",
+      "hours": "Daily 2-6pm",
       "tags": [
         "pub"
       ],
@@ -450,22 +853,28 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Beer",
-          "price": 5.0,
+          "item": "Well Drinks",
+          "price": 0.0,
           "category": "drinks",
-          "description": "Happy hour beer pricing"
+          "description": "$2.00 off"
         },
         {
-          "item": "Well drinks",
-          "price": 4.0,
+          "item": "Wine",
+          "price": 0.0,
           "category": "drinks",
-          "description": "Well drink special"
+          "description": "$2.00 off"
         },
         {
-          "item": "Curry fries",
+          "item": "Draft Beers",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1.00 off"
+        },
+        {
+          "item": "House-Made Chips",
           "price": 0.0,
           "category": "food",
-          "description": "Half off signature curry fries"
+          "description": "$1.00 off"
         }
       ]
     },
@@ -476,13 +885,62 @@
       "phone": "406-556-6212",
       "website": "https://www.theclubtavernandgrill.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Club%20Tavern%20%26%20Grill%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon-Fri 4-7pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Draft Beer",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 off"
+        },
+        {
+          "item": "Well Drink",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 off"
+        },
+        {
+          "item": "Glass of Wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$2 off"
+        },
+        {
+          "item": "BBQ Ribs and Mash Potatoes",
+          "price": 6.0,
+          "category": "food",
+          "description": "2 for 1 drinks Tuesday/Thursday"
+        },
+        {
+          "item": "Strawberry Goat Cheese Crostinis",
+          "price": 6.0,
+          "category": "food",
+          "description": "Tuesday/Thursday"
+        },
+        {
+          "item": "Mimosa",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Saturday and Sunday 8am-4pm"
+        },
+        {
+          "item": "Bloody Mary",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Saturday and Sunday 8am-4pm"
+        },
+        {
+          "item": "Caesar",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Saturday and Sunday 8am-4pm"
+        }
+      ]
     },
     {
       "id": "urban-kitchen",
@@ -491,13 +949,32 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Urban%20Kitchen%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 3-6pm",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "All wines by the glass",
+          "price": 2.0,
+          "category": "drinks",
+          "description": "$2 off ALL glasses of wine"
+        },
+        {
+          "item": "Draft Beer",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "$4 Draft Beer"
+        },
+        {
+          "item": "Deep Eddy Shots",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "$4 Deep Eddy Shots"
+        }
+      ]
     },
     {
       "id": "wild-rye-distilling",
@@ -512,7 +989,20 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [
+        {
+          "item": "Any mule team cocktail",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1 off any mule team cocktail on Monday (Mule Monday)"
+        },
+        {
+          "item": "Drink from special menu",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
+        }
+      ]
     }
   ]
 }

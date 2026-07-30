@@ -1,4 +1,970 @@
 {
-  "updated_at": null,
-  "venues": {}
+  "updated_at": "2026-07-30T03:41:40Z",
+  "venues": {
+    "ale-works": {
+      "content_hash": "b4c554fce022897d",
+      "fetched_at": "2026-07-30T03:39:31Z",
+      "sources": [
+        "https://mthappyhour.com/locations/ale-works/",
+        "https://www.montanaaleworks.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 4-6pm",
+        "specials": [
+          {
+            "item": "Draft beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off"
+          },
+          {
+            "item": "Wine by the glass",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off"
+          },
+          {
+            "item": "Well drinks",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00 well drinks"
+          },
+          {
+            "item": "Double shot signature cocktails",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "Hop the tracks, Rosemary Poloma, Cherry wine sour, Rasberrie cosmo, Kaffir gin and tonic"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "applebees-bozeman": {
+      "content_hash": "ac803721c2f8edab",
+      "fetched_at": "2026-07-30T03:39:39Z",
+      "sources": [
+        "https://mthappyhour.com/locations/applebees-bozeman/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Mon-Fri 3-6pm",
+        "specials": [
+          {
+            "item": "Appetizers",
+            "price": 0.0,
+            "category": "food",
+            "description": "Half price"
+          },
+          {
+            "item": "Long Island Ice Teas",
+            "price": 4.0,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "Margaritas",
+            "price": 3.25,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "Domestic Beer",
+            "price": 3.5,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "House Wine",
+            "price": 3.5,
+            "category": "drinks",
+            "description": ""
+          }
+        ],
+        "notes": "Weekend happy hours from 9pm\u201311pm"
+      }
+    },
+    "bar-ix": {
+      "content_hash": "9c6abcdfa211dcbe",
+      "fetched_at": "2026-07-30T03:39:46Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bar-ix/",
+        "https://bar-ix.com"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2-7pm",
+        "specials": [
+          {
+            "item": "2-for-1 drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Two drinks for the price of one"
+          },
+          {
+            "item": "Jello shots",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 jello shots, Saturday 8-10pm"
+          },
+          {
+            "item": "Car bombs",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 car bombs, Saturday 8-10pm"
+          },
+          {
+            "item": "Shot specials",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 shot specials, Saturday 8-10pm"
+          },
+          {
+            "item": "Svedka Vodka",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Svedka Vodka, Saturday 8-10pm"
+          },
+          {
+            "item": "Bulleit Bourbon",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Bulleit Bourbon, Saturday 8-10pm"
+          }
+        ],
+        "notes": "Secondary windows: Sat 8-10pm 'Full Send Saturday' bucket night, and Thu at 9pm bucket night."
+      }
+    },
+    "bitterroot-bistro": {
+      "content_hash": "72797b63603baa6b",
+      "fetched_at": "2026-07-30T03:39:51Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bitterroot-bistro/",
+        "https://www.bitterrootbistro.com"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2-5pm",
+        "specials": [],
+        "notes": "Secondary happy hour 9-10pm daily. All-day happy hour on Thursdays."
+      }
+    },
+    "blackbird": {
+      "content_hash": "ec014af9ae9b620c",
+      "fetched_at": "2026-07-30T03:39:55Z",
+      "sources": [
+        "https://mthappyhour.com/locations/blackbird/",
+        "https://www.blackbirdkitchen.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 4:30-5:30pm",
+        "specials": [
+          {
+            "item": "Select bottles of wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Half price select bottles of wine"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "bourbon": {
+      "content_hash": "917392cdfa7704e4",
+      "fetched_at": "2026-07-30T03:39:59Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bourbon/",
+        "https://bourbonmt.com"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 4-6pm",
+        "specials": [
+          {
+            "item": "Dry Rubbed Smoked Wings",
+            "price": 7.0,
+            "category": "food",
+            "description": "6 for $7 on Wednesdays"
+          }
+        ],
+        "notes": "Secondary windows: Wednesday wing special starts 11:30am; Wednesday line dance lessons at 8pm with food and drink specials; Friday live music 9-11pm."
+      }
+    },
+    "bozeman-brewing-company": {
+      "content_hash": "498f944771701b56",
+      "fetched_at": "2026-07-30T03:40:04Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bozeman-brewing-company/",
+        "https://bozemanbrewing.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Fri 12-8pm",
+        "specials": [
+          {
+            "item": "64oz growler refills",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2 off (exceptions may apply)"
+          },
+          {
+            "item": "Pint",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8pm)"
+          }
+        ],
+        "notes": "Primary window is Friday 12-8pm, with growler discount until 3pm. Secondary window: Sunday 2-8pm with non-profit donation per pint."
+      }
+    },
+    "bozeman-spirits-distillery": {
+      "content_hash": "96eab0d50c031d32",
+      "fetched_at": "2026-07-30T03:40:08Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Fri 3-6pm",
+        "specials": [
+          {
+            "item": "Men's drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Mondays: Men\u2019s night, $7 for all mens drinks"
+          },
+          {
+            "item": "Mule",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Tuesdays: Live Music and $7 Mules"
+          },
+          {
+            "item": "Whiskey drink",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Whiskey Wednesdays: $7 for any whiskey drink"
+          },
+          {
+            "item": "Women's drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Thursday: Ladies night all day. $7 for all women\u2019s drinks"
+          },
+          {
+            "item": "All drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Friday: 3pm -6pm happy hour. All drinks are $7"
+          },
+          {
+            "item": "Huckleberry drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Sunday: All huckleberry drinks are $7"
+          }
+        ],
+        "notes": "Secondary windows: Mon Men's night, Tue $7 Mules, Wed whiskey $7, Thu Ladies night all day, Sun huckleberry drinks $7."
+      }
+    },
+    "bozeman-taproom": {
+      "content_hash": "df32c6d4c4795713",
+      "fetched_at": "2026-07-30T03:40:13Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bozeman-taproom/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 11am-3pm",
+        "specials": [
+          {
+            "item": "Lunch with 10 oz beer",
+            "price": 10.0,
+            "category": "food",
+            "description": "$8 lunches, add on a 10 oz beer for $2. Options include 1/2 sandwich (Turkey Club or Dagwood) with chips and pickle, 1/4 lb Cheeseburger with chips and pickle, Sausage with chips and pickle, Taco Combo (2 tacos with tortilla chips and salsa), or Soup and Salad Combo."
+          },
+          {
+            "item": "1/2 sandwich lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "Turkey Club or Dagwood with chips and a pickle"
+          },
+          {
+            "item": "1/4 lb Cheeseburger lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "with chips and a pickle"
+          },
+          {
+            "item": "Sausage lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "with chips and a pickle"
+          },
+          {
+            "item": "Taco Combo",
+            "price": 8.0,
+            "category": "food",
+            "description": "2 tacos with tortilla chips and salsa"
+          },
+          {
+            "item": "Soup and Salad Combo",
+            "price": 8.0,
+            "category": "food",
+            "description": "soup and salad"
+          },
+          {
+            "item": "10 oz beer add-on",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "Add a 10 oz beer to any lunch special"
+          }
+        ],
+        "notes": "Monday night trivia 6-8pm, but specific happy hour specials not listed for that window."
+      }
+    },
+    "bridger-brewing": {
+      "content_hash": "5eb8acd7ce2f4a30",
+      "fetched_at": "2026-07-30T03:40:17Z",
+      "sources": [
+        "https://mthappyhour.com/locations/bridger-brewing/",
+        "http://www.bridgerbrewing.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2-4pm",
+        "specials": [
+          {
+            "item": "Beers",
+            "price": 1.0,
+            "category": "drinks",
+            "description": "$1 off beers"
+          }
+        ],
+        "notes": "Also has other daily food specials listed but they are not happy hour specials."
+      }
+    },
+    "brigade": {
+      "content_hash": "f939cf043b09ac1d",
+      "fetched_at": "2026-07-30T03:40:22Z",
+      "sources": [
+        "https://mthappyhour.com/locations/brigade/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 3-6pm",
+        "specials": [
+          {
+            "item": "Martinis (vodka, gin, cosmo, infused berry)",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Martinis (vodka, gin, cosmo, infused berry)"
+          },
+          {
+            "item": "Draft Beers",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Draft Beers"
+          },
+          {
+            "item": "Oysters (chef's choice)",
+            "price": 3.0,
+            "category": "food",
+            "description": "$3 Oysters (chef's choice)"
+          },
+          {
+            "item": "Fresh Baguette (chef's choice of daily butter)",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Fresh Baguette"
+          },
+          {
+            "item": "Warm Marinated Olives",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Warm Marinated Olives"
+          },
+          {
+            "item": "Onion Rings",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Onion Rings"
+          },
+          {
+            "item": "Truffle Fries",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Truffle Fries"
+          },
+          {
+            "item": "French Onion Soup",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on French Onion Soup"
+          },
+          {
+            "item": "Edamame Hummus",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Edamame Hummus"
+          },
+          {
+            "item": "Shrimp Cocktail",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Shrimp Cocktail"
+          },
+          {
+            "item": "Charcuterie",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Charcuterie"
+          },
+          {
+            "item": "Brigade Burger",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Brigade Burger"
+          }
+        ],
+        "notes": "Secondary window not mentioned; Happy Hour runs every day 3:00pm to 6:00pm."
+      }
+    },
+    "daves-sushi": {
+      "content_hash": "530abbb4a35377b1",
+      "fetched_at": "2026-07-30T03:40:29Z",
+      "sources": [
+        "https://mthappyhour.com/locations/daves-sushi/",
+        "http://daves-sushi.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Mon 3pm-close",
+        "specials": [
+          {
+            "item": "Beer, Wine, & Sake",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off \u2013 3:00pm to close"
+          }
+        ],
+        "notes": "Only Monday happy hour specified. Hours are '3pm to close' \u2013 does not fit standard daytime window, but reported as primary."
+      }
+    },
+    "devils-toboggan": {
+      "content_hash": "67787c8c36b97c0c",
+      "fetched_at": "2026-07-30T03:40:34Z",
+      "sources": [
+        "https://mthappyhour.com/locations/devils-toboggan/",
+        "https://www.devilstoboggan.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 4-6pm",
+        "specials": [
+          {
+            "item": "Beers",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00 - $4.00 beers"
+          },
+          {
+            "item": "House wines",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5.00 house wines"
+          },
+          {
+            "item": "Single well drinks",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4.00 single well drinks"
+          },
+          {
+            "item": "Appetizer specials",
+            "price": 0.0,
+            "category": "food",
+            "description": "Appetizer specials (price not specified)"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "dry-hills-distillery": {
+      "content_hash": "735f9bfde3b5213d",
+      "fetched_at": "2026-07-30T03:40:39Z",
+      "sources": [
+        "https://mthappyhour.com/locations/dry-hills-distillery/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Tue 4-8pm",
+        "specials": [
+          {
+            "item": "All Cocktails",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off all cocktails, plus free pool"
+          },
+          {
+            "item": "Whiskey Cocktails",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 whiskey cocktails all day"
+          },
+          {
+            "item": "All Cocktails (Ladies Night)",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off all cocktails"
+          },
+          {
+            "item": "Drink (Date Night)",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Buy one drink, get one free with purchase of locally sourced meat & cheese board from 4-8pm"
+          },
+          {
+            "item": "Moscow Mule",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Any mules just $5 all day"
+          },
+          {
+            "item": "Bloody Mary or Caesar",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off a Bloody Mary or a Caesar"
+          },
+          {
+            "item": "Screwdriver",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 Screwdrivers all day"
+          }
+        ],
+        "notes": "Additional windows: Wed all day (Whiskey Wednesday), Thu 4-8pm (Ladies Night), Fri 4-8pm (Date Night), Sat all day (Moscow Mule Saturday), Sun all day (Funday)."
+      }
+    },
+    "est-1864-noir-bar-restaurant": {
+      "content_hash": "4c9a2bfa03c18294",
+      "fetched_at": "2026-07-30T03:40:46Z",
+      "sources": [
+        "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/",
+        "http://www.est1864bozeman.com"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Thu-Sat 4-6pm",
+        "specials": [
+          {
+            "item": "Cocktails",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 cocktails"
+          },
+          {
+            "item": "Wine",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 wine"
+          },
+          {
+            "item": "Beers",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 beers"
+          },
+          {
+            "item": "Late-Night Bites",
+            "price": 0.0,
+            "category": "food",
+            "description": "late-night bites"
+          }
+        ],
+        "notes": "Late-Night Happy Hour: Thu-Sat 11:30pm-1:30am with $5 cocktails, $3 wine, $2 beers, plus late-night bites."
+      }
+    },
+    "finks-deli": {
+      "content_hash": "b1b7619a5eea2ac0",
+      "fetched_at": "2026-07-30T03:40:51Z",
+      "sources": [
+        "https://mthappyhour.com/locations/finks-deli/",
+        "https://www.finksdeli.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2-4pm",
+        "specials": [
+          {
+            "item": "Beer",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 Off"
+          },
+          {
+            "item": "Canned Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 Off"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "la-brasserie": {
+      "content_hash": "45cc6f4f805b5c59",
+      "fetched_at": "2026-07-30T03:40:56Z",
+      "sources": [
+        "https://mthappyhour.com/locations/la-brasserie/",
+        "https://www.labrasseriemt.com"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 4-6pm",
+        "specials": [
+          {
+            "item": "Wine",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "Select wines at special prices"
+          },
+          {
+            "item": "Beer",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Select beer at special prices"
+          },
+          {
+            "item": "Cocktails",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Select cocktails at special prices"
+          },
+          {
+            "item": "Small Plates",
+            "price": 0.0,
+            "category": "food",
+            "description": "Select small plates at special prices (price not specified)"
+          }
+        ],
+        "notes": "Also listed as 'Daily Wine Hour 4pm \u2013 6pm'"
+      }
+    },
+    "map-brewing": {
+      "content_hash": "ee4eb51496c68b26",
+      "fetched_at": "2026-07-30T03:41:00Z",
+      "sources": [
+        "https://mthappyhour.com/locations/map-brewing/",
+        "https://www.mapbrewing.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Mon-Thu 2-4pm",
+        "specials": [
+          {
+            "item": "Pints",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off pints"
+          }
+        ],
+        "notes": "Tuesdays: Wings and Strings $1 off wings 5-8pm; Thursdays: $2 off all growler fills all day; Sundays: Live Music with Beer + Bacon Flights"
+      }
+    },
+    "mountains-walking-brewery": {
+      "content_hash": "aae5ed14211f0656",
+      "fetched_at": "2026-07-30T03:41:03Z",
+      "sources": [
+        "https://mthappyhour.com/locations/mountains-walking-brewery/"
+      ],
+      "extract": {
+        "status": "unclear",
+        "hours": "Daily 3-5pm",
+        "specials": [],
+        "notes": "The page states that Mountains Walking no longer has a happy hour, though it lists a daily 3-5pm window. No happy hour specials are provided. Daily/weekly specials are listed but not part of happy hour."
+      }
+    },
+    "revelry": {
+      "content_hash": "7a39baced908569d",
+      "fetched_at": "2026-07-30T03:41:08Z",
+      "sources": [
+        "https://mthappyhour.com/locations/revelry/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2:30-4pm",
+        "specials": [
+          {
+            "item": "Rainier",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Modelo",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "MAP IPA",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Meadowlark Ole Gus Scotch Rye",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Bubbles",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "White",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Red",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Rose",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Bottles",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "30% off"
+          }
+        ],
+        "notes": "Secondary window from 8:30pm-Close"
+      }
+    },
+    "rocking-r": {
+      "content_hash": "49189f39e38cc970",
+      "fetched_at": "2026-07-30T03:41:14Z",
+      "sources": [
+        "https://mthappyhour.com/locations/rocking-r/",
+        "https://rockingrbar.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Mon-Fri 4-7pm",
+        "specials": [
+          {
+            "item": "Drafts",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Select $4 drafts"
+          },
+          {
+            "item": "Mules + Martinis",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 mules and martinis"
+          },
+          {
+            "item": "Wine + Handcrafted Cocktails",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 wine and handcrafted cocktails"
+          },
+          {
+            "item": "Boozy Milkshakes",
+            "price": 10.0,
+            "category": "drinks",
+            "description": "$10 boozy milkshakes"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "shine-beer-sanctuary": {
+      "content_hash": "9c936937062c5098",
+      "fetched_at": "2026-07-30T03:41:22Z",
+      "sources": [
+        "https://mthappyhour.com/locations/shine-beer-sanctuary/",
+        "https://www.shinebeer.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 3-5pm",
+        "specials": [],
+        "notes": "Happy hour specials change daily; check in for current offerings."
+      }
+    },
+    "the-bacchus-pub": {
+      "content_hash": "5dbd4a3c81fd53ea",
+      "fetched_at": "2026-07-30T03:41:26Z",
+      "sources": [
+        "https://mthappyhour.com/locations/the-bacchus-pub/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 2-6pm",
+        "specials": [
+          {
+            "item": "Well Drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2.00 off"
+          },
+          {
+            "item": "Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2.00 off"
+          },
+          {
+            "item": "Draft Beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off"
+          },
+          {
+            "item": "House-Made Chips",
+            "price": 0.0,
+            "category": "food",
+            "description": "$1.00 off"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "the-club": {
+      "content_hash": "e79c5a9f4018de20",
+      "fetched_at": "2026-07-30T03:41:32Z",
+      "sources": [
+        "https://mthappyhour.com/locations/the-club/",
+        "https://www.theclubtavernandgrill.com/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Mon-Fri 4-7pm",
+        "specials": [
+          {
+            "item": "Draft Beer",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off"
+          },
+          {
+            "item": "Well Drink",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off"
+          },
+          {
+            "item": "Glass of Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2 off"
+          },
+          {
+            "item": "BBQ Ribs and Mash Potatoes",
+            "price": 6.0,
+            "category": "food",
+            "description": "2 for 1 drinks Tuesday/Thursday"
+          },
+          {
+            "item": "Strawberry Goat Cheese Crostinis",
+            "price": 6.0,
+            "category": "food",
+            "description": "Tuesday/Thursday"
+          },
+          {
+            "item": "Mimosa",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Saturday and Sunday 8am-4pm"
+          },
+          {
+            "item": "Bloody Mary",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Saturday and Sunday 8am-4pm"
+          },
+          {
+            "item": "Caesar",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Saturday and Sunday 8am-4pm"
+          }
+        ],
+        "notes": "Tuesday/Thursday also has 2 for 1 drinks (no base price given). Weekend brunch specials Sat-Sun 8am-4pm."
+      }
+    },
+    "urban-kitchen": {
+      "content_hash": "527fc0edddfc3ef8",
+      "fetched_at": "2026-07-30T03:41:35Z",
+      "sources": [
+        "https://mthappyhour.com/locations/urban-kitchen/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "Daily 3-6pm",
+        "specials": [
+          {
+            "item": "All wines by the glass",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off ALL glasses of wine"
+          },
+          {
+            "item": "Draft Beer",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 Draft Beer"
+          },
+          {
+            "item": "Deep Eddy Shots",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 Deep Eddy Shots"
+          }
+        ],
+        "notes": ""
+      }
+    },
+    "wild-rye-distilling": {
+      "content_hash": "6aa6403aa081abf3",
+      "fetched_at": "2026-07-30T03:41:40Z",
+      "sources": [
+        "https://mthappyhour.com/locations/wild-rye-distilling/"
+      ],
+      "extract": {
+        "status": "ok",
+        "hours": "",
+        "specials": [
+          {
+            "item": "Any mule team cocktail",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off any mule team cocktail on Monday (Mule Monday)"
+          },
+          {
+            "item": "Drink from special menu",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
+          }
+        ],
+        "notes": "No specific daytime window given; specials on Monday and Tuesday only."
+      }
+    }
+  }
 }
