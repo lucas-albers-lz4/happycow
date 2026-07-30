@@ -28,7 +28,7 @@ import trafilatura
 from pydantic import BaseModel, Field, ValidationError, field_validator
 from tenacity import (
     retry,
-    retry_if_exception_type,
+    retry_if_exception,
     stop_after_attempt,
     wait_exponential,
 )
@@ -118,24 +118,40 @@ def content_hash(text: str) -> str:
 
 # ─── Fetch + trim ───
 
+TRANSIENT_HTTP = {429, 500, 502, 503, 504}
+
+
+def _is_transient_http_error(exc: BaseException) -> bool:
+    if isinstance(exc, (httpx.TransportError, httpx.TimeoutException)):
+        return True
+    if isinstance(exc, httpx.HTTPStatusError):
+        return exc.response.status_code in TRANSIENT_HTTP
+    return False
+
+
 @retry(
     reraise=True,
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=1, max=8),
-    retry=retry_if_exception_type((httpx.TransportError, httpx.TimeoutException, httpx.HTTPStatusError)),
+    retry=retry_if_exception(_is_transient_http_error),
 )
 def _http_get(client: httpx.Client, url: str) -> httpx.Response:
     resp = client.get(url)
-    # Retry transient server / rate-limit errors
-    if resp.status_code in (429, 500, 502, 503, 504):
-        resp.raise_for_status()
-    resp.raise_for_status()
+    if resp.status_code in TRANSIENT_HTTP:
+        resp.raise_for_status()  # retry via tenacity
     return resp
 
 
 def fetch_html(client: httpx.Client, url: str) -> str | None:
     try:
         resp = _http_get(client, url)
+        if resp.status_code >= 400:
+            # Permanent client/server errors (403/404/etc): skip, do not retry
+            print(
+                f"  WARN fetch skipped HTTP {resp.status_code} {url}",
+                file=sys.stderr,
+            )
+            return None
         return resp.text
     except Exception as e:
         print(f"  WARN fetch failed {url}: {e}", file=sys.stderr)
@@ -286,7 +302,7 @@ def extract_message_text(payload: dict) -> str:
     reraise=True,
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=2, max=20),
-    retry=retry_if_exception_type((httpx.TransportError, httpx.TimeoutException, httpx.HTTPStatusError)),
+    retry=retry_if_exception(_is_transient_http_error),
 )
 def _post_messages(client: httpx.Client, prompt: str) -> dict:
     resp = client.post(
@@ -304,7 +320,7 @@ def _post_messages(client: httpx.Client, prompt: str) -> dict:
         },
         timeout=90.0,
     )
-    if resp.status_code in (429, 500, 502, 503, 504):
+    if resp.status_code in TRANSIENT_HTTP:
         resp.raise_for_status()
     resp.raise_for_status()
     return resp.json()
@@ -397,24 +413,38 @@ def llm_extract(
 # ─── Venue pipeline ───
 
 def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]:
-    urls = list(venue.get("scrape_urls") or [])
-    if venue.get("website") and venue["website"] not in urls:
-        urls.append(venue["website"])
+    # Primary sources first (usually mthappyhour). Website is optional fallback only.
+    primary = list(venue.get("scrape_urls") or [])
+    website = venue.get("website") or ""
+    fallback = [website] if website and website not in primary else []
 
     chunks: list[str] = []
     used: list[str] = []
-    for url in urls:
+
+    def _ingest(url: str) -> bool:
         print(f"  fetch {url}")
         html = fetch_html(client, url)
         time.sleep(INTER_REQUEST_SLEEP)
         if not html:
-            continue
+            return False
         text = html_to_trimmed_text(html)
         if not text:
             print(f"  WARN empty extract for {url}", file=sys.stderr)
-            continue
+            return False
         chunks.append(f"[source: {url}]\n{text}")
         used.append(url)
+        return True
+
+    for url in primary:
+        _ingest(url)
+        # Enough signal from curated sources — don't waste time on gated own-sites
+        if chunks and sum(len(c) for c in chunks) >= 200:
+            break
+
+    if not chunks:
+        for url in fallback:
+            if _ingest(url):
+                break
 
     page_text = "\n\n".join(chunks)[: MAX_PAGE_CHARS * 2]
     return page_text, used
