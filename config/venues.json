@@ -1,0 +1,114 @@
+{
+  "city": "Bozeman, MT",
+  "population": 55000,
+  "timezone": "America/Denver",
+  "discovery_seeds": [
+    {
+      "id": "mthappyhour-bozeman",
+      "url": "https://mthappyhour.com/cities/bozeman/",
+      "note": "Directory of Montana happy hours; use to discover new venue URLs"
+    }
+  ],
+  "venues": [
+    {
+      "id": "bacchus-pub",
+      "name": "Bacchus Pub",
+      "address": "100 W Main St",
+      "phone": "",
+      "website": "https://www.bacchuspub.com",
+      "scrape_urls": [
+        "https://www.bacchuspub.com/happy-hour"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bacchus+Pub+Bozeman+MT",
+      "tags": ["pub", "patio", "classy"],
+      "noise_level": "moderate",
+      "mood": "historic-downtown"
+    },
+    {
+      "id": "devils-toboggan",
+      "name": "Devil's Toboggan",
+      "address": "113 E Oak St #2B",
+      "phone": "(406) 587-4829",
+      "website": "https://www.devilstoboggan.com",
+      "scrape_urls": [
+        "https://www.devilstoboggan.com/",
+        "https://mthappyhour.com/locations/devils-toboggan/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Devil%27s+Toboggan+Bozeman+MT",
+      "tags": ["classy", "cocktails", "hidden"],
+      "noise_level": "moderate",
+      "mood": "speakeasy"
+    },
+    {
+      "id": "revelry",
+      "name": "Revelry",
+      "address": "Bozeman, MT",
+      "phone": "",
+      "website": "https://www.revelrymt.com",
+      "scrape_urls": [
+        "https://www.revelrymt.com/happy-hours"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry+Bozeman+MT",
+      "tags": ["patio", "classy", "wine"],
+      "noise_level": "moderate",
+      "mood": "lively-and-polished"
+    },
+    {
+      "id": "brigade",
+      "name": "Brigade",
+      "address": "233 E Main St #201",
+      "phone": "(406) 624-6161",
+      "website": "https://brigadebozeman.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/brigade/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade+Bozeman+MT",
+      "tags": ["cocktails", "patio", "downtown"],
+      "noise_level": "moderate",
+      "mood": "rooftop-vibes"
+    },
+    {
+      "id": "bozeman-taproom",
+      "name": "The Bozeman Taproom",
+      "address": "Bozeman, MT",
+      "phone": "",
+      "website": "https://www.bozemantaproom.com",
+      "scrape_urls": [
+        "https://www.bozemantaproom.com/bozeman-happy-hour"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman+Taproom+Bozeman+MT",
+      "tags": ["craft-beer", "patio", "sports"],
+      "noise_level": "loud",
+      "mood": "sunny-and-buzzy"
+    },
+    {
+      "id": "bourbon",
+      "name": "Bourbon",
+      "address": "515 W Aspen St",
+      "phone": "(406) 586-3443",
+      "website": "https://bourbonmt.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bourbon/",
+        "https://bourbonmt.com"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon+Bozeman+MT",
+      "tags": ["whiskey", "bbq", "classy"],
+      "noise_level": "moderate",
+      "mood": "dark-wood-and-smoke"
+    },
+    {
+      "id": "r-bar",
+      "name": "R Bar",
+      "address": "270 W Main St",
+      "phone": "",
+      "website": "https://www.rbarbozeman.com",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/r-bar/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=R+Bar+Bozeman+MT",
+      "tags": ["dive", "downtown", "late-night"],
+      "noise_level": "loud",
+      "mood": "sticky-floor-classic"
+    }
+  ]
+}

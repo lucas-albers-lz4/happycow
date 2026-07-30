@@ -1,0 +1,40 @@
+You extract happy hour deals from restaurant/bar web page text.
+
+Venue: {name}
+City: {city}
+Source URL(s): {urls}
+
+PAGE TEXT:
+---
+{page_text}
+---
+
+Return ONLY valid JSON (no markdown fences) matching this schema:
+{
+  "status": "ok" | "not_found" | "unclear",
+  "hours": "string — primary daytime happy hour window only",
+  "specials": [
+    {
+      "item": "string",
+      "price": number,
+      "category": "drinks" | "food",
+      "description": "string"
+    }
+  ],
+  "notes": "optional short note about secondary windows or caveats"
+}
+
+Rules:
+1. Invent nothing. Only extract what the page states about happy hour.
+2. hours format MUST be one of:
+   - "Mon-Fri 4-6pm"
+   - "Mon-Sat 3-7pm"
+   - "Thu-Sat 4-6pm"
+   - "Sun-Thu 3-6pm"
+   - "Daily 4-6pm"
+   Use short weekday names (Mon Tue Wed Thu Fri Sat Sun). No spaces around the hyphen in day ranges. Times like 4-6pm (lowercase am/pm).
+3. If the venue has multiple happy hour windows, put the PRIMARY daytime window in hours, and mention the other in notes.
+4. price must be a number (use 0 for free). If the page says "$1 off" or "half off" without a base price, skip that special or describe it with price 0 and put the discount wording in description.
+5. If no happy hour is found, return status "not_found", hours "", specials [].
+6. Prefer concrete priced items over vague "drink specials".
+7. Cap specials at 12 items — the best/clearest ones.

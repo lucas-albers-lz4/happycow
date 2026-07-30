@@ -133,52 +133,57 @@ async function loadData() {
 }
 
 // ─── Time Helpers ───
+// Align with Date.getDay(): Sun=0 … Sat=6
+const DAY_MAP = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+
+function parseAmpmHour(hour, ampm, fallbackAmpm) {
+  let h = parseInt(hour, 10);
+  const mer = (ampm || fallbackAmpm || 'pm').toLowerCase();
+  if (mer === 'pm' && h < 12) h += 12;
+  if (mer === 'am' && h === 12) h = 0;
+  return h;
+}
+
+function isTodayInDayRange(dayRange) {
+  if (!dayRange) return false;
+  const raw = dayRange.trim();
+  const lower = raw.toLowerCase();
+  if (lower === 'daily' || lower === 'everyday' || lower === 'every day') return true;
+
+  const today = new Date().getDay();
+  const dayParts = raw.split('-').map(p => p.trim());
+  const startDay = DAY_MAP[dayParts[0]];
+  const endDay = dayParts[1] ? DAY_MAP[dayParts[1]] : startDay;
+  if (startDay === undefined || endDay === undefined) return false;
+
+  if (endDay >= startDay) return today >= startDay && today <= endDay;
+  return today >= startDay || today <= endDay;
+}
+
 function isHHLive(hoursStr) {
   if (!hoursStr) return 'unknown';
-  const now = new Date();
-  const day = now.toLocaleDateString('en-US', { weekday: 'short' }).slice(0,3);
-  const days = { 'Mon':'Mon','Tue':'Tue','Wed':'Wed','Thu':'Thu','Fri':'Fri','Sat':'Sat','Sun':'Sun' };
-  const dayMap = {Mon:0,Tue:1,Wed:2,Thu:3,Fri:4,Sat:5,Sun:6};
-  const dayName = now.toLocaleDateString('en-US', { weekday: 'short' });
 
-  // Parse "Mon-Fri 4-6pm" style
-  const parts = hoursStr.split(' ');
+  // Parse "Mon-Fri 4-6pm", "Daily 3-6pm", "Thu-Sat 4-7pm" style
+  const parts = hoursStr.trim().split(/\s+/);
+  if (parts.length < 2) return 'unknown';
+
   const dayRange = parts[0];
-  const timeRange = parts[1];
+  const timeRange = parts.slice(1).join(' ');
 
-  // Check if today is in range
-  const dayParts = dayRange.split('-');
-  const startDay = dayMap[dayParts[0]];
-  const endDay = dayParts[1] ? dayMap[dayParts[1]] : startDay;
-  const today = now.getDay();
+  if (!isTodayInDayRange(dayRange)) return 'closed';
 
-  // Handle wrapped ranges (e.g. Thu-Sat)
-  let inDay = false;
-  if (endDay >= startDay) {
-    inDay = today >= startDay && today <= endDay;
-  } else {
-    inDay = today >= startDay || today <= endDay;
-  }
-
-  if (!inDay) return 'closed';
-
-  // Parse time
-  const timeMatch = timeRange.match(/(\d+)(am|pm)?-(\d+)(am|pm)?/i);
+  const timeMatch = timeRange.match(/(\d+)(?::(\d+))?(am|pm)?\s*-\s*(\d+)(?::(\d+))?(am|pm)?/i);
   if (!timeMatch) return 'unknown';
 
-  let startH = parseInt(timeMatch[1]);
-  let endH = parseInt(timeMatch[3]);
-  let startAmpm = timeMatch[2] || 'pm';
-  let endAmpm = timeMatch[4] || startAmpm;
+  const startAmpm = timeMatch[3] || timeMatch[6] || 'pm';
+  const endAmpm = timeMatch[6] || startAmpm;
+  const startH = parseAmpmHour(timeMatch[1], timeMatch[3], startAmpm);
+  const endH = parseAmpmHour(timeMatch[4], timeMatch[6], endAmpm);
+  const startMin = startH * 60 + parseInt(timeMatch[2] || '0', 10);
+  const endMin = endH * 60 + parseInt(timeMatch[5] || '0', 10);
 
-  if (startAmpm.toLowerCase() === 'pm' && startH < 12) startH += 12;
-  if (startAmpm.toLowerCase() === 'am' && startH === 12) startH = 0;
-  if (endAmpm.toLowerCase() === 'pm' && endH < 12) endH += 12;
-  if (endAmpm.toLowerCase() === 'am' && endH === 12) endH = 0;
-
+  const now = new Date();
   const currentMin = now.getHours() * 60 + now.getMinutes();
-  const startMin = startH * 60;
-  const endMin = endH * 60;
 
   if (currentMin >= startMin && currentMin < endMin) return 'live';
   if (currentMin < startMin && (startMin - currentMin) <= 120) return 'soon';
@@ -217,6 +222,8 @@ function render() {
   // ── Hero ──
   document.getElementById('hero-title').innerHTML = `Happy Cow <span>${state.data.city}</span>`;
   document.getElementById('last-updated').textContent = `Updated ${formatDate(state.data.last_updated)}`;
+  const footerUpdated = document.getElementById('footer-updated');
+  if (footerUpdated) footerUpdated.textContent = formatDate(state.data.last_updated);
 
   // ── Deal of the Day ──
   renderDealOfDay();
@@ -376,13 +383,10 @@ function renderVenueCard(venue, container) {
 }
 
 function getStartMinutes(hoursStr) {
-  const timeMatch = hoursStr.match(/(\d+)(am|pm)?/i);
+  const timeMatch = (hoursStr || '').match(/(\d+)(?::(\d+))?(am|pm)?/i);
   if (!timeMatch) return 0;
-  let h = parseInt(timeMatch[1]);
-  const ampm = timeMatch[2] || 'pm';
-  if (ampm.toLowerCase() === 'pm' && h < 12) h += 12;
-  if (ampm.toLowerCase() === 'am' && h === 12) h = 0;
-  return h * 60;
+  const h = parseAmpmHour(timeMatch[1], timeMatch[3], 'pm');
+  return h * 60 + parseInt(timeMatch[2] || '0', 10);
 }
 
 function scrollToVenue(id) {

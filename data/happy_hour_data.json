@@ -1,117 +1,123 @@
 {
-  "last_updated": "2026-07-30T20:00:00Z",
+  "last_updated": "2026-07-30T02:00:00Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
     {
-      "id": "the-garage",
-      "name": "The Garage",
-      "address": "339 E Main St",
+      "id": "bacchus-pub",
+      "name": "Bacchus Pub",
+      "address": "100 W Main St",
       "phone": "",
-      "website": "https://thegaragebar.com",
-      "maps": "https://maps.app.goo.gl/example",
-      "hours": "Mon-Sat 4-7pm",
-      "tags": ["dive", "pool", "darts"],
-      "noise_level": "loud",
-      "mood": "dim-lit-and-dirty",
-      "specials": [
-        { "item": "Well drinks", "price": 4.00, "category": "drinks", "description": "All well whiskey, vodka, gin, rum" },
-        { "item": "Draft beers", "price": 3.50, "category": "drinks", "description": "Rotating local taps" },
-        { "item": "Domestic bottles", "price": 3.00, "category": "drinks", "description": "PBR, Coors, Bud" },
-        { "item": "Taco plate", "price": 6.00, "category": "food", "description": "3 street tacos, your choice" },
-        { "item": "Nachos", "price": 5.00, "category": "food", "description": "Half off loaded nachos" }
-      ]
-    },
-    {
-      "id": "whiskey-bar",
-      "name": "Whiskey Bar",
-      "address": "115 W Main St",
-      "phone": "",
-      "website": "",
-      "maps": "https://maps.app.goo.gl/example",
-      "hours": "Mon-Fri 5-7pm",
-      "tags": ["whiskey", "classy", "date-night"],
+      "website": "https://www.bacchuspub.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bacchus+Pub+Bozeman+MT",
+      "hours": "Sun-Thu 3-6pm",
+      "tags": ["pub", "patio", "classy"],
       "noise_level": "moderate",
-      "mood": "dark-wood-and-leather",
+      "mood": "historic-downtown",
       "specials": [
-        { "item": "House whiskey", "price": 5.00, "category": "drinks", "description": "All house whiskey pours" },
-        { "item": "Old Fashioned", "price": 7.00, "category": "drinks", "description": "Made with Bulleit rye" },
-        { "item": "Wine by the glass", "price": 5.00, "category": "drinks", "description": "House red or white" },
-        { "item": "Pretzel board", "price": 8.00, "category": "food", "description": "Soft pretzels with beer cheese" }
+        { "item": "Beer", "price": 5.0, "category": "drinks", "description": "Happy hour beer pricing" },
+        { "item": "Well drinks", "price": 4.0, "category": "drinks", "description": "Well drink special" },
+        { "item": "Curry fries", "price": 0.0, "category": "food", "description": "Half off signature curry fries" }
       ]
     },
     {
-      "id": "the-local-taproom",
-      "name": "The Local Taproom",
-      "address": "111 S Grand Ave",
-      "phone": "",
-      "website": "",
-      "maps": "https://maps.app.goo.gl/example",
+      "id": "devils-toboggan",
+      "name": "Devil's Toboggan",
+      "address": "113 E Oak St #2B",
+      "phone": "(406) 587-4829",
+      "website": "https://www.devilstoboggan.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Devil%27s+Toboggan+Bozeman+MT",
       "hours": "Daily 4-6pm",
-      "tags": ["craft-beer", "patio", "dog-friendly"],
+      "tags": ["classy", "cocktails", "hidden"],
       "noise_level": "moderate",
+      "mood": "speakeasy",
+      "specials": [
+        { "item": "Beer", "price": 3.5, "category": "drinks", "description": "$3–$4 beers" },
+        { "item": "House wine", "price": 5.0, "category": "drinks", "description": "House wine pour" },
+        { "item": "Well drink", "price": 4.0, "category": "drinks", "description": "Single well drinks" }
+      ]
+    },
+    {
+      "id": "revelry",
+      "name": "Revelry",
+      "address": "Bozeman, MT",
+      "phone": "",
+      "website": "https://www.revelrymt.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Revelry+Bozeman+MT",
+      "hours": "Daily 3-5pm",
+      "tags": ["patio", "classy", "wine"],
+      "noise_level": "moderate",
+      "mood": "lively-and-polished",
+      "specials": [
+        { "item": "Happy hour wine", "price": 8.0, "category": "drinks", "description": "Bubbles, white, rosé, or red" },
+        { "item": "Local beer", "price": 5.0, "category": "drinks", "description": "Select local drafts" },
+        { "item": "Smash burger", "price": 0.0, "category": "food", "description": "Happy hour food special — confirm price on site" }
+      ]
+    },
+    {
+      "id": "brigade",
+      "name": "Brigade",
+      "address": "233 E Main St #201",
+      "phone": "(406) 624-6161",
+      "website": "https://brigadebozeman.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Brigade+Bozeman+MT",
+      "hours": "Daily 3-6pm",
+      "tags": ["cocktails", "patio", "downtown"],
+      "noise_level": "moderate",
+      "mood": "rooftop-vibes",
+      "specials": [
+        { "item": "Martini", "price": 3.0, "category": "drinks", "description": "Happy hour martini" },
+        { "item": "Draft beer", "price": 3.0, "category": "drinks", "description": "Draft beer special" }
+      ]
+    },
+    {
+      "id": "bozeman-taproom",
+      "name": "The Bozeman Taproom",
+      "address": "Bozeman, MT",
+      "phone": "",
+      "website": "https://www.bozemantaproom.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman+Taproom+Bozeman+MT",
+      "hours": "Sun-Thu 3-6pm",
+      "tags": ["craft-beer", "patio", "sports"],
+      "noise_level": "loud",
       "mood": "sunny-and-buzzy",
       "specials": [
-        { "item": "Local pint", "price": 4.00, "category": "drinks", "description": "Any Montana craft beer" },
-        { "item": "Flight of 4", "price": 6.00, "category": "drinks", "description": "Pick any 4 taps" },
-        { "item": "House wine", "price": 5.00, "category": "drinks", "description": "Red, white, or rosé" },
-        { "item": "Pub pretzel", "price": 4.00, "category": "food", "description": "Warm soft pretzel with mustard" },
-        { "item": "House burger", "price": 9.00, "category": "food", "description": "Half-pound angus with fries" }
+        { "item": "Craft beer", "price": 0.0, "category": "drinks", "description": "Select craft beers at happy hour pricing" },
+        { "item": "House wine", "price": 0.0, "category": "drinks", "description": "House wine special" },
+        { "item": "Apps", "price": 0.0, "category": "food", "description": "Pretzel bites, nachos, and more" }
       ]
     },
     {
-      "id": "elks-lodge",
-      "name": "Elks Lodge",
-      "address": "12 S Willson Ave",
-      "phone": "",
-      "website": "",
-      "maps": "https://maps.app.goo.gl/example",
-      "hours": "Thu-Sat 4-6pm",
-      "tags": ["old-school", "cheap", "hidden"],
-      "noise_level": "quiet",
-      "mood": "vintage-basement",
+      "id": "bourbon",
+      "name": "Bourbon",
+      "address": "515 W Aspen St",
+      "phone": "(406) 586-3443",
+      "website": "https://bourbonmt.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon+Bozeman+MT",
+      "hours": "Daily 4-6pm",
+      "tags": ["whiskey", "bbq", "classy"],
+      "noise_level": "moderate",
+      "mood": "dark-wood-and-smoke",
       "specials": [
-        { "item": "Rail drinks", "price": 3.00, "category": "drinks", "description": "Any well liquor" },
-        { "item": "PBR tallboy", "price": 2.50, "category": "drinks", "description": "Ice cold" },
-        { "item": "Wine", "price": 4.00, "category": "drinks", "description": "House red or white" },
-        { "item": "Popcorn", "price": 0.00, "category": "food", "description": "Free popcorn with any drink" }
+        { "item": "Drink specials", "price": 0.0, "category": "drinks", "description": "Craft whiskey cocktails on special" },
+        { "item": "Food specials", "price": 0.0, "category": "food", "description": "BBQ bites during happy hour" }
       ]
     },
     {
-      "id": "dive-bar",
-      "name": "Dive Bar",
-      "address": "105 N Rouse Ave",
+      "id": "r-bar",
+      "name": "R Bar",
+      "address": "270 W Main St",
       "phone": "",
-      "website": "",
-      "maps": "https://maps.app.goo.gl/example",
-      "hours": "Daily 3-6pm",
-      "tags": ["dive", "cash-only", "late-night"],
+      "website": "https://www.rbarbozeman.com",
+      "maps": "https://www.google.com/maps/search/?api=1&query=R+Bar+Bozeman+MT",
+      "hours": "Mon-Fri 4-7pm",
+      "tags": ["dive", "downtown", "late-night"],
       "noise_level": "loud",
       "mood": "sticky-floor-classic",
       "specials": [
-        { "item": "Well drinks", "price": 3.00, "category": "drinks", "description": "All wells, no exceptions" },
-        { "item": "Canned beer", "price": 2.00, "category": "drinks", "description": "PBR, Rainier, Hamm's" },
-        { "item": "Shot + beer", "price": 5.00, "category": "drinks", "description": "Your choice well shot + PBR" },
-        { "item": "Pizza slice", "price": 3.00, "category": "food", "description": "Costco pizza reheated with love" }
-      ]
-    },
-    {
-      "id": "tequila-house",
-      "name": "Tequila House",
-      "address": "234 E Main St",
-      "phone": "",
-      "website": "",
-      "maps": "https://maps.app.goo.gl/example",
-      "hours": "Mon-Sat 4-7pm",
-      "tags": ["margaritas", "patio", "lively"],
-      "noise_level": "loud",
-      "mood": "fiesta",
-      "specials": [
-        { "item": "House margarita", "price": 6.00, "category": "drinks", "description": "Fresh lime, reposado" },
-        { "item": "Tequila shot", "price": 5.00, "category": "drinks", "description": "Any well tequila" },
-        { "item": "Pacifico", "price": 4.00, "category": "drinks", "description": "Bottle or can" },
-        { "item": "Taco trio", "price": 8.00, "category": "food", "description": "3 tacos, your choice of meat" },
-        { "item": "Guac & chips", "price": 5.00, "category": "food", "description": "Made tableside" }
+        { "item": "Mule / martini / cocktail", "price": 7.0, "category": "drinks", "description": "$7 mules, martinis, and cocktails" },
+        { "item": "Beer & wine", "price": 0.0, "category": "drinks", "description": "Happy hour beer and wine specials" },
+        { "item": "Apps", "price": 0.0, "category": "food", "description": "App specials during weekday HH" }
       ]
     }
   ]
