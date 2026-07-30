@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T02:00:00Z",
+  "last_updated": "2026-07-30T03:15:55Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -11,13 +11,32 @@
       "website": "https://www.bacchuspub.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bacchus+Pub+Bozeman+MT",
       "hours": "Sun-Thu 3-6pm",
-      "tags": ["pub", "patio", "classy"],
+      "tags": [
+        "pub",
+        "patio",
+        "classy"
+      ],
       "noise_level": "moderate",
       "mood": "historic-downtown",
       "specials": [
-        { "item": "Beer", "price": 5.0, "category": "drinks", "description": "Happy hour beer pricing" },
-        { "item": "Well drinks", "price": 4.0, "category": "drinks", "description": "Well drink special" },
-        { "item": "Curry fries", "price": 0.0, "category": "food", "description": "Half off signature curry fries" }
+        {
+          "item": "Beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Happy hour beer pricing"
+        },
+        {
+          "item": "Well drinks",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Well drink special"
+        },
+        {
+          "item": "Curry fries",
+          "price": 0.0,
+          "category": "food",
+          "description": "Half off signature curry fries"
+        }
       ]
     },
     {
@@ -28,13 +47,32 @@
       "website": "https://www.devilstoboggan.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Devil%27s+Toboggan+Bozeman+MT",
       "hours": "Daily 4-6pm",
-      "tags": ["classy", "cocktails", "hidden"],
+      "tags": [
+        "classy",
+        "cocktails",
+        "hidden"
+      ],
       "noise_level": "moderate",
       "mood": "speakeasy",
       "specials": [
-        { "item": "Beer", "price": 3.5, "category": "drinks", "description": "$3–$4 beers" },
-        { "item": "House wine", "price": 5.0, "category": "drinks", "description": "House wine pour" },
-        { "item": "Well drink", "price": 4.0, "category": "drinks", "description": "Single well drinks" }
+        {
+          "item": "Beer",
+          "price": 3.5,
+          "category": "drinks",
+          "description": "$3\u2013$4 beers"
+        },
+        {
+          "item": "House wine",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "House wine pour"
+        },
+        {
+          "item": "Well drink",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Single well drinks"
+        }
       ]
     },
     {
@@ -45,13 +83,32 @@
       "website": "https://www.revelrymt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Revelry+Bozeman+MT",
       "hours": "Daily 3-5pm",
-      "tags": ["patio", "classy", "wine"],
+      "tags": [
+        "patio",
+        "classy",
+        "wine"
+      ],
       "noise_level": "moderate",
       "mood": "lively-and-polished",
       "specials": [
-        { "item": "Happy hour wine", "price": 8.0, "category": "drinks", "description": "Bubbles, white, rosé, or red" },
-        { "item": "Local beer", "price": 5.0, "category": "drinks", "description": "Select local drafts" },
-        { "item": "Smash burger", "price": 0.0, "category": "food", "description": "Happy hour food special — confirm price on site" }
+        {
+          "item": "Happy hour wine",
+          "price": 8.0,
+          "category": "drinks",
+          "description": "Bubbles, white, ros\u00e9, or red"
+        },
+        {
+          "item": "Local beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "Select local drafts"
+        },
+        {
+          "item": "Smash burger",
+          "price": 0.0,
+          "category": "food",
+          "description": "Happy hour food special \u2014 confirm price on site"
+        }
       ]
     },
     {
@@ -62,12 +119,26 @@
       "website": "https://brigadebozeman.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Brigade+Bozeman+MT",
       "hours": "Daily 3-6pm",
-      "tags": ["cocktails", "patio", "downtown"],
+      "tags": [
+        "cocktails",
+        "patio",
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "rooftop-vibes",
       "specials": [
-        { "item": "Martini", "price": 3.0, "category": "drinks", "description": "Happy hour martini" },
-        { "item": "Draft beer", "price": 3.0, "category": "drinks", "description": "Draft beer special" }
+        {
+          "item": "Martini",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "Happy hour martini"
+        },
+        {
+          "item": "Draft beer",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "Draft beer special"
+        }
       ]
     },
     {
@@ -78,13 +149,32 @@
       "website": "https://www.bozemantaproom.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman+Taproom+Bozeman+MT",
       "hours": "Sun-Thu 3-6pm",
-      "tags": ["craft-beer", "patio", "sports"],
+      "tags": [
+        "craft-beer",
+        "patio",
+        "sports"
+      ],
       "noise_level": "loud",
       "mood": "sunny-and-buzzy",
       "specials": [
-        { "item": "Craft beer", "price": 0.0, "category": "drinks", "description": "Select craft beers at happy hour pricing" },
-        { "item": "House wine", "price": 0.0, "category": "drinks", "description": "House wine special" },
-        { "item": "Apps", "price": 0.0, "category": "food", "description": "Pretzel bites, nachos, and more" }
+        {
+          "item": "Craft beer",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Select craft beers at happy hour pricing"
+        },
+        {
+          "item": "House wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "House wine special"
+        },
+        {
+          "item": "Apps",
+          "price": 0.0,
+          "category": "food",
+          "description": "Pretzel bites, nachos, and more"
+        }
       ]
     },
     {
@@ -95,12 +185,26 @@
       "website": "https://bourbonmt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon+Bozeman+MT",
       "hours": "Daily 4-6pm",
-      "tags": ["whiskey", "bbq", "classy"],
+      "tags": [
+        "whiskey",
+        "bbq",
+        "classy"
+      ],
       "noise_level": "moderate",
       "mood": "dark-wood-and-smoke",
       "specials": [
-        { "item": "Drink specials", "price": 0.0, "category": "drinks", "description": "Craft whiskey cocktails on special" },
-        { "item": "Food specials", "price": 0.0, "category": "food", "description": "BBQ bites during happy hour" }
+        {
+          "item": "Drink specials",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Craft whiskey cocktails on special"
+        },
+        {
+          "item": "Food specials",
+          "price": 0.0,
+          "category": "food",
+          "description": "BBQ bites during happy hour"
+        }
       ]
     },
     {
@@ -111,13 +215,32 @@
       "website": "https://www.rbarbozeman.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=R+Bar+Bozeman+MT",
       "hours": "Mon-Fri 4-7pm",
-      "tags": ["dive", "downtown", "late-night"],
+      "tags": [
+        "dive",
+        "downtown",
+        "late-night"
+      ],
       "noise_level": "loud",
       "mood": "sticky-floor-classic",
       "specials": [
-        { "item": "Mule / martini / cocktail", "price": 7.0, "category": "drinks", "description": "$7 mules, martinis, and cocktails" },
-        { "item": "Beer & wine", "price": 0.0, "category": "drinks", "description": "Happy hour beer and wine specials" },
-        { "item": "Apps", "price": 0.0, "category": "food", "description": "App specials during weekday HH" }
+        {
+          "item": "Mule / martini / cocktail",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "$7 mules, martinis, and cocktails"
+        },
+        {
+          "item": "Beer & wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Happy hour beer and wine specials"
+        },
+        {
+          "item": "Apps",
+          "price": 0.0,
+          "category": "food",
+          "description": "App specials during weekday HH"
+        }
       ]
     }
   ]
