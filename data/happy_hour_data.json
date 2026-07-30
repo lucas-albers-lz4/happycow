@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T03:41:40Z",
+  "last_updated": "2026-07-30T03:45:41Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -21,13 +21,13 @@
           "item": "Draft beers",
           "price": 0.0,
           "category": "drinks",
-          "description": "$1.00 off"
+          "description": "$1.00 off draft beers"
         },
         {
           "item": "Wine by the glass",
           "price": 0.0,
           "category": "drinks",
-          "description": "$1.00 off"
+          "description": "$1.00 off wine by the glass"
         },
         {
           "item": "Well drinks",
@@ -39,7 +39,7 @@
           "item": "Double shot signature cocktails",
           "price": 6.0,
           "category": "drinks",
-          "description": "Hop the tracks, Rosemary Poloma, Cherry wine sour, Rasberrie cosmo, Kaffir gin and tonic"
+          "description": "$6.00 double shot signature cocktails \u2013 Hop the tracks \u2013 Rosemary Poloma \u2013 Cherry wine sour \u2013 Rasberrie cosmo \u2013 Kaffir gin and tonic"
         }
       ]
     },
@@ -104,40 +104,10 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "2-for-1 drinks",
+          "item": "Two drinks for price of one",
           "price": 0.0,
           "category": "drinks",
-          "description": "Two drinks for the price of one"
-        },
-        {
-          "item": "Jello shots",
-          "price": 2.0,
-          "category": "drinks",
-          "description": "$2 jello shots, Saturday 8-10pm"
-        },
-        {
-          "item": "Car bombs",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "$5 car bombs, Saturday 8-10pm"
-        },
-        {
-          "item": "Shot specials",
-          "price": 4.0,
-          "category": "drinks",
-          "description": "$4 shot specials, Saturday 8-10pm"
-        },
-        {
-          "item": "Svedka Vodka",
-          "price": 3.0,
-          "category": "drinks",
-          "description": "$3 Svedka Vodka, Saturday 8-10pm"
-        },
-        {
-          "item": "Bulleit Bourbon",
-          "price": 3.0,
-          "category": "drinks",
-          "description": "$3 Bulleit Bourbon, Saturday 8-10pm"
+          "description": "2-4-1: buy one drink, get one free"
         }
       ]
     },
@@ -193,10 +163,16 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Dry Rubbed Smoked Wings",
-          "price": 7.0,
+          "item": "Classic American BBQ favorites",
+          "price": 0.0,
           "category": "food",
-          "description": "6 for $7 on Wednesdays"
+          "description": "Food specials featuring classic American BBQ favorites"
+        },
+        {
+          "item": "Craft whiskey cocktails",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Drink specials featuring craft whiskey cocktails"
         }
       ]
     },
@@ -215,16 +191,16 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "64oz growler refills",
+          "item": "64oz. growler refills",
           "price": 0.0,
           "category": "drinks",
-          "description": "$2 off (exceptions may apply)"
+          "description": "$2 off until 3 pm (exceptions may apply)"
         },
         {
-          "item": "Pint",
+          "item": "Pint of beer",
           "price": 0.0,
           "category": "drinks",
-          "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8pm)"
+          "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8 pm)"
         }
       ]
     },
@@ -354,9 +330,51 @@
       "specials": [
         {
           "item": "Beers",
-          "price": 1.0,
+          "price": 0.0,
           "category": "drinks",
           "description": "$1 off beers"
+        },
+        {
+          "item": "Alaskan True Cod Cakes",
+          "price": 0.0,
+          "category": "food",
+          "description": "Monday special"
+        },
+        {
+          "item": "Craft Beer Sliders",
+          "price": 0.0,
+          "category": "food",
+          "description": "Tuesday special"
+        },
+        {
+          "item": "Prince Edward Island Mussels",
+          "price": 0.0,
+          "category": "food",
+          "description": "Wednesday special; 5:30pm Music & Mussels"
+        },
+        {
+          "item": "Pigs in Zen",
+          "price": 0.0,
+          "category": "food",
+          "description": "Thursday special"
+        },
+        {
+          "item": "Growler Fills",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$3 off growler fills 11:30am until 5 p.m. on Thursdays"
+        },
+        {
+          "item": "Bobcat Brats",
+          "price": 0.0,
+          "category": "food",
+          "description": "Saturday special"
+        },
+        {
+          "item": "Nana Rose\u2019s Meatball Dinner",
+          "price": 0.0,
+          "category": "food",
+          "description": "Sunday special"
         }
       ]
     },
@@ -455,7 +473,7 @@
       "phone": "406-556-1351",
       "website": "http://daves-sushi.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Dave%E2%80%99s%20Sushi%20Bozeman%20MT",
-      "hours": "Mon 3pm-close",
+      "hours": "Mon 3-close",
       "tags": [
         "classy"
       ],
@@ -463,10 +481,22 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Beer, Wine, & Sake",
+          "item": "Beer",
           "price": 0.0,
           "category": "drinks",
-          "description": "1/2 off \u2013 3:00pm to close"
+          "description": "1/2 off"
+        },
+        {
+          "item": "Wine",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "1/2 off"
+        },
+        {
+          "item": "Sake",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "1/2 off"
         }
       ]
     },
@@ -586,25 +616,25 @@
           "item": "Cocktails",
           "price": 5.0,
           "category": "drinks",
-          "description": "$5 cocktails"
+          "description": "Late-night happy hour: $5 cocktails"
         },
         {
           "item": "Wine",
           "price": 3.0,
           "category": "drinks",
-          "description": "$3 wine"
+          "description": "Late-night happy hour: $3 wine"
         },
         {
           "item": "Beers",
           "price": 2.0,
           "category": "drinks",
-          "description": "$2 beers"
+          "description": "Late-night happy hour: $2 beers"
         },
         {
-          "item": "Late-Night Bites",
+          "item": "Late-night bites",
           "price": 0.0,
           "category": "food",
-          "description": "late-night bites"
+          "description": "Plus late-night bites (price not specified)"
         }
       ]
     },
@@ -651,28 +681,22 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Wine",
+          "item": "Select wines",
           "price": 6.0,
           "category": "drinks",
-          "description": "Select wines at special prices"
+          "description": "$6 glasses of wine"
         },
         {
           "item": "Beer",
           "price": 5.0,
           "category": "drinks",
-          "description": "Select beer at special prices"
+          "description": "$5 beer"
         },
         {
           "item": "Cocktails",
           "price": 7.0,
           "category": "drinks",
-          "description": "Select cocktails at special prices"
-        },
-        {
-          "item": "Small Plates",
-          "price": 0.0,
-          "category": "food",
-          "description": "Select small plates at special prices (price not specified)"
+          "description": "$7 cocktails"
         }
       ]
     },
@@ -893,52 +917,40 @@
       "mood": "bozeman-local",
       "specials": [
         {
-          "item": "Draft Beer",
-          "price": 0.0,
+          "item": "Draft beer",
+          "price": 1.0,
           "category": "drinks",
           "description": "$1 off"
         },
         {
-          "item": "Well Drink",
-          "price": 0.0,
+          "item": "Well drink",
+          "price": 1.0,
           "category": "drinks",
           "description": "$1 off"
         },
         {
-          "item": "Glass of Wine",
-          "price": 0.0,
+          "item": "Glass of wine",
+          "price": 2.0,
           "category": "drinks",
           "description": "$2 off"
         },
         {
-          "item": "BBQ Ribs and Mash Potatoes",
+          "item": "2 for 1 drinks",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Tuesday/Thursday: 2 for 1 drinks"
+        },
+        {
+          "item": "BBQ ribs and mash potatoes",
           "price": 6.0,
           "category": "food",
-          "description": "2 for 1 drinks Tuesday/Thursday"
+          "description": "$6 for 2 BBQ ribs and mash potatoes (Tuesday/Thursday)"
         },
         {
-          "item": "Strawberry Goat Cheese Crostinis",
+          "item": "Strawberry goat cheese crostinis",
           "price": 6.0,
           "category": "food",
-          "description": "Tuesday/Thursday"
-        },
-        {
-          "item": "Mimosa",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "Saturday and Sunday 8am-4pm"
-        },
-        {
-          "item": "Bloody Mary",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "Saturday and Sunday 8am-4pm"
-        },
-        {
-          "item": "Caesar",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "Saturday and Sunday 8am-4pm"
+          "description": "$6 strawberry goat cheese crostinis (Tuesday/Thursday)"
         }
       ]
     },
