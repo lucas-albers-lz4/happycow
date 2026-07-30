@@ -103,20 +103,29 @@ body {
 .status-bar {
   display: flex;
   gap: 8px;
-  padding: 0 16px 16px;
+  padding: 0 16px 12px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 .status-bar::-webkit-scrollbar { display: none; }
 .status-pill {
   flex-shrink: 0;
-  padding: 6px 14px;
+  padding: 8px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   background: var(--card);
   border: 1.5px solid #e0d5c5;
   white-space: nowrap;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  min-height: 40px;
+}
+.status-pill:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 .status-pill.active {
   background: var(--green);
@@ -182,16 +191,35 @@ body {
   box-shadow: var(--shadow);
   overflow: hidden;
   transition: transform 0.15s;
-  cursor: pointer;
 }
-.venue-card:active { transform: scale(0.98); }
+.venue-card:has(.venue-toggle:active) { transform: scale(0.98); }
 
-.venue-header {
+.venue-toggle {
+  width: 100%;
   padding: 14px 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 8px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.venue-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.venue-header {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
 }
 .venue-name {
   font-weight: 700;
@@ -229,8 +257,8 @@ body {
 
 .venue-specials {
   padding: 0 16px 14px;
-  display: none;
 }
+.venue-specials[hidden] { display: none !important; }
 .venue-card.expanded .venue-specials { display: block; }
 .special-row {
   display: flex;
@@ -253,11 +281,21 @@ body {
 
 /* ─── Deal of the Day ─── */
 .deal-day {
-  margin: 0 16px 16px;
+  display: block;
+  width: calc(100% - 32px);
+  margin: 0 16px 12px;
   padding: 14px 16px;
   background: linear-gradient(135deg, var(--cow-spot-1), var(--cow-spot-2));
   color: #fff;
+  border: none;
   border-radius: var(--radius);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.deal-day:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 .deal-day-title {
   font-size: 0.75rem;
@@ -270,19 +308,27 @@ body {
   font-weight: 700;
   margin-top: 4px;
 }
+.deal-day-lie {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 8px;
+  opacity: 0.95;
+  font-style: italic;
+}
 
 /* ─── Game / Feature Buttons ─── */
 .feature-bar {
   display: flex;
   gap: 8px;
-  padding: 0 16px 16px;
+  padding: 0 16px 12px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 .feature-bar::-webkit-scrollbar { display: none; }
 .feature-btn {
   flex-shrink: 0;
-  padding: 8px 16px;
+  padding: 10px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -291,8 +337,13 @@ body {
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.2s;
+  min-height: 40px;
 }
 .feature-btn:active { background: #f0e8d8; }
+.feature-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
 .feature-btn .emoji { margin-right: 4px; }
 
 /* ─── Modal ─── */
@@ -376,23 +427,6 @@ body {
   color: var(--text-dim);
 }
 
-/* ─── Moan Meter ─── */
-.moan-meter {
-  text-align: center;
-  padding: 8px 0;
-}
-.moan-meter input[type="range"] {
-  width: 100%;
-  margin: 12px 0;
-  accent-color: var(--cow-spot-2);
-  height: 8px;
-}
-.moan-label {
-  font-size: 1.5rem;
-  transition: transform 0.2s;
-}
-.moan-label.high { transform: scale(1.4); }
-
 /* ─── Tip Calculator ─── */
 .tip-calc label {
   display: block;
@@ -473,7 +507,7 @@ body.dark .hh-status.closed { background: #2a1a1a; color: #c46a6a; }
 .mystery-btn {
   display: block;
   width: calc(100% - 32px);
-  margin: 0 16px 16px;
+  margin: 0 16px 12px;
   padding: 12px;
   background: var(--card);
   color: var(--text);
@@ -485,31 +519,10 @@ body.dark .hh-status.closed { background: #2a1a1a; color: #c46a6a; }
   transition: background 0.2s;
 }
 .mystery-btn:active { background: var(--cream); }
-
-/* ─── Crowd Bar ─── */
-.crowd-bar {
-  display: flex;
-  gap: 6px;
-  padding: 0 16px 12px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.mystery-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
-.crowd-bar::-webkit-scrollbar { display: none; }
-.crowd-pill {
-  flex-shrink: 0;
-  padding: 4px 10px;
-  border-radius: 16px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--card);
-  border: 1px solid #e0d5c5;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.crowd-pill:active { background: var(--cream); }
-.crowd-pill .count { color: var(--green); margin-left: 4px; }
-:root .crowd-pill { border-color: #e0d5c5; }
 
 /* ─── Sad Hour Banner ─── */
 .sad-hour {
@@ -520,8 +533,8 @@ body.dark .hh-status.closed { background: #2a1a1a; color: #c46a6a; }
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
   text-align: center;
-  display: none;
 }
+.sad-hour[hidden] { display: none !important; }
 body.dark .sad-hour { background: #1a0a0a; }
 
 /* ─── Cow RPG Stats in Modal ─── */

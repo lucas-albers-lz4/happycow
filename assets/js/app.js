@@ -9,11 +9,9 @@ const state = {
   cows: [],
   collected: JSON.parse(localStorage.getItem('hc_collected') || '[]'),
   bingo: JSON.parse(localStorage.getItem('hc_bingo') || '{}'),
-  crowd: JSON.parse(localStorage.getItem('hc_crowd') || '{}'),
-  sadCount: parseInt(localStorage.getItem('hc_sad') || '0'),
-  moanLevel: parseFloat(localStorage.getItem('hc_moan') || '0.5'),
   dark: localStorage.getItem('hc_dark') === 'true',
   todaySeed: dateSeed(),
+  dealRevealed: false,
 };
 
 function dateSeed() {
@@ -235,26 +233,29 @@ function render() {
   renderVenues();
 
   // ── Cow icon click → modal + moo ──
-  document.getElementById('cow-icon').onclick = () => {
-    playMoo(0.5);
-    openModal('cow-modal');
+  const cowIcon = document.getElementById('cow-icon');
+  cowIcon.style.cursor = 'pointer';
+  cowIcon.setAttribute('role', 'button');
+  cowIcon.setAttribute('tabindex', '0');
+  cowIcon.setAttribute('aria-label', 'Open cow of the day');
+  const openCow = () => { playMoo(); openModal('cow-modal'); };
+  cowIcon.onclick = openCow;
+  cowIcon.onkeydown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCow(); }
   };
   setupCowModal(todayCow);
 
   // ── Feature buttons ──
   document.getElementById('btn-bingo').onclick = () => { openModal('bingo-modal'); renderBingo(); };
   document.getElementById('btn-horoscope').onclick = () => { openModal('horoscope-modal'); renderHoroscope(todayCow); };
-  document.getElementById('btn-moan').onclick = () => { openModal('moan-modal'); setupMoanMeter(); };
+  document.getElementById('btn-moo').onclick = () => playMoo();
   document.getElementById('btn-tip').onclick = () => { openModal('tip-modal'); };
   document.getElementById('btn-quiz').onclick = () => { openModal('quiz-modal'); };
 
   // ── Mystery Drink ──
   document.getElementById('mystery-btn').onclick = doMysteryDrink;
 
-  // ── Crowd Bar ──
-  renderCrowdBar();
-
-  // ── Sad Hour ──
+  // ── Sad Hour (no fake crowd counts) ──
   renderSadHour();
 
   // ── Dark Mode ──
@@ -279,7 +280,6 @@ function render() {
 
 // ─── Deal of the Day ───
 function renderDealOfDay() {
-  const rng = seededRandom(state.todaySeed + 1);
   const allSpecials = [];
   state.data.venues.forEach(v => {
     v.specials.forEach(s => {
@@ -287,10 +287,19 @@ function renderDealOfDay() {
     });
   });
   const best = allSpecials.filter(s => s.price > 0).sort((a,b) => a.price - b.price)[0];
+  const dealBtn = document.getElementById('deal-day');
+  const lie = document.getElementById('deal-lie');
   if (best) {
     document.getElementById('deal-text').textContent =
       `${best.item} — $${best.price.toFixed(2)} at ${best.venue}`;
   }
+  lie.hidden = !state.dealRevealed;
+  dealBtn.setAttribute('aria-expanded', state.dealRevealed ? 'true' : 'false');
+  dealBtn.onclick = () => {
+    state.dealRevealed = true;
+    lie.hidden = false;
+    dealBtn.setAttribute('aria-expanded', 'true');
+  };
 }
 
 // ─── Status Bar ───
@@ -299,11 +308,13 @@ function renderStatusBar() {
   bar.innerHTML = '';
   state.data.venues.forEach(v => {
     const status = isHHLive(v.hours);
-    const pill = document.createElement('span');
+    const pill = document.createElement('button');
+    pill.type = 'button';
     pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : '');
     pill.textContent = status === 'live' ? `● ${v.name}` :
                        status === 'soon' ? `▲ ${v.name}` :
                        `○ ${v.name}`;
+    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : 'closed'}`);
     pill.onclick = () => scrollToVenue(v.id);
     bar.appendChild(pill);
   });
@@ -339,29 +350,28 @@ function renderVenues() {
 
 function renderVenueCard(venue, container) {
   const status = isHHLive(venue.hours);
-  const card = document.createElement('div');
-  card.className = 'venue-card';
+  const expanded = state.expanded === venue.id;
+  const card = document.createElement('article');
+  card.className = 'venue-card' + (expanded ? ' expanded' : '');
   card.id = `venue-${venue.id}`;
-  card.onclick = () => {
-    card.classList.toggle('expanded');
-    if (state.expanded === venue.id) state.expanded = null;
-    else state.expanded = venue.id;
-  };
 
   const statusText = status === 'live' ? '● Live now' :
                      status === 'soon' ? `▲ Opens in ${timeUntil(getStartMinutes(venue.hours))}` :
                      '○ Closed';
 
+  const specialsId = `specials-${venue.id}`;
   card.innerHTML = `
-    <div class="venue-header">
-      <div>
-        <div class="venue-name">${venue.name}</div>
-        <div class="venue-detail">${venue.hours} · ${venue.address}</div>
-        <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    <button type="button" class="venue-toggle" aria-expanded="${expanded}" aria-controls="${specialsId}">
+      <div class="venue-header">
+        <div>
+          <div class="venue-name">${venue.name}</div>
+          <div class="venue-detail">${venue.hours} · ${venue.address}</div>
+          <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="hh-status ${status}">${statusText}</div>
       </div>
-      <div class="hh-status ${status}">${statusText}</div>
-    </div>
-    <div class="venue-specials">
+    </button>
+    <div class="venue-specials" id="${specialsId}" ${expanded ? '' : 'hidden'}>
       ${venue.specials.map(s => `
         <div class="special-row">
           <div>
@@ -372,13 +382,29 @@ function renderVenueCard(venue, container) {
         </div>
       `).join('')}
       <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-        <a href="${venue.maps}" target="_blank" style="font-size:0.75rem;color:var(--cow-spot-2);">📍 Directions</a>
-        ${venue.website ? `<a href="${venue.website}" target="_blank" style="font-size:0.75rem;color:var(--cow-spot-2);">🔗 Website</a>` : ''}
+        <a href="${venue.maps}" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--cow-spot-2);">📍 Directions</a>
+        ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--cow-spot-2);">🔗 Website</a>` : ''}
         <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;">Noise: ${venue.noise_level} · ${venue.mood}</span>
       </div>
-      <div style="margin-top:6px;"><button class="crowd-pill" style="font-size:0.7rem;padding:4px 10px;cursor:pointer;" onclick="event.stopPropagation();tapIn('${venue.id}')">👋 I'm Here</button> <span style="font-size:0.7rem;color:var(--text-dim);" id="crowd-${venue.id}"></span></div>
     </div>
   `;
+
+  const toggle = card.querySelector('.venue-toggle');
+  const specials = card.querySelector('.venue-specials');
+  toggle.onclick = () => {
+    const open = state.expanded === venue.id;
+    state.expanded = open ? null : venue.id;
+    // Re-render list so only one stays expanded cleanly
+    renderVenues();
+    if (!open) {
+      const el = document.getElementById(`venue-${venue.id}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  };
+  // Keep specials visible via CSS class + hidden attr sync
+  if (expanded) {
+    specials.hidden = false;
+  }
   container.appendChild(card);
 }
 
@@ -391,7 +417,12 @@ function getStartMinutes(hoursStr) {
 
 function scrollToVenue(id) {
   const el = document.getElementById(`venue-${id}`);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (el) {
+    state.expanded = id;
+    renderVenues();
+    const again = document.getElementById(`venue-${id}`);
+    if (again) again.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // ─── Roulette ───
@@ -400,7 +431,6 @@ function doRoulette() {
   const pool = live.length > 0 ? live : state.data.venues;
   const pick = pool[Math.floor(Math.random() * pool.length)];
   scrollToVenue(pick.id);
-  document.getElementById(`venue-${pick.id}`).classList.add('expanded');
 }
 
 // ─── Modal System ───
@@ -537,39 +567,19 @@ function renderHoroscope(cow) {
      </span>`;
 }
 
-// ─── Moan Meter ───
-let moanCtx = null;
-function setupMoanMeter() {
-  const slider = document.getElementById('moan-slider');
-  slider.value = state.moanLevel * 100;
-  document.getElementById('moan-label').textContent = state.moanLevel > 0.7 ? '🔊 MOO!' :
-    state.moanLevel > 0.4 ? '🐄 moo' : '🔇 mmm';
-
-  slider.oninput = () => {
-    const val = slider.value / 100;
-    state.moanLevel = val;
-    localStorage.setItem('hc_moan', val.toString());
-    document.getElementById('moan-label').textContent = val > 0.7 ? '🔊 MOO!' :
-      val > 0.4 ? '🐄 moo' : '🔇 mmm';
-    playMoo(val);
-  };
-}
-
-function playMoo(intensity) {
+// ─── Moo ───
+let mooAudio = null;
+function playMoo() {
   try {
-    if (!moanCtx) moanCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = moanCtx.createOscillator();
-    const gain = moanCtx.createGain();
-    osc.connect(gain);
-    gain.connect(moanCtx.destination);
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(80 + intensity * 120, moanCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(60 + intensity * 80, moanCtx.currentTime + 0.3);
-    gain.gain.setValueAtTime(intensity * 0.15, moanCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, moanCtx.currentTime + 0.4);
-    osc.start();
-    osc.stop(moanCtx.currentTime + 0.4);
-  } catch(e) {}
+    // Fresh instance so overlapping taps can stack / vary independently
+    const a = new Audio('assets/sounds/moo.mp3');
+    // Random bovine: pitch + loudness drift so each tap is different
+    a.playbackRate = 0.75 + Math.random() * 0.7; // ~0.75–1.45
+    a.volume = 0.55 + Math.random() * 0.45;
+    const p = a.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+    mooAudio = a;
+  } catch (e) {}
 }
 
 // ─── Tip Calculator ───
@@ -634,10 +644,10 @@ function handleQuiz(e) {
 
   const score = answers.reduce((a,b) => a + b, 0);
   const results = [
-    "You are a **Lightweight Cow**. One drink and you're under the table. Respect.",
-    "You are a **Social Cow**. You're here for the vibes, not the volume. Acceptable.",
-    "You are a **Party Cow**. You know the bartender's name. You've earned the stool.",
-    "You are a **Legendary Cow**. The bar closes when YOU say it closes. Bow down."
+    "You are a <b>Lightweight Cow</b>. One drink and you're under the table. Respect.",
+    "You are a <b>Social Cow</b>. You're here for the vibes, not the volume. Acceptable.",
+    "You are a <b>Party Cow</b>. You know the bartender's name. You've earned the stool.",
+    "You are a <b>Legendary Cow</b>. The bar closes when YOU say it closes. Bow down."
   ];
   const tier = Math.min(3, Math.floor(score / QUIZ_QUESTIONS.length));
   document.getElementById('quiz-result').innerHTML = results[tier];
@@ -666,60 +676,12 @@ function doMysteryDrink() {
   }, 8000);
 }
 
-// ─── Crowd Bar ───
-function renderCrowdBar() {
-  if (!state.data) return;
-  const bar = document.getElementById('crowd-bar');
-  bar.innerHTML = '';
-
-  // Clean expired entries (older than 2 hours)
-  const now = Date.now();
-  let changed = false;
-  Object.keys(state.crowd).forEach(id => {
-    if (now - state.crowd[id].ts > 7200000) {
-      delete state.crowd[id];
-      changed = true;
-    }
-  });
-  if (changed) localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
-
-  state.data.venues.forEach(v => {
-    const crowd = state.crowd[v.id];
-    const count = crowd && (now - crowd.ts < 7200000) ? crowd.count : 0;
-    const pill = document.createElement('span');
-    pill.className = 'crowd-pill';
-    pill.innerHTML = `${v.name} <span class="count">${count > 0 ? '👤' + count : '○'}</span>`;
-    pill.onclick = () => {
-      if (!state.crowd[v.id] || now - state.crowd[v.id].ts > 7200000) {
-        state.crowd[v.id] = { count: 1, ts: now };
-      } else {
-        state.crowd[v.id].count += 1;
-        state.crowd[v.id].ts = now;
-      }
-      localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
-      renderCrowdBar();
-    };
-    bar.appendChild(pill);
-  });
-}
-
 // ─── Sad Hour ───
 function renderSadHour() {
   if (!state.data) return;
   const anyLive = state.data.venues.some(v => isHHLive(v.hours) === 'live');
   const banner = document.getElementById('sad-hour');
-  if (!anyLive) {
-    banner.style.display = 'block';
-    document.getElementById('sad-count').textContent = state.sadCount;
-    // Only count once per session per day
-    if (!state._sadCounted) {
-      state.sadCount += 1;
-      localStorage.setItem('hc_sad', state.sadCount.toString());
-      state._sadCounted = true;
-    }
-  } else {
-    banner.style.display = 'none';
-  }
+  banner.hidden = !!anyLive;
 }
 
 // ─── Dark Mode ───
@@ -728,21 +690,6 @@ function toggleDark() {
   document.body.classList.toggle('dark', state.dark);
   document.getElementById('dark-toggle').textContent = state.dark ? '☀️' : '🌙';
   localStorage.setItem('hc_dark', state.dark);
-}
-
-// ─── Tap In (I'm Here) ───
-function tapIn(venueId) {
-  const now = Date.now();
-  if (!state.crowd[venueId] || now - state.crowd[venueId].ts > 7200000) {
-    state.crowd[venueId] = { count: 1, ts: now };
-  } else {
-    state.crowd[venueId].count += 1;
-    state.crowd[venueId].ts = now;
-  }
-  localStorage.setItem('hc_crowd', JSON.stringify(state.crowd));
-  const el = document.getElementById(`crowd-${venueId}`);
-  if (el) el.textContent = `👤${state.crowd[venueId].count} here`;
-  renderCrowdBar();
 }
 
 // ─── Init ───

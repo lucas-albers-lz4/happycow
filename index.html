@@ -28,30 +28,28 @@
   </div>
 
   <!-- ═══ Deal of the Day ═══ -->
-  <div class="deal-day">
+  <button type="button" class="deal-day" id="deal-day" aria-expanded="false" aria-controls="deal-lie">
     <div class="deal-day-title">🐄 Deal of the Day</div>
     <div class="deal-day-text" id="deal-text">Loading...</div>
-  </div>
+    <div class="deal-day-lie" id="deal-lie" hidden>It's a lie — it's just the cheapest special we found.</div>
+  </button>
 
   <!-- ═══ Sad Hour Banner ═══ -->
-  <div class="sad-hour" id="sad-hour">😔 Sad Hour — no happy hours running right now. <span id="sad-count"></span> people have checked in during sad hour.</div>
+  <div class="sad-hour" id="sad-hour" hidden>😔 Sad Hour — no happy hours running right now.</div>
 
   <!-- ═══ Mystery Drink ═══ -->
   <button class="mystery-btn" id="mystery-btn">🍸 I'll Have What They're Having — Surprise Me</button>
 
   <!-- ═══ Status Bar ═══ -->
-  <div class="status-bar" id="status-bar">
+  <div class="status-bar" id="status-bar" role="navigation" aria-label="Venue happy hour status">
     <span class="status-pill">Loading...</span>
   </div>
-
-  <!-- ═══ Crowd Bar ═══ -->
-  <div class="crowd-bar" id="crowd-bar"></div>
 
   <!-- ═══ Features ═══ -->
   <div class="feature-bar">
     <button class="feature-btn" id="btn-bingo"><span class="emoji">🎯</span>HH Bingo</button>
     <button class="feature-btn" id="btn-horoscope"><span class="emoji">♈</span>HH Horoscope</button>
-    <button class="feature-btn" id="btn-moan"><span class="emoji">🐄</span>Moan Meter</button>
+    <button class="feature-btn" id="btn-moo" type="button"><span class="emoji">🐄</span>Moo</button>
     <button class="feature-btn" id="btn-tip"><span class="emoji">🧮</span>Tip Calc</button>
     <button class="feature-btn" id="btn-quiz"><span class="emoji">❓</span>What Cow R U?</button>
   </div>
@@ -122,23 +120,6 @@
       <div class="modal-title">♈ Happy Hour Horoscope</div>
       <div id="horoscope-sign" class="horoscope-sign">Loading...</div>
       <div class="horoscope-card" id="horoscope-text">Consulting the bovine stars...</div>
-    </div>
-  </div>
-
-  <!-- Moan Meter Modal -->
-  <div class="modal-overlay" id="moan-modal">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <div class="modal-title">🐄 Moan Meter</div>
-      <div style="text-align:center;font-size:0.85rem;color:var(--text-dim);margin-bottom:8px;">How happy hour are you right now?</div>
-      <div class="moan-meter">
-        <div class="moan-label" id="moan-label" style="font-size:2rem;">🐄 moo</div>
-        <input type="range" id="moan-slider" min="0" max="100" value="50">
-        <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-dim);">
-          <span>Sober</span>
-          <span>Partied</span>
-        </div>
-      </div>
     </div>
   </div>
 
