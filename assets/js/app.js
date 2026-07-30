@@ -28,7 +28,23 @@ function seededRandom(seed) {
   };
 }
 
-// ─── Cow Data ───
+// ─── Impostor Cows ───
+const IMPOSTORS = [13, 21, 23, 25, 27];
+const IMPOSTOR_REAL_ANIMAL = {
+  13: "🦎 Mutant Cow — Two tails. The elders speak of this one in whispers.",
+  21: "🐂 That's a Bull. No udder. Definitely masculine energy. Still cool though.",
+  23: "🦒 Impostor! That's a Giraffe in a cow onesie. Look at the snout.",
+  25: "🐂 Another Bull. Someone's not checking IDs at the cow door.",
+  27: "🐕 That's a BEAGLE in a cow-print onesie inside a robot suit. Triple disguise."
+};
+const IMPOSTOR_TAGLINE = {
+  13: "twice the tail, half the tail",
+  21: "technically a bull but we don't gatekeep",
+  23: "long neck energy in a compact package",
+  25: "the cool uncle who is definitely not a cow",
+  27: "this is a dog. we know. we kept it anyway."
+};
+
 const COW_NAMES = [
   "Bessie", "Clover", "Daisy", "Moo-donna", "Sir Loin", "Patty",
   "Angus", "Wagyu", "Brisket", "Moolan Rouge", "Moo-tang Clan",
@@ -80,12 +96,15 @@ const COW_MOODS = [
 function getCowForDay(daySeed) {
   const rng = seededRandom(daySeed);
   const idx = Math.floor(rng() * 30);
+  const isImpostor = IMPOSTORS.includes(idx);
   return {
     id: idx,
     name: COW_NAMES[idx],
     mood: COW_MOODS[Math.floor(rng() * COW_MOODS.length)],
-    prophecy: COW_PROPHECIES[Math.floor(rng() * COW_PROPHECIES.length)],
+    prophecy: isImpostor ? IMPOSTOR_REAL_ANIMAL[idx] : COW_PROPHECIES[Math.floor(rng() * COW_PROPHECIES.length)],
+    tagline: isImpostor ? IMPOSTOR_TAGLINE[idx] : null,
     collected: state.collected.includes(idx),
+    isImpostor: isImpostor,
     image: `assets/cows/cow-${idx}.png`
   };
 }
@@ -175,6 +194,15 @@ function render() {
   document.getElementById('cow-mood').textContent = todayCow.mood;
   document.getElementById('cow-prophecy').textContent = `"${todayCow.prophecy}"`;
   document.getElementById('cow-collected').textContent = `${state.collected.length}/30 collected`;
+
+  // Impostor detection badge
+  const badge = document.getElementById('cow-impostor-badge');
+  if (todayCow.isImpostor) {
+    badge.textContent = todayCow.tagline;
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
 
   // ── Hero ──
   document.getElementById('hero-title').innerHTML = `Happy Cow <span>${state.data.city}</span>`;
@@ -358,6 +386,16 @@ function setupCowModal(cow) {
   document.getElementById('cow-modal-name').textContent = cow.name;
   document.getElementById('cow-modal-mood').textContent = `Mood: ${cow.mood}`;
   document.getElementById('cow-modal-prophecy').textContent = `"${cow.prophecy}"`;
+
+  // Impostor badge
+  const impostorBadge = document.getElementById('cow-modal-impostor');
+  if (cow.isImpostor) {
+    impostorBadge.textContent = `⚠️ IMPOSTOR DETECTED — ${cow.tagline}`;
+    impostorBadge.style.display = 'block';
+  } else {
+    impostorBadge.style.display = 'none';
+  }
+
   document.getElementById('cow-modal-status').textContent =
     cow.collected ? '✓ Collected' : '◎ Not yet collected';
   document.getElementById('cow-modal-status').style.color = cow.collected ? 'var(--green)' : 'var(--text-dim)';
@@ -371,6 +409,13 @@ function setupCowModal(cow) {
       document.getElementById('cow-modal-collect').textContent = '✓ Collected!';
       document.getElementById('cow-modal-collect').disabled = true;
       document.getElementById('cow-modal-status').textContent = '✓ Collected';
+
+      // Check if all 5 impostors collected
+      const impostorsCollected = IMPOSTORS.filter(i => state.collected.includes(i));
+      if (impostorsCollected.length === IMPOSTORS.length) {
+        setTimeout(() => alert('🐄🕵️ SECRET ACHIEVEMENT: You collected all 5 impostors! A giraffe, a beagle, a mutant, and two bulls walked into a bar...'), 300);
+      }
+
       render(); // refresh bar
     }
   };

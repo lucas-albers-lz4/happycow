@@ -15,6 +15,7 @@
     <img id="cow-icon" class="cow-icon" src="assets/cows/cow-0.png" alt="Cow of the day">
     <div class="cow-info">
       <div class="cow-name"><span id="cow-name">Bessie</span> · <span id="cow-mood">chill</span> <span id="cow-prophecy">"The margarita awaits"</span></div>
+      <div style="font-size:0.7rem;color:var(--red);font-weight:600;display:none;" id="cow-impostor-badge"></div>
     </div>
     <div class="cow-collected" id="cow-collected">0/30</div>
   </div>
@@ -82,6 +83,7 @@
       <div class="modal-title" id="cow-modal-name">Cow Name</div>
       <div class="horoscope-sign" id="cow-modal-mood">Mood: chill</div>
       <div class="horoscope-card" id="cow-modal-prophecy">"Prophecy"</div>
+      <div style="background:#fff0e0;border:1px solid var(--red);border-radius:var(--radius-sm);padding:8px 12px;margin:8px 0;font-size:0.8rem;font-weight:600;color:var(--red);display:none;" id="cow-modal-impostor"></div>
       <div style="margin:8px 0;font-size:0.85rem;" id="cow-modal-status">◎ Not yet collected</div>
       <button style="padding:10px 24px;border:none;border-radius:var(--radius);background:var(--cow-spot-2);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;" id="cow-modal-collect">Collect this cow</button>
     </div>
