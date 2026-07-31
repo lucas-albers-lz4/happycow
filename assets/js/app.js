@@ -92,6 +92,18 @@ const COW_PROPHECIES = [
   "The cow says: drink water. The cow also says: one more.",
   "You will discover a new favorite drink tonight. It's on special.",
   "The peanuts on the bar are free. The consequences are not.",
+  "It's moo-time. The moo-timeter says you're 100% ready.",
+  "MORE COW-BELL, you absolute legend. Tonight demands it.",
+  "The night will be cow-tastic. Prepare accordingly.",
+  "Cow, cow, cow. The prophecy is just cow. Deep.",
+  "Embrace mooism: happy hour is a state of udder being.",
+  "You will drink the milk of human kindness. Or just milk. Both count.",
+  "Meadow-licious times are ahead. Bring snacks and a cow-pattern shirt.",
+  "The herd is with you. So is the herd's credit card. Don't ask.",
+  "Your aura is 70% dairy. That's above average.",
+  "The universe says: milk 'em if you got 'em. You got 'em.",
+  "It cowbell time. You know what to do. Everyone knows what to do.",
+  "Moo-vember is coming. So is your tab. Both are inevitable.",
   "Happy hour is a state of mind. You're already there.",
   "Venmo requests sent tonight will be awkward by Tuesday.",
   "The best conversation of your night hasn't started yet."
@@ -738,6 +750,15 @@ function renderCowQuestion() {
           "The cow is updating its expectations to 'very low'.",
           "The cow stared into the pasture for a moment. Reflecting. On you.",
           "The cow would have accepted almost anything else. Almost.",
+          "That answer was udderly wrong. Utterly, too.",
+          "The cow is not even moo-ved by that attempt.",
+          "Moo-ve on. That was not it.",
+          "Your answer has been judged: cow-tastrophe.",
+          "The cowbell just rang, and it was not for you. It was the wrong-answer bell.",
+          "Milk 'em if you got 'em — you clearly did not have the answer.",
+          "That was cow-tastic in the worst possible way.",
+          "The cow says moo-ve over. The correct answer just walked in.",
+          "Your answer is this far from the truth. *cow hoof gesture showing tiny distance*",
         ];
         resEl.innerHTML = `❌ <b>Wrong.</b> It was "${q.a[q.correct]}". ${COW_DISAPPOINTMENTS[Math.floor(Math.random() * COW_DISAPPOINTMENTS.length)]}`;
       }
@@ -763,7 +784,11 @@ function renderHoroscope(cow) {
     "Tonight's impulse decision will be tomorrow's fondest memory.",
     "The cheapest beer is the most honest beer.",
     "Release your expectations for the night. Let the bar provide.",
-    "Your spirit animal is a cow at happy hour. You have arrived."
+    "Your spirit animal is a cow at happy hour. You have arrived.",
+    "It cowbell time. The stars rang thrice. You know what to do.",
+    "The moo-n is in your favor. Ride it. Or milk it. Either works.",
+    "Your lucky charm tonight: a cow with excellent posture.",
+    "Cosmic forecast: meadow-licious with a chance of free nachos."
   ];
   document.getElementById('horoscope-sign').textContent = `♈ ${sign} · ${cow.name} the ${cow.mood} Cow`;
   document.getElementById('horoscope-text').innerHTML =
@@ -802,7 +827,12 @@ function renderTipCalc() {
     "Your phone has a calculator. But fine.",
     "This is literally elementary school math.",
     "I'm a cow and I know this.",
-    "You went to the moon, not the menu."
+    "You went to the moon, not the menu.",
+    "Moo-ve over, Einstein. That's basic math.",
+    "Udderly embarrassing that you need this.",
+    "That was cow-tastrophic arithmetic, champ.",
+    "Even a dairy cow counts change faster.",
+    "Milk 'em if you got 'em — and tip accordingly.",
   ];
   const lines = tips.map(pct => {
     const tip = total * pct;
