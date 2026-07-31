@@ -837,10 +837,31 @@ function setupFooterNiu() {
   };
 }
 
+// ─── Footer snake: the tiny 🐍 has its own secret ───
+// Tap it and the footer confesses what the site is REALLY built with.
+function setupFooterSnake() {
+  const snake = document.getElementById('footer-snake');
+  const counter = document.querySelector('.cow-counter');
+  if (!snake || !counter) return;
+  const confession = 'Built with spite + localStorage + DeepSeek. The snake did the scraping. 🐍🖤';
+  snake.onclick = (e) => {
+    e.stopPropagation();
+    if (!counter.dataset.confessed) {
+      counter.dataset.original = counter.innerHTML; // capture real date, then confess
+      counter.innerHTML = confession;
+      counter.dataset.confessed = 'true';
+    } else {
+      counter.innerHTML = counter.dataset.original;
+      counter.dataset.confessed = '';
+    }
+  };
+}
+
 // ─── Init ───
 document.addEventListener('DOMContentLoaded', () => {
   loadData();
   setupFooterNiu();
+  setupFooterSnake();
 
   // Modal close buttons
   document.querySelectorAll('.modal-close').forEach(btn => {
