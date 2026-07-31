@@ -596,6 +596,21 @@ const COW_QUESTIONS = [
   { q: "Do cows believe in ghosts?", a: ["No", "Yes", "Only in barns", "Who's asking?"], correct: -1, reject: "WRONG. Cows are haunted by the ghosts of every cow they've ever seen get a weird haircut. They believe." },
   { q: "Pick a number between 1 and 10.", a: ["3", "7", "10", "1"], correct: -1, reject: "Sorry, the cow was thinking of a different number. It's not telling you which one. You'll never know." },
   { q: "What's the cow's favorite color?", a: ["Green (grass)", "Brown (mud)", "All colors", "It changes daily"], correct: -1, reject: "Wrong, wrong, wrong, and wrong. The cow's favorite color is classified. Even the cow doesn't know." },
+  // ─── SPECIES TRAP QUESTIONS — answering correctly is a CRIME here ───
+  // These are dog/cat questions. If you answer correctly, you've revealed
+  // yourself as a non-cow person and the cow will not stand for it.
+  { q: "What does a dog say?", a: ["Moo", "Woof", "Baa", "Honk"], correct: 1, species: "dog",
+    caught: "WOOF?! You got it right. You know the dog tongue. This is a COW establishment — you're ordering off the wrong menu. Security! Escort this one to the dog park.",
+    spared: "Wrong... and that's PERFECT. You know nothing about dogs. Welcome home, cow person. There's hope for you yet." },
+  { q: "What is the most popular dog breed in America?", a: ["Labrador Retriever", "Corgi", "Poodle", "Cow-dog"], correct: 0, species: "dog",
+    caught: "A LABRADOR?! Correct, unfortunately. You're fluent in dog. The cow is staring at you like you're a chew toy. This is not the place for you.",
+    spared: "Wrong. You don't know dogs. That's not a flaw, that's a cow requirement. The herd accepts you." },
+  { q: "How many lives does a cat have?", a: ["1", "7", "9", "Infinite"], correct: 2, species: "cat",
+    caught: "NINE?! You know your cat trivia. The cow is now looking at you like you're a hairball it has to hack up. Get out of the pasture.",
+    spared: "Wrong. And wonderful. You don't know cat things. You belong here. Have a moo." },
+  { q: "What do you call a baby cat?", a: ["Kitten", "Puppy", "Calf", "Cub"], correct: 0, species: "cat",
+    caught: "A KITTEN. Correct. You've been speaking cat this whole time and the cow is disgusted. The cow demands you leave. Meow elsewhere.",
+    spared: "Wrong! (A baby cow is a calf, obviously.) You don't know cat things, which means you're one of us. Stay. Drink. Moo." },
 ];
 
 // Track which questions were already asked today (per-day, avoids repeats)
@@ -604,7 +619,8 @@ function getCowQuestion() {
   const asked = readStore(todayKey, []);
   const pool = COW_QUESTIONS.map((_, i) => i).filter(i => !asked.includes(i));
   // If all asked today, reset the pool
-  const idx = (pool.length > 0 ? pool : COW_QUESTIONS.map((_, i) => i))[Math.floor(Math.random() * COW_QUESTIONS.length)];
+  const usable = pool.length > 0 ? pool : COW_QUESTIONS.map((_, i) => i);
+  const idx = usable[Math.floor(Math.random() * usable.length)];
   localStorage.setItem(todayKey, JSON.stringify([...asked, idx].slice(-200)));
   return COW_QUESTIONS[idx];
 }
@@ -628,6 +644,19 @@ function renderCowQuestion() {
       [...optEl.children].forEach(b => b.disabled = true);
       const isTrick = q.correct === -1;
       const isRight = !isTrick && i === q.correct;
+      // ─── Species trap: answering the dog/cat question CORRECTLY is a crime ───
+      if (q.species) {
+        if (isRight) {
+          btn.style.borderColor = 'var(--red)';
+          btn.style.background = '#f0e0e0';
+          resEl.innerHTML = `❌ <b>WRONG SPECIES.</b> ${q.caught}`;
+        } else {
+          btn.style.borderColor = 'var(--green)';
+          btn.style.background = '#e0f0e0';
+          resEl.innerHTML = `✅ <b>Correct (by cow standards).</b> ${q.spared}`;
+        }
+        return;
+      }
       btn.style.borderColor = isRight ? 'var(--green)' : 'var(--red)';
       btn.style.background = isRight ? '#e0f0e0' : '#f0e0e0';
       if (isTrick) {
