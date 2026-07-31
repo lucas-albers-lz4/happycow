@@ -664,7 +664,22 @@ function renderCowQuestion() {
       } else if (isRight) {
         resEl.innerHTML = '✅ <b>Correct!</b> The cow is pleased.';
       } else {
-        resEl.innerHTML = `❌ <b>Wrong.</b> It was "${q.a[q.correct]}". The cow expected better.`;
+        // The cow has a rotating set of disappointments. All equally valid.
+        const COW_DISAPPOINTMENTS = [
+          "The cow expected better.",
+          "The cow has seen worse, but not often.",
+          "The cow is not mad, just disappointed. Mostly disappointed.",
+          "The cow suggests you stick to the tip calculator.",
+          "The cow would moo, but it's too embarrassed for you.",
+          "The cow forgives you. The cow forgives everyone. It's a cow thing.",
+          "The cow blinked twice. That's cow for 'yikes'.",
+          "The cow wants to believe in you. Make it easy on the cow.",
+          "The cow has heard better answers from a field. A literal field.",
+          "The cow is updating its expectations to 'very low'.",
+          "The cow stared into the pasture for a moment. Reflecting. On you.",
+          "The cow would have accepted almost anything else. Almost.",
+        ];
+        resEl.innerHTML = `❌ <b>Wrong.</b> It was "${q.a[q.correct]}". ${COW_DISAPPOINTMENTS[Math.floor(Math.random() * COW_DISAPPOINTMENTS.length)]}`;
       }
     };
     optEl.appendChild(btn);
