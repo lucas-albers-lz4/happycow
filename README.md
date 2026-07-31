@@ -45,6 +45,10 @@ python3 -m http.server 8000
 
 Want to add to the herd? See [docs/making-cows.md](docs/making-cows.md) for the exact generation process, prompt template, and wiring steps.
 
+## Sound credits
+
+- `assets/sounds/moo.mp3` — real cow moo, sourced from [BigSoundBank](https://bigsoundbank.com/cow-moos-s0546.html) (CC0 / public domain equivalent, no attribution required). Trimmed, filtered (60–900 Hz), and normalized for a clean 1.8s bellow.
+
 ## Investment model
 
 Principle needed at 4% SWR: **$619** — runs forever.
