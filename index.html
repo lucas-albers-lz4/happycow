@@ -115,6 +115,128 @@
     </div>
   </div>
 
+  <!-- About Modal — an arXiv paper about the moo. Useless as an about page. -->
+  <div class="modal-overlay" id="about-modal">
+    <div class="modal-content" style="max-width:600px;font-size:0.82rem;line-height:1.6;">
+      <button class="modal-close">&times;</button>
+      <div style="text-align:center;margin-bottom:12px;">
+        <div style="font-size:0.65rem;letter-spacing:0.15em;color:var(--text-dim);text-transform:uppercase;">arXiv:2607.03147v3 [cs.SD] 30 Jul 2026</div>
+        <div style="font-weight:800;font-size:1.05rem;margin-top:6px;">Acoustic Characterization and Optimal Synthesis of a Deployed Bovine Vocalization Asset for a Static Web Application</div>
+        <div style="margin-top:6px;color:var(--text-dim);">The Happy Cow Research Collective<sup>1,2</sup> · Department of Applied Mooing<sup>1</sup> · BigSky Audio Institute<sup>2</sup></div>
+        <div style="font-size:0.7rem;color:var(--text-dim);margin-top:2px;">(Corresponding author: the cow. Do not email the cow.)</div>
+      </div>
+
+      <div style="margin:10px 0;padding:8px 10px;background:#f5f0e8;border-radius:var(--radius-sm);font-size:0.75rem;">
+        <b>Abstract.</b> We present a comprehensive investigation into the procurement of an authentic
+        <i>Bos taurus</i> vocalization (hereafter, "the moo") for the Happy Cow web application — a
+        static, zero-backend happy hour directory serving Bozeman, Montana. The initial deployed asset,
+        herein designated <i>Moo₀</i>, was found upon expert audition to exhibit "a spectral character
+        inconsistent with the local bovine population" (i.e., it sounded fake). Through Fourier analysis
+        (Equation 1), harmonic verification, spectral flatness metrics, and a Montana-grade expert taste
+        test, we identified, extracted, filtered, and normalized a genuine bellow. We further report the
+        surprising result that the incumbent asset, despite possessing a plausible 189 Hz fundamental,
+        was nevertheless judged "not a real cow" by a panel of one (1) Montanan. All results are
+        reproducible via a single <tt>curl</tt> command and 1.6 seconds of <tt>ffmpeg</tt>.
+      </div>
+
+      <div style="margin:10px 0;"><b>1. Introduction</b></div>
+      <div style="margin-left:4px;">
+        Cows are abundant in Montana (population of <i>B. taurus</i> ≈ 2.9M; human population ≈ 1.1M
+        [1]). The application in question, Happy Cow, is a single-page static site served from GitHub
+        Pages at zero marginal cost, featuring 30 procedurally-rotated cow illustrations and a
+        cow-of-the-day selector. When the user taps the cow, the site plays an audio asset via the Web
+        Audio <tt>HTMLAudioElement</tt> API. The requirement — "make it sound like a cow" — was stated
+        by a stakeholder with direct, first-hand, multi-year exposure to actual cows. This is the
+        strictest known acceptance criterion in the literature.
+      </div>
+
+      <div style="margin:10px 0;"><b>2. The Failure of Moo₀</b></div>
+      <div style="margin-left:4px;">
+        The incumbent asset, <i>Moo₀</i> (15,091 bytes, 1.15 s, MPEG ADTS layer III v2, 96 kbps,
+        22.05 kHz mono), was subjected to spectral analysis. Its dominant peak was found at 189.3 Hz
+        (Table 1, row 1) with a spectral flatness suggesting synthetic origin. Critically, a
+        double-blind taste test — conducted at an elevation of 4,800 ft with a single participant who
+        has personally known cows by name — returned a verdict of "that is not what a cow sounds like,
+        and we have a lot of them here." This falsifies the hypothesis that "low frequency ≈ moo."
+        We conclude that <i>Moo₀</i> was a tone with cow-adjacent pitch but zero cow-adjacent soul.
+      </div>
+
+      <div style="margin:10px 0;"><b>3. Methodology</b></div>
+      <div style="margin-left:4px;">
+        <div><b>3.1 Candidate corpus.</b> Candidate vocalizations were located via the Wikimedia Commons
+        API (namespaces <tt>ns=6</tt>, search term "cow moo filetype:audio") and a CC0 sound bank.
+        Three candidates of interest were retained: <i>Single Cow Moo</i> (CC BY-SA 4.0, 53,861 B),
+        <i>Mudchute cow 1</i> (CC BY-SA 3.0, 25,975 B), and <i>BSB cow moos</i> (CC0, 574,208 B,
+        14.33 s).</div>
+        <div style="margin-top:6px;"><b>3.2 Spectral characterization.</b> Each candidate was decoded to
+        16 kHz mono PCM and analyzed via the Short-Time Fourier Transform with Hann windowing
+        (64 ms), from which the dominant in-band (60–600 Hz) component was extracted per 250 ms hop.</div>
+        <div style="margin:6px 0;text-align:center;font-family:serif;font-style:italic;">
+          X[k] = Σ<sub>n=0</sub><sup>N−1</sup> w[n] · x[n] · e<sup>−j2πkn/N</sup> &nbsp;&nbsp;(1)</div>
+        <div><b>3.3 Harmonic verification.</b> The winning candidate was verified voiced via
+        spectral flatness γ = exp(⟨ln S⟩) / ⟨S⟩ = 0.0114 ≪ 0.1, confirming harmonic-rich phonation
+        (Table 1).</div>
+        <div style="margin-top:6px;"><b>3.4 Extraction.</b> The loudest window (t = 6.3–8.1 s, RMS
+        0.32) was cut with input-side seeking (<tt>-ss</tt> <i>before</i> <tt>-i</tt>; placing it
+        after was found to produce silence, a lesson we share at no charge), high-passed at 60 Hz,
+        low-passed at 900 Hz, gained ×1.6, and fade-out applied over the final 300 ms.</div>
+      </div>
+
+      <div style="margin:10px 0;"><b>Table 1.</b> Candidate vocalizations.</div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.72rem;margin-bottom:8px;">
+        <tr style="background:#f5f0e8;">
+          <th style="padding:4px;border:1px solid #e0d5c5;">Asset</th>
+          <th style="padding:4px;border:1px solid #e0d5c5;">Fundamental</th>
+          <th style="padding:4px;border:1px solid #e0d5c5;">Flatness</th>
+          <th style="padding:4px;border:1px solid #e0d5c5;">Verdict</th>
+        </tr>
+        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Moo₀ (incumbent)</td><td style="padding:4px;border:1px solid #e0d5c5;">189 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">n/a</td><td style="padding:4px;border:1px solid #e0d5c5;">✗ "not a real cow"</td></tr>
+        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Single Cow Moo</td><td style="padding:4px;border:1px solid #e0d5c5;">583 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">—</td><td style="padding:4px;border:1px solid #e0d5c5;">✗ calf-like, rejected</td></tr>
+        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Mudchute cow 1</td><td style="padding:4px;border:1px solid #e0d5c5;">265 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">—</td><td style="padding:4px;border:1px solid #e0d5c5;">△ viable, attribution required</td></tr>
+        <tr><td style="padding:4px;border:1px solid #e0d5c5;"><b>BSB cow moos (deployed)</b></td><td style="padding:4px;border:1px solid #e0d5c5;"><b>270 Hz</b></td><td style="padding:4px;border:1px solid #e0d5c5;"><b>0.0114</b></td><td style="padding:4px;border:1px solid #e0d5c5;">✓ <b>real cow</b></td></tr>
+      </table>
+
+      <div style="margin:10px 0;"><b>4. Results and Discussion</b></div>
+      <div style="margin-left:4px;">
+        The deployed asset <i>Moo₁</i> (37,021 bytes, 1.80 s, 160 kbps) exhibits a fundamental of
+        270 Hz with strong first harmonic, spectral flatness 0.0114, mean level −9.1 dB, and peak
+        0.0 dB. At the time of writing, it has been confirmed by the stakeholder as "sounding like a
+        cow," a result we consider the definitive acceptance signal, exceeding all published benchmarks
+        in the domain. We note the moo is played with stochastic playback rate (0.75–1.45×) and gain
+        (0.55–1.0), yielding a herd-like distribution of vocalizations from a single asset — a form of
+        data augmentation that, to our knowledge, has not been previously reported for bovids.
+      </div>
+
+      <div style="margin:10px 0;"><b>5. Conclusion</b></div>
+      <div style="margin-left:4px;">
+        We replaced a 189 Hz synthetic tone with a 270 Hz genuine bellow at a total cost of zero
+        dollars and one (1) deeply satisfying <tt>ffmpeg</tt> pipeline. This work is of no use to
+        anyone building an actual happy hour directory, which is exactly why it is documented here
+        in excruciating detail instead of, say, the feature set, the data pipeline, or how to
+        contribute.
+      </div>
+
+      <div style="margin:10px 0;"><b>Acknowledgments</b></div>
+      <div style="margin-left:4px;font-size:0.75rem;color:var(--text-dim);">
+        The Collective thanks BigSoundBank for releasing the source recording under CC0 (public domain
+        equivalent), Wikimedia Commons contributors for their CC BY-SA candidates, the Department of
+        Applied Mooing for spectral analysis, and one (1) patient Montanan whose ear — honed by years
+        of close contact with an estimated 2.9 million bovines — guided every decision herein. No
+        cows were harmed; several were listened to at length.
+      </div>
+
+      <div style="margin:10px 0;"><b>References</b></div>
+      <div style="margin-left:4px;font-size:0.72rem;color:var(--text-dim);">
+        [1] Montana Dept. of Livestock, <i>Bovine population estimates</i>, 2025.<br>
+        [2] BigSoundBank, "Cow Moos," CC0. <a href="https://bigsoundbank.com/cow-moos-s0546.html" target="_blank" rel="noopener" style="color:var(--cow-spot-2);">https://bigsoundbank.com/cow-moos-s0546.html</a><br>
+        [3] Wikimedia Commons, "File:Single Cow Moo.ogg," CC BY-SA 4.0.<br>
+        [4] Wikimedia Commons, "File:Mudchute cow 1.ogg," CC BY-SA 3.0.<br>
+        [5] The cow. Personal communication, ongoing.
+      </div>
+      <div style="text-align:center;font-size:0.7rem;color:var(--text-dim);margin-top:10px;">🐮 <i>This paper was reviewed by one cow, who approved of the sound.</i></div>
+    </div>
+  </div>
+
   <!-- Horoscope Modal -->
   <div class="modal-overlay" id="horoscope-modal">
     <div class="modal-content">
@@ -160,7 +282,7 @@
   <div class="footer">
     <div>🐄 Happy Cow — happy hour, but with cows</div>
     <div class="cow-counter">Data refreshed <span id="footer-updated">daily</span> by <span id="footer-snake" style="cursor:pointer;" title="the snake has secrets too">🐍</span> DeepSeek V4 Snap</div>
-    <div style="margin-top:4px;"><a href="#" id="footer-cow-link" title="你太牛了!">你很牛</a></div>
+    <div style="margin-top:4px;"><a href="#" id="footer-cow-link" title="你太牛了!">你很牛</a> · <a href="#" id="footer-about-link">about</a></div>
   </div>
 
   <script src="assets/js/app.js"></script>

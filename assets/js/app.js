@@ -857,11 +857,22 @@ function setupFooterSnake() {
   };
 }
 
+// ─── Footer: about link — opens the arXiv moo paper (useless as an about page) ───
+function setupFooterAbout() {
+  const link = document.getElementById('footer-about-link');
+  if (!link) return;
+  link.onclick = (e) => {
+    e.preventDefault();
+    openModal('about-modal');
+  };
+}
+
 // ─── Init ───
 document.addEventListener('DOMContentLoaded', () => {
   loadData();
   setupFooterNiu();
   setupFooterSnake();
+  setupFooterAbout();
 
   // Modal close buttons
   document.querySelectorAll('.modal-close').forEach(btn => {
