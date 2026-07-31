@@ -522,7 +522,7 @@ function setupCowModal(cow) {
       // Check if all 5 impostors collected
       const impostorsCollected = IMPOSTORS.filter(i => state.collected.includes(i));
       if (impostorsCollected.length === IMPOSTORS.length) {
-        setTimeout(() => alert('🐄🕵️ SECRET ACHIEVEMENT: You collected all 5 impostors! A giraffe, a beagle, a mutant, and two bulls walked into a bar...'), 300);
+        setTimeout(() => alert('🐄🕵️ SECRET ACHIEVEMENT: You collected all 5 impostors! A giraffe, a beagle, a mutant, and two bulls walked into a bar...\n\n你太牛了! (nǐ tài niú le) — you\'re TOO cow! 🐄🇨🇳'), 300);
       }
 
       render(); // refresh bar
@@ -729,9 +729,24 @@ function toggleDark() {
   localStorage.setItem('hc_dark', state.dark);
 }
 
+// ─── Footer: 你很牛 ↔ nǐ hěn niú toggle ───
+function setupFooterNiu() {
+  const link = document.getElementById('footer-cow-link');
+  if (!link) return;
+  const hanzi = '你很牛';
+  const pinyin = 'nǐ hěn niú';
+  link.textContent = hanzi;
+  link.onclick = (e) => {
+    e.preventDefault();
+    link.textContent = link.textContent === hanzi ? pinyin : hanzi;
+    link.title = link.textContent === hanzi ? '你太牛了!' : 'ni tài niú le — too cow!';
+  };
+}
+
 // ─── Init ───
 document.addEventListener('DOMContentLoaded', () => {
   loadData();
+  setupFooterNiu();
 
   // Modal close buttons
   document.querySelectorAll('.modal-close').forEach(btn => {
