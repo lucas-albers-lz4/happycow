@@ -41,6 +41,10 @@ python3 -m http.server 8000
 # or just open index.html in a browser
 ```
 
+## Making more cows
+
+Want to add to the herd? See [docs/making-cows.md](docs/making-cows.md) for the exact generation process, prompt template, and wiring steps.
+
 ## Investment model
 
 Principle needed at 4% SWR: **$619** — runs forever.
