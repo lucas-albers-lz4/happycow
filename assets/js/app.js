@@ -611,6 +611,42 @@ const COW_QUESTIONS = [
   { q: "What do you call a baby cat?", a: ["Kitten", "Puppy", "Calf", "Cub"], correct: 0, species: "cat",
     caught: "A KITTEN. Correct. You've been speaking cat this whole time and the cow is disgusted. The cow demands you leave. Meow elsewhere.",
     spared: "Wrong! (A baby cow is a calf, obviously.) You don't know cat things, which means you're one of us. Stay. Drink. Moo." },
+  // ─── MORE QUESTIONS (batch 2) ───
+  { q: "What is the most popular beef breed in the US?", a: ["Angus", "Holstein", "Dexter", "Highland"], correct: 0 },
+  { q: "What color are Angus cattle?", a: ["Black", "Brown and white", "Red and white", "Blue"], correct: 0 },
+  { q: "What do you call cattle raised for milk?", a: ["Dairy cattle", "Beef cattle", "Work cattle", "Moo-tual funds"], correct: 0 },
+  { q: "What do you call cattle raised for meat?", a: ["Beef cattle", "Dairy cattle", "Racing cattle", "Argumentative cattle"], correct: 0 },
+  { q: "What is a Highland cow known for?", a: ["Long shaggy hair", "Being tiny", "Flying", "Singing opera"], correct: 0 },
+  { q: "What is a Belted Galloway known for?", a: ["A white belt stripe around its middle", "Purple spots", "Three horns", "A bell that always rings"], correct: 0 },
+  { q: "What do you call a cow with no legs?", a: ["Ground beef", "A lazy cow", "A sausage", "A mystery"], correct: 0 },
+  { q: "What do you call a cow with two legs?", a: ["Lean beef", "A sprinter", "Half cow", "A toddler"], correct: 0 },
+  { q: "What do you call a sleeping bull?", a: ["A bulldozer", "A nap-pard", "A bull-nap", "A mattress"], correct: 0 },
+  { q: "What do you call a cow during an earthquake?", a: ["A milkshake", "A shaky cow", "A trembler", "An udder quake"], correct: 0 },
+  { q: "Why do cows moo?", a: ["To communicate", "To annoy the farmer", "As a mating call", "For the applause"], correct: 0 },
+  { q: "What genre of music do cows prefer?", a: ["Heavy moo-tal", "Country", "Pop", "Silence"], correct: 0 },
+  { q: "What is the name of the app's roulette button?", a: ["I'm Not Picky — Pick For Me", "Random Cow", "Spin the Udder", "Cow Roulette"], correct: 0 },
+  { q: "What does tapping the 🐍 in the footer do?", a: ["It confesses the site is built with spite", "It bites you", "It turns into a cow", "It orders a drink"], correct: 0 },
+  { q: "What does the 'about' link open?", a: ["An arXiv paper about the moo sound", "A boring FAQ", "A contact form", "The owner's resume"], correct: 0 },
+  { q: "What is the app's tagline?", a: ["Happy hour, but with cows", "Drink milk", "Bozeman's #1 directory", "We moo"], correct: 0 },
+  { q: "How many cow images are in the rotation?", a: ["30", "10", "50", "100"], correct: 0 },
+  { q: "What color is the cow bar's bottom border?", a: ["Gold", "Green", "Red", "Cow-pattern"], correct: 0 },
+  { q: "What does the cow do when you tap it?", a: ["Moos (real 270Hz bellow)", "Sleeps", "Dances", "Flies away"], correct: 0 },
+  { q: "What is the 'MOO-T APPROVED' seal?", a: ["A joke from the mockups", "A dairy certification", "A health rating", "A real award"], correct: 0 },
+  // ─── HARD QUESTIONS — the cow may let you skip these (or not) ───
+  { q: "What is a freemartin?", a: ["A sterile female calf born twin to a male", "A cow that never moos", "A bull that escaped", "A type of bird"], correct: 0, hard: true },
+  { q: "What is the second stomach chamber of a cow called?", a: ["Reticulum", "Omasum", "Abomasum", "The lobby"], correct: 0, hard: true },
+  { q: "What is the third stomach chamber called?", a: ["Omasum", "Rumen", "Reticulum", "The kitchen"], correct: 0, hard: true },
+  { q: "What is the fourth stomach chamber called?", a: ["Abomasum", "Rumen", "Omasum", "The garage"], correct: 0, hard: true },
+  { q: "What is colostrum?", a: ["Antibody-rich first milk for calves", "A type of grass", "A cow's favorite snack", "A dairy dessert"], correct: 0, hard: true },
+  { q: "What is the scientific name of the domestic cow?", a: ["Bos taurus", "Bovus maximus", "Moo sapiens", "Taurus rex"], correct: 0, hard: true },
+  { q: "What does 'polled' mean in cattle?", a: ["Naturally hornless", "Very polite", "Voted best cow", "Extremely tired"], correct: 0, hard: true },
+  { q: "What is milk fever (in cows)?", a: ["Hypocalcemia — blood calcium drops around calving", "A fever from drinking milk", "An udder infection", "Lactose rage"], correct: 0, hard: true },
+  { q: "What is ketosis in dairy cows?", a: ["A metabolic disease from negative energy balance", "A dance move", "A type of ketone smoothie", "A cow on a diet"], correct: 0, hard: true },
+  { q: "What is a 'springer' cow?", a: ["A cow close to calving", "A cow that jumps", "A brand of mattress", "A young bull"], correct: 0, hard: true },
+  { q: "What is the normal rumen pH of a healthy cow?", a: ["About 6.0-7.0 (slightly acidic to neutral)", "2.0 (very acidic)", "10.0 (basic)", "It varies with mood"], correct: 0, hard: true },
+  { q: "A top-producing Holstein can give how much milk in a day?", a: ["About 9 gallons (75 lbs)", "About 1 gallon", "About 40 gallons", "A single tear"], correct: 0, hard: true },
+  { q: "What is a cow's average resting heart rate?", a: ["About 60 bpm", "About 120 bpm", "About 10 bpm", "0 (cows are cold-blooded)"], correct: 0, hard: true },
+  { q: "What is 'cud' exactly?", a: ["Regurgitated grass re-chewed for digestion", "A baby cow", "A type of hay", "Cow slang for money"], correct: 0, hard: true },
 ];
 
 // Track which questions were already asked today (per-day, avoids repeats)
@@ -630,9 +666,32 @@ function renderCowQuestion() {
   const qEl = document.getElementById('cowq-question');
   const optEl = document.getElementById('cowq-options');
   const resEl = document.getElementById('cowq-result');
+  const skipEl = document.getElementById('cowq-skip');
   qEl.textContent = q.q;
   optEl.innerHTML = '';
   resEl.textContent = '';
+
+  // Hard questions: show the skip button. Whether it works is up to the cow.
+  if (q.hard) {
+    qEl.textContent = '🔥 HARD: ' + q.q;
+    skipEl.style.display = 'block';
+    skipEl.disabled = false;
+    skipEl.textContent = '⏭️ Skip this one?';
+    skipEl.onclick = () => {
+      if (Math.random() < 0.5) {
+        // The cow allows it. This time.
+        resEl.innerHTML = '⏭️ <b>Skipped.</b> The cow allowed it. This time.';
+        skipEl.disabled = true;
+        setTimeout(renderCowQuestion, 600);
+      } else {
+        // The cow does not allow it.
+        skipEl.disabled = true;
+        resEl.innerHTML = '🚫 <b>Denied.</b> The cow says you answer this one. Sit down.';
+      }
+    };
+  } else {
+    skipEl.style.display = 'none';
+  }
 
   q.a.forEach((ans, i) => {
     const btn = document.createElement('button');
@@ -642,6 +701,7 @@ function renderCowQuestion() {
     btn.onmouseleave = () => { btn.style.background = ''; };
     btn.onclick = () => {
       [...optEl.children].forEach(b => b.disabled = true);
+      skipEl.disabled = true;
       const isTrick = q.correct === -1;
       const isRight = !isTrick && i === q.correct;
       // ─── Species trap: answering the dog/cat question CORRECTLY is a crime ───
