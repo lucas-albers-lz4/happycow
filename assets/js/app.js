@@ -17,7 +17,6 @@ const state = {
   expanded: null,
   cows: [],
   collected: readStore('hc_collected', []),
-  bingo: readStore('hc_bingo', {}),
   dark: localStorage.getItem('hc_dark') === 'true',
   todaySeed: dateSeed(),
   dealRevealed: false,
@@ -283,7 +282,7 @@ function render() {
   setupCowModal(todayCow);
 
   // ── Feature buttons ──
-  document.getElementById('btn-bingo').onclick = () => { openModal('bingo-modal'); renderBingo(); };
+  document.getElementById('btn-what').onclick = () => { openModal('cowq-modal'); renderCowQuestion(); };
   document.getElementById('btn-horoscope').onclick = () => { openModal('horoscope-modal'); renderHoroscope(todayCow); };
   document.getElementById('btn-moo').onclick = () => playMoo();
   document.getElementById('btn-tip').onclick = () => { openModal('tip-modal'); };
@@ -530,52 +529,118 @@ function setupCowModal(cow) {
   };
 }
 
-// ─── Bingo ───
-const BINGO_ITEMS = [
-  "Someone orders a Jägerbomb", "Bartender knows a regular's name",
-  "Cowbell rings", "Asks for wifi password", "Spilled drink",
-  "Someone says 'I love this song'", "Craft beer snob lecture",
-  "Shot of Malört ordered", "Someone on their phone at the bar",
-  "Couple on a first date", "Karaoke starts", "Someone falls off stool",
-  "Free round of shots", "$1 bill tip on a $12 tab",
-  "Someone orders wine at a dive bar", "Bartender pours a heavy one",
-  "'I'm not drunk, you're drunk'", "Phone dies",
-  "Someone asks what's on tap", "Group photo at the bar",
-  "Says 'one more' then leaves", "Picks up someone else's tab",
-  "Dance floor has exactly 2 people", "Jukebox plays twice in a row",
-  "Someone yells 'CHUG'", "Nachos arrive for a table of one",
-  "Asks the bartender for their life advice", "Someone's ID gets rejected",
-  "Someone spills the free popcorn", "Last call singalong"
+// ─── Cow Questions (the "what" quiz) ───
+// Each question: q (prompt), a (4 options), correct (index). If correct === -1,
+// it's a TRICK question — no answer will be accepted, ever. The cow is annoyed.
+const COW_QUESTIONS = [
+  { q: "How many stomachs does a cow have?", a: ["One, it's just really big", "Two", "Three", "Four"], correct: 3 },
+  { q: "What is a baby cow called?", a: ["A foal", "A calf", "A cub", "A larva"], correct: 1 },
+  { q: "What is a female cow called before she's had a calf?", a: ["A heifer", "A steer", "A bull", "A cowlette"], correct: 0 },
+  { q: "What is a castrated male cow called?", a: ["A bull", "A steer", "A heifer", "A sad bull"], correct: 1 },
+  { q: "How many gallons of milk does a dairy cow produce per day?", a: ["About 1", "About 3", "About 7", "About 40"], correct: 2 },
+  { q: "What color can cows NOT see well?", a: ["Blue", "Green", "Red", "Gray"], correct: 2 },
+  { q: "Do cows have upper front teeth?", a: ["Yes, all of them", "No, just a hard dental pad", "Only on Tuesdays", "Only baby cows"], correct: 1 },
+  { q: "What is a group of cows called?", a: ["A flock", "A herd", "A murder", "A parliament"], correct: 1 },
+  { q: "How long is a cow pregnant?", a: ["3 months", "6 months", "About 9 months", "14 months"], correct: 2 },
+  { q: "What do cows eat to make them so moo-dy?", a: ["Meat", "Mostly grass and hay", "Only corn", "Smaller cows"], correct: 1 },
+  { q: "Which of these is a REAL cow name in this app?", a: ["Moo-tang Clan", "Spaghetti", "Sir Loin", "Moo-donna"], correct: 0 },
+  { q: "How many cows are in this app's rotation?", a: ["10", "20", "30", "100"], correct: 2 },
+  { q: "What sound does a cow make?", a: ["Baa", "Moo", "Oink", "Honk"], correct: 1 },
+  { q: "What does a cow's four-chambered stomach help it do?", a: ["Fly", "Digest grass twice", "Breathe underwater", "See in the dark"], correct: 1 },
+  { q: "What is the largest cattle breed?", a: ["Chianina", "Dexter", "Holstein", "Munchkin"], correct: 0 },
+  { q: "What is the smallest cattle breed?", a: ["Dexter", "Chianina", "Hereford", "Teacup Cow"], correct: 0 },
+  { q: "What is the oldest cow on record?", a: ["Big Bertha, 48 years", "Methuselah, 200 years", "Bessie, 12 years", "The first cow, still alive"], correct: 0 },
+  { q: "About how many gallons of water does a cow drink per day?", a: ["1-2", "5-8", "30-50", "200+"], correct: 2 },
+  { q: "What do you call the process of a cow chewing food it already swallowed?", a: ["Cud chewing", "Reverse dinner", "Second lunch", "The ol' redo"], correct: 0 },
+  { q: "Can cows swim?", a: ["No, they sink", "Yes, surprisingly well", "Only in milk", "Only backwards"], correct: 1 },
+  { q: "What is a cow's average body temperature?", a: ["98.6°F", "101.5°F", "104.9°F", "It depends on the mood"], correct: 1 },
+  { q: "Which sense is a cow's strongest?", a: ["Smell", "Sight", "Taste", "Sixth moo-sense"], correct: 0 },
+  { q: "What are the spots on a Holstein cow called?", a: ["Patches", "Freckles", "Moo-marks", "Cow-stitches"], correct: 0 },
+  { q: "How many toes does a cow have on each foot?", a: ["One big toe", "Two (cloven hoof)", "Three", "Four"], correct: 1 },
+  { q: "What is cow manure good for?", a: ["Fertilizer", "Eating", "Painting", "Smelling"], correct: 0 },
+  { q: "What is the name for a cow's nose?", a: ["Muzzle", "Snout", "Trunk", "Sniffer"], correct: 0 },
+  { q: "How fast can a cow run?", a: ["About 10 mph", "About 17 mph", "About 25 mph", "About 60 mph"], correct: 2 },
+  { q: "What do dairy farmers use to milk cows nowadays?", a: ["Hands only", "Machines", "Cats", "Gravity"], correct: 1 },
+  { q: "Which of these is an impostor cow in this app?", a: ["Bessie", "A beagle in a robot suit", "Moo-deng", "Clover"], correct: 1 },
+  { q: "What does a cow use its tail for?", a: ["Swatting flies", "Balance", "Signaling", "Style"], correct: 0 },
+  { q: "Are cows colorblind?", a: ["Completely", "No, but they see red poorly", "Only in the dark", "They see in infrared"], correct: 1 },
+  { q: "What is a young cow that has never calved called?", a: ["Heifer", "Cowlette", "Calfling", "Moo-baby"], correct: 0 },
+  { q: "What breed is most common for dairy in the US?", a: ["Holstein", "Angus", "Wagyu", "Longhorn"], correct: 0 },
+  { q: "What is the name of cow #0 in this app?", a: ["Bessie", "Daisy", "Clover", "Moo-donna"], correct: 0 },
+  { q: "What does 'bovine' mean?", a: ["Related to cows", "Related to birds", "Related to fish", "A type of cheese"], correct: 0 },
+  { q: "What is the happiest hour for a cow?", a: ["4-6pm, obviously", "Sunrise", "Milking time", "Never, they're always happy"], correct: 0 },
+  { q: "What is a group of calves called?", a: ["A gaggle", "A pod", "A leash", "Calves are just calves"], correct: 3 },
+  { q: "What happens when you tap the cow icon in this app?", a: ["It moos", "It explodes", "It orders a drink", "It files your taxes"], correct: 0 },
+  { q: "What is a cow's favorite game in this app?", a: ["Bingo... wait, no", "The 'what' quiz", "Roulette", "All of the above"], correct: 3 },
+  { q: "Which cow has the secret achievement attached?", a: ["The impostors", "The base cow", "Cow #0", "The cow with a hat"], correct: 0 },
+  { q: "What does the footer link say in Chinese?", a: ["你太牛了", "你好世界", "我爱牛奶", "恭喜发财"], correct: 0 },
+  { q: "What is the Drink Capacity stat for?", a: ["How much the cow can drink", "How much YOU can drink", "The bar's keg size", "A mystery"], correct: 1 },
+  { q: "What is the rarest thing in Happy Cow?", a: ["The secret impostor achievement", "A $2 drink", "A free table", "A clear bar"], correct: 0 },
+  { q: "What should you do when Sad Hour hits?", a: ["Cry", "Check back later", "Blame the cow", "All of the above"], correct: 3 },
+  { q: "What is the cow's prophecy about?", a: ["Your night out", "The weather", "Stock prices", "World peace"], correct: 0 },
+  { q: "How many impostor cows are there?", a: ["2", "3", "5", "17"], correct: 2 },
+  { q: "What do cows have 4 of?", a: ["Stomachs", "Hearts", "Lives", "Eyes"], correct: 0 },
+  { q: "What is a steer?", a: ["A castrated male cow", "A baby cow", "A wild cow", "A cow that steers boats"], correct: 0 },
+  { q: "What is the most expensive drink on the site's sample data?", a: ["House burger $9", "Old Fashioned $7", "Taco trio $8", "Guac & chips $5"], correct: 0 },
+  { q: "What does 'MOO-T APPROVED' mean?", a: ["The cow endorses it", "It's a type of milk", "A certification board", "A dairy regulation"], correct: 0 },
+  // ─── TRICK QUESTIONS (correct: -1 — NOTHING is accepted) ───
+  { q: "What is the best cow?", a: ["Bessie", "Moo-deng", "Clover", "All of them"], correct: -1, reject: "WRONG. The best cow is whichever one you DIDN'T pick. The cow knows. Nice try, champ." },
+  { q: "Are you a cow?", a: ["Yes", "No", "Maybe", "What?"], correct: -1, reject: "I don't accept that answer. Deep down, we're all cows. You'll see. I'll see. We'll all see." },
+  { q: "Why did the cow cross the road?", a: ["To get to the other side", "For the happy hour", "To moo at the chicken", "None of the above"], correct: -1, reject: "Hilarious. Every single one of those is wrong. The cow crossed for ITS OWN reasons, and it's not telling you." },
+  { q: "How much wood would a cow chuck?", a: ["None", "42", "A moo-sure amount", "Wood?!"], correct: -1, reject: "Wrong. Cows don't chuck wood. They're not beavers. This question was a trap and you fell for it." },
+  { q: "What did the cow say to the farmer?", a: ["Moo", "You're fired", "I'm tired of this job", "Moo?"], correct: -1, reject: "Incorrect. What the cow said to the farmer stays between the cow and the farmer. Mind your business." },
+  { q: "What's the secret moo code?", a: ["Moo-moo-moo", "42", "There is no code", "Cowabunga"], correct: -1, reject: "Nice try. The secret moo code cannot be guessed. It's not even in this app. It's in the cloud. The cow cloud." },
+  { q: "How many moos does it take to get to the center of a Tootsie Pop?", a: ["3", "5", "∞", "Moo"], correct: -1, reject: "That's not how any of this works. The cow is genuinely disappointed in this answer. And in you." },
+  { q: "Is this a trick question?", a: ["Yes", "No", "Maybe", "Moo"], correct: -1, reject: "If you picked one of those, you're wrong. If you didn't pick one, also wrong. There was never a right answer. Welcome to the herd." },
+  { q: "What is the meaning of life, the universe, and everything?", a: ["42", "Moo", "Happy hour", "The cow"], correct: -1, reject: "The cow has considered your answer and rejected it. The answer changes daily. Today it's 'burrata'." },
+  { q: "Do cows believe in ghosts?", a: ["No", "Yes", "Only in barns", "Who's asking?"], correct: -1, reject: "WRONG. Cows are haunted by the ghosts of every cow they've ever seen get a weird haircut. They believe." },
+  { q: "Pick a number between 1 and 10.", a: ["3", "7", "10", "1"], correct: -1, reject: "Sorry, the cow was thinking of a different number. It's not telling you which one. You'll never know." },
+  { q: "What's the cow's favorite color?", a: ["Green (grass)", "Brown (mud)", "All colors", "It changes daily"], correct: -1, reject: "Wrong, wrong, wrong, and wrong. The cow's favorite color is classified. Even the cow doesn't know." },
 ];
 
-function renderBingo() {
-  const rng = seededRandom(state.todaySeed + 2);
-  const shuffled = [...BINGO_ITEMS].sort(() => rng() - 0.5);
-  const grid = document.getElementById('bingo-grid');
-  grid.innerHTML = '';
+// Track which questions were already asked today (per-day, avoids repeats)
+function getCowQuestion() {
+  const todayKey = 'hc_cowq_' + state.todaySeed;
+  const asked = readStore(todayKey, []);
+  const pool = COW_QUESTIONS.map((_, i) => i).filter(i => !asked.includes(i));
+  // If all asked today, reset the pool
+  const idx = (pool.length > 0 ? pool : COW_QUESTIONS.map((_, i) => i))[Math.floor(Math.random() * COW_QUESTIONS.length)];
+  localStorage.setItem(todayKey, JSON.stringify([...asked, idx].slice(-200)));
+  return COW_QUESTIONS[idx];
+}
 
-  for (let i = 0; i < 25; i++) {
-    const cell = document.createElement('div');
-    cell.className = 'bingo-cell';
-    if (i === 12) {
-      cell.textContent = '🐄 FREE';
-      cell.classList.add('marked');
-    } else {
-      const idx = i > 12 ? i - 1 : i;
-      cell.textContent = shuffled[idx];
-      cell.dataset.idx = idx;
-      if (state.bingo[idx]) cell.classList.add('marked');
-    }
-    cell.onclick = () => {
-      if (i === 12) return;
-      const idx = parseInt(cell.dataset.idx);
-      if (isNaN(idx)) return;
-      state.bingo[idx] = !state.bingo[idx];
-      localStorage.setItem('hc_bingo', JSON.stringify(state.bingo));
-      cell.classList.toggle('marked');
+function renderCowQuestion() {
+  const q = getCowQuestion();
+  const qEl = document.getElementById('cowq-question');
+  const optEl = document.getElementById('cowq-options');
+  const resEl = document.getElementById('cowq-result');
+  qEl.textContent = q.q;
+  optEl.innerHTML = '';
+  resEl.textContent = '';
+
+  q.a.forEach((ans, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = ans;
+    btn.onmouseenter = () => { btn.style.background = 'var(--cream)'; };
+    btn.onmouseleave = () => { btn.style.background = ''; };
+    btn.onclick = () => {
+      [...optEl.children].forEach(b => b.disabled = true);
+      const isTrick = q.correct === -1;
+      const isRight = !isTrick && i === q.correct;
+      btn.style.borderColor = isRight ? 'var(--green)' : 'var(--red)';
+      btn.style.background = isRight ? '#e0f0e0' : '#f0e0e0';
+      if (isTrick) {
+        resEl.innerHTML = `🐄 <b>Wrong.</b> ${q.reject}`;
+      } else if (isRight) {
+        resEl.innerHTML = '✅ <b>Correct!</b> The cow is pleased.';
+      } else {
+        resEl.innerHTML = `❌ <b>Wrong.</b> It was "${q.a[q.correct]}". The cow expected better.`;
+      }
     };
-    grid.appendChild(cell);
-  }
+    optEl.appendChild(btn);
+  });
+  document.getElementById('cowq-next').onclick = renderCowQuestion;
 }
 
 // ─── Horoscope ───

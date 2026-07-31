@@ -47,7 +47,7 @@
 
   <!-- ═══ Features ═══ -->
   <div class="feature-bar">
-    <button class="feature-btn" id="btn-bingo"><span class="emoji">🎯</span>HH Bingo</button>
+    <button class="feature-btn" id="btn-what"><span class="emoji">🐄</span>what</button>
     <button class="feature-btn" id="btn-horoscope"><span class="emoji">♈</span>HH Horoscope</button>
     <button class="feature-btn" id="btn-moo" type="button"><span class="emoji">🐄</span>Moo</button>
     <button class="feature-btn" id="btn-tip"><span class="emoji">🧮</span>Tip Calc</button>
@@ -102,14 +102,16 @@
     </div>
   </div>
 
-  <!-- Bingo Modal -->
-  <div class="modal-overlay" id="bingo-modal">
+  <!-- Cow Question Modal -->
+  <div class="modal-overlay" id="cowq-modal">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
-      <div class="modal-title">🎯 Happy Hour Bingo</div>
-      <div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:12px;">Tap items you spot. New card every day. 🐄 = free space.</div>
-      <div class="bingo-grid" id="bingo-grid"></div>
-      <div style="font-size:0.75rem;color:var(--text-dim);text-align:center;">Saved in your browser — come back later!</div>
+      <div class="modal-title">🐄 What?</div>
+      <div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:12px;">A cow question. You have to answer it. The cow is watching.</div>
+      <div id="cowq-question" style="font-weight:700;font-size:1rem;margin-bottom:12px;"></div>
+      <div id="cowq-options" style="display:flex;flex-direction:column;gap:8px;"></div>
+      <div class="tip-result" id="cowq-result" style="margin-top:12px;"></div>
+      <button type="button" id="cowq-next" style="width:100%;padding:12px;border:none;border-radius:var(--radius);background:var(--cow-spot-2);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;margin-top:12px;">Another question</button>
     </div>
   </div>
 
