@@ -1015,6 +1015,54 @@
           "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
         }
       ]
+    },
+    {
+      "id": "the-filling-station",
+      "name": "The Filling Station",
+      "address": "2005 N. Rouse Ave",
+      "phone": "(406) 587-0585",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Filling%20Station%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "the-haufbrau",
+      "name": "The Haufbrau",
+      "address": "22 S 8th Ave, Bozeman",
+      "phone": "(406) 587-4931",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Haufbrau%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
+    },
+    {
+      "id": "the-molly-brown",
+      "name": "The Molly Brown",
+      "address": "703 W. Babcock",
+      "phone": "(406) 552-7362",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Molly%20Brown%20Bozeman%20MT",
+      "hours": "",
+      "tags": [
+        "dive",
+        "casino"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "specials": []
     }
   ]
 }

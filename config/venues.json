@@ -6,7 +6,46 @@
     {
       "id": "mthappyhour-bozeman",
       "url": "https://mthappyhour.com/happy-hours-near/bozeman/",
-      "note": "Hand-curated for now; this directory is the primary scrape source"
+      "kind": "mthappyhour-dir",
+      "note": "City-scoped mthappyhour page"
+    },
+    {
+      "id": "mthappyhour-full-dir",
+      "url": "https://mthappyhour.com/locations/",
+      "kind": "mthappyhour-dir",
+      "note": "Full Montana directory \u2014 parsed and city-filtered by discover_venues.py"
+    }
+  ],
+  "curated_venues": [
+    {
+      "name": "The Filling Station",
+      "url": "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station",
+      "kind": "page",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "note": "Dive bars not indexed by mthappyhour; added by hand. Verified via Bozeman Magazine."
+    },
+    {
+      "name": "The Molly Brown",
+      "url": "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown",
+      "kind": "page",
+      "tags": [
+        "dive",
+        "casino"
+      ],
+      "note": "Casino happy hour; 20 taps, 8 pool tables."
+    },
+    {
+      "name": "The Haufbrau",
+      "url": "https://visit-bozeman.com/listings/haufbrau-house",
+      "kind": "page",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "note": "Haufbrau House, 22 S 8th Ave \u2014 live music 7 nights/week."
     }
   ],
   "venues": [
@@ -443,6 +482,240 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local"
+    },
+    {
+      "id": "the-bay",
+      "name": "The Bay",
+      "address": "2825 W Main St, Bozeman, MT 59718, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-bay/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-buck",
+      "name": "The Buck",
+      "address": "28901 Norris Road, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-buck/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Buck%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-bunkhouse-brewery",
+      "name": "The Bunkhouse Brewery",
+      "address": "1216 West Lincoln Street A, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-bunkhouse-brewery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "cafe-fresco",
+      "name": "Cafe Fresco",
+      "address": "317 E Mendenhall St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/cafe-fresco/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Cafe%20Fresco%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-cannery",
+      "name": "The Cannery",
+      "address": "43 W Main St, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-cannery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Cannery%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-filling-station",
+      "name": "The Filling Station",
+      "address": "2005 N. Rouse Ave",
+      "phone": "(406) 587-0585",
+      "website": "",
+      "scrape_urls": [
+        "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station",
+        "http://sellout.io/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Filling%20Station%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-haufbrau",
+      "name": "The Haufbrau",
+      "address": "22 S 8th Ave, Bozeman",
+      "phone": "(406) 587-4931",
+      "website": "",
+      "scrape_urls": [
+        "https://visit-bozeman.com/listings/haufbrau-house"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Haufbrau%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "hooked-sushi",
+      "name": "Hooked Sushi",
+      "address": "119 E Main St, Bozeman, MT 59715-4761, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/hooked-sushi/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Hooked%20Sushi%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "korner-klub",
+      "name": "Korner Klub",
+      "address": "8191 Huffine Lane, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/korner-klub/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Korner%20Klub%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "last-best-place-brewery",
+      "name": "Last Best Place Brewery",
+      "address": "605 N 7th Ave, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/last-best-place-brewery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-molly-brown",
+      "name": "The Molly Brown",
+      "address": "703 W. Babcock",
+      "phone": "(406) 552-7362",
+      "website": "",
+      "scrape_urls": [
+        "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Molly%20Brown%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "casino"
+      ],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "the-pour-house",
+      "name": "The Pour House",
+      "address": "15 N Rouse Ave, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/the-pour-house/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Pour%20House%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "sidewall-pizza-company",
+      "name": "Sidewall Pizza Company",
+      "address": "111 S Grand, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/sidewall-pizza-company/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Sidewall%20Pizza%20Company%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "tanoshii",
+      "name": "Tanoshii",
+      "address": "113 E Main St, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/tanoshii/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Tanoshii%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "valhalla-meadery",
+      "name": "Valhalla Meadery",
+      "address": "875 Bridger Drive, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/valhalla-meadery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "wildrye-distilling",
+      "name": "Wildrye Distilling",
+      "address": "111 E Oak St #1e, Bozeman, MT 59715, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/wildrye-distilling/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Wildrye%20Distilling%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
     }
   ]
 }
