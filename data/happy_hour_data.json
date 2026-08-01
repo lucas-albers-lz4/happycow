@@ -1262,20 +1262,6 @@
       "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm"
     },
     {
-      "id": "wildrye-distilling",
-      "name": "Wildrye Distilling",
-      "address": "111 E Oak St #1e, Bozeman, MT 59715, Bozeman",
-      "phone": "",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Wildrye%20Distilling%20Bozeman%20MT",
-      "hours": "",
-      "tags": [],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Tue 12-8, Wed 12, Thu-Sun 12-8"
-    },
-    {
       "id": "bar-3-bbq-and-brewery",
       "name": "Bar 3 BBQ and Brewery",
       "address": "100 S Broadway, Belgrade",

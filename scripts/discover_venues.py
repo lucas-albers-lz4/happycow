@@ -83,6 +83,11 @@ def norm_address(addr: str) -> str:
     s = re.sub(r"[,.\-]+", " ", s)
     s = re.sub(r"\b(mt|montana)\b", "", s)
     s = re.sub(r"\b\d{5}\b", "", s)  # zip
+    # Normalize unit markers: "#1e" == "suite 1e" == "unit 1e" == "ste 1e"
+    s = re.sub(r"\b(suite|unit|ste|apt)\b", "#", s)
+    s = re.sub(r"#\s*", "#", s)
+    # Collapse repeated city tokens ("bozeman bozeman" -> "bozeman")
+    s = re.sub(r"\b(\w+)\s+\1\b", r"\1", s)
     return re.sub(r"\s+", " ", s).strip()
 
 
@@ -117,14 +122,29 @@ def existing_lookup(venues: list[dict]) -> tuple[dict, dict]:
 
 
 def is_duplicate(cand: Candidate, by_name: dict, by_addr: dict) -> bool:
-    """Match by normalized name, or by shared street number + address tokens."""
-    if norm_name(cand.name) in by_name:
-        return True
+    """Match only when name AND address agree — never name alone.
+
+    A venue can share a name across cities (Plonk in Missoula vs Plonk in
+    Bozeman), so a bare name match would wrongly drop the second city's
+    venue and defeat multi-city discovery. Require address agreement too.
+    """
+    name = norm_name(cand.name)
     num = street_number(cand.address)
     naddr = norm_address(cand.address)
+
+    # 1) Same name + same street number (or same normalized address) → dup
+    for existing in by_name.get(name, []):
+        e_num = street_number(existing.get("address", ""))
+        if num and e_num and num == e_num:
+            return True
+        if naddr and naddr == norm_address(existing.get("address", "")):
+            return True
+
+    # 2) Same street number + same normalized address even if the name
+    #    differs slightly (e.g. "Wild Rye Distilling" vs "Wildrye Distilling")
     if num:
         for existing in by_addr.get(naddr, []):
-            if num and street_number(existing.get("address", "")) == num:
+            if num == street_number(existing.get("address", "")):
                 return True
     return False
 
@@ -275,11 +295,20 @@ def parse_page(html: str, source_url: str, seed_name: str | None = None) -> list
         if "/bars/categories/" in c["href"]:
             cats.append(c.get_text(strip=True))
 
+    city = ""
+    # Derive the city from the address text (e.g. "... Gallatin Gateway , MT 59730")
+    cm = re.search(r",\s*([A-Za-z][A-Za-z .'-]+?)\s*,?\s*(?:MT|Montana)?\s*\d{0,5}\s*$", address, re.I)
+    if cm:
+        city = cm.group(1).strip()
+    if not city and seed_name:
+        # Fall back to the curated entry's declared city if provided
+        city = seed_name.get("city", "") if isinstance(seed_name, dict) else ""
+
     return [
         Candidate(
             name=name,
             address=address,
-            city="Bozeman",
+            city=city,
             url=source_url,
             tags=cats,
             sources=[source_url],
@@ -339,18 +368,16 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
 
     def absorb(cands: list[Candidate], source_id: str) -> None:
         for c in cands:
-            # Dedup candidates by name+address: two different venues can share a
-            # name (e.g. Plonk in Missoula vs Plonk in Bozeman), so name alone is
-            # not enough. Two candidates match only if BOTH name and street
-            # number (when present) agree.
+            # Dedup candidates by name+street-number: two different venues can
+            # share a name (e.g. Plonk in Missoula vs Plonk in Bozeman), so name
+            # alone is not enough. Same name + same street number = same venue
+            # (first city wins); same name + different street number = distinct
+            # venues, both kept for the city filter to sort out.
             name_key = norm_name(c.name)
             num = street_number(c.address)
             key = name_key if not num else f"{name_key}|{num}"
             if not name_key or key in seen_keys:
                 continue
-            # Also skip if a same-named candidate with a different street
-            # number already exists (keeps the first city's venue, allows the
-            # second city's venue through).
             seen_keys.add(key)
             c.sources.append(source_id)
             candidates.append(c)
@@ -393,12 +420,14 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
             html = fetch(client, url)
             if not html:
                 continue
-            found = PARSERS.get(kind, parse_page)(html, url, seed_name=name)
+            found = PARSERS.get(kind, parse_page)(html, url, seed_name=entry)
             if not found:
                 print(f"  WARN could not parse curated venue page {url}", file=sys.stderr)
                 continue
             cand = found[0]
             cand.name = name  # trust the curated name over page parsing
+            if entry.get("city"):
+                cand.city = entry["city"]  # explicit city wins over page parsing
             cand.tags = list(dict.fromkeys(list(entry.get("tags") or []) + cand.tags))
             absorb([cand], f"curated:{name}")
 

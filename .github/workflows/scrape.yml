@@ -32,7 +32,12 @@ jobs:
 
       - name: Discover new venues
         run: |
-          python scripts/discover_venues.py --write || echo "discovery failed (continuing with existing venues)"
+          # Discovery is best-effort (a failed discovery should not block the
+          # scrape of existing venues), but failures must be VISIBLE in logs.
+          python scripts/discover_venues.py --write 2>&1 | tee /tmp/discovery.log
+          if [ ${PIPESTATUS[0]} -ne 0 ]; then
+            echo "⚠️ discovery failed (continuing with existing venues) — see /tmp/discovery.log"
+          fi
 
       - name: Scrape venues
         env:

@@ -150,6 +150,14 @@ function assetUrl(relPath) {
   return new URL(relPath, pageBaseUrl()).toString();
 }
 
+// Escape pipeline-sourced text (scraped pages / LLM output) before
+// interpolating into innerHTML — venue data is not trusted input.
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
 async function loadData() {
   const url = assetUrl('data/happy_hour_data.json');
   try {
@@ -414,9 +422,9 @@ function renderVenueCard(venue, container) {
     <button type="button" class="venue-toggle" aria-expanded="${expanded}" aria-controls="${specialsId}">
       <div class="venue-header">
         <div>
-          <div class="venue-name">${venue.name}</div>
-          <div class="venue-detail">${venue.hours} · ${venue.address}</div>
-          <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          <div class="venue-name">${esc(venue.name)}</div>
+          <div class="venue-detail">${esc(venue.hours)} · ${esc(venue.address)}</div>
+          <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         </div>
         <div class="hh-status ${status}">${statusText}</div>
       </div>
@@ -425,8 +433,8 @@ function renderVenueCard(venue, container) {
       ${venue.specials.map(s => `
         <div class="special-row">
           <div>
-            <div>${s.item}</div>
-            <div class="special-desc">${s.description}</div>
+            <div>${esc(s.item)}</div>
+            <div class="special-desc">${esc(s.description)}</div>
           </div>
           <div class="special-price">${s.price === 0 ? 'FREE' : '$' + s.price.toFixed(2)}</div>
         </div>
@@ -436,18 +444,18 @@ function renderVenueCard(venue, container) {
         ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" class="venue-link">🔗 Website</a>` : ''}
         ${venue.hours ? `<button type="button" class="venue-link hours-toggle" aria-expanded="false" aria-controls="${hoursId}">🕐 Hours</button>` : ''}
         ${venue.business_hours ? `<button type="button" class="venue-link biz-hours-toggle" aria-expanded="false" aria-controls="${bizHoursId}">🏪 Biz Hours</button>` : ''}
-        <span class="venue-noise">Noise: ${venue.noise_level} · ${venue.mood}</span>
+        <span class="venue-noise">Noise: ${esc(venue.noise_level)} · ${esc(venue.mood)}</span>
       </div>
       ${venue.hours ? `
       <div class="hours-panel" id="${hoursId}" hidden>
         <div class="hours-title">Happy Hour</div>
-        <div class="hours-value">${venue.hours}</div>
-        ${venue.notes ? `<div class="hours-notes">${venue.notes}</div>` : ''}
+        <div class="hours-value">${esc(venue.hours)}</div>
+        ${venue.notes ? `<div class="hours-notes">${esc(venue.notes)}</div>` : ''}
       </div>` : ''}
       ${venue.business_hours ? `
       <div class="hours-panel" id="${bizHoursId}" hidden>
         <div class="hours-title">Business Hours</div>
-        <div class="hours-value">${venue.business_hours}</div>
+        <div class="hours-value">${esc(venue.business_hours)}</div>
       </div>` : ''}
     </div>
   `;
