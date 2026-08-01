@@ -47,8 +47,7 @@ VENUES_PATH = ROOT / "config" / "venues.json"
 USER_AGENT = "happycow-discovery/1.0 (+https://github.com/lucas-albers-lz4/happycow)"
 REQUEST_TIMEOUT = 30.0
 INTER_REQUEST_SLEEP = 0.7
-
-CITY_KEYWORDS = {"bozeman"}  # matched against lowercased address text
+MAX_PAGES = 20  # hard cap on pagination depth per seed (loop safety)
 
 
 # ─── Data ───
@@ -151,27 +150,43 @@ def is_duplicate(cand: Candidate, by_name: dict, by_addr: dict) -> bool:
 
 # ─── HTTP ───
 
-def fetch(client: httpx.Client, url: str) -> str | None:
-    try:
-        resp = client.get(url)
-        if resp.status_code >= 400:
-            print(f"  WARN fetch skipped HTTP {resp.status_code} {url}", file=sys.stderr)
+TRANSIENT_HTTP = {429, 500, 502, 503, 504}
+MAX_FETCH_ATTEMPTS = 3
+
+
+def fetch(client: httpx.Client, url: str, *, retries: int = MAX_FETCH_ATTEMPTS) -> str | None:
+    """GET a URL with a small retry/backoff for transient errors (429/5xx)."""
+    for attempt in range(1, retries + 1):
+        try:
+            resp = client.get(url)
+            if resp.status_code in TRANSIENT_HTTP and attempt < retries:
+                time.sleep(INTER_REQUEST_SLEEP * attempt)
+                continue
+            if resp.status_code >= 400:
+                print(f"  WARN fetch skipped HTTP {resp.status_code} {url}", file=sys.stderr)
+                return None
+            return resp.text
+        except Exception as e:
+            if attempt < retries:
+                time.sleep(INTER_REQUEST_SLEEP * attempt)
+                continue
+            print(f"  WARN fetch failed {url}: {e}", file=sys.stderr)
             return None
-        return resp.text
-    except Exception as e:
-        print(f"  WARN fetch failed {url}: {e}", file=sys.stderr)
-        return None
+    return None
 
 
 def next_page_url(soup: BeautifulSoup, base: str) -> str | None:
-    """Follow rel=next, or 'Older posts'/'Next' style pagination links."""
+    """Follow rel=next, or 'Older posts'/'Next' style pagination links.
+
+    Matching is deliberately conservative: exact labels or rel=next only.
+    No startswith fallback — 'Next event'/'Nextdoor' style links must not
+    be followed. Callers cap total pages so a cycling site can't loop.
+    """
     for a in soup.find_all("a", href=True):
         label = a.get_text(strip=True).lower()
         if a.get("rel") and "next" in a.get("rel"):
             return urllib.parse.urljoin(base, a["href"])
         if label in ("older posts", "next", "next »", "›", "»"):
-            return urllib.parse.urljoin(base, a["href"])
-        if label.startswith(("next", "older posts")):
             return urllib.parse.urljoin(base, a["href"])
     return None
 
@@ -281,14 +296,21 @@ def parse_page(html: str, source_url: str, seed_name: str | None = None) -> list
         phone = f"({pm.group(1)}) {pm.group(2)}-{pm.group(3)}"
 
     website = ""
-    wm = soup.find(
-        "a",
-        href=re.compile(
-            r"^https?://(?!.*(?:facebook|instagram|twitter|t\.me|x\.com|yelp|magazine|mthappyhour|visitmt|visit-bozeman))"
-        ),
-    )
-    if wm:
-        website = wm["href"]
+    # Domain-level exclusion: only skip links whose *host* is a social/directory
+    # site, not links that merely contain those words in the path.
+    SOCIAL_HOSTS = {
+        "facebook.com", "www.facebook.com", "instagram.com", "www.instagram.com",
+        "twitter.com", "www.twitter.com", "x.com", "www.x.com", "t.me",
+        "yelp.com", "www.yelp.com", "bozemanmagazine.com", "www.bozemanmagazine.com",
+        "mthappyhour.com", "www.mthappyhour.com", "visitmt.com", "www.visitmt.com",
+        "visit-bozeman.com", "www.visit-bozeman.com",
+    }
+    for a in soup.find_all("a", href=True):
+        href = a.get("href", "")
+        m = re.match(r"^https?://([^/]+)", href)
+        if m and m.group(1).lower() not in SOCIAL_HOSTS:
+            website = href
+            break
 
     cats = []
     for c in soup.find_all("a", href=True):
@@ -326,20 +348,29 @@ PARSERS = {
 
 # ─── Main ───
 
-def slugify(name: str) -> str:
+def slugify(name: str, existing_ids: set[str] | None = None) -> str:
     s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
     s = re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
-    return s or "venue"
+    s = s or "venue"
+    # Guarantee uniqueness: "The Pour House" and "Pour House" both slugify to
+    # "pour-house" — a duplicate id would break DOM ids (hours-<id>) and
+    # aria-controls targeting. Append a counter when the id is taken.
+    if existing_ids is not None:
+        base, n = s, 2
+        while s in existing_ids:
+            s = f"{base}-{n}"
+            n += 1
+    return s
 
 
-def to_config_entry(cand: Candidate) -> dict:
+def to_config_entry(cand: Candidate, existing_ids: set[str] | None = None) -> dict:
     city_hint = cand.city.split(",")[0].strip() if cand.city else "Bozeman"
     maps_q = urllib.parse.quote(f"{cand.name} {city_hint} MT")
     scrape_urls = [cand.url] if cand.url else []
     if cand.website and cand.website not in scrape_urls:
         scrape_urls.append(cand.website)
     return {
-        "id": slugify(cand.name),
+        "id": slugify(cand.name, existing_ids),
         "name": cand.name,
         "address": cand.address,
         "phone": cand.phone,
@@ -397,6 +428,9 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
             page_no = 0
             while url:
                 page_no += 1
+                if page_no > MAX_PAGES:
+                    print(f"  WARN hit page cap {MAX_PAGES} for {sid}", file=sys.stderr)
+                    break
                 if page_no > 1:
                     print(f"  page {page_no}")
                 html = fetch(client, url)
@@ -416,6 +450,8 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
             name = entry.get("name")
             url = entry.get("url")
             kind = entry.get("kind", "page")
+            if only_sources and kind not in only_sources:
+                continue
             print(f"\n== Curated: {name} ==")
             html = fetch(client, url)
             if not html:
@@ -462,7 +498,8 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     if not new:
         return 0
 
-    entries = [to_config_entry(c) for c in new]
+    existing_ids = {v["id"] for v in venues}
+    entries = [to_config_entry(c, existing_ids) for c in new]
     venues.extend(entries)
     config["venues"] = venues
     save_json(VENUES_PATH, config)

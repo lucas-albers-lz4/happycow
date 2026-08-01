@@ -31,19 +31,30 @@ CONFIG_PATH = ROOT / "config" / "venues.json"
 USER_AGENT = "happycow-backfill/1.0 (+https://github.com/lucas-albers-lz4/happycow)"
 REQUEST_TIMEOUT = 30.0
 INTER_REQUEST_SLEEP = 0.5
+TRANSIENT_HTTP = {429, 500, 502, 503, 504}
+MAX_ATTEMPTS = 3
 
 DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 DAY_ABBR = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
 def fetch(client: httpx.Client, url: str) -> str | None:
-    try:
-        resp = client.get(url)
-        if resp.status_code >= 400:
+    """GET a URL with retry/backoff for transient errors (429/5xx)."""
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            resp = client.get(url)
+            if resp.status_code in TRANSIENT_HTTP and attempt < MAX_ATTEMPTS:
+                time.sleep(INTER_REQUEST_SLEEP * attempt)
+                continue
+            if resp.status_code >= 400:
+                return None
+            return resp.text
+        except Exception:
+            if attempt < MAX_ATTEMPTS:
+                time.sleep(INTER_REQUEST_SLEEP * attempt)
+                continue
             return None
-        return resp.text
-    except Exception:
-        return None
+    return None
 
 
 def parse_business_hours(html: str) -> str:
@@ -98,9 +109,11 @@ def parse_business_hours(html: str) -> str:
 
 
 def main() -> int:
-    config = json.load(open(CONFIG_PATH))
+    with open(CONFIG_PATH) as f:
+        config = json.load(f)
     cfg_by_id = {v["id"]: v for v in config.get("venues", [])}
-    data = json.load(open(DATA_PATH))
+    with open(DATA_PATH) as f:
+        data = json.load(f)
     if "venues" not in data:
         data = {"venues": data}
 
@@ -127,8 +140,8 @@ def main() -> int:
                 updated += 1
                 print(f"  {venue['name']}: {bh}")
 
-    json.dump(data, open(DATA_PATH, "w"), indent=2)
-    with open(DATA_PATH, "a") as f:
+    with open(DATA_PATH, "w") as f:
+        json.dump(data, f, indent=2)
         f.write("\n")
     print(f"\nUpdated {updated} venues with business_hours")
     return 0

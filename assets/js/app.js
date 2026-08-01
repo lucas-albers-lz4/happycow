@@ -404,6 +404,19 @@ function renderVenues() {
   filtered.forEach(v => renderVenueCard(v, container));
 }
 
+// Wire an expandable panel toggle (Hours / Biz Hours) in place — no list re-render.
+function wirePanelToggle(card, btnSel, panelSel) {
+  const btn = card.querySelector(btnSel);
+  const panel = card.querySelector(panelSel);
+  if (btn && panel) {
+    btn.onclick = () => {
+      const open = !panel.hidden;
+      panel.hidden = open;
+      btn.setAttribute('aria-expanded', String(!open));
+    };
+  }
+}
+
 function renderVenueCard(venue, container) {
   const status = isHHLive(venue.hours);
   const expanded = state.expanded === venue.id;
@@ -473,19 +486,8 @@ function renderVenueCard(venue, container) {
     }
   };
   // Expandable panels: Hours / Biz Hours toggle in place (no list re-render)
-  const wirePanelToggle = (btnSel, panelSel) => {
-    const btn = card.querySelector(btnSel);
-    const panel = card.querySelector(panelSel);
-    if (btn && panel) {
-      btn.onclick = () => {
-        const open = !panel.hidden;
-        panel.hidden = open;
-        btn.setAttribute('aria-expanded', String(!open));
-      };
-    }
-  };
-  wirePanelToggle('.hours-toggle', '.hours-panel#hours-' + venue.id);
-  wirePanelToggle('.biz-hours-toggle', '.hours-panel#biz-hours-' + venue.id);
+  wirePanelToggle(card, '.hours-toggle', '.hours-panel#hours-' + venue.id);
+  wirePanelToggle(card, '.biz-hours-toggle', '.hours-panel#biz-hours-' + venue.id);
   // Keep specials visible via CSS class + hidden attr sync
   if (expanded) {
     specials.hidden = false;
