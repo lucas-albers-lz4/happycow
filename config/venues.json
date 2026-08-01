@@ -1,5 +1,11 @@
 {
   "city": "Bozeman, MT",
+  "cities": [
+    "Bozeman",
+    "Belgrade",
+    "Four Corners",
+    "Gallatin Gateway"
+  ],
   "population": 55000,
   "timezone": "America/Denver",
   "discovery_seeds": [
@@ -46,6 +52,16 @@
         "live-music"
       ],
       "note": "Haufbrau House, 22 S 8th Ave \u2014 live music 7 nights/week."
+    },
+    {
+      "name": "Stacey's Old Faithful Bar & Steakhouse",
+      "url": "https://www.menupix.com/bozeman/restaurants/166098/Staceys-Old-Faithful-Bar-Gallatin-Gateway-MT",
+      "kind": "page",
+      "tags": [
+        "western",
+        "steakhouse"
+      ],
+      "note": "Gallatin Gateway \u2014 historic western saloon/steakhouse on the route to Big Sky."
     }
   ],
   "venues": [
@@ -714,6 +730,220 @@
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Wildrye%20Distilling%20Bozeman%20MT",
       "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "bar-3-bbq-and-brewery",
+      "name": "Bar 3 BBQ and Brewery",
+      "address": "100 S Broadway, Belgrade",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/bar-3-bbq-brewery/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "broken-spoke-bar-grill",
+      "name": "Broken Spoke Bar & Grill",
+      "address": "120 Big Pine Dr, Gallatin Gateway",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/broken-spoke-bar-grill/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%20Bar%20%26%20Grill%20Gallatin%20Gateway%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "buffalo-wild-wings",
+      "name": "Buffalo Wild Wings",
+      "address": "2047 W Oak St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/buffalo-wild-wings/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "copper-whiskey-bar",
+      "name": "Copper Whiskey Bar",
+      "address": "101 E Main St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/copper-whiskey-bar/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Copper%20Whiskey%20Bar%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "madison-river-brewing-co",
+      "name": "Madison River Brewing Co",
+      "address": "20900 Frontage Rd Building B, Belgrade",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/madison-river-brewing-co/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "old-chicago",
+      "name": "Old Chicago",
+      "address": "1940 N 19th Ave, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/old-chicago/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "open-range",
+      "name": "Open Range",
+      "address": "241 E Main St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/open-range/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Open%20Range%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "outlaw-brewing",
+      "name": "Outlaw Brewing",
+      "address": "2876 N 27th Ave, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/outlaw-brewing/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "plonk",
+      "name": "Plonk",
+      "address": "29 E Main St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/plonk/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Plonk%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "pub-317",
+      "name": "Pub 317",
+      "address": "321 E Main St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/pub-317/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Pub%20317%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "rialto-bar-burn-box",
+      "name": "Rialto Bar \u2013 Burn Box",
+      "address": "10 W Main St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/rialto-bar/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Rialto%20Bar%20%E2%80%93%20Burn%20Box%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "address": "1235 N 7th Ave, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/santa-fe-reds/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "seven-sushi",
+      "name": "Seven Sushi",
+      "address": "113 E Oak St, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/seven-sushi/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Seven%20Sushi%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "spectators-bar-and-grill",
+      "name": "Spectators Bar and Grill",
+      "address": "19 Tai Ln, Bozeman",
+      "phone": "",
+      "website": "",
+      "scrape_urls": [
+        "https://mthappyhour.com/locations/spectators-bar-and-grill/"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Spectators%20Bar%20and%20Grill%20Bozeman%20MT",
+      "tags": [],
+      "noise_level": "",
+      "mood": ""
+    },
+    {
+      "id": "stacey-s-old-faithful-bar-steakhouse",
+      "name": "Stacey's Old Faithful Bar & Steakhouse",
+      "address": "300 Mill St",
+      "phone": "(406) 763-4425",
+      "website": "http://www.staceysbar.com",
+      "scrape_urls": [
+        "https://www.menupix.com/bozeman/restaurants/166098/Staceys-Old-Faithful-Bar-Gallatin-Gateway-MT",
+        "http://www.staceysbar.com"
+      ],
+      "maps": "https://www.google.com/maps/search/?api=1&query=Stacey%27s%20Old%20Faithful%20Bar%20%26%20Steakhouse%20Bozeman%20MT",
+      "tags": [
+        "western",
+        "steakhouse"
+      ],
       "noise_level": "",
       "mood": ""
     }
