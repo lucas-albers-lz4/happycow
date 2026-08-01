@@ -340,11 +340,14 @@ body {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@media (prefers-reduced-motion: reduce) {
+  .hours-panel { animation: none; }
+}
 body.dark .hours-panel {
   background: #33291c;
   border-left-color: var(--gold);
 }
-body.dark .hours-value { color: #f2e6d3; }
+body.dark .hours-value { color: var(--text); }
 
 /* ─── Deal of the Day ─── */
 .deal-day {
