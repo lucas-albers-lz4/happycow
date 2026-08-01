@@ -27,6 +27,7 @@
       "name": "The Filling Station",
       "url": "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station",
       "kind": "page",
+      "city": "Bozeman",
       "tags": [
         "dive",
         "live-music"
@@ -37,6 +38,7 @@
       "name": "The Molly Brown",
       "url": "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown",
       "kind": "page",
+      "city": "Bozeman",
       "tags": [
         "dive",
         "casino"
@@ -47,6 +49,7 @@
       "name": "The Haufbrau",
       "url": "https://visit-bozeman.com/listings/haufbrau-house",
       "kind": "page",
+      "city": "Bozeman",
       "tags": [
         "dive",
         "live-music"
@@ -57,6 +60,7 @@
       "name": "Stacey's Old Faithful Bar & Steakhouse",
       "url": "https://www.menupix.com/bozeman/restaurants/166098/Staceys-Old-Faithful-Bar-Gallatin-Gateway-MT",
       "kind": "page",
+      "city": "Gallatin Gateway",
       "tags": [
         "western",
         "steakhouse"
@@ -715,20 +719,6 @@
         "https://mthappyhour.com/locations/valhalla-meadery/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
-    },
-    {
-      "id": "wildrye-distilling",
-      "name": "Wildrye Distilling",
-      "address": "111 E Oak St #1e, Bozeman, MT 59715, Bozeman",
-      "phone": "",
-      "website": "",
-      "scrape_urls": [
-        "https://mthappyhour.com/locations/wildrye-distilling/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Wildrye%20Distilling%20Bozeman%20MT",
       "tags": [],
       "noise_level": "",
       "mood": ""
