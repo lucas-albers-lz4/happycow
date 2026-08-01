@@ -91,12 +91,19 @@ def street_number(addr: str) -> str:
     return m.group(1) if m else ""
 
 
-def is_city_match(candidate: Candidate, city: str) -> bool:
-    if not city:
+def is_city_match(candidate: Candidate, cities: list[str]) -> bool:
+    """Match if the address mentions ANY target city (Bozeman/Belgrade/Four Corners...)."""
+    if not cities:
         return True
-    city_key = city.split(",")[0].strip().lower()
     haystack = f"{candidate.address} {candidate.city}".lower()
-    return city_key in haystack
+    # "four corners" is two words; also handle "4 corners"
+    for c in cities:
+        ck = c.strip().lower()
+        if ck in haystack:
+            return True
+        if ck == "four corners" and ("four corners" in haystack or "4 corners" in haystack):
+            return True
+    return False
 
 
 def existing_lookup(venues: list[dict]) -> tuple[dict, dict]:
@@ -137,12 +144,14 @@ def fetch(client: httpx.Client, url: str) -> str | None:
 
 
 def next_page_url(soup: BeautifulSoup, base: str) -> str | None:
-    """Follow rel=next or numeric pagination link."""
+    """Follow rel=next, or 'Older posts'/'Next' style pagination links."""
     for a in soup.find_all("a", href=True):
         label = a.get_text(strip=True).lower()
         if a.get("rel") and "next" in a.get("rel"):
             return urllib.parse.urljoin(base, a["href"])
-        if label in ("next", "next »", "›", "»") or label.startswith("next"):
+        if label in ("older posts", "next", "next »", "›", "»"):
+            return urllib.parse.urljoin(base, a["href"])
+        if label.startswith(("next", "older posts")):
             return urllib.parse.urljoin(base, a["href"])
     return None
 
@@ -295,7 +304,8 @@ def slugify(name: str) -> str:
 
 
 def to_config_entry(cand: Candidate) -> dict:
-    maps_q = urllib.parse.quote(f"{cand.name} {cand.city or 'Bozeman'} MT")
+    city_hint = cand.city.split(",")[0].strip() if cand.city else "Bozeman"
+    maps_q = urllib.parse.quote(f"{cand.name} {city_hint} MT")
     scrape_urls = [cand.url] if cand.url else []
     if cand.website and cand.website not in scrape_urls:
         scrape_urls.append(cand.website)
@@ -315,7 +325,9 @@ def to_config_entry(cand: Candidate) -> dict:
 
 def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     config = load_json(VENUES_PATH)
-    city = config.get("city", "Bozeman, MT")
+    # Multi-city support: config "cities" list (e.g. Bozeman/Belgrade/Four Corners),
+    # falling back to the legacy single "city" string.
+    cities = [c.strip() for c in (config.get("cities") or [config.get("city", "Bozeman, MT")]) if c.strip()]
     venues = config.get("venues", [])
     by_name, by_addr = existing_lookup(venues)
 
@@ -327,9 +339,18 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
 
     def absorb(cands: list[Candidate], source_id: str) -> None:
         for c in cands:
-            key = norm_name(c.name) or norm_address(c.address)
-            if not key or key in seen_keys:
+            # Dedup candidates by name+address: two different venues can share a
+            # name (e.g. Plonk in Missoula vs Plonk in Bozeman), so name alone is
+            # not enough. Two candidates match only if BOTH name and street
+            # number (when present) agree.
+            name_key = norm_name(c.name)
+            num = street_number(c.address)
+            key = name_key if not num else f"{name_key}|{num}"
+            if not name_key or key in seen_keys:
                 continue
+            # Also skip if a same-named candidate with a different street
+            # number already exists (keeps the first city's venue, allows the
+            # second city's venue through).
             seen_keys.add(key)
             c.sources.append(source_id)
             candidates.append(c)
@@ -384,9 +405,9 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     # City filter + dedup against existing
     new: list[Candidate] = []
     for c in candidates:
-        if not is_city_match(c, city):
+        if not is_city_match(c, cities):
             if verbose:
-                print(f"  skip (not {city}): {c.name} — {c.address}")
+                print(f"  skip (not in {cities}): {c.name} — {c.address}")
             continue
         if is_duplicate(c, by_name, by_addr):
             if verbose:
@@ -397,7 +418,7 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     new.sort(key=lambda c: norm_name(c.name))
 
     print(f"\n=== Summary ===")
-    print(f"City filter: {city}")
+    print(f"City filter: {', '.join(cities)}")
     print(f"Existing venues: {len(venues)}")
     print(f"Discovered unique candidates: {len(candidates)}")
     print(f"New venues after dedup+city filter: {len(new)}")
