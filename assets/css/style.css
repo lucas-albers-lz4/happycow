@@ -279,6 +279,73 @@ body {
   color: var(--text-dim);
 }
 
+/* ─── Venue action links (Directions / Website / Hours) ─── */
+.venue-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.venue-link {
+  font-size: 0.75rem;
+  color: var(--cow-spot-2);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+.venue-link:hover { text-decoration: underline; }
+.venue-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.venue-noise {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+/* ─── Expandable hours panel ─── */
+.hours-panel {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #fdf3e3;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  animation: hours-in 0.2s ease-out;
+}
+.hours-panel[hidden] { display: none !important; }
+.hours-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.hours-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.hours-notes {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+@keyframes hours-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body.dark .hours-panel {
+  background: #33291c;
+  border-left-color: var(--gold);
+}
+body.dark .hours-value { color: #f2e6d3; }
+
 /* ─── Deal of the Day ─── */
 .deal-day {
   display: block;

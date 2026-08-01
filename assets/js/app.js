@@ -408,6 +408,8 @@ function renderVenueCard(venue, container) {
                      '○ Closed';
 
   const specialsId = `specials-${venue.id}`;
+  const hoursId = `hours-${venue.id}`;
+  const bizHoursId = `biz-hours-${venue.id}`;
   card.innerHTML = `
     <button type="button" class="venue-toggle" aria-expanded="${expanded}" aria-controls="${specialsId}">
       <div class="venue-header">
@@ -429,11 +431,24 @@ function renderVenueCard(venue, container) {
           <div class="special-price">${s.price === 0 ? 'FREE' : '$' + s.price.toFixed(2)}</div>
         </div>
       `).join('')}
-      <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-        <a href="${venue.maps}" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--cow-spot-2);">📍 Directions</a>
-        ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" style="font-size:0.75rem;color:var(--cow-spot-2);">🔗 Website</a>` : ''}
-        <span style="font-size:0.7rem;color:var(--text-dim);margin-left:auto;">Noise: ${venue.noise_level} · ${venue.mood}</span>
+      <div class="venue-actions">
+        <a href="${venue.maps}" target="_blank" rel="noopener" class="venue-link">📍 Directions</a>
+        ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" class="venue-link">🔗 Website</a>` : ''}
+        ${venue.hours ? `<button type="button" class="venue-link hours-toggle" aria-expanded="false" aria-controls="${hoursId}">🕐 Hours</button>` : ''}
+        ${venue.business_hours ? `<button type="button" class="venue-link biz-hours-toggle" aria-expanded="false" aria-controls="${bizHoursId}">🏪 Biz Hours</button>` : ''}
+        <span class="venue-noise">Noise: ${venue.noise_level} · ${venue.mood}</span>
       </div>
+      ${venue.hours ? `
+      <div class="hours-panel" id="${hoursId}" hidden>
+        <div class="hours-title">Happy Hour</div>
+        <div class="hours-value">${venue.hours}</div>
+        ${venue.notes ? `<div class="hours-notes">${venue.notes}</div>` : ''}
+      </div>` : ''}
+      ${venue.business_hours ? `
+      <div class="hours-panel" id="${bizHoursId}" hidden>
+        <div class="hours-title">Business Hours</div>
+        <div class="hours-value">${venue.business_hours}</div>
+      </div>` : ''}
     </div>
   `;
 
@@ -449,6 +464,20 @@ function renderVenueCard(venue, container) {
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   };
+  // Expandable panels: Hours / Biz Hours toggle in place (no list re-render)
+  const wirePanelToggle = (btnSel, panelSel) => {
+    const btn = card.querySelector(btnSel);
+    const panel = card.querySelector(panelSel);
+    if (btn && panel) {
+      btn.onclick = () => {
+        const open = !panel.hidden;
+        panel.hidden = open;
+        btn.setAttribute('aria-expanded', String(!open));
+      };
+    }
+  };
+  wirePanelToggle('.hours-toggle', '.hours-panel#hours-' + venue.id);
+  wirePanelToggle('.biz-hours-toggle', '.hours-panel#biz-hours-' + venue.id);
   // Keep specials visible via CSS class + hidden attr sync
   if (expanded) {
     specials.hidden = false;

@@ -84,12 +84,13 @@ class Special(BaseModel):
 class ExtractResult(BaseModel):
     status: Literal["ok", "not_found", "unclear"] = "ok"
     hours: str = ""
+    business_hours: str = ""
     specials: list[Special] = Field(default_factory=list)
     notes: str | None = None
 
-    @field_validator("hours", mode="before")
+    @field_validator("hours", "business_hours", mode="before")
     @classmethod
-    def normalize_hours_field(cls, v):
+    def normalize_hours_fields(cls, v):
         return normalize_hours(str(v or ""))
 
     def is_usable(self) -> bool:
@@ -484,6 +485,7 @@ def extract_venue(
     extract = {
         "status": result.status,
         "hours": result.hours,
+        "business_hours": result.business_hours,
         "specials": [s.model_dump() for s in result.specials],
         "notes": result.notes,
     }
@@ -503,6 +505,7 @@ def extract_venue(
 def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | None) -> dict:
     prev = previous or {}
     hours = (extract or {}).get("hours") or prev.get("hours") or ""
+    business_hours = (extract or {}).get("business_hours") or prev.get("business_hours") or ""
     specials = (extract or {}).get("specials")
     if not specials:
         specials = prev.get("specials") or []
@@ -515,6 +518,7 @@ def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | Non
         "website": venue.get("website") or prev.get("website") or "",
         "maps": venue.get("maps") or prev.get("maps") or "",
         "hours": hours,
+        "business_hours": business_hours,
         "tags": venue.get("tags") or prev.get("tags") or [],
         "noise_level": venue.get("noise_level") or prev.get("noise_level") or "",
         "mood": venue.get("mood") or prev.get("mood") or "",

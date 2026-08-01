@@ -41,7 +41,8 @@
           "category": "drinks",
           "description": "$6.00 double shot signature cocktails \u2013 Hop the tracks \u2013 Rosemary Poloma \u2013 Cherry wine sour \u2013 Rasberrie cosmo \u2013 Kaffir gin and tonic"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 4pm-10pm"
     },
     {
       "id": "applebees-bozeman",
@@ -87,7 +88,8 @@
           "category": "drinks",
           "description": ""
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 11am-11pm, Fri-Sat 11am-12pm, Sun 11am-11pm"
     },
     {
       "id": "bar-ix",
@@ -109,7 +111,8 @@
           "category": "drinks",
           "description": "2-4-1: buy one drink, get one free"
         }
-      ]
+      ],
+      "business_hours": "Mon-Fri 4pm-2am, Sat-Sun 11am-2am"
     },
     {
       "id": "bitterroot-bistro",
@@ -124,7 +127,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 2pm-10pm"
     },
     {
       "id": "blackbird",
@@ -146,7 +150,8 @@
           "category": "drinks",
           "description": "Half price select bottles of wine"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 4:30pm-9:00pm"
     },
     {
       "id": "bourbon",
@@ -174,7 +179,8 @@
           "category": "drinks",
           "description": "Drink specials featuring craft whiskey cocktails"
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 11:30am-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-9pm"
     },
     {
       "id": "bozeman-brewing-company",
@@ -202,7 +208,8 @@
           "category": "drinks",
           "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8 pm)"
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 2pm-8pm, Fri 12pm-8pm, Sat-Sun 2pm-8pm"
     },
     {
       "id": "bozeman-spirits-distillery",
@@ -254,7 +261,8 @@
           "category": "drinks",
           "description": "Sunday: All huckleberry drinks are $7"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sat 10am-8pm, Sun 12pm-8pm"
     },
     {
       "id": "bozeman-taproom",
@@ -312,7 +320,8 @@
           "category": "drinks",
           "description": "Add a 10 oz beer to any lunch special"
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 11:00am-12:00am, Fri 11:00am-1:00am, Sat Sunday, Sun 11:00am-1:00am"
     },
     {
       "id": "bridger-brewing",
@@ -376,7 +385,8 @@
           "category": "food",
           "description": "Sunday special"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 11:30am-9pm"
     },
     {
       "id": "brigade",
@@ -464,7 +474,8 @@
           "category": "food",
           "description": "Happy Hour Prices on Brigade Burger"
         }
-      ]
+      ],
+      "business_hours": "Mon-Fri 3pm-10pm, Sat-Sun 9am-10pm"
     },
     {
       "id": "daves-sushi",
@@ -498,7 +509,8 @@
           "category": "drinks",
           "description": "1/2 off"
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm"
     },
     {
       "id": "devils-toboggan",
@@ -538,7 +550,8 @@
           "category": "food",
           "description": "Appetizer specials (price not specified)"
         }
-      ]
+      ],
+      "business_hours": ""
     },
     {
       "id": "dry-hills-distillery",
@@ -596,7 +609,8 @@
           "category": "drinks",
           "description": "$5 Screwdrivers all day"
         }
-      ]
+      ],
+      "business_hours": "Mon Closed, Tue-Sun 12pm-8pm"
     },
     {
       "id": "est-1864-noir-bar-restaurant",
@@ -636,7 +650,8 @@
           "category": "food",
           "description": "Plus late-night bites (price not specified)"
         }
-      ]
+      ],
+      "business_hours": "Mon-Wed 4pm-10pm, Thu-Sat 4pm-1:30am, Sun 4pm-10pm"
     },
     {
       "id": "finks-deli",
@@ -664,7 +679,8 @@
           "category": "drinks",
           "description": "$1 Off"
         }
-      ]
+      ],
+      "business_hours": ""
     },
     {
       "id": "la-brasserie",
@@ -698,7 +714,8 @@
           "category": "drinks",
           "description": "$7 cocktails"
         }
-      ]
+      ],
+      "business_hours": "Mon Closed, Tue-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun Closed"
     },
     {
       "id": "map-brewing",
@@ -720,7 +737,8 @@
           "category": "drinks",
           "description": "$1 off pints"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 12pm-8pm"
     },
     {
       "id": "mountains-walking-brewery",
@@ -735,7 +753,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 11:30am-8:00pm"
     },
     {
       "id": "revelry",
@@ -805,7 +824,8 @@
           "category": "drinks",
           "description": "30% off"
         }
-      ]
+      ],
+      "business_hours": ""
     },
     {
       "id": "rocking-r",
@@ -845,7 +865,8 @@
           "category": "drinks",
           "description": "$10 boozy milkshakes"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 11am-2am"
     },
     {
       "id": "shine-beer-sanctuary",
@@ -860,7 +881,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 11:00am-9:00pm, Fri-Sat 11:00am-10:00pm, Sun 11:00am-9:00pm"
     },
     {
       "id": "the-bacchus-pub",
@@ -900,7 +922,8 @@
           "category": "food",
           "description": "$1.00 off"
         }
-      ]
+      ],
+      "business_hours": ""
     },
     {
       "id": "the-club",
@@ -952,7 +975,8 @@
           "category": "food",
           "description": "$6 strawberry goat cheese crostinis (Tuesday/Thursday)"
         }
-      ]
+      ],
+      "business_hours": "Mon-Sun 6am-2am"
     },
     {
       "id": "urban-kitchen",
@@ -986,7 +1010,8 @@
           "category": "drinks",
           "description": "$4 Deep Eddy Shots"
         }
-      ]
+      ],
+      "business_hours": "Mon-Thu 11am-9pm, Fri-Sat 11am-10pm, Sun 11am-9pm"
     },
     {
       "id": "wild-rye-distilling",
@@ -1014,7 +1039,8 @@
           "category": "drinks",
           "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
         }
-      ]
+      ],
+      "business_hours": "Mon-Wed 3pm-8pm, Thu-Sun 12pm-8pm"
     },
     {
       "id": "the-filling-station",
@@ -1030,7 +1056,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": ""
     },
     {
       "id": "the-haufbrau",
@@ -1046,7 +1073,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": ""
     },
     {
       "id": "the-molly-brown",
@@ -1062,7 +1090,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": ""
     },
     {
       "id": "the-bay",
@@ -1075,7 +1104,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm"
     },
     {
       "id": "the-buck",
@@ -1088,7 +1118,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm"
     },
     {
       "id": "the-bunkhouse-brewery",
@@ -1101,7 +1132,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 2pm-8pm"
     },
     {
       "id": "cafe-fresco",
@@ -1114,7 +1146,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sat 11am-9pm, Sun Closed"
     },
     {
       "id": "the-cannery",
@@ -1127,7 +1160,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 11:00am-2:00am"
     },
     {
       "id": "hooked-sushi",
@@ -1140,7 +1174,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm"
     },
     {
       "id": "korner-klub",
@@ -1153,7 +1188,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 11:00am-12:00am"
     },
     {
       "id": "last-best-place-brewery",
@@ -1166,7 +1202,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 12:00am-8:00pm"
     },
     {
       "id": "the-pour-house",
@@ -1179,7 +1216,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 10:30am-2:00am"
     },
     {
       "id": "sidewall-pizza-company",
@@ -1192,7 +1230,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm"
     },
     {
       "id": "tanoshii",
@@ -1205,7 +1244,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": ""
     },
     {
       "id": "valhalla-meadery",
@@ -1218,7 +1258,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm"
     },
     {
       "id": "wildrye-distilling",
@@ -1231,7 +1272,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Tue 12-8, Wed 12, Thu-Sun 12-8"
     },
     {
       "id": "bar-3-bbq-and-brewery",
@@ -1244,7 +1286,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Fri 11am-8pm, Sat-Sun 9am-8pm"
     },
     {
       "id": "broken-spoke-bar-grill",
@@ -1257,7 +1300,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 11am-2am, Fri-Sun 8am-2am"
     },
     {
       "id": "buffalo-wild-wings",
@@ -1270,7 +1314,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am"
     },
     {
       "id": "copper-whiskey-bar",
@@ -1283,7 +1328,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am"
     },
     {
       "id": "madison-river-brewing-co",
@@ -1296,7 +1342,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 2pm-8pm"
     },
     {
       "id": "old-chicago",
@@ -1309,7 +1356,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am"
     },
     {
       "id": "open-range",
@@ -1322,7 +1370,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 5pm-2am"
     },
     {
       "id": "outlaw-brewing",
@@ -1335,7 +1384,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 2pm-8pm, Fri-Sun 12pm-8pm"
     },
     {
       "id": "plonk",
@@ -1348,7 +1398,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 3pm-1:30am"
     },
     {
       "id": "pub-317",
@@ -1361,7 +1412,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 11am-2am"
     },
     {
       "id": "rialto-bar-burn-box",
@@ -1374,7 +1426,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu Closed, Fri-Sat 7pm-Close, Sun Closed"
     },
     {
       "id": "santa-fe-reds",
@@ -1387,7 +1440,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm"
     },
     {
       "id": "seven-sushi",
@@ -1400,7 +1454,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sat 11:30am-10pm, Sun 4pm-10pm"
     },
     {
       "id": "spectators-bar-and-grill",
@@ -1413,7 +1468,8 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": "Mon-Sun 10am-12am"
     },
     {
       "id": "stacey-s-old-faithful-bar-steakhouse",
@@ -1429,7 +1485,8 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": []
+      "specials": [],
+      "business_hours": ""
     }
   ]
 }
