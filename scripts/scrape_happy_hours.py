@@ -524,6 +524,7 @@ def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | Non
         "tags": venue.get("tags") or prev.get("tags") or [],
         "noise_level": venue.get("noise_level") or prev.get("noise_level") or "",
         "mood": venue.get("mood") or prev.get("mood") or "",
+        "notes": (extract or {}).get("notes") or prev.get("notes") or "",
         "specials": specials,
     }
 
