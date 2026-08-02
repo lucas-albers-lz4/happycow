@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-02T14:37:06Z",
+  "updated_at": "2026-08-02T18:07:14Z",
   "items": [
     {
       "venue_id": "santa-fe-reds",
@@ -12,7 +12,7 @@
         "overture:places:overture-santa-fe-reds-fixture",
         "https://mthappyhour.com/locations/santa-fe-reds/"
       ],
-      "queued_at": "2026-08-02T14:37:06Z"
+      "queued_at": "2026-08-02T18:07:14Z"
     },
     {
       "venue_id": "santa-fe-reds",
@@ -25,7 +25,7 @@
         "overture:places:overture-santa-fe-reds-fixture",
         "https://mthappyhour.com/locations/santa-fe-reds/"
       ],
-      "queued_at": "2026-08-02T14:37:06Z"
+      "queued_at": "2026-08-02T18:07:14Z"
     },
     {
       "venue_id": "santa-fe-reds",
@@ -38,7 +38,7 @@
         "overture:places:overture-santa-fe-reds-fixture",
         "https://mthappyhour.com/locations/santa-fe-reds/"
       ],
-      "queued_at": "2026-08-02T14:37:06Z"
+      "queued_at": "2026-08-02T18:07:14Z"
     },
     {
       "venue_id": "santa-fe-reds",
@@ -51,7 +51,7 @@
         "overture:places:overture-santa-fe-reds-fixture",
         "https://mthappyhour.com/locations/santa-fe-reds/"
       ],
-      "queued_at": "2026-08-02T14:37:06Z"
+      "queued_at": "2026-08-02T18:07:14Z"
     }
   ]
 }
