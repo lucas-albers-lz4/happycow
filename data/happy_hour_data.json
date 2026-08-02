@@ -1601,7 +1601,7 @@
         }
       ],
       "business_hours": "Mon-Sun 10:30am-2:00am",
-      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells — mthappyhour used (more detailed). Source: mthappyhour.com"
+      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells — that post predates 2021 (IG shortcode era), mthappyhour pricing used as current. Source: mthappyhour.com"
     },
     {
       "id": "sidewall-pizza-company",
@@ -1688,7 +1688,7 @@
         "The Flat Tire Saloon",
         "The Spoke Bender"
       ],
-      "address": "120 Big Pine Dr, Gallatin Gateway",
+      "address": "120 Big Pine Dr, Big Sky, MT 59716 (Meadow Village)",
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%20Bar%20%26%20Grill%20Gallatin%20Gateway%20MT",
@@ -1698,7 +1698,7 @@
       "mood": "bozeman-local",
       "specials": [],
       "business_hours": "Mon-Thu 11am-2am, Fri-Sun 8am-2am",
-      "notes": "Venue is in Big Sky, MT (not Bozeman) — verify placement; brokenspokebigsky.com mentions a happy hour (details not published)"
+      "notes": "Venue is in Big Sky (Meadow Village), NOT Bozeman/Gallatin Gateway — outside the app’s 4-city coverage. brokenspokebigsky.com mentions a happy hour (details not published). Decide: keep as out-of-area or remove."
     },
     {
       "id": "buffalo-wild-wings",
@@ -1921,39 +1921,6 @@
       ],
       "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
       "notes": "Per thehappyhourfinder.com — official location page does not list HH deals statically."
-    },
-    {
-      "id": "open-range",
-      "name": "Open Range",
-      "nickname": "The Unfenced Hour",
-      "nickname_alts": [
-        "No Fences, No Cover",
-        "The Open Tab Range"
-      ],
-      "address": "241 E Main St, Bozeman",
-      "phone": "",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Open%20Range%20Bozeman%20MT",
-      "hours": "Mon-Sat 5-6pm",
-      "tags": [],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [
-        {
-          "item": "Espresso martinis",
-          "price": 0.0,
-          "category": "drinks",
-          "description": "Espresso martinis poured at the bar during happy hour"
-        },
-        {
-          "item": "Small plates",
-          "price": 0.0,
-          "category": "food",
-          "description": "Montana-inspired nibbles paired with drink deals"
-        }
-      ],
-      "business_hours": "Mon-Sun 5pm-2am",
-      "notes": "Venue Facebook: Mon-Sat 5-6pm at the bar. Bozeman Magazine (Aug 2025) lists 4-6pm — discrepancy flagged for review"
     },
     {
       "id": "outlaw-brewing",
