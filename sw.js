@@ -1,11 +1,18 @@
 // Happy Cow service worker — offline app shell, fresh data.
 // Data (happy_hour_data.json) is network-first so happy hour deals never
-// go stale; the shell (index/app.js/css) is cache-first for instant loads.
-const CACHE = 'happycow-v1';
+// go stale; the shell (index/js/css) uses network-first so deploys take
+// effect without a hard-reload.
+//
+// CACHE-bump-on-shell-change: increment CACHE (e.g. happycow-v2 → happycow-v3)
+// whenever you add, remove, or rename a file in SHELL. The activate handler
+// deletes all old caches so users immediately get the new shell.
+const CACHE = 'happycow-v2';
 const SHELL = [
   './',
   './index.html',
   './assets/css/style.css',
+  './assets/js/hours.js',
+  './assets/js/format.js',
   './assets/js/app.js',
 ];
 
@@ -25,9 +32,10 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
+  if (e.request.method !== 'GET') return;
 
-  // Network-first for data — deals must stay current; cached copy as offline fallback.
-  if (url.pathname.includes('happy_hour_data.json')) {
+  // Network-first for JSON data — deals must stay current; cached copy as offline fallback.
+  if (url.pathname.endsWith('.json')) {
     e.respondWith(
       fetch(e.request)
         .then((res) => {
@@ -40,15 +48,15 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Cache-first for everything else (only GET).
-  if (e.request.method !== 'GET') return;
+  // Network-first for navigation (HTML) and shell assets (JS/CSS) so deploys
+  // take effect without a hard-reload. Falls back to cache when offline.
   e.respondWith(
-    caches.match(e.request).then(
-      (hit) => hit || fetch(e.request).then((res) => {
+    fetch(e.request)
+      .then((res) => {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(e.request, copy));
         return res;
       })
-    )
+      .catch(() => caches.match(e.request))
   );
 });

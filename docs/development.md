@@ -120,6 +120,27 @@ match.)
    and re-run the gates). A post-merge check done on the feature branch is not a
    check of main.
 
+## Service worker / PWA cache management
+
+`sw.js` uses **network-first** for all assets (HTML, JS, CSS, JSON) so a fresh
+deploy takes effect on the next page load without requiring a hard-reload. An
+offline cached copy is served only when the network is unavailable.
+
+### CACHE-bump-on-shell-change convention
+
+The `CACHE` constant in `sw.js` (currently `happycow-v2`) must be incremented
+whenever the `SHELL` asset list changes — i.e. when you add, remove, or rename
+a file that is precached at install time. The `activate` handler deletes every
+cache whose name does not match `CACHE`, so bumping the version guarantees all
+clients pick up the new shell immediately after the SW activates.
+
+**When to bump:**
+- Add or remove a JS/CSS file from `SHELL` in `sw.js`
+- Rename an existing shell asset
+
+**How:** change `happycow-v2` → `happycow-v3` (or next sequential number) in
+`sw.js` and include the change in the same commit as the asset list update.
+
 ## Troubleshooting
 
 | Symptom | Cause / fix |
