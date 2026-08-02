@@ -1,6 +1,6 @@
 # Architecture Refactor Plan — Non-Fragile Scraping + Calculations
 
-Issue: [#30](https://github.com/lucas-albers-lz4/happycow/issues/30) · Status: **Phase 1 DONE (2026-08-02)** · Date: 2026-08-02
+Issue: [#30](https://github.com/lucas-albers-lz4/happycow/issues/30) · Status: **Phase 2 DONE (2026-08-02)** · Date: 2026-08-02
 
 Priorities are ordered by **user-facing risk**, not size. Every phase ends with the repo in a working state (shippable increments, not a big-bang rewrite).
 

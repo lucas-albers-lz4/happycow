@@ -31,6 +31,8 @@ import time
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
+from common import is_aggregator
+
 import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,17 +43,7 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) HappyCowDiscovery/1.0"
 TIMEOUT = 6.0
 
 # Hosts that are directories/aggregators, not the venue's own site.
-AGGREGATOR_HOSTS = {
-    "mthappyhour.com",
-    "bozemanmagazine.com",
-    "visit-bozeman.com",
-    "menupix.com",
-    "sellout.io",
-    "google.com",
-    "maps.google.com",
-    "yelp.com",
-    "facebook.com",
-}
+# Single source of truth: scripts/common.py (Phase 2, issue #30).
 
 # Candidate subpaths to probe on a venue's own site.
 HH_PATHS = [
@@ -83,8 +75,7 @@ def own_site_urls(venue: dict) -> list[str]:
     """Venue-owned website URLs from config scrape_urls / data website field."""
     urls: list[str] = []
     for u in venue.get("scrape_urls") or []:
-        host = urlsplit(u).hostname or ""
-        if host and not any(host == a or host.endswith("." + a) for a in AGGREGATOR_HOSTS):
+        if not is_aggregator(u):
             urls.append(u.rstrip("/"))
     return urls
 
