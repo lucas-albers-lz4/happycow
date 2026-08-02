@@ -150,33 +150,36 @@ jobs:
           git push -u origin "$BRANCH"
 
           REPORT=$(python scripts/check_data_regression.py --allow-regression 2>&1 || true)
+          # Write PR body to a file — an inline heredoc at column 0 breaks the
+          # YAML `run: |` scalar and GitHub rejects the whole workflow (0 jobs).
+          {
+            echo "## Automated scrape PR"
+            echo
+            echo "The scheduled scrape produced a large data delta or a regression-check failure."
+            echo "This PR requires a human review before the data is committed to \`main\`."
+            echo
+            echo "**Baseline note:** this PR was opened because the change count exceeded the"
+            echo "threshold (default 5 venues) or a hard-fail condition was detected."
+            echo "The *next* scheduled run still diffs against HEAD on \`main\` — unmerged"
+            echo "scrape PRs never poison the subsequent baseline."
+            echo
+            echo "## Regression report"
+            echo
+            echo '```'
+            echo "$REPORT"
+            echo '```'
+            echo
+            echo "## How to merge"
+            echo
+            echo "Review the diff, then merge this PR. If the changes are expected (bulk LLM"
+            echo "refresh, discovery spike), this is the intended human-review gate."
+            echo
+            echo "If the changes are clearly bad (LLM hallucination, aggregator outage), close"
+            echo "this PR without merging and investigate the scraper."
+          } > /tmp/scrape-pr-body.md
+
           gh pr create \
             --title "scrape: data delta $(date -u +%Y-%m-%d) — review before merge" \
-            --body "$(cat <<PREOF
-## Automated scrape PR
-
-The scheduled scrape produced a large data delta or a regression-check failure.
-This PR requires a human review before the data is committed to \`main\`.
-
-**Baseline note:** this PR was opened because the change count exceeded the
-threshold (default 5 venues) or a hard-fail condition was detected.
-The *next* scheduled run still diffs against HEAD on \`main\` — unmerged
-scrape PRs never poison the subsequent baseline.
-
-## Regression report
-
-\`\`\`
-$REPORT
-\`\`\`
-
-## How to merge
-
-Review the diff, then merge this PR. If the changes are expected (bulk LLM
-refresh, discovery spike), this is the intended human-review gate.
-
-If the changes are clearly bad (LLM hallucination, aggregator outage), close
-this PR without merging and investigate the scraper.
-PREOF
-)" \
+            --body-file /tmp/scrape-pr-body.md \
             --base main \
             --head "$BRANCH"
