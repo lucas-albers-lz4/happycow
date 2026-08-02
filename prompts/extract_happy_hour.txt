@@ -12,7 +12,7 @@ PAGE TEXT:
 Return ONLY valid JSON (no markdown fences) matching this schema:
 {
   "status": "ok" | "not_found" | "unclear",
-  "hours": "string — primary daytime happy hour window only",
+  "hours": "string — happy hour window(s) in canonical grammar",
   "business_hours": "string — the business's regular open/close hours",
   "specials": [
     {
@@ -22,20 +22,24 @@ Return ONLY valid JSON (no markdown fences) matching this schema:
       "description": "string"
     }
   ],
-  "notes": "optional short note about secondary windows or caveats"
+  "notes": "optional short note about caveats (not secondary windows)"
 }
 
 Rules:
 1. Invent nothing. Only extract what the page states about happy hour.
-2. hours format MUST be one of:
+2. hours format MUST use the canonical grammar the site parser accepts. Examples:
    - "Mon-Fri 4-6pm"
    - "Mon-Sat 3-7pm"
    - "Thu-Sat 4-6pm"
    - "Sun-Thu 3-6pm"
    - "Daily 4-6pm"
-   Use short weekday names (Mon Tue Wed Thu Fri Sat Sun). No spaces around the hyphen in day ranges. Times like 4-6pm (lowercase am/pm).
+   - "Daily 3-5pm & 8-9pm"              (same day range, multiple windows — join with &)
+   - "Daily 3-6pm, Fri-Sat 10pm-12am"    (secondary window with its own days — join with comma)
+   - "Mon-Fri 3-5pm, Sun all day"        (all-day terminal)
+   - "Mon 3-close"                       (ends at business close; needs business_hours when known)
+   Use short weekday names (Mon Tue Wed Thu Fri Sat Sun). No spaces around the hyphen in day ranges. Times like 4-6pm (lowercase am/pm). Minute times OK (2:30-4pm). Put ALL happy-hour windows in hours — do not park secondary windows in notes.
 3. business_hours format: same weekday style, e.g. "Daily 11am-2am" or "Mon-Thu 11am-12am, Fri-Sat 11am-2am, Sun 11am-12am". Only include if the page clearly states the venue's open/close hours; otherwise leave "".
-4. If the venue has multiple happy hour windows, put the PRIMARY daytime window in hours, and mention the other in notes.
+4. notes is for caveats only (e.g. "excluding holidays", "kitchen only") — not for extra time windows.
 5. price must be a number (use 0 for free). If the page says "$1 off" or "half off" without a base price, skip that special or describe it with price 0 and put the discount wording in description.
 6. If no happy hour is found, return status "not_found", hours "", specials [].
 7. Prefer concrete priced items over vague "drink specials".
