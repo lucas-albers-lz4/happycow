@@ -105,7 +105,7 @@
       <div class="horoscope-card" id="cow-modal-prophecy">"Prophecy"</div>
       <div style="background:#fff0e0;border:1px solid var(--red);border-radius:var(--radius-sm);padding:8px 12px;margin:8px 0;font-size:0.8rem;font-weight:600;color:var(--red);display:none;" id="cow-modal-impostor"></div>
       <div style="margin:8px 0;font-size:0.85rem;" id="cow-modal-status">◎ Not yet collected</div>
-      <button style="padding:10px 24px;border:none;border-radius:var(--radius);background:var(--cow-spot-2);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;" id="cow-modal-collect">Collect this cow</button>
+      <button class="btn-primary" style="padding:10px 24px;" id="cow-modal-collect">Collect this cow</button>
     </div>
   </div>
 
@@ -119,7 +119,7 @@
       <div id="cowq-options" style="display:flex;flex-direction:column;gap:8px;"></div>
       <button type="button" id="cowq-skip" style="display:none;width:100%;margin-top:8px;padding:10px;border:2px dashed var(--gold);border-radius:var(--radius-sm);background:var(--card);color:var(--text);font:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;">⏭️ Skip this one?</button>
       <div class="tip-result" id="cowq-result" style="margin-top:12px;"></div>
-      <button type="button" id="cowq-next" style="width:100%;padding:12px;border:none;border-radius:var(--radius);background:var(--cow-spot-2);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;margin-top:12px;">Another question</button>
+      <button type="button" id="cowq-next" class="btn-primary btn-primary-full" style="margin-top:12px;">Another question</button>
     </div>
   </div>
 
@@ -147,8 +147,8 @@
         reproducible via a single <tt>curl</tt> command and 1.6 seconds of <tt>ffmpeg</tt>.
       </div>
 
-      <div style="margin:10px 0;"><b>1. Introduction</b></div>
-      <div style="margin-left:4px;">
+      <div class="paper-section"><b>1. Introduction</b></div>
+      <div class="paper-body">
         Cows are abundant in Montana (population of <i>B. taurus</i> ≈ 2.9M; human population ≈ 1.1M
         [1]). The application in question, Happy Cow, is a single-page static site served from GitHub
         Pages at zero marginal cost, featuring 30 procedurally-rotated cow illustrations and a
@@ -158,8 +158,8 @@
         strictest known acceptance criterion in the literature.
       </div>
 
-      <div style="margin:10px 0;"><b>2. The Failure of Moo₀</b></div>
-      <div style="margin-left:4px;">
+      <div class="paper-section"><b>2. The Failure of Moo₀</b></div>
+      <div class="paper-body">
         The incumbent asset, <i>Moo₀</i> (15,091 bytes, 1.15 s, MPEG ADTS layer III v2, 96 kbps,
         22.05 kHz mono), was subjected to spectral analysis. Its dominant peak was found at 189.3 Hz
         (Table 1, row 1) with a spectral flatness suggesting synthetic origin. Critically, a
@@ -169,8 +169,8 @@
         We conclude that <i>Moo₀</i> was a tone with cow-adjacent pitch but zero cow-adjacent soul.
       </div>
 
-      <div style="margin:10px 0;"><b>3. Methodology</b></div>
-      <div style="margin-left:4px;">
+      <div class="paper-section"><b>3. Methodology</b></div>
+      <div class="paper-body">
         <div><b>3.1 Candidate corpus.</b> Candidate vocalizations were located via the Wikimedia Commons
         API (namespaces <tt>ns=6</tt>, search term "cow moo filetype:audio") and a CC0 sound bank.
         Three candidates of interest were retained: <i>Single Cow Moo</i> (CC BY-SA 4.0, 53,861 B),
@@ -190,22 +190,22 @@
         low-passed at 900 Hz, gained ×1.6, and fade-out applied over the final 300 ms.</div>
       </div>
 
-      <div style="margin:10px 0;"><b>Table 1.</b> Candidate vocalizations.</div>
-      <table style="width:100%;border-collapse:collapse;font-size:0.72rem;margin-bottom:8px;">
+      <div class="paper-section"><b>Table 1.</b> Candidate vocalizations.</div>
+      <table class="paper-table">
         <tr style="background:#f5f0e8;">
-          <th style="padding:4px;border:1px solid #e0d5c5;">Asset</th>
-          <th style="padding:4px;border:1px solid #e0d5c5;">Fundamental</th>
-          <th style="padding:4px;border:1px solid #e0d5c5;">Flatness</th>
-          <th style="padding:4px;border:1px solid #e0d5c5;">Verdict</th>
+          <th>Asset</th>
+          <th>Fundamental</th>
+          <th>Flatness</th>
+          <th>Verdict</th>
         </tr>
-        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Moo₀ (incumbent)</td><td style="padding:4px;border:1px solid #e0d5c5;">189 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">n/a</td><td style="padding:4px;border:1px solid #e0d5c5;">✗ "not a real cow"</td></tr>
-        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Single Cow Moo</td><td style="padding:4px;border:1px solid #e0d5c5;">583 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">—</td><td style="padding:4px;border:1px solid #e0d5c5;">✗ calf-like, rejected</td></tr>
-        <tr><td style="padding:4px;border:1px solid #e0d5c5;">Mudchute cow 1</td><td style="padding:4px;border:1px solid #e0d5c5;">265 Hz</td><td style="padding:4px;border:1px solid #e0d5c5;">—</td><td style="padding:4px;border:1px solid #e0d5c5;">△ viable, attribution required</td></tr>
-        <tr><td style="padding:4px;border:1px solid #e0d5c5;"><b>BSB cow moos (deployed)</b></td><td style="padding:4px;border:1px solid #e0d5c5;"><b>270 Hz</b></td><td style="padding:4px;border:1px solid #e0d5c5;"><b>0.0114</b></td><td style="padding:4px;border:1px solid #e0d5c5;">✓ <b>real cow</b></td></tr>
+        <tr><td>Moo₀ (incumbent)</td><td>189 Hz</td><td>n/a</td><td>✗ "not a real cow"</td></tr>
+        <tr><td>Single Cow Moo</td><td>583 Hz</td><td>—</td><td>✗ calf-like, rejected</td></tr>
+        <tr><td>Mudchute cow 1</td><td>265 Hz</td><td>—</td><td>△ viable, attribution required</td></tr>
+        <tr><td><b>BSB cow moos (deployed)</b></td><td><b>270 Hz</b></td><td><b>0.0114</b></td><td>✓ <b>real cow</b></td></tr>
       </table>
 
-      <div style="margin:10px 0;"><b>4. Results and Discussion</b></div>
-      <div style="margin-left:4px;">
+      <div class="paper-section"><b>4. Results and Discussion</b></div>
+      <div class="paper-body">
         The deployed asset <i>Moo₁</i> (37,021 bytes, 1.80 s, 160 kbps) exhibits a fundamental of
         270 Hz with strong first harmonic, spectral flatness 0.0114, mean level −9.1 dB, and peak
         0.0 dB. At the time of writing, it has been confirmed by the stakeholder as "sounding like a
@@ -215,8 +215,8 @@
         data augmentation that, to our knowledge, has not been previously reported for bovids.
       </div>
 
-      <div style="margin:10px 0;"><b>5. Conclusion</b></div>
-      <div style="margin-left:4px;">
+      <div class="paper-section"><b>5. Conclusion</b></div>
+      <div class="paper-body">
         We replaced a 189 Hz synthetic tone with a 270 Hz genuine bellow at a total cost of zero
         dollars and one (1) deeply satisfying <tt>ffmpeg</tt> pipeline. This work is of no use to
         anyone building an actual happy hour directory, which is exactly why it is documented here
@@ -224,8 +224,8 @@
         contribute.
       </div>
 
-      <div style="margin:10px 0;"><b>Acknowledgments</b></div>
-      <div style="margin-left:4px;font-size:0.75rem;color:var(--text-dim);">
+      <div class="paper-section"><b>Acknowledgments</b></div>
+      <div class="paper-body" style="font-size:0.75rem;color:var(--text-dim);">
         The Collective thanks BigSoundBank for releasing the source recording under CC0 (public domain
         equivalent), Wikimedia Commons contributors for their CC BY-SA candidates, the Department of
         Applied Mooing for spectral analysis, and one (1) patient Montanan whose ear — honed by years
@@ -233,8 +233,8 @@
         cows were harmed; several were listened to at length.
       </div>
 
-      <div style="margin:10px 0;"><b>References</b></div>
-      <div style="margin-left:4px;font-size:0.72rem;color:var(--text-dim);">
+      <div class="paper-section"><b>References</b></div>
+      <div class="paper-body" style="font-size:0.72rem;color:var(--text-dim);">
         [1] Montana Dept. of Livestock, <i>Bovine population estimates</i>, 2025.<br>
         [2] BigSoundBank, "Cow Moos," CC0. <a href="https://bigsoundbank.com/cow-moos-s0546.html" target="_blank" rel="noopener" style="color:var(--cow-spot-2);">https://bigsoundbank.com/cow-moos-s0546.html</a><br>
         [3] Wikimedia Commons, "File:Single Cow Moo.ogg," CC BY-SA 4.0.<br>
@@ -277,7 +277,7 @@
       <div class="modal-title">❓ What Cow Are You Tonight?</div>
       <form id="quiz-form">
         <div id="quiz-questions"></div>
-        <button type="submit" style="width:100%;padding:12px;border:none;border-radius:var(--radius);background:var(--cow-spot-2);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;margin-top:8px;">Reveal My Cow</button>
+        <button type="submit" class="btn-primary btn-primary-full">Reveal My Cow</button>
       </form>
       <div class="tip-result" id="quiz-result" style="margin-top:8px;"></div>
     </div>

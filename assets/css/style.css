@@ -592,15 +592,18 @@ body.dark {
   --gold: #c48450;
   --red: #d46a6a;
   --shadow: 0 2px 12px rgba(0,0,0,0.4);
+  /* dark-specific surface tokens */
+  --dark-surface: #2a2218;
+  --dark-border: #3a3228;
 }
-body.dark .tag { background: #2a2218; }
-body.dark #cowq-options button { background: #2a2218; border-color: #3a3228; }
-body.dark .tip-result { background: #2a2218; }
-body.dark .special-row { border-color: #2a2218; }
-body.dark .status-pill { border-color: #3a3228; }
-body.dark .controls input, body.dark .controls select { border-color: #3a3228; }
-body.dark .feature-btn { border-color: #3a3228; }
-body.dark .feature-btn:active { background: #2a2218; }
+body.dark .tag { background: var(--dark-surface); }
+body.dark #cowq-options button { background: var(--dark-surface); border-color: var(--dark-border); }
+body.dark .tip-result { background: var(--dark-surface); }
+body.dark .special-row { border-color: var(--dark-surface); }
+body.dark .status-pill { border-color: var(--dark-border); }
+body.dark .controls input, body.dark .controls select { border-color: var(--dark-border); }
+body.dark .feature-btn { border-color: var(--dark-border); }
+body.dark .feature-btn:active { background: var(--dark-surface); }
 body.dark .deal-day-title { opacity: 0.7; }
 body.dark .hh-status.live { background: var(--green); color: #fff; }
 body.dark .hh-status.soon { background: var(--gold); color: #fff; }
@@ -656,5 +659,31 @@ body.dark .sad-hour { background: #1a0a0a; }
   border-radius: 8px;
   background: #f0e8d8;
 }
-body.dark .rpg-stat { background: #2a2218; }
+body.dark .rpg-stat { background: var(--dark-surface); }
+
+/* ─── Promoted classes (issue #55) ─── */
+
+/* Primary action button (modal CTAs) */
+.btn-primary {
+  border: none;
+  border-radius: var(--radius);
+  background: var(--cow-spot-2);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-primary-full {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+/* arXiv paper modal typography */
+.paper-section { margin: 10px 0; }
+.paper-body { margin-left: 4px; }
+.paper-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; margin-bottom: 8px; }
+.paper-table td,
+.paper-table th { padding: 4px; border: 1px solid #e0d5c5; }
 
