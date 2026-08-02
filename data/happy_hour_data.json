@@ -1516,12 +1516,62 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon-Fri 3-6pm",
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am"
+      "specials": [
+        {
+          "item": "Strawberry margarita",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "$6 Strawberry Margarita cocktail"
+        },
+        {
+          "item": "House draft beer",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "$4 tall draft — Wild Herd Kölsch by Goose Island"
+        },
+        {
+          "item": "Bud Light tall draft",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5 tall draft"
+        },
+        {
+          "item": "Voodoo Ranger IPA tall draft",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "$6 tall draft"
+        },
+        {
+          "item": "Chips & salsa",
+          "price": 3.0,
+          "category": "food",
+          "description": "$3"
+        },
+        {
+          "item": "Tater tots",
+          "price": 3.0,
+          "category": "food",
+          "description": "$3"
+        },
+        {
+          "item": "Mozzarella sticks",
+          "price": 5.0,
+          "category": "food",
+          "description": "$5"
+        },
+        {
+          "item": "Everything pretzel knots",
+          "price": 6.0,
+          "category": "food",
+          "description": "$6"
+        }
+      ],
+      "business_hours": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am",
+      "notes": "Dine-in only; at participating locations. Source: buffalowildwings.com/happy-hour"
     },
     {
       "id": "copper-whiskey-bar",
@@ -1573,12 +1623,56 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Mon-Fri 4-7pm",
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am"
+      "specials": [
+        {
+          "item": "Domestic bottles & pints",
+          "price": 2.5,
+          "category": "drinks",
+          "description": "$2.50"
+        },
+        {
+          "item": "Microbrew & import pints",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3.00"
+        },
+        {
+          "item": "Imperial draft pints",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "$1.00 off imperial draft pints"
+        },
+        {
+          "item": "Well cocktails",
+          "price": 2.5,
+          "category": "drinks",
+          "description": "$2.50"
+        },
+        {
+          "item": "Call cocktails",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3.00"
+        },
+        {
+          "item": "House wine",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3.00"
+        },
+        {
+          "item": "Food specials",
+          "price": 3.0,
+          "category": "food",
+          "description": "$3.00 food specials"
+        }
+      ],
+      "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
+      "notes": "Per thehappyhourfinder.com — official location page does not list HH deals statically."
     },
     {
       "id": "open-range",

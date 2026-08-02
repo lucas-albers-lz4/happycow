@@ -978,7 +978,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/buffalo-wild-wings/"
+        "https://mthappyhour.com/locations/buffalo-wild-wings/",
+        "https://www.buffalowildwings.com/happy-hour/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
       "tags": [],
@@ -1035,7 +1036,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/old-chicago/"
+        "https://mthappyhour.com/locations/old-chicago/",
+        "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
       "tags": [],
