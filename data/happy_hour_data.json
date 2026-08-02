@@ -36,9 +36,9 @@
         },
         {
           "item": "Well drinks",
-          "price": 3.0,
+          "price": 0.0,
           "category": "drinks",
-          "description": "$3.00 well drinks"
+          "description": "$1.00 off well drinks"
         },
         {
           "item": "Double shot signature cocktails",
