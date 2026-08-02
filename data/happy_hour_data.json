@@ -551,7 +551,7 @@
           "description": "Appetizer specials (price not specified)"
         }
       ],
-      "business_hours": ""
+      "business_hours": "Sun-Thu 4-11pm, Fri-Sat 4pm-Midnight (Kitchen Sun-Thu 4-8pm, Fri-Sat 4-10pm)"
     },
     {
       "id": "dry-hills-distillery",
@@ -680,7 +680,7 @@
           "description": "$1 Off"
         }
       ],
-      "business_hours": ""
+      "business_hours": "Mon Closed, Tue-Sat 10am-6pm, Sun 10am-4pm"
     },
     {
       "id": "la-brasserie",
@@ -825,7 +825,7 @@
           "description": "30% off"
         }
       ],
-      "business_hours": ""
+      "business_hours": "Mon-Fri 11am-10pm, Sat-Sun 10am-10pm"
     },
     {
       "id": "rocking-r",
@@ -923,7 +923,7 @@
           "description": "$1.00 off"
         }
       ],
-      "business_hours": ""
+      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm"
     },
     {
       "id": "the-club",
@@ -1074,7 +1074,7 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": ""
+      "business_hours": "Sun-Thu 11am-2am, Fri-Sat 1pm-2am"
     },
     {
       "id": "the-molly-brown",
@@ -1091,7 +1091,7 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": ""
+      "business_hours": "Daily 11am-2am"
     },
     {
       "id": "the-bay",
@@ -1245,7 +1245,7 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": ""
+      "business_hours": "Tue-Sat 4pm-close"
     },
     {
       "id": "valhalla-meadery",
@@ -1472,7 +1472,7 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": ""
+      "business_hours": "Mon Closed, Tue 4-9pm, Wed-Sun 11am-close"
     }
   ]
 }
