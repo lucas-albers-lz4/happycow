@@ -149,7 +149,8 @@
       "website": "https://www.bitterrootbistro.com",
       "scrape_urls": [
         "https://mthappyhour.com/locations/bitterroot-bistro/",
-        "https://www.bitterrootbistro.com"
+        "https://www.bitterrootbistro.com",
+        "https://www.bitterrootbistro.com/menu"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Bitterroot%20Bistro%20Bozeman%20MT",
       "tags": [
@@ -474,7 +475,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/mountains-walking-brewery/"
+        "https://mthappyhour.com/locations/mountains-walking-brewery/",
+        "https://www.mountainswalking.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
       "tags": [
@@ -646,7 +648,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/the-bay/"
+        "https://mthappyhour.com/locations/the-bay/",
+        "https://www.thebaybarandgrille.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
       "tags": [],
@@ -665,7 +668,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/the-buck/"
+        "https://mthappyhour.com/locations/the-buck/",
+        "https://thebuckbozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Buck%20Bozeman%20MT",
       "tags": [],
@@ -684,7 +688,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/the-bunkhouse-brewery/"
+        "https://mthappyhour.com/locations/the-bunkhouse-brewery/",
+        "https://www.bunkhousebrewery.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
       "tags": [],
@@ -722,7 +727,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/the-cannery/"
+        "https://mthappyhour.com/locations/the-cannery/",
+        "https://thecannerybozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Cannery%20Bozeman%20MT",
       "tags": [],
@@ -742,7 +748,9 @@
       "website": "",
       "scrape_urls": [
         "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station",
-        "http://sellout.io/"
+        "http://sellout.io/",
+        "https://yourfillingstation.com/",
+        "https://yourfillingstation.com/daily-specials/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Filling%20Station%20Bozeman%20MT",
       "tags": [
@@ -786,7 +794,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/hooked-sushi/"
+        "https://mthappyhour.com/locations/hooked-sushi/",
+        "https://www.hookedmt.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Hooked%20Sushi%20Bozeman%20MT",
       "tags": [],
@@ -805,7 +814,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/korner-klub/"
+        "https://mthappyhour.com/locations/korner-klub/",
+        "https://kornerklub.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Korner%20Klub%20Bozeman%20MT",
       "tags": [],
@@ -824,7 +834,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/last-best-place-brewery/"
+        "https://mthappyhour.com/locations/last-best-place-brewery/",
+        "https://www.lbpbrewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
       "tags": [],
@@ -884,7 +895,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/sidewall-pizza-company/"
+        "https://mthappyhour.com/locations/sidewall-pizza-company/",
+        "https://www.sidewallpizzabozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Sidewall%20Pizza%20Company%20Bozeman%20MT",
       "tags": [],
@@ -903,7 +915,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/tanoshii/"
+        "https://mthappyhour.com/locations/tanoshii/",
+        "https://tanoshiimt.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Tanoshii%20Bozeman%20MT",
       "tags": [],
@@ -922,7 +935,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/valhalla-meadery/"
+        "https://mthappyhour.com/locations/valhalla-meadery/",
+        "https://valhallabozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
       "tags": [],
@@ -941,7 +955,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/bar-3-bbq-brewery/"
+        "https://mthappyhour.com/locations/bar-3-bbq-brewery/",
+        "https://bar3bbq.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
       "tags": [],
@@ -960,7 +975,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/broken-spoke-bar-grill/"
+        "https://mthappyhour.com/locations/broken-spoke-bar-grill/",
+        "https://www.brokenspokebigsky.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%20Bar%20%26%20Grill%20Gallatin%20Gateway%20MT",
       "tags": [],
@@ -998,7 +1014,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/copper-whiskey-bar/"
+        "https://mthappyhour.com/locations/copper-whiskey-bar/",
+        "https://coppermontana.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Copper%20Whiskey%20Bar%20Bozeman%20MT",
       "tags": [],
@@ -1017,7 +1034,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/madison-river-brewing-co/"
+        "https://mthappyhour.com/locations/madison-river-brewing-co/",
+        "https://www.madisonriverbrewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
       "tags": [],
@@ -1074,7 +1092,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/outlaw-brewing/"
+        "https://mthappyhour.com/locations/outlaw-brewing/",
+        "https://outlaw-brewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
       "tags": [],
@@ -1093,7 +1112,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/plonk/"
+        "https://mthappyhour.com/locations/plonk/",
+        "https://plonkwine.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Plonk%20Bozeman%20MT",
       "tags": [],
@@ -1131,7 +1151,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/rialto-bar/"
+        "https://mthappyhour.com/locations/rialto-bar/",
+        "https://www.larkbozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Rialto%20Bar%20%E2%80%93%20Burn%20Box%20Bozeman%20MT",
       "tags": [],
@@ -1169,7 +1190,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/seven-sushi/"
+        "https://mthappyhour.com/locations/seven-sushi/",
+        "https://www.7bozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Seven%20Sushi%20Bozeman%20MT",
       "tags": [],
@@ -1188,7 +1210,8 @@
       "phone": "",
       "website": "",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/spectators-bar-and-grill/"
+        "https://mthappyhour.com/locations/spectators-bar-and-grill/",
+        "https://specsbzn.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Spectators%20Bar%20and%20Grill%20Bozeman%20MT",
       "tags": [],
