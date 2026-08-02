@@ -1,0 +1,3255 @@
+{
+  "updated_at": "2026-08-02T12:43:22Z",
+  "venues": {
+    "ale-works": {
+      "business_status": {
+        "venue_id": "ale-works",
+        "field": "business_status",
+        "kind": "verified",
+        "value": "open",
+        "rationale": "primary/open corroboration",
+        "cited_sources": [
+          "overture:places:overture-ale-works-fixture",
+          "https://mthappyhour.com/locations/ale-works/"
+        ],
+        "confidence": 0.95,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "address": {
+        "venue_id": "ale-works",
+        "field": "address",
+        "kind": "unverified",
+        "value": "611 E Main St, Bozeman",
+        "rationale": "agreement weight=0.30",
+        "cited_sources": [
+          "overture:places:overture-ale-works-fixture"
+        ],
+        "confidence": 0.3,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "phone": {
+        "venue_id": "ale-works",
+        "field": "phone",
+        "kind": "unverified",
+        "value": "406-587-7700",
+        "rationale": "agreement weight=0.30",
+        "cited_sources": [
+          "overture:places:overture-ale-works-fixture"
+        ],
+        "confidence": 0.3,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "ale-works",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 4-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/ale-works/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "ale-works",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 4pm-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/ale-works/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "ale-works",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Draft beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off draft beers"
+          },
+          {
+            "item": "Wine by the glass",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off wine by the glass"
+          },
+          {
+            "item": "Well drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off well drinks"
+          },
+          {
+            "item": "Double shot signature cocktails",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6.00 double shot signature cocktails – Hop the tracks – Rosemary Poloma – Cherry wine sour – Rasberrie cosmo – Kaffir gin and tonic"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/ale-works/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "applebees-bozeman": {
+      "business_status": {
+        "venue_id": "applebees-bozeman",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/applebees-bozeman/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "applebees-bozeman",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/applebees-bozeman/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "applebees-bozeman",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11am-11pm, Fri-Sat 11am-12pm, Sun 11am-11pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/applebees-bozeman/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "applebees-bozeman",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Appetizers",
+            "price": 0.0,
+            "category": "food",
+            "description": "Half price"
+          },
+          {
+            "item": "Long Island Ice Teas",
+            "price": 4.0,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "Margaritas",
+            "price": 3.25,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "Domestic Beer",
+            "price": 3.5,
+            "category": "drinks",
+            "description": ""
+          },
+          {
+            "item": "House Wine",
+            "price": 3.5,
+            "category": "drinks",
+            "description": ""
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/applebees-bozeman/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bar-ix": {
+      "business_status": {
+        "venue_id": "bar-ix",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-ix/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bar-ix",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2-7pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-ix/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bar-ix",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 4pm-2am, Sat-Sun 11am-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-ix/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bar-ix",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Two drinks for price of one",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "2-4-1: buy one drink, get one free"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-ix/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bitterroot-bistro": {
+      "business_status": {
+        "venue_id": "bitterroot-bistro",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bitterroot-bistro/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bitterroot-bistro",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2-5pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bitterroot-bistro/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bitterroot-bistro",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 2pm-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bitterroot-bistro/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bitterroot-bistro",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Beef pasty",
+            "price": 15.0,
+            "category": "food",
+            "description": "$15 — two Butte-style pasties, MT Wagyu, served with brown gravy"
+          },
+          {
+            "item": "Bison tartare",
+            "price": 13.0,
+            "category": "food",
+            "description": "$13 — hand-chopped bison on focaccia crostini, cured egg yolk"
+          },
+          {
+            "item": "Hand-cut fries",
+            "price": 7.0,
+            "category": "food",
+            "description": "$7 — with house fry sauce"
+          },
+          {
+            "item": "All draft beer",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5"
+          },
+          {
+            "item": "House wine",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 — house red, white, or sparkling"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bitterroot-bistro/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "blackbird": {
+      "business_status": {
+        "venue_id": "blackbird",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/blackbird/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "blackbird",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 4:30-5:30pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/blackbird/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "blackbird",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 4:30pm-9:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/blackbird/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "blackbird",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Select bottles of wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Half price select bottles of wine"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/blackbird/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bourbon": {
+      "business_status": {
+        "venue_id": "bourbon",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bourbon/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bourbon",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 4-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bourbon/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bourbon",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11:30am-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-9pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bourbon/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bourbon",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Classic American BBQ favorites",
+            "price": 0.0,
+            "category": "food",
+            "description": "Food specials featuring classic American BBQ favorites"
+          },
+          {
+            "item": "Craft whiskey cocktails",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Drink specials featuring craft whiskey cocktails"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bourbon/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bozeman-brewing-company": {
+      "business_status": {
+        "venue_id": "bozeman-brewing-company",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-brewing-company/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bozeman-brewing-company",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Fri 12-8pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-brewing-company/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bozeman-brewing-company",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 2pm-8pm, Fri 12pm-8pm, Sat-Sun 2pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-brewing-company/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bozeman-brewing-company",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "64oz. growler refills",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2 off until 3 pm (exceptions may apply)"
+          },
+          {
+            "item": "Pint of beer",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8 pm)"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-brewing-company/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bozeman-spirits-distillery": {
+      "business_status": {
+        "venue_id": "bozeman-spirits-distillery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bozeman-spirits-distillery",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Fri 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bozeman-spirits-distillery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sat 10am-8pm, Sun 12pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bozeman-spirits-distillery",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Men's drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Mondays: Men’s night, $7 for all mens drinks"
+          },
+          {
+            "item": "Mule",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Tuesdays: Live Music and $7 Mules"
+          },
+          {
+            "item": "Whiskey drink",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Whiskey Wednesdays: $7 for any whiskey drink"
+          },
+          {
+            "item": "Women's drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Thursday: Ladies night all day. $7 for all women’s drinks"
+          },
+          {
+            "item": "All drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Friday: 3pm -6pm happy hour. All drinks are $7"
+          },
+          {
+            "item": "Huckleberry drinks",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "Sunday: All huckleberry drinks are $7"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bozeman-taproom": {
+      "business_status": {
+        "venue_id": "bozeman-taproom",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-taproom/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bozeman-taproom",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 11am-3pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-taproom/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bozeman-taproom",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11:00am-12:00am, Fri 11:00am-1:00am, Sat Sunday, Sun 11:00am-1:00am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-taproom/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bozeman-taproom",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Lunch with 10 oz beer",
+            "price": 10.0,
+            "category": "food",
+            "description": "$8 lunches, add on a 10 oz beer for $2. Options include 1/2 sandwich (Turkey Club or Dagwood) with chips and pickle, 1/4 lb Cheeseburger with chips and pickle, Sausage with chips and pickle, Taco Combo (2 tacos with tortilla chips and salsa), or Soup and Salad Combo."
+          },
+          {
+            "item": "1/2 sandwich lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "Turkey Club or Dagwood with chips and a pickle"
+          },
+          {
+            "item": "1/4 lb Cheeseburger lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "with chips and a pickle"
+          },
+          {
+            "item": "Sausage lunch",
+            "price": 8.0,
+            "category": "food",
+            "description": "with chips and a pickle"
+          },
+          {
+            "item": "Taco Combo",
+            "price": 8.0,
+            "category": "food",
+            "description": "2 tacos with tortilla chips and salsa"
+          },
+          {
+            "item": "Soup and Salad Combo",
+            "price": 8.0,
+            "category": "food",
+            "description": "soup and salad"
+          },
+          {
+            "item": "10 oz beer add-on",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "Add a 10 oz beer to any lunch special"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bozeman-taproom/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bridger-brewing": {
+      "business_status": {
+        "venue_id": "bridger-brewing",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bridger-brewing/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "bridger-brewing",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2-4pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bridger-brewing/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bridger-brewing",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11:30am-9pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bridger-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "bridger-brewing",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off beers"
+          },
+          {
+            "item": "Alaskan True Cod Cakes",
+            "price": 0.0,
+            "category": "food",
+            "description": "Monday special"
+          },
+          {
+            "item": "Craft Beer Sliders",
+            "price": 0.0,
+            "category": "food",
+            "description": "Tuesday special"
+          },
+          {
+            "item": "Prince Edward Island Mussels",
+            "price": 0.0,
+            "category": "food",
+            "description": "Wednesday special; 5:30pm Music & Mussels"
+          },
+          {
+            "item": "Pigs in Zen",
+            "price": 0.0,
+            "category": "food",
+            "description": "Thursday special"
+          },
+          {
+            "item": "Growler Fills",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$3 off growler fills 11:30am until 5 p.m. on Thursdays"
+          },
+          {
+            "item": "Bobcat Brats",
+            "price": 0.0,
+            "category": "food",
+            "description": "Saturday special"
+          },
+          {
+            "item": "Nana Rose’s Meatball Dinner",
+            "price": 0.0,
+            "category": "food",
+            "description": "Sunday special"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bridger-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "brigade": {
+      "business_status": {
+        "venue_id": "brigade",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/brigade/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "brigade",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/brigade/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "brigade",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 3pm-10pm, Sat-Sun 9am-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/brigade/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "brigade",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Martinis (vodka, gin, cosmo, infused berry)",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Martinis (vodka, gin, cosmo, infused berry)"
+          },
+          {
+            "item": "Draft Beers",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Draft Beers"
+          },
+          {
+            "item": "Oysters (chef's choice)",
+            "price": 3.0,
+            "category": "food",
+            "description": "$3 Oysters (chef's choice)"
+          },
+          {
+            "item": "Fresh Baguette (chef's choice of daily butter)",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Fresh Baguette"
+          },
+          {
+            "item": "Warm Marinated Olives",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Warm Marinated Olives"
+          },
+          {
+            "item": "Onion Rings",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Onion Rings"
+          },
+          {
+            "item": "Truffle Fries",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Truffle Fries"
+          },
+          {
+            "item": "French Onion Soup",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on French Onion Soup"
+          },
+          {
+            "item": "Edamame Hummus",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Edamame Hummus"
+          },
+          {
+            "item": "Shrimp Cocktail",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Shrimp Cocktail"
+          },
+          {
+            "item": "Charcuterie",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Charcuterie"
+          },
+          {
+            "item": "Brigade Burger",
+            "price": 0.0,
+            "category": "food",
+            "description": "Happy Hour Prices on Brigade Burger"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/brigade/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "daves-sushi": {
+      "business_status": {
+        "venue_id": "daves-sushi",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/daves-sushi/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "daves-sushi",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon 3-close",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/daves-sushi/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "daves-sushi",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/daves-sushi/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "daves-sushi",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Beer",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off"
+          },
+          {
+            "item": "Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off"
+          },
+          {
+            "item": "Sake",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/daves-sushi/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "devils-toboggan": {
+      "business_status": {
+        "venue_id": "devils-toboggan",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/devils-toboggan/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "devils-toboggan",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 4-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/devils-toboggan/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "devils-toboggan",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Sun-Thu 4-11pm, Fri-Sat 4pm-Midnight (Kitchen Sun-Thu 4-8pm, Fri-Sat 4-10pm)",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/devils-toboggan/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "devils-toboggan",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Beers",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00 - $4.00 beers"
+          },
+          {
+            "item": "House wines",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5.00 house wines"
+          },
+          {
+            "item": "Single well drinks",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4.00 single well drinks"
+          },
+          {
+            "item": "Appetizer specials",
+            "price": 0.0,
+            "category": "food",
+            "description": "Appetizer specials (price not specified)"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/devils-toboggan/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "dry-hills-distillery": {
+      "business_status": {
+        "venue_id": "dry-hills-distillery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/dry-hills-distillery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "dry-hills-distillery",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Tue 4-8pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/dry-hills-distillery/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "dry-hills-distillery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue-Sun 12pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/dry-hills-distillery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "dry-hills-distillery",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "All Cocktails",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off all cocktails, plus free pool"
+          },
+          {
+            "item": "Whiskey Cocktails",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 whiskey cocktails all day"
+          },
+          {
+            "item": "All Cocktails (Ladies Night)",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off all cocktails"
+          },
+          {
+            "item": "Drink (Date Night)",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Buy one drink, get one free with purchase of locally sourced meat & cheese board from 4-8pm"
+          },
+          {
+            "item": "Moscow Mule",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Any mules just $5 all day"
+          },
+          {
+            "item": "Bloody Mary or Caesar",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off a Bloody Mary or a Caesar"
+          },
+          {
+            "item": "Screwdriver",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 Screwdrivers all day"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/dry-hills-distillery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "est-1864-noir-bar-restaurant": {
+      "business_status": {
+        "venue_id": "est-1864-noir-bar-restaurant",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "est-1864-noir-bar-restaurant",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Thu-Sat 4-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "est-1864-noir-bar-restaurant",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Wed 4pm-10pm, Thu-Sat 4pm-1:30am, Sun 4pm-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "est-1864-noir-bar-restaurant",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Cocktails",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Late-night happy hour: $5 cocktails"
+          },
+          {
+            "item": "Wine",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "Late-night happy hour: $3 wine"
+          },
+          {
+            "item": "Beers",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "Late-night happy hour: $2 beers"
+          },
+          {
+            "item": "Late-night bites",
+            "price": 0.0,
+            "category": "food",
+            "description": "Plus late-night bites (price not specified)"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/est-1864-noir-bar-restaurant/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "finks-deli": {
+      "business_status": {
+        "venue_id": "finks-deli",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/finks-deli/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "finks-deli",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2-4pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/finks-deli/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "finks-deli",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue-Sat 10am-6pm, Sun 10am-4pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/finks-deli/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "finks-deli",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Beer",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 Off"
+          },
+          {
+            "item": "Canned Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 Off"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/finks-deli/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "la-brasserie": {
+      "business_status": {
+        "venue_id": "la-brasserie",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/la-brasserie/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "la-brasserie",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 4-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/la-brasserie/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "la-brasserie",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun Closed",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/la-brasserie/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "la-brasserie",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Select wines",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6 glasses of wine"
+          },
+          {
+            "item": "Beer",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 beer"
+          },
+          {
+            "item": "Cocktails",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 cocktails"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/la-brasserie/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "map-brewing": {
+      "business_status": {
+        "venue_id": "map-brewing",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/map-brewing/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "map-brewing",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 2-4pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/map-brewing/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "map-brewing",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 12pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/map-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "map-brewing",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Pints",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off pints"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/map-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "mountains-walking-brewery": {
+      "business_status": {
+        "venue_id": "mountains-walking-brewery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/mountains-walking-brewery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "mountains-walking-brewery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11:30am-8:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/mountains-walking-brewery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "revelry": {
+      "business_status": {
+        "venue_id": "revelry",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/revelry/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "revelry",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2:30-4pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/revelry/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "revelry",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 11am-10pm, Sat-Sun 10am-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/revelry/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "revelry",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Rainier",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Modelo",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "MAP IPA",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Meadowlark Ole Gus Scotch Rye",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Beer"
+          },
+          {
+            "item": "Bubbles",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "White",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Red",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Rose",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "Wine"
+          },
+          {
+            "item": "Bottles",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "30% off"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/revelry/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "rocking-r": {
+      "business_status": {
+        "venue_id": "rocking-r",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rocking-r/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "rocking-r",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 4-7pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rocking-r/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "rocking-r",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11am-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rocking-r/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "rocking-r",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Drafts",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "Select $4 drafts"
+          },
+          {
+            "item": "Mules + Martinis",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 mules and martinis"
+          },
+          {
+            "item": "Wine + Handcrafted Cocktails",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7 wine and handcrafted cocktails"
+          },
+          {
+            "item": "Boozy Milkshakes",
+            "price": 10.0,
+            "category": "drinks",
+            "description": "$10 boozy milkshakes"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rocking-r/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "shine-beer-sanctuary": {
+      "business_status": {
+        "venue_id": "shine-beer-sanctuary",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/shine-beer-sanctuary/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "shine-beer-sanctuary",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 3-5pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/shine-beer-sanctuary/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "shine-beer-sanctuary",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11:00am-9:00pm, Fri-Sat 11:00am-10:00pm, Sun 11:00am-9:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/shine-beer-sanctuary/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-bacchus-pub": {
+      "business_status": {
+        "venue_id": "the-bacchus-pub",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bacchus-pub/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "the-bacchus-pub",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 2-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bacchus-pub/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-bacchus-pub",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bacchus-pub/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "the-bacchus-pub",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Well Drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2.00 off"
+          },
+          {
+            "item": "Wine",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$2.00 off"
+          },
+          {
+            "item": "Draft Beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off"
+          },
+          {
+            "item": "House-Made Chips",
+            "price": 0.0,
+            "category": "food",
+            "description": "$1.00 off"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bacchus-pub/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-club": {
+      "business_status": {
+        "venue_id": "the-club",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-club/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "the-club",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 4-7pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-club/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-club",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 6am-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-club/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "the-club",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Draft beer",
+            "price": 1.0,
+            "category": "drinks",
+            "description": "$1 off"
+          },
+          {
+            "item": "Well drink",
+            "price": 1.0,
+            "category": "drinks",
+            "description": "$1 off"
+          },
+          {
+            "item": "Glass of wine",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off"
+          },
+          {
+            "item": "2 for 1 drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Tuesday/Thursday: 2 for 1 drinks"
+          },
+          {
+            "item": "BBQ ribs and mash potatoes",
+            "price": 6.0,
+            "category": "food",
+            "description": "$6 for 2 BBQ ribs and mash potatoes (Tuesday/Thursday)"
+          },
+          {
+            "item": "Strawberry goat cheese crostinis",
+            "price": 6.0,
+            "category": "food",
+            "description": "$6 strawberry goat cheese crostinis (Tuesday/Thursday)"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-club/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "urban-kitchen": {
+      "business_status": {
+        "venue_id": "urban-kitchen",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/urban-kitchen/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "urban-kitchen",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/urban-kitchen/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "urban-kitchen",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11am-9pm, Fri-Sat 11am-10pm, Sun 11am-9pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/urban-kitchen/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "urban-kitchen",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "All wines by the glass",
+            "price": 2.0,
+            "category": "drinks",
+            "description": "$2 off ALL glasses of wine"
+          },
+          {
+            "item": "Draft Beer",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 Draft Beer"
+          },
+          {
+            "item": "Deep Eddy Shots",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 Deep Eddy Shots"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/urban-kitchen/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "wild-rye-distilling": {
+      "business_status": {
+        "venue_id": "wild-rye-distilling",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/wild-rye-distilling/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "wild-rye-distilling",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Wed 3pm-8pm, Thu-Sun 12pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/wild-rye-distilling/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "wild-rye-distilling",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Any mule team cocktail",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1 off any mule team cocktail on Monday (Mule Monday)"
+          },
+          {
+            "item": "Drink from special menu",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/wild-rye-distilling/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-bay": {
+      "business_status": {
+        "venue_id": "the-bay",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bay/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "the-bay",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Daily 3-5pm & 8-9pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bay/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-bay",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bay/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "the-bay",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Draft beers",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off all draft beers"
+          },
+          {
+            "item": "Wine pours",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "1/2 off 8oz wine pours"
+          },
+          {
+            "item": "Margarita",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6"
+          },
+          {
+            "item": "Moscow Mule",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6"
+          },
+          {
+            "item": "Aperol Spritz",
+            "price": 7.0,
+            "category": "drinks",
+            "description": "$7"
+          },
+          {
+            "item": "Peach Long Island Tea",
+            "price": 9.0,
+            "category": "drinks",
+            "description": "$9"
+          },
+          {
+            "item": "Reuben Eggrolls",
+            "price": 10.0,
+            "category": "food",
+            "description": "$10"
+          },
+          {
+            "item": "Mint Goat Cheese Stuffed Peppers",
+            "price": 10.0,
+            "category": "food",
+            "description": "$10"
+          },
+          {
+            "item": "Hand-Battered Steak Bites",
+            "price": 10.0,
+            "category": "food",
+            "description": "$10"
+          },
+          {
+            "item": "Fried Bison Short Rib Ravioli",
+            "price": 12.0,
+            "category": "food",
+            "description": "$12 — red sauce"
+          },
+          {
+            "item": "Sirloin Steak Tostadas",
+            "price": 15.0,
+            "category": "food",
+            "description": "$15"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bay/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-buck": {
+      "business_status": {
+        "venue_id": "the-buck",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-buck/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-buck",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-buck/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-bunkhouse-brewery": {
+      "business_status": {
+        "venue_id": "the-bunkhouse-brewery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bunkhouse-brewery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-bunkhouse-brewery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 2pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-bunkhouse-brewery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "cafe-fresco": {
+      "business_status": {
+        "venue_id": "cafe-fresco",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/cafe-fresco/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "cafe-fresco",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sat 11am-9pm, Sun Closed",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/cafe-fresco/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-cannery": {
+      "business_status": {
+        "venue_id": "the-cannery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-cannery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-cannery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11:00am-2:00am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-cannery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-filling-station": {
+      "business_status": {
+        "venue_id": "the-filling-station",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-filling-station",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sat 11am-2am, Sun Closed",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "the-filling-station",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Wings",
+            "price": 1.0,
+            "category": "food",
+            "description": "$1 wings Mondays — traditional or boneless (small upcharge for ranch/blue cheese)"
+          },
+          {
+            "item": "Pot roast & fries",
+            "price": 13.0,
+            "category": "food",
+            "description": "$13 Tuesdays"
+          },
+          {
+            "item": "Wrap & fries",
+            "price": 11.0,
+            "category": "food",
+            "description": "$11 Wednesdays"
+          },
+          {
+            "item": "Cheese pizza",
+            "price": 10.0,
+            "category": "food",
+            "description": "$10 Thursdays (toppings regular price)"
+          },
+          {
+            "item": "Italian sub & fries",
+            "price": 11.0,
+            "category": "food",
+            "description": "$11 Fridays"
+          },
+          {
+            "item": "Mug night",
+            "price": 6.5,
+            "category": "drinks",
+            "description": "Mondays — first mug $6.50, refills $5.50"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://bozemanmagazine.com/bars/bozeman-mt/643-the-filling-station"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-haufbrau": {
+      "business_status": {
+        "venue_id": "the-haufbrau",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://visit-bozeman.com/listings/haufbrau-house"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-haufbrau",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Sun-Thu 11am-2am, Fri-Sat 1pm-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://visit-bozeman.com/listings/haufbrau-house"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "hooked-sushi": {
+      "business_status": {
+        "venue_id": "hooked-sushi",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/hooked-sushi/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "hooked-sushi",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/hooked-sushi/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "korner-klub": {
+      "business_status": {
+        "venue_id": "korner-klub",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/korner-klub/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "korner-klub",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11:00am-12:00am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/korner-klub/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "korner-klub",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Sunday Funday",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Pitcher of domestic draft + 20oz of wings at a special price, Sundays"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/korner-klub/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "last-best-place-brewery": {
+      "business_status": {
+        "venue_id": "last-best-place-brewery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/last-best-place-brewery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "last-best-place-brewery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 12:00am-8:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/last-best-place-brewery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-molly-brown": {
+      "business_status": {
+        "venue_id": "the-molly-brown",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-molly-brown",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Daily 11am-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "the-pour-house": {
+      "business_status": {
+        "venue_id": "the-pour-house",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-pour-house/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "the-pour-house",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 2-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-pour-house/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "the-pour-house",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 10:30am-2:00am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-pour-house/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "the-pour-house",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Micro drafts",
+            "price": 3.75,
+            "category": "drinks",
+            "description": "$3.75"
+          },
+          {
+            "item": "Domestic drafts",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3"
+          },
+          {
+            "item": "Wine",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5"
+          },
+          {
+            "item": "Well drinks",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3"
+          },
+          {
+            "item": "Doubles",
+            "price": 4.5,
+            "category": "drinks",
+            "description": "$4.50"
+          },
+          {
+            "item": "Wings & a pint",
+            "price": 8.75,
+            "category": "food",
+            "description": "$8.75 Mondays — 1/2 lb wings & a pint"
+          },
+          {
+            "item": "White Claw",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 Wednesdays"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/the-pour-house/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "sidewall-pizza-company": {
+      "business_status": {
+        "venue_id": "sidewall-pizza-company",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/sidewall-pizza-company/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "sidewall-pizza-company",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/sidewall-pizza-company/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "tanoshii": {
+      "business_status": {
+        "venue_id": "tanoshii",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/tanoshii/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "tanoshii",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Tue-Sat 4pm-close",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/tanoshii/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "valhalla-meadery": {
+      "business_status": {
+        "venue_id": "valhalla-meadery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/valhalla-meadery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "valhalla-meadery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue-Sun 3:00pm-10:00pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/valhalla-meadery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "bar-3-bbq-and-brewery": {
+      "business_status": {
+        "venue_id": "bar-3-bbq-and-brewery",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-3-bbq-brewery/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "bar-3-bbq-and-brewery",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 11am-8pm, Sat-Sun 9am-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/bar-3-bbq-brewery/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "buffalo-wild-wings": {
+      "business_status": {
+        "venue_id": "buffalo-wild-wings",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/buffalo-wild-wings/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "buffalo-wild-wings",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/buffalo-wild-wings/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "buffalo-wild-wings",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/buffalo-wild-wings/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "buffalo-wild-wings",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Strawberry margarita",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6 Strawberry Margarita cocktail"
+          },
+          {
+            "item": "House draft beer",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 tall draft — Wild Herd Kölsch by Goose Island"
+          },
+          {
+            "item": "Bud Light tall draft",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5 tall draft"
+          },
+          {
+            "item": "Voodoo Ranger IPA tall draft",
+            "price": 6.0,
+            "category": "drinks",
+            "description": "$6 tall draft"
+          },
+          {
+            "item": "Chips & salsa",
+            "price": 3.0,
+            "category": "food",
+            "description": "$3"
+          },
+          {
+            "item": "Tater tots",
+            "price": 3.0,
+            "category": "food",
+            "description": "$3"
+          },
+          {
+            "item": "Mozzarella sticks",
+            "price": 5.0,
+            "category": "food",
+            "description": "$5"
+          },
+          {
+            "item": "Everything pretzel knots",
+            "price": 6.0,
+            "category": "food",
+            "description": "$6"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/buffalo-wild-wings/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "copper-whiskey-bar": {
+      "business_status": {
+        "venue_id": "copper-whiskey-bar",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/copper-whiskey-bar/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "copper-whiskey-bar",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 3-5pm, Sun all day",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/copper-whiskey-bar/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "copper-whiskey-bar",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/copper-whiskey-bar/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "copper-whiskey-bar",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Draft beer",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5"
+          },
+          {
+            "item": "House cocktails",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5"
+          },
+          {
+            "item": "House wine",
+            "price": 5.0,
+            "category": "drinks",
+            "description": "$5"
+          },
+          {
+            "item": "Appetizers",
+            "price": 0.0,
+            "category": "food",
+            "description": "$2.00 off ALL appetizers"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/copper-whiskey-bar/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "madison-river-brewing-co": {
+      "business_status": {
+        "venue_id": "madison-river-brewing-co",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/madison-river-brewing-co/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "madison-river-brewing-co",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 2pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/madison-river-brewing-co/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "madison-river-brewing-co",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "All beer",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3 — Sundays 12-2pm happy hour"
+          },
+          {
+            "item": "Pint Night",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Mondays — $1 off all beer all day"
+          },
+          {
+            "item": "Growler fills",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Tuesdays — $2 off growler fills all day"
+          },
+          {
+            "item": "Ladies Night",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Thursdays — $1 off all day for ladies"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/madison-river-brewing-co/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "old-chicago": {
+      "business_status": {
+        "venue_id": "old-chicago",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/old-chicago/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "old-chicago",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 4-7pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/old-chicago/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "old-chicago",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/old-chicago/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "old-chicago",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Domestic bottles & pints",
+            "price": 2.5,
+            "category": "drinks",
+            "description": "$2.50"
+          },
+          {
+            "item": "Microbrew & import pints",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00"
+          },
+          {
+            "item": "Imperial draft pints",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off imperial draft pints"
+          },
+          {
+            "item": "Well cocktails",
+            "price": 2.5,
+            "category": "drinks",
+            "description": "$2.50"
+          },
+          {
+            "item": "Call cocktails",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00"
+          },
+          {
+            "item": "House wine",
+            "price": 3.0,
+            "category": "drinks",
+            "description": "$3.00"
+          },
+          {
+            "item": "Food specials",
+            "price": 3.0,
+            "category": "food",
+            "description": "$3.00 food specials"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/old-chicago/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "outlaw-brewing": {
+      "business_status": {
+        "venue_id": "outlaw-brewing",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/outlaw-brewing/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "outlaw-brewing",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu 2pm-8pm, Fri-Sun 12pm-8pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/outlaw-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "outlaw-brewing",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Pints",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Military Monday & Tough Guy/Gal Tuesday — 50¢ off per pint"
+          },
+          {
+            "item": "Growler deal",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "Thirsty Thursday — fill a 64oz growler, get a pint for $1"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/outlaw-brewing/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "plonk": {
+      "business_status": {
+        "venue_id": "plonk",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/plonk/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "plonk",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 3pm-1:30am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/plonk/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "pub-317": {
+      "business_status": {
+        "venue_id": "pub-317",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/pub-317/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "pub-317",
+        "field": "hours",
+        "kind": "unverified",
+        "value": "Mon-Fri 3-6pm",
+        "rationale": "agreement weight=0.45",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/pub-317/"
+        ],
+        "confidence": 0.45,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "pub-317",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 11am-2am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/pub-317/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "pub-317",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Drafts & well drinks",
+            "price": 0.0,
+            "category": "drinks",
+            "description": "$1.00 off all drafts and well drinks"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/pub-317/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "rialto-bar-burn-box": {
+      "business_status": {
+        "venue_id": "rialto-bar-burn-box",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rialto-bar/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "rialto-bar-burn-box",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Thu Closed, Fri-Sat 7pm-Close, Sun Closed",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/rialto-bar/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "santa-fe-reds": {
+      "business_status": {
+        "venue_id": "santa-fe-reds",
+        "field": "business_status",
+        "kind": "suppressed",
+        "value": "permanently_closed",
+        "rationale": "strong closed signal from overture/overture",
+        "cited_sources": [
+          "overture:places:overture-santa-fe-reds-fixture",
+          "https://mthappyhour.com/locations/santa-fe-reds/"
+        ],
+        "confidence": 0.95,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "address": {
+        "venue_id": "santa-fe-reds",
+        "field": "address",
+        "kind": "unverified",
+        "value": "1235 N 7th Ave, Bozeman",
+        "rationale": "agreement weight=0.30",
+        "cited_sources": [
+          "overture:places:overture-santa-fe-reds-fixture"
+        ],
+        "confidence": 0.3,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "hours": {
+        "venue_id": "santa-fe-reds",
+        "field": "hours",
+        "kind": "suppressed",
+        "value": "Daily 3-6pm, Fri-Sat 10pm-12am",
+        "rationale": "suppressed due to business_status=permanently_closed",
+        "cited_sources": [
+          "overture:places:overture-santa-fe-reds-fixture",
+          "https://mthappyhour.com/locations/santa-fe-reds/"
+        ],
+        "confidence": 0.95,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "santa-fe-reds",
+        "field": "business_hours",
+        "kind": "suppressed",
+        "value": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
+        "rationale": "suppressed due to business_status=permanently_closed",
+        "cited_sources": [
+          "overture:places:overture-santa-fe-reds-fixture",
+          "https://mthappyhour.com/locations/santa-fe-reds/"
+        ],
+        "confidence": 0.95,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "santa-fe-reds",
+        "field": "specials",
+        "kind": "suppressed",
+        "value": null,
+        "rationale": "suppressed due to business_status=permanently_closed",
+        "cited_sources": [
+          "overture:places:overture-santa-fe-reds-fixture",
+          "https://mthappyhour.com/locations/santa-fe-reds/"
+        ],
+        "confidence": 0.95,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "seven-sushi": {
+      "business_status": {
+        "venue_id": "seven-sushi",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/seven-sushi/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "seven-sushi",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sat 11:30am-10pm, Sun 4pm-10pm",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/seven-sushi/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "spectators-bar-and-grill": {
+      "business_status": {
+        "venue_id": "spectators-bar-and-grill",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/spectators-bar-and-grill/"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "spectators-bar-and-grill",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon-Sun 10am-12am",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/spectators-bar-and-grill/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "specials": {
+        "venue_id": "spectators-bar-and-grill",
+        "field": "specials",
+        "kind": "unverified",
+        "value": [
+          {
+            "item": "Draft beer",
+            "price": 4.0,
+            "category": "drinks",
+            "description": "$4 Mondays — all day"
+          },
+          {
+            "item": "Pitcher & pizza",
+            "price": 0.0,
+            "category": "food",
+            "description": "Tuesdays — pitcher and pizza deal"
+          },
+          {
+            "item": "Steak Night",
+            "price": 0.0,
+            "category": "food",
+            "description": "Wednesdays (price not specified)"
+          },
+          {
+            "item": "B.A.B.B. night",
+            "price": 0.0,
+            "category": "food",
+            "description": "Thursdays — big ass burger and a pint of beer (price not specified)"
+          },
+          {
+            "item": "Breakfast sandwich or burrito",
+            "price": 0.0,
+            "category": "food",
+            "description": "Saturdays & Sundays (price not specified)"
+          }
+        ],
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://mthappyhour.com/locations/spectators-bar-and-grill/"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    },
+    "stacey-s-old-faithful-bar-steakhouse": {
+      "business_status": {
+        "venue_id": "stacey-s-old-faithful-bar-steakhouse",
+        "field": "business_status",
+        "kind": "unverified",
+        "value": "open",
+        "rationale": "aggregator-only open — cannot verified:open",
+        "cited_sources": [
+          "https://www.menupix.com/bozeman/restaurants/166098/Staceys-Old-Faithful-Bar-Gallatin-Gateway-MT"
+        ],
+        "confidence": 0.35,
+        "decided_at": "2026-08-02T12:43:22Z"
+      },
+      "business_hours": {
+        "venue_id": "stacey-s-old-faithful-bar-steakhouse",
+        "field": "business_hours",
+        "kind": "unverified",
+        "value": "Mon Closed, Tue 4-9pm, Wed-Sun 11am-close",
+        "rationale": "agreement weight=0.40",
+        "cited_sources": [
+          "https://www.menupix.com/bozeman/restaurants/166098/Staceys-Old-Faithful-Bar-Gallatin-Gateway-MT"
+        ],
+        "confidence": 0.4,
+        "decided_at": "2026-08-02T12:43:22Z"
+      }
+    }
+  }
+}

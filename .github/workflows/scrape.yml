@@ -70,6 +70,15 @@ jobs:
           # mthappyhour entry says closed. Human reviews data/state/closure_report.md.
           python scripts/check_venue_status.py 2>&1 | tee /tmp/closure.log || true
 
+      - name: Venue truth shadow pipeline
+        timeout-minutes: 10
+        run: |
+          # observation → claim → decision (shadow). Uses eval fixture when
+          # Overture cache empty; does not change published data unless
+          # data/state/truth_config.json has suppress_enabled=true.
+          python scripts/run_venue_truth.py 2>&1 | tee /tmp/truth.log
+          python scripts/eval_venue_truth.py
+
       - name: Validate data
         timeout-minutes: 3
         # Phase 3 (issue #30): broken JSON / schema violations / unparseable
@@ -122,6 +131,8 @@ jobs:
         run: |
           git config user.name "happycow-bot"
           git config user.email "happycow-bot@users.noreply.github.com"
+          # Commit derived state + site data only — not full evidence payloads
+          # (design decision 5: excerpts/hashes in state; evidence is local/CI artifact).
           git add data/happy_hour_data.json data/state/ config/venues.json
           if git diff --staged --quiet; then
             echo "No data changes"

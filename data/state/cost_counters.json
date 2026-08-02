@@ -1,0 +1,24 @@
+{
+  "updated_at": "2026-08-02T12:43:22Z",
+  "fetches": 54,
+  "llm_calls": 0,
+  "tokens": 0,
+  "cache_hits": 0,
+  "cache_misses": 0,
+  "escalations": 10,
+  "overture_matches": 2,
+  "overpass_signals": 0,
+  "venues_processed": 54,
+  "top_n_selected": [
+    "urban-kitchen",
+    "the-pour-house",
+    "the-molly-brown",
+    "the-haufbrau",
+    "pub-317",
+    "dry-hills-distillery",
+    "cafe-fresco",
+    "bozeman-spirits-distillery",
+    "santa-fe-reds",
+    "valhalla-meadery"
+  ]
+}

@@ -40,3 +40,6 @@ jobs:
 
       - name: Python unit tests
         run: python -m unittest discover -s tests/python -v
+
+      - name: Venue truth golden eval
+        run: python scripts/eval_venue_truth.py

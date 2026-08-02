@@ -1,0 +1,32 @@
+{
+  "description": "Overture-like prior fixture for Gallatin venues (eval + offline CI)",
+  "places": [
+    {
+      "id": "overture-santa-fe-reds-fixture",
+      "name": "Santa Fe Reds",
+      "address": "1235 N 7th Ave, Bozeman",
+      "phone": "",
+      "operating_status": "permanently_closed",
+      "confidence": 0.0,
+      "categories": {"primary": "mexican_restaurant"}
+    },
+    {
+      "id": "overture-ale-works-fixture",
+      "name": "Ale Works",
+      "address": "611 E Main St, Bozeman",
+      "phone": "406-587-7700",
+      "operating_status": "open",
+      "confidence": 0.92,
+      "categories": {"primary": "brewery"}
+    },
+    {
+      "id": "overture-open-range-closed",
+      "name": "Open Range",
+      "address": "999 Fake Closed St, Bozeman",
+      "phone": "",
+      "operating_status": "permanently_closed",
+      "confidence": 0.0,
+      "categories": {"primary": "restaurant"}
+    }
+  ]
+}
