@@ -39,6 +39,17 @@ python3 -m http.server 8000
 
 Want to add to the herd? See [docs/making-cows.md](docs/making-cows.md) for the exact generation process, prompt template, and wiring steps.
 
+## Documentation
+
+| Doc | What it's for |
+|---|---|
+| [docs/architecture.md](docs/architecture.md) | System overview — app, data model, pipeline, invariants (start here) |
+| [docs/development.md](docs/development.md) | Developer guide — setup, common tasks, testing, PR workflow |
+| [docs/data-flow.md](docs/data-flow.md) | Pipeline mechanics — writers, fallbacks, manual interventions |
+| [docs/architecture-refactor-plan.md](docs/architecture-refactor-plan.md) | Refactor roadmap (issue #30, all phases done) + MCR record |
+| [docs/making-cows.md](docs/making-cows.md) | Cow image generation guide |
+| [docs/archive/](docs/archive/README.md) | Historical issue drafts + review reports (provenance only) |
+
 ## Sound credits
 
 - `assets/sounds/moo.mp3` — real cow moo, sourced from [BigSoundBank](https://bigsoundbank.com/cow-moos-s0546.html) (CC0 / public domain equivalent, no attribution required). Trimmed, filtered (60–900 Hz), and normalized for a clean 1.8s bellow.

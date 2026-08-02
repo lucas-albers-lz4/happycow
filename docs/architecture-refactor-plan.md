@@ -96,4 +96,4 @@ Big Pickle + MiMo V2.5 Free verified every fragility claim against the code. The
 - No multi-city expansion.
 
 ## Suggested execution order
-Phase 1 → 3 (both unblock correctness/CI safety) → 2 → 4 → 5. Phases 1, 3, and 4 are independently shippable PRs.
+Phase 1 → 3 (both unblock correctness/CI safety) → 2 → 4 → 5. Phase 3 task 2 (hours-grammar validation) depends on the Phase-1 parser — so Phase 1 must ship before Phase 3; Phases 2, 4, and 5 are independently shippable.
