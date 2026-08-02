@@ -1325,7 +1325,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
       "hours": "Daily 3-5pm & 8-9pm",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1412,7 +1414,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Buck%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1432,7 +1436,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1452,7 +1458,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Cafe%20Fresco%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1472,7 +1480,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Cannery%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1492,7 +1502,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Hooked%20Sushi%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1512,7 +1524,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Korner%20Klub%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1539,7 +1553,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1559,7 +1575,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Pour%20House%20Bozeman%20MT",
       "hours": "Mon-Fri 2-6pm",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1622,7 +1640,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Sidewall%20Pizza%20Company%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1642,7 +1662,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Tanoshii%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1662,7 +1684,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1682,7 +1706,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1702,7 +1728,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
       "hours": "Mon-Fri 3-6pm",
-      "tags": [],
+      "tags": [
+        "sports"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1771,7 +1799,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Copper%20Whiskey%20Bar%20Bozeman%20MT",
       "hours": "Mon-Fri 3-5pm, Sun all day",
-      "tags": [],
+      "tags": [
+        "whiskey"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1816,7 +1846,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1861,7 +1893,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
       "hours": "Mon-Fri 4-7pm",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1924,7 +1958,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "craft-beer"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -1957,7 +1993,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Plonk%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "classy"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -1977,7 +2015,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Pub%20317%20Bozeman%20MT",
       "hours": "Mon-Fri 3-6pm",
-      "tags": [],
+      "tags": [
+        "pub"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -2004,7 +2044,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Rialto%20Bar%20%E2%80%93%20Burn%20Box%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -2024,7 +2066,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
       "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
@@ -2063,7 +2107,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Seven%20Sushi%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "downtown"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
@@ -2083,7 +2129,9 @@
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Spectators%20Bar%20and%20Grill%20Bozeman%20MT",
       "hours": "",
-      "tags": [],
+      "tags": [
+        "sports"
+      ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [
