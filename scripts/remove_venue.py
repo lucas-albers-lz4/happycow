@@ -20,15 +20,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from common import TOMBSTONES_PATH, save_json
+from common import TOMBSTONES_PATH, norm_name, save_json
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
-
-
-def norm_name(name: str) -> str:
-    return " ".join(name.lower().split())
 
 
 def norm_address(addr: str) -> str:
@@ -71,8 +67,8 @@ def main() -> int:
         print("(dry run — nothing written)")
         return 0
 
-    CONFIG_PATH.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
-    DATA_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    save_json(CONFIG_PATH, cfg)
+    save_json(DATA_PATH, data)
     save_json(TOMBSTONES_PATH, removed)
     print(f"config: {len(cfg['venues'])} venues | data: {len(data['venues'])} venues")
     print(f"tombstones: {len(removed['venues'])} -> {TOMBSTONES_PATH}")
