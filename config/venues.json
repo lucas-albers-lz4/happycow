@@ -82,7 +82,8 @@
       "website": "https://www.montanaaleworks.com/",
       "scrape_urls": [
         "https://mthappyhour.com/locations/ale-works/",
-        "https://www.montanaaleworks.com/"
+        "https://www.montanaaleworks.com/",
+        "https://www.montanaaleworks.com/happy-hour"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Ale%20Works%20Bozeman%20MT",
       "tags": [
