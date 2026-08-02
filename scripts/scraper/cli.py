@@ -15,7 +15,7 @@ from pathlib import Path
 import httpx
 
 from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, save_json
-from scraper.extract import MODEL, extract_venue
+from scraper.extract import ANTHROPIC_API_KEY, MODEL, extract_venue
 from scraper.merge import reject_unparseable_hours, venue_to_site_record
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -33,6 +33,14 @@ def run(
     venue_ids: list[str] | None = None,
     force: bool = False,
 ) -> int:
+    if not ANTHROPIC_API_KEY:
+        print(
+            "ERROR: DEEPSEEK_API_KEY (or ANTHROPIC_API_KEY) is not set — "
+            "cannot scrape any venues; aborting before venue loop",
+            file=sys.stderr,
+        )
+        return 1
+
     config = load_json(VENUES_PATH)
     prompt_tmpl = PROMPT_PATH.read_text()
     previous = load_json(DATA_PATH) if DATA_PATH.exists() else {}
@@ -126,11 +134,19 @@ def run(
         print(json.dumps(out, indent=2))
         return 0
 
+    if ok == 0:
+        print(
+            "ERROR: ok=0 — no venues were successfully scraped; "
+            "skipping data/cache write to avoid a fake successful refresh",
+            file=sys.stderr,
+        )
+        return 1
+
     save_json(DATA_PATH, out)
     save_json(CACHE_PATH, cache_out)
     print(f"Wrote {DATA_PATH}")
     print(f"Wrote {CACHE_PATH}")
-    return 0 if ok > 0 or kept > 0 else 1
+    return 0
 
 
 def main():
