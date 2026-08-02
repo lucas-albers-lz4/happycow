@@ -38,6 +38,8 @@ import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from common import TOMBSTONES_PATH
+
 import httpx
 from bs4 import BeautifulSoup
 
@@ -409,10 +411,9 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
 
     # Venues deliberately removed (closure) must not be rediscovered.
     tombstones: list[dict] = []
-    removed_path = ROOT / "data" / "removed_venues.json"
-    if removed_path.exists():
+    if TOMBSTONES_PATH.exists():
         try:
-            tombstones = json.loads(removed_path.read_text()).get("venues", [])
+            tombstones = json.loads(TOMBSTONES_PATH.read_text()).get("venues", [])
         except Exception:
             tombstones = []
 

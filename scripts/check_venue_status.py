@@ -9,8 +9,7 @@ Signals:
 1. SITE_DEAD — ALL of a venue's own-site URLs fail to load (conn error,
    DNS, 404, 401-auth like Open Range's parked site) in BOTH this run and
    the previous run. Consecutive-failure state lives in
-   `data/closure_state.json` (the scraper overwrites scrape_cache.json, so
-   closure state is kept separate).
+   `data/state/closure_state.json` (kept separate from the scraper cache).
 2. CLOSED_MARKER — the venue's mthappyhour entry contains closure wording
    (low confidence: mthappyhour pages are known to carry contamination).
 
@@ -18,7 +17,7 @@ Optional: `--with-yelp` also probes Yelp biz pages for "permanently closed"
 (off by default — Yelp aggressively rate-limits bots).
 
 Usage:
-  python scripts/check_venue_status.py          # report to stdout + closure_report.md
+  python scripts/check_venue_status.py          # report to stdout + data/state/closure_report.md
   python scripts/check_venue_status.py --dry-run  # don't persist state
 
 Exit code is always 0 — the report is for a human to review.
@@ -34,15 +33,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from common import is_aggregator
+from common import CLOSURE_REPORT_PATH, CLOSURE_STATE_PATH, is_aggregator, save_json, save_text
 
 import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
-STATE_PATH = ROOT / "data" / "closure_state.json"
-REPORT_PATH = ROOT / "closure_report.md"
+STATE_PATH = CLOSURE_STATE_PATH
+REPORT_PATH = CLOSURE_REPORT_PATH
 
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) HappyCowClosureCheck/1.0"
 TIMEOUT = 10.0
@@ -170,16 +169,16 @@ def main() -> int:
     lines += ["", "No venue is auto-removed — review the flags, then update data manually.",
               "To remove a confirmed-closed venue:",
               "  python scripts/remove_venue.py <id> --reason \"closed ...\"",
-              "  (records a tombstone in data/removed_venues.json so discovery won't re-add it)"]
+              "  (records a tombstone in data/state/removed_venues.json so discovery won't re-add it)"]
     report = "\n".join(lines) + "\n"
     print(report)
 
     if not args.dry_run:
         state["last_run"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        STATE_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n")
-        REPORT_PATH.write_text(report)
-        print(f"state -> {STATE_PATH}", file=sys.stderr)
-        print(f"report -> {REPORT_PATH}", file=sys.stderr)
+        save_json(CLOSURE_STATE_PATH, state)
+        save_text(CLOSURE_REPORT_PATH, report)
+        print(f"state -> {CLOSURE_STATE_PATH}", file=sys.stderr)
+        print(f"report -> {CLOSURE_REPORT_PATH}", file=sys.stderr)
     return 0
 
 
