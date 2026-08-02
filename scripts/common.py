@@ -15,7 +15,9 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import tempfile
+import unicodedata
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -46,6 +48,24 @@ AGGREGATOR_HOSTS = {
     "yelp.com",
     "facebook.com",
 }
+
+
+def norm_name(name: str) -> str:
+    """Normalize a venue name for dedup and tombstone matching.
+
+    Strips leading articles (the, a, an), collapses punctuation to spaces,
+    and lowercases. Shared by remove_venue.py and discover_venues.py so
+    tombstone name keys stay consistent across both scripts.
+
+    Note: a venue that reopens at a new address will not auto-skip via
+    tombstone — only name + address together form the match key (issue #49).
+    """
+    s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
+    s = re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+    for art in ("the ", "a ", "an "):
+        if s.startswith(art) and len(s) > len(art):
+            s = s[len(art):]
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def host_of(url: str) -> str:

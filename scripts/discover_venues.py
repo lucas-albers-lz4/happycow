@@ -38,7 +38,7 @@ import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from common import TOMBSTONES_PATH
+from common import TOMBSTONES_PATH, norm_name, save_json as common_save_json
 
 import httpx
 from bs4 import BeautifulSoup
@@ -68,16 +68,6 @@ class Candidate:
 
 
 # ─── Normalization / dedup ───
-
-def norm_name(name: str) -> str:
-    """'The Filling Station' -> 'filling station' (strip articles/punct)."""
-    s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
-    s = re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
-    for art in ("the ", "a ", "an "):
-        if s.startswith(art) and len(s) > len(art):
-            s = s[len(art):]
-    return re.sub(r"\s+", " ", s).strip()
-
 
 def norm_address(addr: str) -> str:
     s = addr.lower()
@@ -153,15 +143,16 @@ def is_duplicate(cand: Candidate, by_name: dict, by_addr: dict) -> bool:
 def is_removed(cand: Candidate, tombstones: list[dict]) -> bool:
     """Skip venues that were deliberately removed (see remove_venue.py).
 
-    Tombstones carry the normalized name + address captured at removal time,
-    so discovery cannot re-add a closed venue from an aggregator listing.
+    Tombstones match on name AND address (both must agree). This prevents a
+    venue that reopens at a new address from being silently skipped — that
+    case requires human review, not automatic tombstone suppression.
     """
     name = norm_name(cand.name)
     addr = norm_address(cand.address)
     for t in tombstones:
-        if t.get("norm_name") and t["norm_name"] == name:
-            return True
-        if addr and t.get("norm_address") and t["norm_address"] == addr:
+        t_name = t.get("norm_name", "")
+        t_addr = t.get("norm_address", "")
+        if t_name and t_addr and t_name == name and t_addr == addr:
             return True
     return False
 
@@ -390,14 +381,16 @@ def to_config_entry(cand: Candidate, existing_ids: set[str] | None = None) -> di
     return {
         "id": slugify(cand.name, existing_ids),
         "name": cand.name,
+        "nickname": "TBD \u2014 curate me",
+        "nickname_alts": [],
         "address": cand.address,
         "phone": cand.phone,
         "website": cand.website,
         "scrape_urls": scrape_urls,
         "maps": f"https://www.google.com/maps/search/?api=1&query={maps_q}",
-        "tags": cand.tags,
-        "noise_level": "",
-        "mood": "",
+        "tags": cand.tags if cand.tags else ["bar"],
+        "noise_level": "moderate",
+        "mood": "casual",
     }
 
 
@@ -532,7 +525,7 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     entries = [to_config_entry(c, existing_ids) for c in new]
     venues.extend(entries)
     config["venues"] = venues
-    save_json(VENUES_PATH, config)
+    common_save_json(VENUES_PATH, config)
     print(f"\nAppended {len(entries)} venues to {VENUES_PATH}")
     return 0
 
@@ -540,13 +533,6 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
 def load_json(path: Path) -> dict:
     with open(path) as f:
         return json.load(f)
-
-
-def save_json(path: Path, data: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
-        f.write("\n")
 
 
 def main():
