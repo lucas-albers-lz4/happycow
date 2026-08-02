@@ -72,6 +72,32 @@ source for paths and the aggregator-host set.
 - Known-gap notes: set `notes` on a venue in the **site data** with "(verified …)" so the coverage invariant (specials OR note) stays satisfied.
 - `python scripts/scrape_happy_hours.py --venue <id> --force` — re-scrape one venue, bypassing the cache.
 
+## Fail-fast gates (issue #50)
+
+The scraper exits non-zero (and writes nothing) in two cases:
+1. **Missing API key** — `DEEPSEEK_API_KEY` (or `ANTHROPIC_API_KEY`) absent before the venue loop; job log says why.
+2. **ok == 0** — every venue was either kept-previous or failed; no fresh data was extracted. `data/happy_hour_data.json` is not written and `last_updated` is unchanged. Pairs with the #40 regression gate: #40 catches quality drops vs HEAD; #50 catches "nothing scraped at all."
+
+## Write safety
+
+All JSON writes (config, data, tombstones, scrape cache) go through `common.save_json` (atomic tmp+rename). A crash or interrupt cannot leave a truncated file. Scripts that write JSON:
+- `scripts/scraper/cli.py` — scrape output + cache
+- `scripts/remove_venue.py` — config, data, tombstone
+- `scripts/discover_venues.py` — config (discovery appends)
+
+## One-shot maintenance scripts
+
+Scripts under `scripts/tools/` are manual-only and must never be added to the scrape CI workflow:
+- `scripts/tools/backfill_business_hours.py` — one-time business-hours backfill; do not schedule.
+- `scripts/tools/discover_hh_pages.py` — one-time HH page discovery seed; do not schedule.
+
+## Scrape CI git add scope
+
+The "Commit updated data" step in `.github/workflows/scrape.yml` stages only runtime outputs:
+`data/happy_hour_data.json`, `data/state/`, `config/venues.json`.
+
+Source files (`scripts/`, `assets/`, etc.) are never staged by CI — any change there goes through a normal PR. This prevents accidental script commits from automated runs.
+
 ## Reading list
 
 - `scripts/common.py` — paths + shared constants + atomic writers
