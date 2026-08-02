@@ -22,7 +22,8 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
-from urllib.parse import urlsplit
+
+from common import is_aggregator
 
 import httpx
 import trafilatura
@@ -53,19 +54,9 @@ REQUEST_TIMEOUT = 30.0
 INTER_REQUEST_SLEEP = 1.0
 MAX_PAGE_CHARS = 8000  # post-trim budget for the model
 
-# Directory/aggregator hosts — curated venue pages (own site, HH subpages)
-# outrank these in gather_page_text so their boilerplate can't starve the
-# dedicated sources that actually hold the deals.
-AGGREGATOR_HOSTS = {
-    "mthappyhour.com",
-    "bozemanmagazine.com",
-    "visit-bozeman.com",
-    "menupix.com",
-    "sellout.io",
-    "google.com",
-    "yelp.com",
-    "facebook.com",
-}
+# Directory/aggregator hosts — single source of truth: scripts/common.py
+# (Phase 2, issue #30). Curated venue pages outrank these in gather_page_text
+# so their boilerplate can't starve the dedicated sources.
 
 
 # ─── Pydantic schema ───
@@ -428,16 +419,45 @@ def llm_extract(
 
 # ─── Venue pipeline ───
 
+def _norm(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", s.lower())
+
+
+def page_matches_venue(text: str, venue: dict, require_address: bool) -> bool:
+    """Contamination guard (Phase 2, issue #30).
+
+    Aggregator pages (mthappyhour et al.) have been caught carrying OTHER
+    venues' content (Old Chicago <- Bozeman Spirits, Shine <- Ale Works,
+    Tanoshii <- Old Chicago-ish text). Only accept an aggregator page as this
+    venue's own when its name AND street number + first street word appear.
+    Own-site pages are curated/trusted: name is a soft signal (WARN only) —
+    hard-requiring the address there false-negatives, since many sites keep
+    the address only in the footer, which trimming cuts off.
+
+    Known limitation: a page containing BOTH the venue's own info and a
+    contaminated snippet still passes (presence check, not exclusivity).
+    """
+    t = _norm(text)
+    name = _norm((venue.get("name") or "").replace("The ", "").replace("the ", ""))
+    if not name or name not in t:
+        return False
+    if require_address:
+        addr = _norm(venue.get("address") or "")
+        m = re.match(r"(\d+[a-z]+?)", addr)  # street number + FIRST street word only
+        if not m:
+            return True  # no parseable address -> soft pass, avoid false negatives
+        return m.group(1) in t
+    return True
+
+
 def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]:
     # Dedicated venue pages first (own site, HH subpages) — that's where the
     # real deals live. Aggregator directories (mthappyhour et al.) are fetched
     # after, with an early-break once enough signal exists — so their
     # boilerplate can't starve the curated own-site URLs.
     urls = list(venue.get("scrape_urls") or [])
-    def _host(u: str) -> str:
-        return urlsplit(u).hostname or ""
-    dedicated = [u for u in urls if _host(u) not in AGGREGATOR_HOSTS]
-    aggregators = [u for u in urls if _host(u) in AGGREGATOR_HOSTS]
+    dedicated = [u for u in urls if not is_aggregator(u)]
+    aggregators = [u for u in urls if is_aggregator(u)]
     website = venue.get("website") or ""
     fallback = [website] if website and website not in urls else []
 
@@ -454,6 +474,15 @@ def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]
         if not text:
             print(f"  WARN empty extract for {url}", file=sys.stderr)
             return False
+        # Contamination guard: aggregator pages must match this venue
+        # (name + street address) or they're skipped — they've been caught
+        # carrying other venues' content (Old Chicago <- Bozeman Spirits, …).
+        if is_aggregator(url):
+            if not page_matches_venue(text, venue, require_address=True):
+                print(f"  SKIP {url}: aggregator page doesn't match venue (contamination guard)", file=sys.stderr)
+                return False
+        elif not page_matches_venue(text, venue, require_address=False):
+            print(f"  WARN {url}: page text lacks venue name (soft check)", file=sys.stderr)
         chunks.append(f"[source: {url}]\n{text}")
         used.append(url)
         return True

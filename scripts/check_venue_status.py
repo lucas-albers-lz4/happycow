@@ -34,6 +34,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from common import is_aggregator
+
 import httpx
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -46,12 +48,7 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) HappyCowClosureCheck/1.0"
 TIMEOUT = 10.0
 FLAG_AFTER_CONSECUTIVE = 2
 
-# Mirrors the set in scrape_happy_hours.py — own-site URLs exclude these.
-AGGREGATOR_HOSTS = {
-    "mthappyhour.com", "bozemanmagazine.com", "visit-bozeman.com",
-    "menupix.com", "sellout.io", "google.com", "yelp.com", "facebook.com",
-}
-
+# Own-site URLs exclude aggregator hosts — single source: scripts/common.py.
 CLOSED_RE = re.compile(
     r"permanently closed|has closed|has shut down|shuttered|closed its doors|"
     r"no longer (open|in business)|business closed|ceases? operations|"
@@ -70,8 +67,7 @@ def load_json(path: Path, fallback=None):
 def own_site_urls(venue: dict) -> list[str]:
     out = []
     for u in venue.get("scrape_urls") or []:
-        host = urlsplit(u).hostname or ""
-        if host and not any(host == a or host.endswith("." + a) for a in AGGREGATOR_HOSTS):
+        if not is_aggregator(u):
             out.append(u)
     return out
 
