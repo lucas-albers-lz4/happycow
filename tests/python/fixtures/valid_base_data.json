@@ -1,0 +1,30 @@
+{
+  "last_updated": "2026-08-01",
+  "city": "Bozeman",
+  "population": 53293,
+  "venues": [
+    {
+      "id": "test-bar",
+      "name": "Test Bar",
+      "nickname": "The Tester",
+      "nickname_alts": [],
+      "address": "123 Main St",
+      "phone": "406-555-0100",
+      "website": "https://testbar.example.com",
+      "maps": "https://maps.google.com/testbar",
+      "hours": "Daily 4-6pm",
+      "business_hours": "Daily 11am-10pm",
+      "tags": ["downtown"],
+      "noise_level": "moderate",
+      "mood": "casual",
+      "specials": [
+        {
+          "item": "Draft Beer",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Select drafts"
+        }
+      ]
+    }
+  ]
+}

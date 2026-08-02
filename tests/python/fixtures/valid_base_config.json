@@ -1,0 +1,18 @@
+{
+  "venues": [
+    {
+      "id": "test-bar",
+      "name": "Test Bar",
+      "nickname": "The Tester",
+      "nickname_alts": [],
+      "address": "123 Main St",
+      "phone": "406-555-0100",
+      "website": "https://testbar.example.com",
+      "maps": "https://maps.google.com/testbar",
+      "tags": ["downtown"],
+      "noise_level": "moderate",
+      "mood": "casual",
+      "scrape_urls": ["https://mthappyhour.com/test-bar"]
+    }
+  ]
+}
