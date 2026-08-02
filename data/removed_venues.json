@@ -1,0 +1,12 @@
+{
+  "venues": [
+    {
+      "id": "open-range",
+      "name": "Open Range",
+      "norm_name": "open range",
+      "norm_address": "241 e main st bozeman",
+      "removed_at": "2026-08-02T02:53:21Z",
+      "reason": "closed June 2026; Meson Frailes (Mexican) taking over 241 E Main. Removed via PR #25."
+    }
+  ]
+}

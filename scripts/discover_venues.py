@@ -148,6 +148,22 @@ def is_duplicate(cand: Candidate, by_name: dict, by_addr: dict) -> bool:
     return False
 
 
+def is_removed(cand: Candidate, tombstones: list[dict]) -> bool:
+    """Skip venues that were deliberately removed (see remove_venue.py).
+
+    Tombstones carry the normalized name + address captured at removal time,
+    so discovery cannot re-add a closed venue from an aggregator listing.
+    """
+    name = norm_name(cand.name)
+    addr = norm_address(cand.address)
+    for t in tombstones:
+        if t.get("norm_name") and t["norm_name"] == name:
+            return True
+        if addr and t.get("norm_address") and t["norm_address"] == addr:
+            return True
+    return False
+
+
 # ─── HTTP ───
 
 TRANSIENT_HTTP = {429, 500, 502, 503, 504}
@@ -391,6 +407,15 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
     venues = config.get("venues", [])
     by_name, by_addr = existing_lookup(venues)
 
+    # Venues deliberately removed (closure) must not be rediscovered.
+    tombstones: list[dict] = []
+    removed_path = ROOT / "data" / "removed_venues.json"
+    if removed_path.exists():
+        try:
+            tombstones = json.loads(removed_path.read_text()).get("venues", [])
+        except Exception:
+            tombstones = []
+
     seeds = list(config.get("discovery_seeds") or [])
     curated = list(config.get("curated_venues") or [])
 
@@ -473,6 +498,10 @@ def run(write: bool, only_sources: list[str] | None, verbose: bool) -> int:
         if not is_city_match(c, cities):
             if verbose:
                 print(f"  skip (not in {cities}): {c.name} — {c.address}")
+            continue
+        if is_removed(c, tombstones):
+            if verbose:
+                print(f"  skip (removed/tombstoned): {c.name}")
             continue
         if is_duplicate(c, by_name, by_addr):
             if verbose:
