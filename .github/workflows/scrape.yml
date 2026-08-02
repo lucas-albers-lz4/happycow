@@ -46,11 +46,17 @@ jobs:
           DEEPSEEK_MODEL: deepseek-v4-flash
         run: python scripts/scrape_happy_hours.py
 
+      - name: Check for closed venues
+        run: |
+          # Report-only: flags venues whose sites died across 2+ runs or whose
+          # mthappyhour entry says closed. Human reviews closure_report.md.
+          python scripts/check_venue_status.py 2>&1 | tee /tmp/closure.log || true
+
       - name: Commit updated data
         run: |
           git config user.name "happycow-bot"
           git config user.email "happycow-bot@users.noreply.github.com"
-          git add data/happy_hour_data.json data/scrape_cache.json config/venues.json scripts/discover_venues.py
+          git add data/happy_hour_data.json data/scrape_cache.json data/closure_state.json config/venues.json scripts/discover_venues.py scripts/check_venue_status.py closure_report.md
           if git diff --staged --quiet; then
             echo "No data changes"
           else
