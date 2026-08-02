@@ -12,9 +12,9 @@ pip install -r requirements.txt
 ```
 
 **Python gotcha:** the repo needs `httpx`, `trafilatura`, `pydantic`, `tenacity`,
-`beautifulsoup4`, `lxml` — system Python is PEP-668-managed, so **always use the
-venv** (`source .venv/bin/activate`). Background terminal shells resolve to system
-python3, so re-activate or call the venv binary explicitly.
+`beautifulsoup4`, `lxml`. System Python is PEP-668-managed, so **always use the
+venv** (`source .venv/bin/activate`). Background terminal shells resolve to
+system python3. Re-activate the venv, or call the venv binary explicitly.
 
 **Env vars (only needed for scraping, not for validation/tests):**
 
@@ -24,7 +24,7 @@ export DEEPSEEK_MODEL=deepseek-v4-flash
 # Optional: ANTHROPIC_BASE_URL (defaults to https://api.deepseek.com/anthropic)
 ```
 
-## Verify your setup (run all of these — they're fast)
+## Verify your setup (run all of these — they are fast)
 
 ```bash
 node --test                                          # hours parser suite (19 tests)
@@ -41,25 +41,24 @@ All green = the repo is sound. CI runs the same gates on every PR.
 ### Add or edit a venue (static data)
 
 Edit `config/venues.json` — the **curated source of truth**. New fields carry
-through to the site data automatically (carry-through by construction); keep the
+through to the site data automatically (carry-through by construction). Keep the
 entry's `id` as `kebab-case`. Then re-run the validators.
 
 ### Curate happy-hour specials (the human part)
 
-The scraper's LLM extraction is a starting point, not the end: every curated
-special should be verified against the venue's own site. Rules that keep the data
-honest:
+The LLM extraction is a starting point. **Verify every curated special against
+the venue's own site.** Rules that keep the data honest:
 
-- `price: 0` + discount wording in `description` (e.g. `"$1.00 off well drinks"`)
+- `price: 0` + discount wording in `description` (for example `"$1.00 off well drinks"`)
   → the UI renders `—`. `price: 0` with no wording at all fails validation.
 - Unpriced deals: append `(price not specified)` to the description.
 - No published HH at all → set `notes: "No published happy hour — verified <date>"`
   (the 100%-coverage invariant).
 - Sources: official venue site > dedicated HH subpage > clean aggregator.
-  **mthappyhour pages are contaminated** — never copy a snippet without checking
-  the venue's own site.
-- JS-rendered menus (Wix/Squarespace/React) return nav-only text to plain fetches
-  — record hours + a "deals on JS-rendered menu" note, or do a browser pass.
+  **Do not copy an mthappyhour snippet.** mthappyhour pages are contaminated.
+  Make sure that the venue's own site says the same thing.
+- JS-rendered menus (Wix/Squarespace/React) return nav-only text to plain fetches.
+  Record hours + a "deals on JS-rendered menu" note, or do a browser pass.
 
 ### Re-scrape one venue
 
@@ -82,16 +81,16 @@ python scripts/check_venue_status.py           # full run: state + data/state/cl
 python scripts/remove_venue.py <id> --reason "closed June 2026, X taking over"
 ```
 
-Removes from config + data AND writes a tombstone — discovery can never re-add it.
-First confirm the closure (news/FB announcement) — the venue may be open with
-changed hours instead.
+This removes the venue from config + data AND writes a tombstone. Discovery can
+never re-add it. First confirm the closure (news/FB announcement), because the
+venue can be open with changed hours instead.
 
 ### Change the hours grammar
 
 Edit `assets/js/hours.js` + add cases to `tests/hours.test.mjs` (fixture = the 22
 distinct hours strings in live data + edge cases). Run `node --test`. When a new
-test fails, check the expectation before touching the parser — the fixture matrix
-is ground truth; hand-invented examples drift.
+test fails, make sure that the expectation is right before you touch the parser.
+The fixture matrix is ground truth. Hand-invented examples drift.
 
 ### Add an aggregator host
 
@@ -112,7 +111,7 @@ match.)
 2. One concern per commit, emoji-prefixed messages matching repo style (🐄🍗🔍).
 3. **PRs stay open** for the user to review — merge only when they say so.
 4. After merging, verify **on `main`** (checkout main + pull, then check the log
-   and re-run the gates) — a post-merge check done on the feature branch is not a
+   and re-run the gates). A post-merge check done on the feature branch is not a
    check of main.
 
 ## Troubleshooting
@@ -120,7 +119,7 @@ match.)
 | Symptom | Cause / fix |
 |---|---|
 | `ModuleNotFoundError: httpx` | Not in the venv — activate it first |
-| `gh pr create` says "uses '&' backgrounding" | The terminal guard refuses `&` in command strings — write the PR body to a file and use `--body-file` |
-| Scraper prints `SKIP <url>: aggregator page doesn't match venue` | The contamination guard working — page is another venue's content; verify against the official site |
+| `gh pr create` says "uses '&' backgrounding" | The terminal guard refuses `&` in command strings. Write the PR body to a file and use `--body-file` |
+| Scraper prints `SKIP <url>: aggregator page doesn't match venue` | The contamination guard is working. The page is another venue's content. Make sure that the official site says otherwise |
 | `validate_data.py` fails on a price-0 special | Missing discount/free wording in the description — add it or `(price not specified)` |
 | Venue status shows `unknown` for empty hours | Expected — venues with no published HH window show no badge (specials still show) |

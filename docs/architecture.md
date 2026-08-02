@@ -1,7 +1,6 @@
 # Happy Cow — Architecture
 
-System overview for the Bozeman happy-hour finder: how the app, the data, and
-the pipeline fit together, and the invariants that keep the data honest.
+System overview for the Bozeman happy-hour finder. It shows how the app, the data, and the pipeline fit together, and the invariants that keep the data honest.
 
 - **Repo:** https://github.com/lucas-albers-lz4/happycow (vanilla JS app + static JSON + Python pipeline)
 - **Deployment:** GitHub Pages — **auto-redeploys on every commit to `main`**
@@ -52,23 +51,17 @@ flowchart LR
 
 ### 1. App (client-side, no framework)
 
-- `index.html` — single page; loads `hours.js` **before** `app.js` (the parser must exist first).
-- `app.js` (~1,000 lines) — rendering, search/filter, venue cards, nicknames, the cow
-  bar + horoscope (deliberately whimsical). All injected strings go through `esc()`.
-- `hours.js` — the **single source of truth for hours/status math**: `parseHours`,
-  `parseBusinessHours`, `hhStatus(hours, biz, now)`, `timeUntil`. Injectable `now`,
-  pure, unit-tested (19 tests). **Any hours/status change goes here, never back into
-  app.js.** Status badges, live/soon sorting, the "Opens in X" badge, the roulette,
-  and the sad-hour banner all call it.
-- Data comes from `data/happy_hour_data.json` — fetched at runtime (network-first
-  via the service worker, so deals never go stale offline).
+- `index.html` — single page. It loads `hours.js` **before** `app.js`, because the parser must exist first.
+- `app.js` (~1,000 lines) — rendering, search/filter, venue cards, nicknames, the cow bar + horoscope (deliberately whimsical). All injected strings go through `esc()`.
+- `hours.js` — the **single source of truth for hours/status math**: `parseHours`, `parseBusinessHours`, `hhStatus(hours, biz, now)`, `timeUntil`. It is pure and unit-tested (19 tests), with an injectable `now`. **Any hours/status change goes here, never back into app.js.** Status badges, live/soon sorting, the "Opens in X" badge, the roulette, and the sad-hour banner all call it.
+- Data comes from `data/happy_hour_data.json` — fetched at runtime (network-first via the service worker, so deals never go stale offline).
 
 ### 2. Data model
 
 | File | Role |
 |---|---|
 | `config/venues.json` | **Curated source of truth.** Static fields per venue (id, name, address, tags, noise/mood, nickname + alts, `scrape_urls`) + discovery seeds. Humans curate this. |
-| `data/happy_hour_data.json` | **Scraper output / what the app renders.** Adds the runtime fields: `hours`, `business_hours`, `specials[]`, `notes`. Regenerated every scrape; 100%-coverage invariant (below). |
+| `data/happy_hour_data.json` | **Scraper output / what the app renders.** Adds the runtime fields: `hours`, `business_hours`, `specials[]`, `notes`. Regenerated every scrape. Has the 100%-coverage invariant (below). |
 | `data/state/` | Runtime state (atomic writes): scrape cache, tombstones, closure state/report. Public by nature (Pages serves the repo) — hashes/flags only. |
 
 **Venue record** (schema: `schema/venue.schema.json`):
@@ -85,21 +78,21 @@ business_hours, notes, specials[{item, price, category: drinks|food, description
 
 1. **100% coverage** — every venue has `specials` or a known-gap `notes` entry. Enforced by `validate_data.py`.
 2. **Carry-through by construction** — `venue_to_site_record()` (scraper/merge.py) starts from ALL config fields (minus pipeline-only keys) and overrides only runtime fields. A new curated field in config survives scrapes automatically.
-3. **Source hierarchy** — own-site pages (curated `scrape_urls`) outrank aggregators; aggregator pages are accepted only when they match the venue (name + street) — mthappyhour pages are known to leak neighboring venues' data.
-4. **Price-0 honesty** — `price: 0` must carry free/discount wording in the description or a venue note (the UI renders discount wording as `—`, not FREE). Enforced by `validate_data.py`.
-5. **Hours grammar single-sourced** — `validate_hours.mjs` runs `hours.js` over every hours string in the data (node), so the data can never carry a string the parser can't read.
+3. **Source hierarchy** — own-site pages (curated `scrape_urls`) outrank aggregators. The scraper accepts an aggregator page only when it matches the venue (name + street), because mthappyhour pages can leak neighboring venues' data.
+4. **Price-0 honesty** — `price: 0` must carry free/discount wording in the description or a venue note. The UI renders discount wording as `—`, not FREE. Enforced by `validate_data.py`.
+5. **Hours grammar single-sourced** — `validate_hours.mjs` runs `hours.js` over every hours string in the data (node). The data can never carry a string the parser cannot read.
 
 ### 3. Pipeline (Python, run by GitHub Actions)
 
 | Step | Script | Notes |
 |---|---|---|
-| Discover | `discover_venues.py` | Best-effort; skips tombstoned venues so closed ones can't return |
-| Scrape | `scripts/scraper/` (`fetch.py` → `extract.py` → `merge.py`, `cli.py` orchestrates) | Own-site first, aggregators last with contamination guard; DeepSeek Flash LLM extraction with pydantic validation + content-hash cache; previous data kept on failure |
+| Discover | `discover_venues.py` | Best-effort. Skips tombstoned venues so closed ones cannot return |
+| Scrape | `scripts/scraper/` (`fetch.py` → `extract.py` → `merge.py`, `cli.py` orchestrates) | Own-site first, aggregators last with contamination guard. DeepSeek Flash LLM extraction with pydantic validation + content-hash cache. Previous data kept on failure |
 | Closure check | `check_venue_status.py` | Report-only flags (site dead 2× runs, closure wording) → human reviews `data/state/closure_report.md` |
-| Validate | `validate_data.py` + `validate_hours.mjs` | **Fails the job before commit** — broken JSON never reaches Pages; also runs on every PR (`ci.yml`) |
+| Validate | `validate_data.py` + `validate_hours.mjs` | **Fails the job before commit** — broken JSON never reaches Pages. Also runs on every PR (`ci.yml`) |
 | Remove (manual) | `remove_venue.py <id> --reason "…"` | Sanctioned closure removal: config + data + tombstone |
 
-Shared constants (aggregator hosts, paths, atomic writers) live in `scripts/common.py` — the single source; edit it, never re-define the set elsewhere.
+Shared constants (aggregator hosts, paths, atomic writers) live in `scripts/common.py` — the single source. Edit it there. Never re-define the set elsewhere.
 
 ## Key flows
 
