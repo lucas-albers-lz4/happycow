@@ -256,7 +256,7 @@
       ],
       "address": "101 N Rouse Ave, Bozeman, MT 59715",
       "phone": "",
-      "website": "",
+      "website": "https://www.bozemantaproom.com",
       "scrape_urls": [
         "https://mthappyhour.com/locations/bozeman-taproom/"
       ],
@@ -299,7 +299,7 @@
       ],
       "address": "233 E Main Street #201",
       "phone": "(406) 624-6161",
-      "website": "",
+      "website": "https://brigadebozeman.com",
       "scrape_urls": [
         "https://mthappyhour.com/locations/brigade/"
       ],
@@ -495,7 +495,7 @@
       ],
       "address": "24 N Tracy Ave, Bozeman, MT 59715",
       "phone": "",
-      "website": "",
+      "website": "https://www.revelrymt.com",
       "scrape_urls": [
         "https://mthappyhour.com/locations/revelry/"
       ],
@@ -560,7 +560,7 @@
       ],
       "address": "105 W Main St Suite 1A, Bozeman, MT 59715",
       "phone": "",
-      "website": "",
+      "website": "https://www.bacchuspub.com",
       "scrape_urls": [
         "https://mthappyhour.com/locations/the-bacchus-pub/"
       ],
@@ -652,9 +652,11 @@
         "https://www.thebaybarandgrille.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-buck",
@@ -672,9 +674,11 @@
         "https://thebuckbozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Buck%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-bunkhouse-brewery",
@@ -692,9 +696,11 @@
         "https://www.bunkhousebrewery.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "cafe-fresco",
@@ -711,9 +717,11 @@
         "https://mthappyhour.com/locations/cafe-fresco/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Cafe%20Fresco%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-cannery",
@@ -731,9 +739,11 @@
         "https://thecannerybozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Cannery%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-filling-station",
@@ -757,8 +767,8 @@
         "dive",
         "live-music"
       ],
-      "noise_level": "",
-      "mood": ""
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-haufbrau",
@@ -779,8 +789,8 @@
         "dive",
         "live-music"
       ],
-      "noise_level": "",
-      "mood": ""
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "hooked-sushi",
@@ -798,9 +808,11 @@
         "https://www.hookedmt.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Hooked%20Sushi%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "korner-klub",
@@ -818,9 +830,11 @@
         "https://kornerklub.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Korner%20Klub%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "last-best-place-brewery",
@@ -838,9 +852,11 @@
         "https://www.lbpbrewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-molly-brown",
@@ -861,8 +877,8 @@
         "dive",
         "casino"
       ],
-      "noise_level": "",
-      "mood": ""
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "the-pour-house",
@@ -879,9 +895,11 @@
         "https://mthappyhour.com/locations/the-pour-house/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Pour%20House%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "sidewall-pizza-company",
@@ -899,9 +917,11 @@
         "https://www.sidewallpizzabozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Sidewall%20Pizza%20Company%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "tanoshii",
@@ -919,9 +939,11 @@
         "https://tanoshiimt.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Tanoshii%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "valhalla-meadery",
@@ -939,9 +961,11 @@
         "https://valhallabozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "bar-3-bbq-and-brewery",
@@ -959,9 +983,11 @@
         "https://bar3bbq.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "buffalo-wild-wings",
@@ -979,9 +1005,11 @@
         "https://www.buffalowildwings.com/happy-hour/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "sports"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "copper-whiskey-bar",
@@ -999,9 +1027,11 @@
         "https://coppermontana.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Copper%20Whiskey%20Bar%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "whiskey"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "madison-river-brewing-co",
@@ -1019,9 +1049,11 @@
         "https://www.madisonriverbrewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "old-chicago",
@@ -1039,9 +1071,11 @@
         "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "outlaw-brewing",
@@ -1059,9 +1093,11 @@
         "https://outlaw-brewing.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "craft-beer"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "plonk",
@@ -1079,9 +1115,11 @@
         "https://plonkwine.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Plonk%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "classy"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "pub-317",
@@ -1098,9 +1136,11 @@
         "https://mthappyhour.com/locations/pub-317/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Pub%20317%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "pub"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "rialto-bar-burn-box",
@@ -1118,9 +1158,11 @@
         "https://www.larkbozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Rialto%20Bar%20%E2%80%93%20Burn%20Box%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "santa-fe-reds",
@@ -1137,9 +1179,11 @@
         "https://mthappyhour.com/locations/santa-fe-reds/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "seven-sushi",
@@ -1157,9 +1201,11 @@
         "https://www.7bozeman.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Seven%20Sushi%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "downtown"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "spectators-bar-and-grill",
@@ -1177,9 +1223,11 @@
         "https://specsbzn.com/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Spectators%20Bar%20and%20Grill%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
+      "tags": [
+        "sports"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     },
     {
       "id": "stacey-s-old-faithful-bar-steakhouse",
@@ -1201,8 +1249,8 @@
         "western",
         "steakhouse"
       ],
-      "noise_level": "",
-      "mood": ""
+      "noise_level": "moderate",
+      "mood": "bozeman-local"
     }
   ]
 }

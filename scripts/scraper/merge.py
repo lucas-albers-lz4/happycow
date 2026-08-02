@@ -6,6 +6,16 @@ vanish from the site data again.
 
 Issue #41: batch-reject unparseable hours via check_hours_batch.mjs so a bad
 LLM hours string never overwrites a previously good value.
+
+Issue #48: CONFIG_OWNED_KEYS defines which fields are curated in config vs.
+owned by the scraper. For config-owned keys, a falsy config value ("", [],
+None) does NOT overwrite a richer previous site value — only an explicit
+non-empty config value wins. Scrape-owned keys (hours, business_hours,
+specials, notes) are never in this list; they follow the existing
+extract-or-previous fallback.
+
+Contract for issue #52 deep parity: any field added to config that should
+survive merges must be listed in CONFIG_OWNED_KEYS.
 """
 
 from __future__ import annotations
@@ -20,18 +30,48 @@ _PIPELINE_ONLY_KEYS = {"scrape_urls"}
 
 _CHECK_HOURS_BATCH = Path(__file__).resolve().parent / "check_hours_batch.mjs"
 
+# Fields curated in config/venues.json — config wins when non-empty; when
+# config is falsy ("", [], None) we keep the richer previous site value.
+# Scrape-owned fields (hours, business_hours, specials, notes) are excluded.
+CONFIG_OWNED_KEYS = frozenset({
+    "name",
+    "nickname",
+    "nickname_alts",
+    "address",
+    "phone",
+    "website",
+    "maps",
+    "tags",
+    "noise_level",
+    "mood",
+})
+
 
 def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | None) -> dict:
     """Merge config venue + fresh extraction into a site record.
 
     Carry-through by construction (Phase 3, issue #30): start from ALL config
     fields (minus pipeline-only keys) and override only the runtime fields —
-    so a new curated field can never silently vanish again (the old code
-    hand-listed every key; `notes` and `nickname` both fell through it).
+    so a new curated field can never silently vanish again.
+
+    Keep-previous (issue #48): for CONFIG_OWNED_KEYS, a falsy config value
+    does not overwrite a non-empty previous site value. An explicit non-empty
+    config value still wins. This prevents empty-config fields from wiping
+    richer data already on the site (website, tags, mood, noise_level, etc.).
     """
     prev = previous or {}
     ex = extract or {}
     record = {k: v for k, v in venue.items() if k not in _PIPELINE_ONLY_KEYS}
+
+    # For config-owned keys: keep previous site value when config is falsy.
+    for key in CONFIG_OWNED_KEYS:
+        if key not in record:
+            continue
+        config_val = record[key]
+        is_falsy = config_val == "" or config_val == [] or config_val is None
+        if is_falsy and key in prev and prev[key]:
+            record[key] = prev[key]
+
     for key in ("hours", "business_hours", "notes"):
         record[key] = ex.get(key) or prev.get(key) or ""
     specials = ex.get("specials")
