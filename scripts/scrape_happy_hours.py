@@ -23,7 +23,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
 
-from common import is_aggregator
+from common import CACHE_PATH, is_aggregator, save_json
 
 import httpx
 import trafilatura
@@ -38,7 +38,6 @@ from tenacity import (
 ROOT = Path(__file__).resolve().parent.parent
 VENUES_PATH = ROOT / "config" / "venues.json"
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
-CACHE_PATH = ROOT / "data" / "scrape_cache.json"
 PROMPT_PATH = ROOT / "prompts" / "extract_happy_hour.txt"
 
 ANTHROPIC_API_KEY = (
@@ -110,13 +109,6 @@ class ExtractResult(BaseModel):
 def load_json(path: Path) -> dict:
     with open(path) as f:
         return json.load(f)
-
-
-def save_json(path: Path, data: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
-        f.write("\n")
 
 
 def content_hash(text: str) -> str:

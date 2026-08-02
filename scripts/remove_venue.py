@@ -3,7 +3,7 @@
 
 Removes the venue from BOTH `config/venues.json` (source of truth) and
 `data/happy_hour_data.json` (site data), and records a tombstone in
-`data/removed_venues.json` so `discover_venues.py` does not re-add it.
+`data/state/removed_venues.json` so `discover_venues.py` does not re-add it.
 
 Usage:
   python scripts/remove_venue.py open-range --reason "closed June 2026, Meson Frailes taking over 241 E Main"
@@ -20,10 +20,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from common import TOMBSTONES_PATH, save_json
+
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
-REMOVED_PATH = ROOT / "data" / "removed_venues.json"
 
 
 def norm_name(name: str) -> str:
@@ -43,7 +44,7 @@ def main() -> int:
 
     cfg = json.loads(CONFIG_PATH.read_text())
     data = json.loads(DATA_PATH.read_text())
-    removed = json.loads(REMOVED_PATH.read_text()) if REMOVED_PATH.exists() else {"venues": []}
+    removed = json.loads(TOMBSTONES_PATH.read_text()) if TOMBSTONES_PATH.exists() else {"venues": []}
 
     cfg_by_id = {v["id"]: v for v in cfg["venues"]}
     missing = [i for i in args.venue_ids if i not in cfg_by_id]
@@ -72,9 +73,9 @@ def main() -> int:
 
     CONFIG_PATH.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
     DATA_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    REMOVED_PATH.write_text(json.dumps(removed, indent=2, ensure_ascii=False) + "\n")
+    save_json(TOMBSTONES_PATH, removed)
     print(f"config: {len(cfg['venues'])} venues | data: {len(data['venues'])} venues")
-    print(f"tombstones: {len(removed['venues'])} -> {REMOVED_PATH}")
+    print(f"tombstones: {len(removed['venues'])} -> {TOMBSTONES_PATH}")
     return 0
 
 

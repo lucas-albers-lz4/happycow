@@ -12,16 +12,10 @@ A self-funding happy hour directory for small cities. 30 rotating cow cartoons, 
 
 ## Scrape pipeline
 
-Curated venues live in `config/venues.json` (static fields: tags, maps, scrape URLs).
-Primary source pages are [Montana Happy Hour](https://mthappyhour.com/happy-hours-near/bozeman/) location URLs — venue own-sites are fallback only.
-`.github/workflows/scrape.yml` runs Sun + Thu ~8am MT:
+Curated venues live in `config/venues.json` (source of truth: static fields, tags, maps, scrape URLs, nicknames).
+`.github/workflows/scrape.yml` runs Sun + Thu ~8am MT — see **[docs/data-flow.md](docs/data-flow.md)** for the full pipeline (discovery, scraping, closure check, validation, fallback semantics).
 
-1. Fetch each venue's `scrape_urls` (`httpx` + retries)
-2. Trim page text with `trafilatura` (happy-hour section only)
-3. Skip DeepSeek when content hash matches `data/scrape_cache.json`
-4. Otherwise DeepSeek Flash extracts hours + specials; `pydantic` validates (+ 1 retry)
-5. Merge into `data/happy_hour_data.json` (keeps previous on failure)
-6. Commit data + cache to `main` → Pages redeploys
+In brief: own-site pages (curated `scrape_urls`) are fetched first — aggregators (mthappyhour et al.) are last, and only accepted when the page matches the venue (name + street), guarding against the cross-venue contamination mthappyhour is prone to. DeepSeek Flash extracts hours + specials (`pydantic` validates, +1 retry); previous data is kept on any failure. A validation gate (schema, hours grammar via the JS parser, coverage, config/data parity) fails the job before anything commits. GitHub Pages redeploys on every commit to `main`.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate

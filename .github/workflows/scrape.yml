@@ -64,7 +64,7 @@ jobs:
         run: |
           git config user.name "happycow-bot"
           git config user.email "happycow-bot@users.noreply.github.com"
-          git add data/happy_hour_data.json data/scrape_cache.json data/closure_state.json config/venues.json scripts/discover_venues.py scripts/check_venue_status.py closure_report.md
+          git add data/happy_hour_data.json data/state/ config/venues.json scripts/discover_venues.py scripts/check_venue_status.py scripts/common.py
           if git diff --staged --quiet; then
             echo "No data changes"
           else
