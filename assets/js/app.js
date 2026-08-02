@@ -359,6 +359,8 @@ function renderDealOfDay() {
 }
 
 // ─── Status Bar ───
+const CLOSED_LABEL = 'Done'; // funny stand-in for "closed" (happy hour not running)
+const UNKNOWN_LABEL = 'Hours TBD'; // hours not listed yet
 function renderStatusBar() {
   const bar = document.getElementById('status-bar');
   bar.innerHTML = '';
@@ -366,11 +368,12 @@ function renderStatusBar() {
     const status = isHHLive(v.hours);
     const pill = document.createElement('button');
     pill.type = 'button';
-    pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : '');
+    pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : ' unknown');
     pill.textContent = status === 'live' ? `● ${v.name}` :
                        status === 'soon' ? `▲ ${v.name}` :
+                       status === 'unknown' ? `? ${v.name}` :
                        `○ ${v.name}`;
-    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : 'closed'}`);
+    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : status === 'unknown' ? 'hours unknown' : 'closed'}`);
     pill.onclick = () => scrollToVenue(v.id);
     bar.appendChild(pill);
   });
@@ -426,8 +429,8 @@ function renderVenueCard(venue, container) {
 
   const statusText = status === 'live' ? '● Live now' :
                      status === 'soon' ? `▲ Opens in ${timeUntil(getStartMinutes(venue.hours))}` :
-                     '○ Closed';
-
+                     status === 'unknown' ? `? ${UNKNOWN_LABEL}` :
+                     `○ ${CLOSED_LABEL}`;
   const specialsId = `specials-${venue.id}`;
   const hoursId = `hours-${venue.id}`;
   const bizHoursId = `biz-hours-${venue.id}`;
@@ -829,12 +832,37 @@ function renderHoroscope(cow) {
     "Your lucky charm tonight: a cow with excellent posture.",
     "Cosmic forecast: meadow-licious with a chance of free nachos."
   ];
+  // Pick a REAL drink from the venue data, linked to the bar that offers it.
+  const candidates = [];
+  (state.data?.venues || []).forEach(v => {
+    (v.specials || []).forEach(s => {
+      if (s.item && s.item.length > 1) candidates.push({ ...s, venue: v });
+    });
+  });
+  let lucky = null;
+  if (candidates.length) {
+    lucky = candidates[Math.floor(rng() * candidates.length)];
+  }
+
   document.getElementById('horoscope-sign').textContent = `♈ ${sign} · ${cow.name} the ${cow.mood} Cow`;
+  const luckyPrice = (lucky && typeof lucky.price === 'number' && lucky.price > 0)
+    ? ` — $${lucky.price.toFixed(2)}` : '';
+  const luckyHtml = lucky
+    ? `Lucky drink: <button type="button" class="lucky-drink" data-venue="${esc(lucky.venue.id)}">${esc(lucky.item)}${luckyPrice} at ${esc(lucky.venue.name)} →</button>`
+    : `Lucky drink: ${esc(['$4 PBR','$6 Margarita','$5 Old Fashioned','$3 Wells','$2.50 Hamms','$7 Wine','$4 Local IPA'][Math.floor(rng()*7)])}`;
   document.getElementById('horoscope-text').innerHTML =
     `${extras[Math.floor(rng() * extras.length)]}<br><br>
      <span style="font-size:0.8rem;color:var(--text-dim);">
-     Lucky drink: ${['$4 PBR','$6 Margarita','$5 Old Fashioned','$3 Wells','$2.50 Hamms','$7 Wine','$4 Local IPA'][Math.floor(rng()*7)]}
+     ${luckyHtml}
      </span>`;
+  // Tap the lucky drink → jump to the bar offering it
+  const luckyBtn = document.querySelector('.lucky-drink');
+  if (luckyBtn) {
+    luckyBtn.onclick = () => {
+      const id = luckyBtn.getAttribute('data-venue');
+      if (id) { closeModal('horoscope-modal'); scrollToVenue(id); }
+    };
+  }
 }
 
 // ─── Moo ───

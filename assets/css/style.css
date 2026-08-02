@@ -137,6 +137,16 @@ body {
   color: #fff;
   border-color: var(--gold);
 }
+.status-pill.closed {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+.status-pill.unknown {
+  background: var(--text-dim);
+  color: #fff;
+  border-color: var(--text-dim);
+}
 
 /* ─── Controls ─── */
 .controls {
@@ -251,9 +261,10 @@ body {
   text-align: center;
   white-space: nowrap;
 }
-.hh-status.live { background: #e0f0e0; color: #2a6b3c; }
-.hh-status.soon { background: #f8edd0; color: #8b7535; }
-.hh-status.closed { background: #f0e0e0; color: #8b4a4a; }
+.hh-status.live { background: var(--green); color: #fff; }
+.hh-status.soon { background: var(--gold); color: #fff; }
+.hh-status.closed { background: var(--red); color: #fff; }
+.hh-status.unknown { background: var(--text-dim); color: #fff; }
 
 .venue-specials {
   padding: 0 16px 14px;
@@ -400,8 +411,10 @@ body.dark .hours-value { color: var(--text); }
   flex-shrink: 0;
   padding: 10px 14px;
   border-radius: 20px;
+  font: inherit;
   font-size: 0.8rem;
   font-weight: 600;
+  color: var(--text);
   background: var(--card);
   border: 1.5px solid #e0d5c5;
   cursor: pointer;
@@ -489,6 +502,24 @@ body.dark .hours-value { color: var(--text); }
   letter-spacing: 0.1em;
   color: var(--text-dim);
 }
+.lucky-drink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--cow-spot-2);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lucky-drink:hover { color: var(--gold); }
+.lucky-drink:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+body.dark .lucky-drink { color: var(--gold); }
 
 /* ─── Tip Calculator ─── */
 .tip-calc label {
@@ -562,9 +593,11 @@ body.dark .controls input, body.dark .controls select { border-color: #3a3228; }
 body.dark .feature-btn { border-color: #3a3228; }
 body.dark .feature-btn:active { background: #2a2218; }
 body.dark .deal-day-title { opacity: 0.7; }
-body.dark .hh-status.live { background: #1a3a2a; color: #7ac99a; }
-body.dark .hh-status.soon { background: #3a2a1a; color: #d4a04a; }
-body.dark .hh-status.closed { background: #2a1a1a; color: #c46a6a; }
+body.dark .hh-status.live { background: var(--green); color: #fff; }
+body.dark .hh-status.soon { background: var(--gold); color: #fff; }
+body.dark .hh-status.closed { background: var(--red); color: #fff; }
+body.dark .hh-status.unknown { background: var(--text-dim); color: #fff; }
+body.dark .tag { color: var(--gold); }
 
 /* ─── Mystery Drink ─── */
 .mystery-btn {
