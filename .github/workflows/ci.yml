@@ -34,3 +34,9 @@ jobs:
         # No-arg discovery (node 18+); `node --test tests/` fails on some
         # node versions and the glob form needs node 21+.
         run: node --test
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Python unit tests
+        run: python -m unittest discover -s tests/python -v
