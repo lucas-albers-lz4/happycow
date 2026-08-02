@@ -71,9 +71,19 @@ def check(cond: bool, msg: str) -> None:
         errors.append(msg)
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    import argparse as _argparse
+    ap = _argparse.ArgumentParser(description=__doc__, add_help=True)
+    ap.add_argument("--data", type=Path, default=DATA_PATH,
+                    help="Path to data JSON file (default: data/happy_hour_data.json)")
+    ap.add_argument("--config", type=Path, default=CONFIG_PATH,
+                    help="Path to config JSON file (default: config/venues.json)")
+    args = ap.parse_args(argv)
+    data_path: Path = args.data
+    config_path: Path = args.config
+
     try:
-        data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+        data = json.loads(data_path.read_text(encoding="utf-8"))
     except Exception as exc:  # noqa: BLE001
         print(f"FAIL: data file unparseable: {exc}")
         return 1
@@ -82,7 +92,7 @@ def main() -> int:
     check(isinstance(venues, list), "top-level 'venues' must be a list")
 
     ids: list[str] = []
-    for v in venues or []:
+    for v in (venues if isinstance(venues, list) else []):
         if not isinstance(v, dict):
             check(False, "venue entries must be objects")
             continue
@@ -119,11 +129,15 @@ def main() -> int:
     dup = {x for x in ids if ids.count(x) > 1}
     check(not dup, f"duplicate venue ids: {sorted(dup)}")
 
-    uncovered = [v.get("id") for v in venues or [] if not v.get("specials") and not (v.get("notes") or "").strip()]
+    _vlist = venues if isinstance(venues, list) else []
+    uncovered = [
+        v.get("id") for v in _vlist
+        if isinstance(v, dict) and not v.get("specials") and not (v.get("notes") or "").strip()
+    ]
     check(not uncovered, f"venues with no specials AND no note: {uncovered}")
 
     try:
-        cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        cfg = json.loads(config_path.read_text(encoding="utf-8"))
         cfg_venues = cfg.get("venues", [])
         cfg_ids = {v["id"] for v in cfg_venues}
         data_ids = {x for x in ids if x}
@@ -135,7 +149,7 @@ def main() -> int:
         # values are exempt because falsy-keeps-prev (issue #48) allows the data
         # to retain a richer previous value when config is blank.
         cfg_by_id = {v["id"]: v for v in cfg_venues if v.get("id")}
-        data_by_id = {v["id"]: v for v in (venues or []) if isinstance(v, dict) and v.get("id")}
+        data_by_id = {v["id"]: v for v in _vlist if isinstance(v, dict) and v.get("id")}
         for vid, cv in cfg_by_id.items():
             dv = data_by_id.get(vid)
             if not dv:
@@ -154,7 +168,7 @@ def main() -> int:
 
     try:
         proc = subprocess.run(
-            ["node", str(HOURS_VALIDATOR), str(DATA_PATH)],
+            ["node", str(HOURS_VALIDATOR), str(data_path)],
             capture_output=True, text=True, timeout=60,
         )
         if proc.returncode != 0:
