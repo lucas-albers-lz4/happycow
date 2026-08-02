@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-02T12:43:22Z",
+  "updated_at": "2026-08-02T14:37:06Z",
   "fetches": 54,
   "llm_calls": 0,
   "tokens": 0,
@@ -8,6 +8,7 @@
   "escalations": 10,
   "overture_matches": 2,
   "overpass_signals": 0,
+  "scrape_observations": 54,
   "venues_processed": 54,
   "top_n_selected": [
     "urban-kitchen",
@@ -19,6 +20,6 @@
     "cafe-fresco",
     "bozeman-spirits-distillery",
     "santa-fe-reds",
-    "valhalla-meadery"
+    "the-bacchus-pub"
   ]
 }

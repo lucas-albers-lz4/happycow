@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from harness import TempDir, run_script  # noqa: E402
+from harness import TempDir, run_script, write_json  # noqa: E402
 from adapters.overture import (  # noqa: E402
     load_fixture,
     match_venues_to_candidates,
@@ -398,6 +398,88 @@ class GoldenEvalScript(unittest.TestCase):
         proc = run_script(ROOT / "scripts" / "eval_venue_truth.py")
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
 
+
+class ShadowCliIntegration(unittest.TestCase):
+    """CLI wiring: dry-run, --suppress gate, --force-suppress clear path."""
+
+    def test_dry_run_exits_zero(self):
+        proc = run_script(ROOT / "scripts" / "run_venue_truth.py", ["--dry-run"])
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("Overture:", proc.stdout)
+
+    def test_suppress_gate_and_force_clear(self):
+        import run_venue_truth as rvt
+
+        fixture = ROOT / "data" / "eval" / "overture_fixture.json"
+        santa = {
+            "id": "santa-fe-reds",
+            "name": "Santa Fe Reds",
+            "address": "1235 N 7th Ave, Bozeman",
+            "phone": "",
+            "website": "",
+            "scrape_urls": ["https://mthappyhour.com/locations/santa-fe-reds/"],
+        }
+        site_venue = {
+            "id": "santa-fe-reds",
+            "name": "Santa Fe Reds",
+            "hours": "Daily 3-6pm",
+            "business_hours": "Mon-Sun 11am-10pm",
+            "specials": [
+                {"item": "$5 Marg", "price": 5, "category": "drinks", "description": ""}
+            ],
+            "notes": "Source: mthappyhour.com",
+        }
+
+        with TempDir() as tmp:
+            venues_path = tmp / "venues.json"
+            data_path = tmp / "happy_hour_data.json"
+            state = tmp / "state"
+            evidence = tmp / "evidence"
+            state.mkdir()
+            evidence.mkdir()
+            write_json(venues_path, {"venues": [santa]})
+            write_json(data_path, {"last_updated": "2026-08-01T00:00:00Z", "venues": [site_venue]})
+            write_json(state / "truth_config.json", {"suppress_enabled": False, "top_n_uncertain": 5})
+
+            patches = {
+                "VENUES_PATH": venues_path,
+                "DATA_PATH": data_path,
+                "EVIDENCE_DIR": evidence,
+                "TRUTH_CONFIG_PATH": state / "truth_config.json",
+                "SHADOW_DECISIONS_PATH": state / "shadow_decisions.json",
+                "REVIEW_QUEUE_PATH": state / "review_queue.json",
+                "COST_COUNTERS_PATH": state / "cost_counters.json",
+                "OVERTURE_CACHE_PATH": state / "overture_priors.json",
+                "OVERPASS_CACHE_PATH": state / "overpass_snapshot.json",
+            }
+            orig = {name: getattr(rvt, name) for name in patches}
+            try:
+                for name, value in patches.items():
+                    setattr(rvt, name, value)
+
+                # --suppress alone must NOT mutate site data when config is false
+                before = data_path.read_text(encoding="utf-8")
+                rc = rvt.run(fixture=fixture, suppress=True, write=True)
+                self.assertEqual(rc, 0)
+                self.assertEqual(data_path.read_text(encoding="utf-8"), before)
+
+                shadow = json.loads((state / "shadow_decisions.json").read_text(encoding="utf-8"))
+                status = shadow["venues"]["santa-fe-reds"]["business_status"]
+                self.assertEqual(status["kind"], "suppressed")
+                self.assertIn(status["value"], ("permanently_closed", "likely_closed"))
+
+                # --force-suppress clears HH fields for suppressed venues
+                rc = rvt.run(fixture=fixture, force_suppress=True, write=True)
+                self.assertEqual(rc, 0)
+                after = json.loads(data_path.read_text(encoding="utf-8"))
+                rec = after["venues"][0]
+                self.assertEqual(rec["specials"], [])
+                self.assertEqual(rec["hours"], "")
+                self.assertEqual(rec["business_hours"], "")
+                self.assertIn("suppressed", (rec.get("notes") or "").lower())
+            finally:
+                for name, value in orig.items():
+                    setattr(rvt, name, value)
 
 if __name__ == "__main__":
     unittest.main()
