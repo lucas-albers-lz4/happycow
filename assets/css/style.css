@@ -234,6 +234,7 @@ body {
 .venue-name {
   font-weight: 700;
   font-size: 1.05rem;
+  margin: 0;
 }
 .venue-detail {
   font-size: 0.8rem;

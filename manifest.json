@@ -1,0 +1,18 @@
+{
+  "name": "Happy Cow — Happy Hour Deals, Bozeman MT",
+  "short_name": "Happy Cow",
+  "description": "Cow-curated happy hour deals for Bozeman, MT",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf6ec",
+  "theme_color": "#fdf6ec",
+  "icons": [
+    {
+      "src": "assets/cows/cow-0.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

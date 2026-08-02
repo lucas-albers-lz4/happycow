@@ -477,7 +477,7 @@ function renderVenueCard(venue, container) {
     <button type="button" class="venue-toggle" aria-expanded="${expanded}" aria-controls="${specialsId}">
       <div class="venue-header">
         <div>
-          <div class="venue-name">${esc(venue.name)}</div>
+          <h3 class="venue-name">${esc(venue.name)}</h3>
           <div class="venue-detail">${esc([venue.hours, venue.address].filter(Boolean).join(' · '))}</div>
           <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         </div>
