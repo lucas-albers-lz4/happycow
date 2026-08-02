@@ -230,7 +230,7 @@ function render() {
   }
 
   // ── Hero ──
-  document.getElementById('hero-title').innerHTML = `Happy Cow <span>${state.data.city}</span>`;
+  document.getElementById('hero-title').innerHTML = `Happy Cow <span>${esc(state.data.city)}</span>`;
   document.getElementById('last-updated').textContent = `Updated ${formatDate(state.data.last_updated)}`;
   const footerUpdated = document.getElementById('footer-updated');
   if (footerUpdated) footerUpdated.textContent = formatDate(state.data.last_updated);
@@ -244,50 +244,18 @@ function render() {
   // ── Venue List ──
   renderVenues();
 
-  // ── Cow icon click → modal + moo ──
-  const cowIcon = document.getElementById('cow-icon');
-  cowIcon.style.cursor = 'pointer';
-  cowIcon.setAttribute('role', 'button');
-  cowIcon.setAttribute('tabindex', '0');
-  cowIcon.setAttribute('aria-label', 'Open cow of the day');
-  const openCow = () => { playMoo(); openModal('cow-modal'); };
-  cowIcon.onclick = openCow;
-  cowIcon.onkeydown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCow(); }
-  };
+  // ── Cow modal content (data-dependent; update each render) ──
   setupCowModal(todayCow);
 
-  // ── Feature buttons ──
-  document.getElementById('btn-what').onclick = () => { openModal('cowq-modal'); renderCowQuestion(); };
+  // Horoscope depends on todayCow — bind after data loads (only once; render is called once).
   document.getElementById('btn-horoscope').onclick = () => { openModal('horoscope-modal'); renderHoroscope(todayCow); };
-  document.getElementById('btn-moo').onclick = () => playMoo();
-  document.getElementById('btn-tip').onclick = () => { openModal('tip-modal'); };
-  document.getElementById('btn-quiz').onclick = () => { openModal('quiz-modal'); };
 
-  // ── Mystery Drink ──
-  document.getElementById('mystery-btn').onclick = doMysteryDrink;
-
-  // ── Sad Hour (no fake crowd counts) ──
+  // ── Sad Hour ──
   renderSadHour();
 
-  // ── Dark Mode ──
+  // ── Dark Mode state sync ──
   if (state.dark) document.body.classList.add('dark');
   document.getElementById('dark-toggle').textContent = state.dark ? '☀️' : '🌙';
-  document.getElementById('dark-toggle').onclick = toggleDark;
-
-  // ── Roulette ──
-  document.getElementById('roulette-btn').onclick = doRoulette;
-
-  // ── Quiz ──
-  document.getElementById('quiz-form').onsubmit = handleQuiz;
-
-  // ── Tip Calculator ──
-  document.getElementById('tip-total').oninput = renderTipCalc;
-  document.getElementById('tip-people').oninput = renderTipCalc;
-
-  // ── Filter ──
-  document.getElementById('filter-search').oninput = renderVenues;
-  document.getElementById('filter-tag').onchange = renderVenues;
 }
 
 // ─── Deal of the Day ───
@@ -363,18 +331,6 @@ function renderVenues() {
   filtered.forEach(v => renderVenueCard(v, container));
 }
 
-// Wire an expandable panel toggle (Hours / Biz Hours) in place — no list re-render.
-function wirePanelToggle(card, btnSel, panelSel) {
-  const btn = card.querySelector(btnSel);
-  const panel = card.querySelector(panelSel);
-  if (btn && panel) {
-    btn.onclick = () => {
-      const open = !panel.hidden;
-      panel.hidden = open;
-      btn.setAttribute('aria-expanded', String(!open));
-    };
-  }
-}
 
 function renderVenueCard(venue, container) {
   const expanded = state.expanded === venue.id;
@@ -404,21 +360,6 @@ function renderVenueCard(venue, container) {
     if (specialsEl) specialsEl.hidden = false;
   }
 
-  const toggle = card.querySelector('.venue-toggle');
-  const specials = card.querySelector('.venue-specials');
-  toggle.onclick = () => {
-    const open = state.expanded === venue.id;
-    state.expanded = open ? null : venue.id;
-    // Re-render list so only one stays expanded cleanly
-    renderVenues();
-    if (!open) {
-      const el = document.getElementById(`venue-${venue.id}`);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  };
-  // Expandable panels: Hours / Biz Hours toggle in place (no list re-render)
-  wirePanelToggle(card, '.hours-toggle', '.hours-panel#hours-' + venue.id);
-  wirePanelToggle(card, '.biz-hours-toggle', '.hours-panel#biz-hours-' + venue.id);
   container.appendChild(card);
 }
 
@@ -832,32 +773,14 @@ function renderTipCalc() {
 }
 
 // ─── Quiz ───
-const QUIZ_QUESTIONS = [
-  {
-    q: "Happy hour starts in 10 minutes. What do you do?",
-    a: ["Walk slowly toward the bar", "Speedwalk like it's the olympics",
-        "You've been there for 45 minutes already", "Text your group chat 'who's out?'"]
-  },
-  {
-    q: "The special is $3 wells. What do you order?",
-    a: ["Whiskey ginger", "Vodka soda (diet starts tomorrow)", "Gin and tonic",
-        "Whatever the person before you ordered"]
-  },
-  {
-    q: "Best happy hour snack?",
-    a: ["Nachos", "Wings", "Free popcorn", "Whatever's half off"]
-  },
-  {
-    q: "Your friend says 'one more round.' It's 20 minutes before last call. You:",
-    a: ["Absolutely", "One more then I'm out (lie)", "Already have my coat on",
-        "Water? Never heard of her"]
-  }
-];
-
+// Question count is derived from the DOM (injected by index.html inline script).
+// QUIZ_QUESTIONS in app.js was a dead duplicate — removed.
 function handleQuiz(e) {
   e.preventDefault();
+  const questionCount = document.getElementById('quiz-questions').children.length;
+  if (questionCount === 0) return;
   const answers = [];
-  for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+  for (let i = 0; i < questionCount; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (!selected) { document.getElementById('quiz-result').textContent = 'Answer all questions, cowpoke.'; return; }
     answers.push(parseInt(selected.value));
@@ -870,7 +793,7 @@ function handleQuiz(e) {
     "You are a <b>Party Cow</b>. You know the bartender's name. You've earned the stool.",
     "You are a <b>Legendary Cow</b>. The bar closes when YOU say it closes. Bow down."
   ];
-  const tier = Math.min(3, Math.floor(score / QUIZ_QUESTIONS.length));
+  const tier = Math.min(3, Math.floor(score / questionCount));
   document.getElementById('quiz-result').innerHTML = results[tier];
 }
 
@@ -964,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFooterSnake();
   setupFooterAbout();
 
-  // Modal close buttons
+  // ── Modal close buttons (once) ──
   document.querySelectorAll('.modal-close').forEach(btn => {
     btn.onclick = () => btn.closest('.modal-overlay').classList.remove('open');
   });
@@ -973,4 +896,73 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === overlay) overlay.classList.remove('open');
     };
   });
+
+  // ── Delegated venue-list click (once on container) ──
+  // Handles .venue-toggle (expand/collapse), .hours-toggle, and .biz-hours-toggle
+  // so per-card event binding is never needed during renderVenueCard.
+  document.getElementById('venue-list').addEventListener('click', (e) => {
+    // Hours / Biz Hours panel toggles (expand in place, no list re-render)
+    const panelToggle = e.target.closest('.hours-toggle, .biz-hours-toggle');
+    if (panelToggle) {
+      const panelId = panelToggle.getAttribute('aria-controls');
+      const panel = panelId ? document.getElementById(panelId) : null;
+      if (panel) {
+        const open = !panel.hidden;
+        panel.hidden = open;
+        panelToggle.setAttribute('aria-expanded', String(!open));
+      }
+      return;
+    }
+
+    // Venue card expand/collapse
+    const toggle = e.target.closest('.venue-toggle');
+    if (!toggle) return;
+    const venueId = toggle.dataset.venueId;
+    if (!venueId) return;
+    const wasOpen = state.expanded === venueId;
+    state.expanded = wasOpen ? null : venueId;
+    renderVenues();
+    if (!wasOpen) {
+      const el = document.getElementById(`venue-${venueId}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+
+  // ── Cow icon (once; data populated in setupCowModal after load) ──
+  const cowIcon = document.getElementById('cow-icon');
+  cowIcon.style.cursor = 'pointer';
+  cowIcon.setAttribute('role', 'button');
+  cowIcon.setAttribute('tabindex', '0');
+  cowIcon.setAttribute('aria-label', 'Open cow of the day');
+  const openCow = () => { playMoo(); openModal('cow-modal'); };
+  cowIcon.onclick = openCow;
+  cowIcon.onkeydown = (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openCow(); }
+  };
+
+  // ── Feature buttons (once) ──
+  document.getElementById('btn-what').onclick = () => { openModal('cowq-modal'); renderCowQuestion(); };
+  document.getElementById('btn-moo').onclick = () => playMoo();
+  document.getElementById('btn-tip').onclick = () => { openModal('tip-modal'); };
+  document.getElementById('btn-quiz').onclick = () => { openModal('quiz-modal'); };
+
+  // ── Mystery Drink (once) ──
+  document.getElementById('mystery-btn').onclick = doMysteryDrink;
+
+  // ── Dark Mode toggle (once) ──
+  document.getElementById('dark-toggle').onclick = toggleDark;
+
+  // ── Roulette (once) ──
+  document.getElementById('roulette-btn').onclick = doRoulette;
+
+  // ── Quiz submit (once) ──
+  document.getElementById('quiz-form').onsubmit = handleQuiz;
+
+  // ── Tip Calculator (once) ──
+  document.getElementById('tip-total').oninput = renderTipCalc;
+  document.getElementById('tip-people').oninput = renderTipCalc;
+
+  // ── Filter (once) — re-renders venues but not the page ──
+  document.getElementById('filter-search').oninput = renderVenues;
+  document.getElementById('filter-tag').onchange = renderVenues;
 });

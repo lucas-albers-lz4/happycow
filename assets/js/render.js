@@ -34,7 +34,7 @@
     const bizHoursId = `biz-hours-${venue.id}`;
 
     return `
-    <button type="button" class="venue-toggle" aria-expanded="false" aria-controls="${specialsId}">
+    <button type="button" class="venue-toggle" aria-expanded="false" aria-controls="${specialsId}" data-venue-id="${esc(venue.id)}">
       <div class="venue-header">
         <div>
           <h3 class="venue-name">${esc(venue.name)}</h3>
