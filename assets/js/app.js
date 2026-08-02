@@ -170,7 +170,9 @@ function assetUrl(relPath) {
 }
 
 // globals provided: HappyCowFormat.{esc, specialPriceLabel} (assets/js/format.js)
+// globals provided: HappyCowRender.{renderVenueCardHtml} (assets/js/render.js)
 const { esc, specialPriceLabel } = globalThis.HappyCowFormat;
+const { renderVenueCardHtml } = globalThis.HappyCowRender;
 
 async function loadData() {
   const url = assetUrl('data/happy_hour_data.json');
@@ -375,71 +377,32 @@ function wirePanelToggle(card, btnSel, panelSel) {
 }
 
 function renderVenueCard(venue, container) {
-  const st = HappyCowHours.hhStatus(venue.hours, venue.business_hours, new Date());
-  const status = st.kind;
   const expanded = state.expanded === venue.id;
   const card = document.createElement('article');
   card.className = 'venue-card' + (expanded ? ' expanded' : '');
   card.id = `venue-${venue.id}`;
 
-  // Unknown hours → no status badge at all; nothing useful to signal.
-  const statusText = status === 'live' ? '● Live now' :
-                     status === 'soon' ? `▲ Opens in ${HappyCowHours.timeUntil(st.nextStartMin, new Date())}` :
-                     status === 'closed' ? `○ ${CLOSED_LABEL}` :
-                     '';
-  const statusBadge = statusText ? `<div class="hh-status ${status}">${statusText}</div>` : '';
-  // "Has specials" is independent of hours — venues like Korner Klub have
-  // deals with no HH window, and cards showed no sign of them at all.
-  const nSpecials = (venue.specials || []).length;
-  const specialsChip = nSpecials
-    ? `<div class="hh-status specials">🍸 ${nSpecials} special${nSpecials === 1 ? '' : 's'}</div>` : '';
-  const badges = (statusBadge || specialsChip)
-    ? `<div class="venue-badges">${statusBadge}${specialsChip}</div>` : '';
+  // Use the pure HTML builder (render.js); then append noise span and manage expand state.
+  card.innerHTML = renderVenueCardHtml(venue, { esc, specialPriceLabel }, new Date());
+
+  // Noise / nickname span is DOM-only (depends on app state); inject after render.
+  const actionsEl = card.querySelector('.venue-actions');
+  if (actionsEl) {
+    const noiseSpan = document.createElement('span');
+    noiseSpan.className = 'venue-noise';
+    noiseSpan.title = `Noise: ${venue.noise_level} · ${venue.mood}`;
+    noiseSpan.textContent = venueNickname(venue) || `Noise: ${venue.noise_level} · ${venue.mood}`;
+    actionsEl.appendChild(noiseSpan);
+  }
+
+  // Restore expanded state (renderVenueCardHtml always renders collapsed).
   const specialsId = `specials-${venue.id}`;
-  const hoursId = `hours-${venue.id}`;
-  const bizHoursId = `biz-hours-${venue.id}`;
-  card.innerHTML = `
-    <button type="button" class="venue-toggle" aria-expanded="${expanded}" aria-controls="${specialsId}">
-      <div class="venue-header">
-        <div>
-          <h3 class="venue-name">${esc(venue.name)}</h3>
-          <div class="venue-detail">${esc([venue.hours, venue.address].filter(Boolean).join(' · '))}</div>
-          <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-        </div>
-        ${badges}
-      </div>
-    </button>
-    <div class="venue-specials" id="${specialsId}" ${expanded ? '' : 'hidden'}>
-      ${venue.specials.map(s => `
-        <div class="special-row">
-          <div>
-            <div>${esc(s.item)}</div>
-            <div class="special-desc">${esc(s.description)}</div>
-          </div>
-          <div class="special-price">${specialPriceLabel(s)}</div>
-        </div>
-      `).join('')}
-      ${!venue.hours && venue.notes ? `<div class="hours-notes">${esc(venue.notes)}</div>` : ''}
-      <div class="venue-actions">
-        <a href="${venue.maps}" target="_blank" rel="noopener" class="venue-link">📍 Directions</a>
-        ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" class="venue-link">🔗 Website</a>` : ''}
-        ${venue.hours ? `<button type="button" class="venue-link hours-toggle" aria-expanded="false" aria-controls="${hoursId}">🕐 Hours</button>` : ''}
-        ${venue.business_hours ? `<button type="button" class="venue-link biz-hours-toggle" aria-expanded="false" aria-controls="${bizHoursId}">🏪 Biz Hours</button>` : ''}
-        <span class="venue-noise" title="Noise: ${esc(venue.noise_level)} · ${esc(venue.mood)}">${esc(venueNickname(venue) || `Noise: ${venue.noise_level} · ${venue.mood}`)}</span>
-      </div>
-      ${venue.hours ? `
-      <div class="hours-panel" id="${hoursId}" hidden>
-        <div class="hours-title">Happy Hour</div>
-        <div class="hours-value">${esc(venue.hours)}</div>
-        ${venue.notes ? `<div class="hours-notes">${esc(venue.notes)}</div>` : ''}
-      </div>` : ''}
-      ${venue.business_hours ? `
-      <div class="hours-panel" id="${bizHoursId}" hidden>
-        <div class="hours-title">Business Hours</div>
-        <div class="hours-value">${esc(venue.business_hours)}</div>
-      </div>` : ''}
-    </div>
-  `;
+  if (expanded) {
+    const toggleBtn = card.querySelector('.venue-toggle');
+    const specialsEl = card.querySelector(`#${specialsId}`);
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+    if (specialsEl) specialsEl.hidden = false;
+  }
 
   const toggle = card.querySelector('.venue-toggle');
   const specials = card.querySelector('.venue-specials');
@@ -456,10 +419,6 @@ function renderVenueCard(venue, container) {
   // Expandable panels: Hours / Biz Hours toggle in place (no list re-render)
   wirePanelToggle(card, '.hours-toggle', '.hours-panel#hours-' + venue.id);
   wirePanelToggle(card, '.biz-hours-toggle', '.hours-panel#biz-hours-' + venue.id);
-  // Keep specials visible via CSS class + hidden attr sync
-  if (expanded) {
-    specials.hidden = false;
-  }
   container.appendChild(card);
 }
 
