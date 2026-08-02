@@ -16,7 +16,7 @@ import httpx
 
 from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, save_json
 from scraper.extract import MODEL, extract_venue
-from scraper.merge import venue_to_site_record
+from scraper.merge import reject_unparseable_hours, venue_to_site_record
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 USER_AGENT = "happycow-scraper/1.0 (+https://github.com/lucas-albers-lz4/happycow)"
@@ -53,9 +53,11 @@ def run(
         venues = [v for v in venues if v["id"] in want]
 
     print(f"Scraping {len(venues)} venues for {city} (model={MODEL}, force={force})")
-    results = []
-    ok = fail = kept = cache_hits = 0
 
+    # Phase A: extract all venues (LLM / cache). Do not merge yet — hours need
+    # one batched Node parse check across the whole run (issue #41).
+    pending: list[tuple[dict, dict | None, bool]] = []
+    cache_hits = 0
     headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/json"}
     with httpx.Client(headers=headers, follow_redirects=True, timeout=REQUEST_TIMEOUT) as client:
         for venue in venues:
@@ -65,24 +67,42 @@ def run(
             )
             if from_cache:
                 cache_hits += 1
+            pending.append((venue, extract, from_cache))
 
-            prev = prev_by_id.get(venue["id"])
-            usable = (
-                extract
-                and extract.get("status") == "ok"
-                and (extract.get("hours") or extract.get("specials"))
-            )
-            if usable:
-                ok += 1
-                record = venue_to_site_record(venue, extract, prev)
-            elif prev:
-                kept += 1
-                print(f"  keeping previous data for {venue['id']}")
-                record = venue_to_site_record(venue, None, prev)
-            else:
-                fail += 1
-                record = venue_to_site_record(venue, {"hours": "", "specials": []}, None)
-            results.append(record)
+    # Phase B: single Node invocation — reject unparseable non-empty hours.
+    extracts_by_id = {
+        venue["id"]: extract
+        for venue, extract, _ in pending
+        if extract is not None
+    }
+    bad_ids = set(reject_unparseable_hours(extracts_by_id))
+    # Keep cache in sync so a cache hit does not re-offer the bad string.
+    for vid in bad_ids:
+        cached = cache_venues.get(vid)
+        if cached and isinstance(cached.get("extract"), dict):
+            cached["extract"]["hours"] = ""
+
+    # Phase C: merge into site records.
+    results = []
+    ok = fail = kept = 0
+    for venue, extract, _from_cache in pending:
+        prev = prev_by_id.get(venue["id"])
+        usable = (
+            extract
+            and extract.get("status") == "ok"
+            and (extract.get("hours") or extract.get("specials"))
+        )
+        if usable:
+            ok += 1
+            record = venue_to_site_record(venue, extract, prev)
+        elif prev:
+            kept += 1
+            print(f"  keeping previous data for {venue['id']}")
+            record = venue_to_site_record(venue, None, prev)
+        else:
+            fail += 1
+            record = venue_to_site_record(venue, {"hours": "", "specials": []}, None)
+        results.append(record)
 
     if venue_ids:
         scraped_ids = {v["id"] for v in results}

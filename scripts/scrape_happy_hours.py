@@ -4,7 +4,8 @@
 Implementation lives in scripts/scraper/ (Phase 5, issue #30):
   fetch.py   — page acquisition + contamination guard
   extract.py — pydantic schema, prompt, DeepSeek call, content-hash cache
-  merge.py   — venue_to_site_record (carry-through)
+  merge.py   — venue_to_site_record + batch hours reject (issue #41)
+  check_hours_batch.mjs — one-shot parseHours check for a scrape run
   cli.py     — orchestration (run) + argparse
 
 Usage (unchanged):
