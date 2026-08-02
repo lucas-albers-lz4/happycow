@@ -7,6 +7,14 @@
       "norm_address": "241 e main st bozeman",
       "removed_at": "2026-08-02T02:53:21Z",
       "reason": "closed June 2026; Meson Frailes (Mexican) taking over 241 E Main. Removed via PR #25."
+    },
+    {
+      "id": "broken-spoke-bar-grill",
+      "name": "Broken Spoke Bar & Grill",
+      "norm_name": "broken spoke bar & grill",
+      "norm_address": "120 big pine dr, big sky, mt 59716 (meadow village)",
+      "removed_at": "2026-08-02T03:09:45Z",
+      "reason": "Out of coverage area — Big Sky Meadow Village, ~45 min from Bozeman; removal decision 2026-08-02"
     }
   ]
 }
