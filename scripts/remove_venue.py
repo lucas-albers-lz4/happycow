@@ -20,15 +20,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from common import TOMBSTONES_PATH, norm_name, save_json
+from common import TOMBSTONES_PATH, norm_address, norm_name, save_json
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
-
-
-def norm_address(addr: str) -> str:
-    return " ".join(addr.lower().split())
 
 
 def main() -> int:

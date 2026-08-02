@@ -38,7 +38,13 @@ import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from common import TOMBSTONES_PATH, norm_name, save_json as common_save_json
+from common import (
+    TOMBSTONES_PATH,
+    norm_address,
+    norm_name,
+    save_json as common_save_json,
+    street_number,
+)
 
 import httpx
 from bs4 import BeautifulSoup
@@ -68,24 +74,8 @@ class Candidate:
 
 
 # ─── Normalization / dedup ───
-
-def norm_address(addr: str) -> str:
-    s = addr.lower()
-    s = re.sub(r"[,.\-]+", " ", s)
-    s = re.sub(r"\b(mt|montana)\b", "", s)
-    s = re.sub(r"\b\d{5}\b", "", s)  # zip
-    # Normalize unit markers: "#1e" == "suite 1e" == "unit 1e" == "ste 1e"
-    s = re.sub(r"\b(suite|unit|ste|apt)\b", "#", s)
-    s = re.sub(r"#\s*", "#", s)
-    # Collapse repeated city tokens ("bozeman bozeman" -> "bozeman")
-    s = re.sub(r"\b(\w+)\s+\1\b", r"\1", s)
-    return re.sub(r"\s+", " ", s).strip()
-
-
-def street_number(addr: str) -> str:
-    m = re.search(r"^\s*(\d+)", addr or "")
-    return m.group(1) if m else ""
-
+# norm_name / norm_address / street_number live in common.py (shared with
+# remove_venue.py so tombstone keys round-trip).
 
 def is_city_match(candidate: Candidate, cities: list[str]) -> bool:
     """Match if the address mentions ANY target city (Bozeman/Belgrade/Four Corners...)."""
@@ -143,16 +133,31 @@ def is_duplicate(cand: Candidate, by_name: dict, by_addr: dict) -> bool:
 def is_removed(cand: Candidate, tombstones: list[dict]) -> bool:
     """Skip venues that were deliberately removed (see remove_venue.py).
 
-    Tombstones match on name AND address (both must agree). This prevents a
-    venue that reopens at a new address from being silently skipped — that
-    case requires human review, not automatic tombstone suppression.
+    Match when names agree AND either street numbers agree or normalized
+    addresses agree. Street-number matching tolerates city-label drift
+    (aggregator "Gallatin Gateway" vs curated "Big Sky") without treating a
+    true reopen at a different street as tombstoned (issue #49).
+
+    Names/addresses are always re-normalized at compare time so older
+    tombstones written under a weaker normalizer still match.
     """
     name = norm_name(cand.name)
-    addr = norm_address(cand.address)
+    if not name:
+        return False
+    num = street_number(cand.address)
+    naddr = norm_address(cand.address)
     for t in tombstones:
-        t_name = t.get("norm_name", "")
-        t_addr = t.get("norm_address", "")
-        if t_name and t_addr and t_name == name and t_addr == addr:
+        # Prefer display name (re-normed); fall back to stored key (also re-normed
+        # so punctuation like '&' in legacy tombstones still matches).
+        t_name = norm_name(t.get("name") or "") or norm_name(t.get("norm_name") or "")
+        if not t_name or t_name != name:
+            continue
+        t_raw = t.get("address") or t.get("norm_address") or ""
+        t_num = street_number(t_raw)
+        t_naddr = norm_address(t_raw)
+        if num and t_num and num == t_num:
+            return True
+        if naddr and t_naddr and naddr == t_naddr:
             return True
     return False
 

@@ -75,8 +75,8 @@ def norm_name(name: str) -> str:
     and lowercases. Shared by remove_venue.py and discover_venues.py so
     tombstone name keys stay consistent across both scripts.
 
-    Note: a venue that reopens at a new address will not auto-skip via
-    tombstone — only name + address together form the match key (issue #49).
+    Note: a venue that reopens at a *different street number* will not
+    auto-skip via tombstone (name + street# / norm address; issue #49).
     """
     s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
     s = re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
@@ -84,6 +84,30 @@ def norm_name(name: str) -> str:
         if s.startswith(art) and len(s) > len(art):
             s = s[len(art):]
     return re.sub(r"\s+", " ", s).strip()
+
+
+def norm_address(addr: str) -> str:
+    """Normalize an address for dedup and tombstone matching.
+
+    Shared by remove_venue.py (writer) and discover_venues.py (reader) so
+    stored tombstone keys compare equal to live candidate addresses.
+    """
+    s = (addr or "").lower()
+    s = re.sub(r"[,.\-]+", " ", s)
+    s = re.sub(r"\b(mt|montana)\b", "", s)
+    s = re.sub(r"\b\d{5}\b", "", s)  # zip
+    # Normalize unit markers: "#1e" == "suite 1e" == "unit 1e" == "ste 1e"
+    s = re.sub(r"\b(suite|unit|ste|apt)\b", "#", s)
+    s = re.sub(r"#\s*", "#", s)
+    # Collapse repeated city tokens ("bozeman bozeman" -> "bozeman")
+    s = re.sub(r"\b(\w+)\s+\1\b", r"\1", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def street_number(addr: str) -> str:
+    """Leading street number from an address ('' if none)."""
+    m = re.search(r"^\s*(\d+)", addr or "")
+    return m.group(1) if m else ""
 
 
 def host_of(url: str) -> str:
