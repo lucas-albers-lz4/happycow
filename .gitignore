@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
+
+# Runtime evidence payloads (excerpts/hashes live in derived state; keep dir only)
+data/evidence/**
+!data/evidence/.gitkeep

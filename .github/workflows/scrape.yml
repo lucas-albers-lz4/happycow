@@ -131,7 +131,9 @@ jobs:
         run: |
           git config user.name "happycow-bot"
           git config user.email "happycow-bot@users.noreply.github.com"
-          git add data/happy_hour_data.json data/state/ data/evidence/ config/venues.json
+          # Commit derived state + site data only — not full evidence payloads
+          # (design decision 5: excerpts/hashes in state; evidence is local/CI artifact).
+          git add data/happy_hour_data.json data/state/ config/venues.json
           if git diff --staged --quiet; then
             echo "No data changes"
           else
@@ -150,7 +152,7 @@ jobs:
 
           BRANCH="scrape/$(date -u +%Y-%m-%d)"
           git checkout -b "$BRANCH"
-          git add data/happy_hour_data.json data/state/ data/evidence/ config/venues.json
+          git add data/happy_hour_data.json data/state/ config/venues.json
           if git diff --staged --quiet; then
             echo "No data changes — nothing to PR"
             exit 0

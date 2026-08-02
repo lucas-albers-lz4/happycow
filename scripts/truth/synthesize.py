@@ -40,10 +40,13 @@ def apply_decisions_to_record(
         existing = (out.get("notes") or "").strip()
         if "happy hour suppressed" not in existing.lower():
             out["notes"] = f"{existing}; {note}".strip("; ").strip()
-        # Clear hours so client doesn't show live HH for a closed place
+        # Clear hours so client doesn't show live HH / biz hours for a closed place
         hours_dec = decisions.get(FactField.HOURS.value)
         if hours_dec and hours_dec.kind == DecisionKind.SUPPRESSED:
             out["hours"] = ""
+        biz_dec = decisions.get(FactField.BUSINESS_HOURS.value)
+        if biz_dec and biz_dec.kind == DecisionKind.SUPPRESSED:
+            out["business_hours"] = ""
     elif status.kind == DecisionKind.CONFLICTED:
         note = "(verification: status conflicted — treat hours/specials as unverified)"
         existing = (out.get("notes") or "").strip()

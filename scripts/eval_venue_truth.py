@@ -82,6 +82,25 @@ def check_case(case: dict, venues_by_id: dict, fixture_places: list) -> list[str
                     },
                 )
             )
+        # confirmed_open must exercise own-site corroboration (Overture alone ≠ verified)
+        if case.get("scenario") == "confirmed_open":
+            website = venue.get("website") or "https://example.com/"
+            observations.append(
+                obs_from_spec(
+                    venue["id"],
+                    {
+                        "source_type": "own_site",
+                        "source_family": "own_site",
+                        "source_url": website,
+                        "payload": {
+                            "business_status": "open",
+                            "hours": "Mon-Fri 3-6pm",
+                            "specials": [],
+                        },
+                        "observed_at": "2026-08-01T00:00:00Z",
+                    },
+                )
+            )
         primary = venue_has_primary(venue)
         decisions = agree_venue(venue["id"], observations, has_primary_source=primary)
 

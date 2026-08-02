@@ -114,12 +114,56 @@ class SantaFeAgreement(unittest.TestCase):
         self.assertEqual(d["business_status"].kind, DecisionKind.UNVERIFIED)
         self.assertEqual(d["business_status"].value, "open")
 
+    def test_overture_alone_open_is_unverified(self):
+        obs = [
+            Observation(
+                venue_id="x",
+                observed_at="2026-08-01T00:00:00Z",
+                source_type="overture",
+                source_family="overture",
+                source_url="overture:x",
+                payload={"business_status": "open", "overture_confidence": 0.9},
+            )
+        ]
+        d = agree_venue("x", obs, has_primary_source=True)
+        self.assertEqual(d["business_status"].kind, DecisionKind.UNVERIFIED)
+        self.assertEqual(d["business_status"].value, "open")
+
+    def test_overture_plus_own_site_is_verified(self):
+        obs = [
+            Observation(
+                venue_id="x",
+                observed_at="2026-08-01T00:00:00Z",
+                source_type="overture",
+                source_family="overture",
+                source_url="overture:x",
+                payload={"business_status": "open", "overture_confidence": 0.9},
+            ),
+            Observation(
+                venue_id="x",
+                observed_at="2026-08-01T00:00:00Z",
+                source_type="own_site",
+                source_family="own_site",
+                source_url="https://example.com/hh",
+                payload={"business_status": "open", "hours": "4-6pm"},
+            ),
+        ]
+        d = agree_venue("x", obs, has_primary_source=True)
+        self.assertEqual(d["business_status"].kind, DecisionKind.VERIFIED)
+        self.assertEqual(d["business_status"].value, "open")
+
 
 class SynthesizeSuppress(unittest.TestCase):
     def test_shadow_leaves_record_unchanged(self):
         from truth.schema import Decision
 
-        rec = {"id": "x", "specials": [{"item": "Beer", "price": 5}], "hours": "4-6pm", "notes": ""}
+        rec = {
+            "id": "x",
+            "specials": [{"item": "Beer", "price": 5}],
+            "hours": "4-6pm",
+            "business_hours": "Daily 11am-10pm",
+            "notes": "",
+        }
         decisions = {
             "business_status": Decision(
                 venue_id="x",
@@ -139,12 +183,19 @@ class SynthesizeSuppress(unittest.TestCase):
                 kind=DecisionKind.SUPPRESSED,
                 value=None,
             ),
+            "business_hours": Decision(
+                venue_id="x",
+                field=FactField.BUSINESS_HOURS,
+                kind=DecisionKind.SUPPRESSED,
+                value=None,
+            ),
         }
         out = apply_decisions_to_record(rec, decisions, suppress_enabled=False)
         self.assertEqual(out["specials"], rec["specials"])
         out2 = apply_decisions_to_record(rec, decisions, suppress_enabled=True)
         self.assertEqual(out2["specials"], [])
         self.assertEqual(out2["hours"], "")
+        self.assertEqual(out2["business_hours"], "")
         self.assertIn("suppressed", out2["notes"].lower())
 
 
@@ -162,6 +213,72 @@ class OvertureFixture(unittest.TestCase):
         self.assertEqual(matches["santa-fe-reds"]["operating_status"], "permanently_closed")
         obs = observations_from_matches(matches)
         self.assertEqual(obs[0].payload["business_status"], "permanently_closed")
+
+    def test_confidence_zero_does_not_force_closed(self):
+        matches = {
+            "open-low-conf": {
+                "id": "ov-1",
+                "name": "Open Pub",
+                "address": "1 Main",
+                "operating_status": "open",
+                "confidence": 0.0,
+            }
+        }
+        obs = observations_from_matches(matches)
+        self.assertEqual(obs[0].payload["business_status"], "open")
+
+    def test_namesake_fallback_path_removed(self):
+        venue = {
+            "id": "main-street",
+            "name": "Main Street Grill",
+            "address": "1 Main St, Bozeman",
+            "phone": "",
+        }
+        cand = {
+            "id": "wrong",
+            "name": "Main Street Grill",
+            "address": "999 Other Ave, Belgrade",
+            "operating_status": "permanently_closed",
+            "confidence": 0.0,
+        }
+        matches = match_venues_to_candidates([venue], [cand], min_score=0.5)
+        self.assertNotIn("main-street", matches)
+
+
+class OvertureLocalParquet(unittest.TestCase):
+    def test_query_local_parquet(self):
+        try:
+            import duckdb
+        except ImportError:
+            self.skipTest("duckdb not installed")
+        from adapters.overture import query_overture_bbox
+
+        with TempDir() as tmp:
+            parquet = tmp / "places.parquet"
+            con = duckdb.connect()
+            con.execute(
+                """
+                COPY (
+                  SELECT
+                    'id-1' AS id,
+                    {'primary': 'Test Brewery'} AS names,
+                    [{'freeform': '100 Test St', 'locality': 'Bozeman'}] AS addresses,
+                    ['4065551212'] AS phones,
+                    'open' AS operating_status,
+                    0.88::DOUBLE AS confidence,
+                    {'primary': 'brewery'} AS categories
+                ) TO ? (FORMAT PARQUET)
+                """,
+                [str(parquet)],
+            )
+            con.close()
+            rows = query_overture_bbox(
+                {"xmin": 0, "xmax": 1, "ymin": 0, "ymax": 1},
+                parquet_glob=str(parquet),
+            )
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["name"], "Test Brewery")
+            self.assertEqual(rows[0]["operating_status"], "open")
 
 
 class OverpassDiff(unittest.TestCase):
@@ -254,6 +371,26 @@ class ScrapeBridge(unittest.TestCase):
         self.assertIsNotNone(obs)
         self.assertEqual(obs.source_type, "aggregator")
         self.assertEqual(obs.payload["hours"], "Mon-Fri 4-6pm")
+
+    def test_prefers_own_site_url_over_aggregator(self):
+        venue = {
+            "id": "ale",
+            "name": "Ale Works",
+            "address": "611 E Main",
+            "scrape_urls": [
+                "https://mthappyhour.com/locations/ale-works/",
+                "https://www.montanaaleworks.com/happy-hour",
+            ],
+        }
+        extract = {
+            "status": "ok",
+            "hours": "Mon-Fri 3-6pm",
+            "specials": [{"item": "Beer", "price": 5, "category": "drinks", "description": ""}],
+        }
+        obs = observation_from_scrape(venue, extract, venue["scrape_urls"])
+        self.assertIsNotNone(obs)
+        self.assertEqual(obs.source_type, "own_site")
+        self.assertIn("montanaaleworks.com", obs.source_url)
 
 
 class GoldenEvalScript(unittest.TestCase):

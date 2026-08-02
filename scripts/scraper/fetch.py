@@ -21,7 +21,6 @@ from tenacity import (
 )
 
 from common import is_aggregator
-from truth.identity import page_matches_venue
 
 # Re-export for tests / callers that imported from scraper.fetch
 __all__ = [
@@ -32,6 +31,13 @@ __all__ = [
     "page_matches_venue",
     "gather_page_text",
 ]
+
+
+def page_matches_venue(text: str, venue: dict, require_address: bool) -> bool:
+    """Lazy-import truth.identity so scrape works without the truth package."""
+    from truth.identity import page_matches_venue as _match
+
+    return _match(text, venue, require_address)
 
 INTER_REQUEST_SLEEP = 1.0
 MAX_PAGE_CHARS = 8000  # post-trim budget for the model

@@ -64,41 +64,60 @@ def query_overture_bbox(
     *,
     release: str = DEFAULT_OVERTURE_RELEASE,
     limit: int = 5000,
+    parquet_glob: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Query Overture Places for a bbox. Requires duckdb + network/S3 access."""
+    """Query Overture Places for a bbox. Requires duckdb + network/S3 access.
+
+    ``parquet_glob`` overrides the remote S3 path (used for local unit tests).
+    """
     try:
         import duckdb
     except ImportError as e:
         raise RuntimeError("duckdb is required for Overture queries") from e
 
-    path = OVERTURE_S3.format(release=release)
+    path = parquet_glob or OVERTURE_S3.format(release=release)
+    remote = parquet_glob is None
     con = duckdb.connect()
-    con.execute("INSTALL httpfs; LOAD httpfs;")
-    con.execute("INSTALL spatial; LOAD spatial;")
-    con.execute("SET s3_region='us-west-2';")
-    sql = f"""
-    SELECT
-      id,
-      names,
-      addresses,
-      phones,
-      operating_status,
-      confidence,
-      categories
-    FROM read_parquet('{path}', filename=true, hive_partitioning=1)
-    WHERE bbox.xmin BETWEEN {bbox['xmin']} AND {bbox['xmax']}
-      AND bbox.ymin BETWEEN {bbox['ymin']} AND {bbox['ymax']}
-      AND (
-        categories.primary ILIKE '%restaurant%'
-        OR categories.primary ILIKE '%bar%'
-        OR categories.primary ILIKE '%cafe%'
-        OR categories.primary ILIKE '%pub%'
-        OR categories.primary ILIKE '%brewery%'
-        OR categories.primary ILIKE '%food%'
-      )
-    LIMIT {int(limit)}
-    """
     try:
+        if remote:
+            con.execute("INSTALL httpfs; LOAD httpfs;")
+            con.execute("INSTALL spatial; LOAD spatial;")
+            con.execute("SET s3_region='us-west-2';")
+        # bbox bounds are floats from our config — never user input.
+        xmin = float(bbox["xmin"])
+        xmax = float(bbox["xmax"])
+        ymin = float(bbox["ymin"])
+        ymax = float(bbox["ymax"])
+        hive = "filename=true, hive_partitioning=1" if remote else "filename=true"
+        # Local test fixtures may omit bbox/categories nested structs.
+        if remote:
+            where = f"""
+            WHERE bbox.xmin BETWEEN {xmin} AND {xmax}
+              AND bbox.ymin BETWEEN {ymin} AND {ymax}
+              AND (
+                categories.primary ILIKE '%restaurant%'
+                OR categories.primary ILIKE '%bar%'
+                OR categories.primary ILIKE '%cafe%'
+                OR categories.primary ILIKE '%pub%'
+                OR categories.primary ILIKE '%brewery%'
+                OR categories.primary ILIKE '%food%'
+              )
+            """
+        else:
+            where = ""
+        sql = f"""
+        SELECT
+          id,
+          names,
+          addresses,
+          phones,
+          operating_status,
+          confidence,
+          categories
+        FROM read_parquet('{path}', {hive})
+        {where}
+        LIMIT {int(limit)}
+        """
         cur = con.execute(sql)
         cols = [d[0] for d in cur.description]
         rows = [dict(zip(cols, r)) for r in cur.fetchall()]
@@ -120,7 +139,7 @@ def match_venues_to_candidates(
     *,
     min_score: float = 0.5,
 ) -> dict[str, dict[str, Any]]:
-    """Best candidate per venue_id."""
+    """Best candidate per venue_id. Requires venue_matches_candidate (namesake guard)."""
     matched: dict[str, dict[str, Any]] = {}
     for venue in venues:
         best = None
@@ -132,10 +151,7 @@ def match_venues_to_candidates(
                 address=cand.get("address"),
                 phone=cand.get("phone"),
             ):
-                # Allow name-strong matches with score from match_score alone
-                sc = match_score(venue, cand)
-                if sc < 0.8:
-                    continue
+                continue
             sc = match_score(venue, cand)
             if sc > best_score and sc >= min_score:
                 best_score = sc
@@ -154,14 +170,13 @@ def observations_from_matches(
     when = observed_at or utc_now_iso()
     out: list[Observation] = []
     for venue_id, cand in matches.items():
+        # Trust operating_status as-is. confidence is a data-quality signal for
+        # agreement weighting — never rewrite open → permanently_closed on conf=0.
         status = cand.get("operating_status") or "open"
         conf = float(cand.get("confidence") or 0.0)
-        # Overture: confidence 0 + permanently_closed is definitive
-        if status == "permanently_closed" or conf == 0.0:
-            status = "permanently_closed"
         excerpt = (
             f"Overture id={cand.get('id')} name={cand.get('name')!r} "
-            f"operating_status={cand.get('operating_status')} confidence={conf}"
+            f"operating_status={status} confidence={conf}"
         )
         out.append(
             Observation(
@@ -210,6 +225,13 @@ def fetch_or_cache(
         try:
             candidates = query_overture_bbox(bbox, release=release)
             meta["source"] = f"overture:{release}"
+            if not candidates:
+                meta["empty_live"] = True
+                print(
+                    "ERROR overture live query returned 0 candidates — "
+                    "check release pin / S3 access / bbox filters",
+                    file=sys.stderr,
+                )
             cache_path.parent.mkdir(parents=True, exist_ok=True)
             cache_path.write_text(
                 json.dumps(
@@ -226,7 +248,9 @@ def fetch_or_cache(
                 encoding="utf-8",
             )
         except Exception as e:  # noqa: BLE001
-            print(f"WARN overture live query failed: {e}", file=sys.stderr)
+            meta["failed"] = True
+            meta["error"] = str(e)
+            print(f"ERROR overture live query failed: {e}", file=sys.stderr)
             if cache_path.exists():
                 cached = json.loads(cache_path.read_text(encoding="utf-8"))
                 candidates = cached.get("candidates") or []

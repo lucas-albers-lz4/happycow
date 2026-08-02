@@ -79,6 +79,7 @@ def empty_counters() -> dict[str, Any]:
         "escalations": 0,
         "overture_matches": 0,
         "overpass_signals": 0,
+        "scrape_observations": 0,
         "venues_processed": 0,
         "top_n_selected": [],
     }

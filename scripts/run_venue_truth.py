@@ -4,15 +4,17 @@
   python scripts/run_venue_truth.py
   python scripts/run_venue_truth.py --fixture data/eval/overture_fixture.json
   python scripts/run_venue_truth.py --overpass
-  python scripts/run_venue_truth.py --suppress   # only if truth_config.suppress_enabled
+  python scripts/run_venue_truth.py --suppress          # warns unless config allows
+  python scripts/run_venue_truth.py --force-suppress    # explicit override (dangerous)
 
 Writes:
-  data/evidence/<venue-id>/*.json
+  data/evidence/<venue-id>/*.json   (local / CI artifact; not committed)
   data/state/shadow_decisions.json
   data/state/review_queue.json
   data/state/cost_counters.json
 
-Does NOT modify happy_hour_data.json unless --suppress and config allows.
+Does NOT modify happy_hour_data.json unless truth_config.suppress_enabled
+(or --force-suppress).
 """
 
 from __future__ import annotations
@@ -92,6 +94,7 @@ def run(
     force_overture: bool = False,
     run_overpass: bool = False,
     suppress: bool = False,
+    force_suppress: bool = False,
     top_n: int | None = None,
     write: bool = True,
 ) -> int:
@@ -118,12 +121,21 @@ def run(
     )
     counters["overture_matches"] = ometa.get("matches") or 0
     print(f"Overture: source={ometa.get('source')} candidates={ometa.get('candidates')} matches={ometa.get('matches')}")
+    if ometa.get("failed") or ometa.get("empty_live"):
+        print(
+            "ERROR: Overture live path failed or returned empty — "
+            "shadow priors may be incomplete",
+            file=sys.stderr,
+        )
+        if force_overture:
+            return 1
     for obs in overture_obs:
         all_obs_by_venue.setdefault(obs.venue_id, []).append(obs)
 
     # 2) Provenance from current site data (scrape bridge)
     scrape_obs = observations_from_site_data(venues, site)
-    counters["fetches"] += len(scrape_obs)
+    counters["scrape_observations"] = len(scrape_obs)
+    counters["fetches"] += len(scrape_obs)  # legacy key; counts observations
     for obs in scrape_obs:
         all_obs_by_venue.setdefault(obs.venue_id, []).append(obs)
 
@@ -172,7 +184,16 @@ def run(
     counters["escalations"] = len(top)
     print(f"Top-{top_n} uncertain: {', '.join(top) or '(none)'}")
 
-    suppress_enabled = bool(suppress or tcfg.get("suppress_enabled"))
+    # Shadow-first: config gate is authoritative. --suppress alone cannot bypass.
+    # --force-suppress is an explicit double-confirmation for intentional live writes.
+    suppress_enabled = bool(tcfg.get("suppress_enabled")) or bool(force_suppress)
+    if suppress and not suppress_enabled:
+        print(
+            "NOTE: --suppress ignored because data/state/truth_config.json "
+            "has suppress_enabled=false (enable after eval precision OK, "
+            "or pass --force-suppress)",
+            file=sys.stderr,
+        )
     if suppress_enabled and write and site.get("venues"):
         new_venues = []
         for rec in site["venues"]:
@@ -183,12 +204,6 @@ def run(
         site["last_updated"] = utc_now_iso()
         save_json(DATA_PATH, site)
         print(f"Suppress applied → wrote {DATA_PATH}")
-    elif suppress and not tcfg.get("suppress_enabled"):
-        print(
-            "NOTE: --suppress ignored because data/state/truth_config.json "
-            "has suppress_enabled=false (enable after eval precision OK)",
-            file=sys.stderr,
-        )
 
     if write:
         save_json(SHADOW_DECISIONS_PATH, shadow)
@@ -208,7 +223,16 @@ def main() -> None:
     p.add_argument("--fixture", type=Path, help="Overture fixture JSON (default: data/eval/overture_fixture.json)")
     p.add_argument("--force-overture", action="store_true", help="Refresh Overture from S3")
     p.add_argument("--overpass", action="store_true", help="Run Overpass weekly patrol")
-    p.add_argument("--suppress", action="store_true", help="Apply suppress to site data if config allows")
+    p.add_argument(
+        "--suppress",
+        action="store_true",
+        help="Request suppress apply (honored only if truth_config.suppress_enabled)",
+    )
+    p.add_argument(
+        "--force-suppress",
+        action="store_true",
+        help="Override config and apply suppress to happy_hour_data.json (dangerous)",
+    )
     p.add_argument("--top-n", type=int, default=None, help="Uncertainty budget top-N")
     p.add_argument("--dry-run", action="store_true", help="Do not write evidence/state")
     args = p.parse_args()
@@ -218,6 +242,7 @@ def main() -> None:
             force_overture=args.force_overture,
             run_overpass=args.overpass,
             suppress=args.suppress,
+            force_suppress=args.force_suppress,
             top_n=args.top_n,
             write=not args.dry_run,
         )

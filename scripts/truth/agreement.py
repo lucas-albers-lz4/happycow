@@ -109,8 +109,12 @@ def _value_key(value: Any) -> str:
     return str(value).strip().lower()
 
 
-def _agree_status(claims: list[Claim], has_primary: bool) -> Decision:
-    """business_status with closure asymmetry + aggregator-only cap."""
+def _agree_status(claims: list[Claim], _has_primary: bool) -> Decision:
+    """business_status with closure asymmetry + aggregator-only cap.
+
+    ``_has_primary`` is retained for call-site compat but unused: a curated
+    primary URL is not observation corroboration for verified:open.
+    """
     now_iso = utc_now_iso()
     if not claims:
         return Decision(
@@ -160,7 +164,7 @@ def _agree_status(claims: list[Claim], has_primary: bool) -> Decision:
         return Decision(
             venue_id=vid,
             field=FactField.BUSINESS_STATUS,
-            kind=DecisionKind.NEEDS_REVIEW if len(weak_closed) == 1 and not open_c else DecisionKind.CONFLICTED,
+            kind=DecisionKind.CONFLICTED,
             value="likely_closed" if len(weak_closed) >= 2 else "unknown",
             rationale="weak/conflicting closed signals",
             cited_sources=cited,
@@ -181,18 +185,22 @@ def _agree_status(claims: list[Claim], has_primary: bool) -> Decision:
             decided_at=now_iso,
         )
 
-    # Open path
+    # Open path — Overture/aggregator alone cannot reach verified:open.
+    # Require own-site/human evidence, or ≥2 independent source families.
     if open_c:
         best = max(open_c, key=lambda c: c.weight)
-        primary_open = any(c.source_type in ("own_site", "overture", "human") for c in open_c)
         only_agg = all(c.source_type == "aggregator" for c in open_c)
-        if only_agg or (not has_primary and not primary_open):
+        own_or_human = any(c.source_type in ("own_site", "human") for c in open_c)
+        families = {c.source_family for c in open_c}
+        corroborated = own_or_human or len(families) >= 2
+        if only_agg or not corroborated:
+            why = "aggregator-only open" if only_agg else "single-source open (need own-site or second family)"
             return Decision(
                 venue_id=best.venue_id,
                 field=FactField.BUSINESS_STATUS,
                 kind=DecisionKind.UNVERIFIED,
                 value="open",
-                rationale="aggregator-only open — cannot verified:open",
+                rationale=f"{why} — cannot verified:open",
                 cited_sources=cited,
                 confidence=0.35,
                 decided_at=now_iso,
@@ -213,7 +221,7 @@ def _agree_status(claims: list[Claim], has_primary: bool) -> Decision:
             field=FactField.BUSINESS_STATUS,
             kind=DecisionKind.VERIFIED,
             value="open",
-            rationale="primary/open corroboration",
+            rationale="own-site/human or multi-family open corroboration",
             cited_sources=cited,
             confidence=min(1.0, best.weight),
             decided_at=now_iso,
@@ -319,10 +327,9 @@ def agree_venue(
         d.venue_id = venue_id
         decisions[field.value] = d
 
-    # Santa Fe class: closed/suppressed status suppresses HH publish fields
-    if status_dec.kind in (DecisionKind.SUPPRESSED, DecisionKind.CONFLICTED) or (
-        status_dec.value in CLOSED_VALUES
-    ):
+    # Santa Fe class: suppressed/closed status clears HH publish fields.
+    # CONFLICTED only annotates in synthesize — do not cascade suppress here.
+    if status_dec.kind == DecisionKind.SUPPRESSED or status_dec.value in CLOSED_VALUES:
         for f in (FactField.HOURS, FactField.SPECIALS, FactField.BUSINESS_HOURS):
             key = f.value
             existing = decisions.get(key)

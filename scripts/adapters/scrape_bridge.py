@@ -9,6 +9,17 @@ from truth.agreement import source_family_for
 from truth.schema import ExtractionMethod, Observation, utc_now_iso
 
 
+def _primary_source_url(source_urls: list[str]) -> str:
+    """Prefer first non-aggregator URL so own-site evidence is visible to agreement."""
+    urls = [u for u in (source_urls or []) if u]
+    if not urls:
+        return ""
+    for url in urls:
+        if not is_aggregator(url):
+            return url
+    return urls[0]
+
+
 def observation_from_scrape(
     venue: dict,
     extract: dict[str, Any] | None,
@@ -27,7 +38,7 @@ def observation_from_scrape(
     if not (extract.get("hours") or extract.get("specials") or extract.get("business_hours")):
         return None
 
-    primary_url = (source_urls or [""])[0]
+    primary_url = _primary_source_url(source_urls)
     agg = bool(primary_url) and is_aggregator(primary_url)
     source_type = "aggregator" if agg else "own_site"
     family = source_family_for(host_of(primary_url) or primary_url, source_type)

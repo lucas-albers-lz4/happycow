@@ -129,7 +129,7 @@ def run(
         if usable:
             ok += 1
             record = venue_to_site_record(venue, extract, prev)
-            if truth_store is not None:
+            if truth_store is not None and not dry_run:
                 cached = cache_venues.get(venue["id"]) or {}
                 obs = observation_from_scrape(
                     venue,

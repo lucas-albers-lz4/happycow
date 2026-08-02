@@ -17,7 +17,31 @@
       "fixture_override": null,
       "expected_status_kind": "verified",
       "expected_status_value": ["open"],
-      "notes": "Open venue with Overture open prior and own-site primary"
+      "notes": "Open venue with Overture open prior PLUS own-site observation (Overture alone is unverified)"
+    },
+    {
+      "id": "overture-alone-unverified",
+      "venue_id": "synthetic-overture-only",
+      "scenario": "overture_alone_open",
+      "synthetic": true,
+      "venue": {
+        "id": "synthetic-overture-only",
+        "name": "Overture Only Pub",
+        "address": "300 Test St, Bozeman",
+        "website": "https://example.com",
+        "scrape_urls": ["https://example.com/hh"]
+      },
+      "observations": [
+        {
+          "source_type": "overture",
+          "source_family": "overture",
+          "payload": {"business_status": "open", "overture_confidence": 0.9},
+          "observed_at": "2026-08-01T00:00:00Z"
+        }
+      ],
+      "expected_status_kind": "unverified",
+      "expected_status_value": ["open"],
+      "notes": "Overture-open alone cannot reach verified:open"
     },
     {
       "id": "stale-aggregator-hh",
