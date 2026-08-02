@@ -4,28 +4,38 @@
 Runs AFTER scrape + validate and BEFORE git commit in scrape.yml.  A failed
 gate means the pipeline writes nothing — bad data never reaches GitHub Pages.
 
-Hard-fail conditions (exit 1):
+Hard-fail conditions (exit 1, or exit 2 in --pr-mode):
   1. VENUE_COUNT_DROP   — candidate has fewer venues than baseline
   2. MISSING_IDS        — baseline venue ids absent from candidate (unexplained removal)
   3. SPECIALS_COVERAGE  — more than SPECIALS_DROP_THRESHOLD venues lost ALL specials
   4. HOURS_WIPE         — more than HOURS_WIPE_THRESHOLD venues lost non-empty hours
   5. COVERAGE_BROKEN    — venues with no specials AND no notes (should be 0)
+  6. LARGE_DELTA        — changed venue count > HASH_CHANGE_THRESHOLD (PR mode only)
 
 Report (always printed):
   - Total changed-venues count (hours+specials hash changed) and their ids.
-    This output feeds issue #46 (change attribution / changelog).
 
-Mode precedence / PR mode note (#46):
-  When this script is wired into a future PR-check workflow the intention is
-  that hard-fail conditions should be surfaced as PR review comments rather
-  than a bare exit 1.  Until then (PR mode off) exit 1 is the only signal.
-  Add --pr-mode / $PR_MODE=1 to switch once the PR annotation step exists.
-  Document the escape hatch: --allow-regression skips the hard-fail exit but
-  still prints the regression report so the log is never silent.
+Exit codes:
+  0  — all checks pass; safe to auto-commit to main
+  1  — hard-fail (PR mode off); job should fail
+  2  — PR mode: hard-fail OR large-delta; caller should open a scrape PR
+       instead of committing to main
+
+Mode precedence / PR mode (#46):
+  --pr-mode (or env PR_MODE=1) converts hard-fails and large-delta signals
+  into exit 2 so scrape.yml can push a branch and open a PR rather than
+  failing the job outright.  Happy path (exit 0) behavior is identical in
+  both modes.
+
+  --allow-regression: print full report but always exit 0; CI escape hatch
+  for intentional bulk data changes.
+
+  Baseline-vs-main: unmerged scrape PRs are never used as the baseline —
+  the next scheduled run always diffs against HEAD on main.
 
 Usage:
   python scripts/check_data_regression.py [--candidate PATH] [--baseline PATH]
-                                           [--allow-regression]
+                                           [--allow-regression] [--pr-mode]
 
 Defaults:
   --candidate  data/happy_hour_data.json   (output of this scrape run)
@@ -37,6 +47,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -46,6 +57,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # ─── Thresholds (adjust here; keep as named constants so diffs are auditable)
 SPECIALS_DROP_THRESHOLD = 2   # more than this many venues losing all specials = fail
 HOURS_WIPE_THRESHOLD = 1      # more than this many venues losing hours entirely = fail
+HASH_CHANGE_THRESHOLD = 5     # more than this many venues with changed hours/specials → PR (--pr-mode)
 
 CANDIDATE_DEFAULT = ROOT / "data" / "happy_hour_data.json"
 
@@ -98,6 +110,9 @@ def main() -> int:
                     help="Path to baseline data file (default: git show HEAD:…)")
     ap.add_argument("--allow-regression", action="store_true",
                     help="Print regression report but exit 0 (CI escape hatch)")
+    ap.add_argument("--pr-mode", action="store_true",
+                    default=(os.environ.get("PR_MODE", "") == "1"),
+                    help="Convert hard-fails and large-delta into exit 2 (open PR) instead of exit 1 (fail job)")
     args = ap.parse_args()
 
     candidate_data = _load_json_from_path(args.candidate)
@@ -169,13 +184,23 @@ def main() -> int:
     print(f"REGRESSION CHECK: {len(candidate_venues)} venues | "
           f"{len(changed_ids)} changed (hours/specials): {changed_ids}")
 
-    if failures:
-        print("REGRESSION FAILURES:")
-        for f in failures:
-            print(f"  - {f}")
+    # ─── Large-delta check (PR mode only) ───
+    large_delta = len(changed_ids) > HASH_CHANGE_THRESHOLD
+
+    if failures or large_delta:
+        if failures:
+            print("REGRESSION FAILURES:")
+            for f in failures:
+                print(f"  - {f}")
+        if large_delta and not failures:
+            print(f"LARGE_DELTA: {len(changed_ids)} venues changed "
+                  f"(threshold {HASH_CHANGE_THRESHOLD}) — PR review recommended")
         if args.allow_regression:
-            print("INFO: --allow-regression set — exiting 0 despite failures")
+            print("INFO: --allow-regression set — exiting 0 despite failures/large-delta")
             return 0
+        if args.pr_mode:
+            print("INFO: --pr-mode — exiting 2 (caller should open a scrape PR)")
+            return 2
         return 1
 
     print("OK: no regressions detected")

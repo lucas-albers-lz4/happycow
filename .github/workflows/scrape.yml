@@ -10,9 +10,18 @@ on:
         description: "Skip venue discovery (fast re-scrape of existing venues)"
         type: boolean
         default: false
+      pr_mode:
+        description: "Open a PR instead of committing when changes exceed threshold or regressions detected (default: true)"
+        type: boolean
+        default: true
+      force_commit:
+        description: "Force commit to main even if PR mode would trigger (overrides pr_mode)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: scrape-happy-hours
@@ -71,16 +80,44 @@ jobs:
           node scripts/validate_hours.mjs data/happy_hour_data.json
 
       - name: Data regression gate
+        id: regression
         timeout-minutes: 2
-        # Issue #40: hard-fail if this scrape run drops venues, wipes hours
-        # en masse, or collapses specials coverage vs HEAD baseline.
-        # --allow-regression overrides all hard-fails (escape hatch for
-        # intentional bulk data changes). PR-mode annotation (#46): once a
-        # PR-check workflow exists, surface failures as review comments instead
-        # of exit 1; until then exit 1 is the only signal.
-        run: python scripts/check_data_regression.py
+        # Issue #40/#46: run regression check and capture exit code.
+        # Exit 0 → happy path (auto-commit to main).
+        # Exit 1 → hard-fail with PR mode off (job fails).
+        # Exit 2 → PR mode: hard-fail OR large-delta (>5 venues changed);
+        #           caller opens a scrape/YYYY-MM-DD branch + PR.
+        # --pr-mode is active when the workflow_dispatch pr_mode input is true
+        # (default: true) and force_commit is not set.
+        # Baseline is always HEAD on main; unmerged scrape PRs are never used
+        # as the baseline so they cannot poison the next run (issue #46).
+        run: |
+          USE_PR_MODE="true"
+          if [ "${{ inputs.force_commit }}" = "true" ]; then
+            USE_PR_MODE="false"
+          elif [ "${{ inputs.pr_mode }}" = "false" ]; then
+            USE_PR_MODE="false"
+          fi
 
-      - name: Commit updated data
+          set +e
+          if [ "$USE_PR_MODE" = "true" ]; then
+            python scripts/check_data_regression.py --pr-mode
+          else
+            python scripts/check_data_regression.py
+          fi
+          REGRESSION_RC=$?
+          set -e
+
+          echo "rc=$REGRESSION_RC" >> "$GITHUB_OUTPUT"
+          echo "use_pr_mode=$USE_PR_MODE" >> "$GITHUB_OUTPUT"
+
+          # In PR mode exit 2 is handled below; exit 1 is still a job failure.
+          if [ "$REGRESSION_RC" = "1" ]; then
+            exit 1
+          fi
+
+      - name: Commit updated data (happy path)
+        if: steps.regression.outputs.rc == '0'
         timeout-minutes: 3
         run: |
           git config user.name "happycow-bot"
@@ -92,3 +129,54 @@ jobs:
             git commit -m "chore: refresh Bozeman happy hours + venue discovery"
             git push
           fi
+
+      - name: Open scrape PR (large delta or regression in PR mode)
+        if: steps.regression.outputs.rc == '2'
+        timeout-minutes: 5
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "happycow-bot"
+          git config user.email "happycow-bot@users.noreply.github.com"
+
+          BRANCH="scrape/$(date -u +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git add data/happy_hour_data.json data/state/ config/venues.json
+          if git diff --staged --quiet; then
+            echo "No data changes — nothing to PR"
+            exit 0
+          fi
+          git commit -m "chore: scrape data candidate $(date -u +%Y-%m-%d) (pending review)"
+          git push -u origin "$BRANCH"
+
+          REPORT=$(python scripts/check_data_regression.py --allow-regression 2>&1 || true)
+          gh pr create \
+            --title "scrape: data delta $(date -u +%Y-%m-%d) — review before merge" \
+            --body "$(cat <<PREOF
+## Automated scrape PR
+
+The scheduled scrape produced a large data delta or a regression-check failure.
+This PR requires a human review before the data is committed to \`main\`.
+
+**Baseline note:** this PR was opened because the change count exceeded the
+threshold (default 5 venues) or a hard-fail condition was detected.
+The *next* scheduled run still diffs against HEAD on \`main\` — unmerged
+scrape PRs never poison the subsequent baseline.
+
+## Regression report
+
+\`\`\`
+$REPORT
+\`\`\`
+
+## How to merge
+
+Review the diff, then merge this PR. If the changes are expected (bulk LLM
+refresh, discovery spike), this is the intended human-review gate.
+
+If the changes are clearly bad (LLM hallucination, aggregator outage), close
+this PR without merging and investigate the scraper.
+PREOF
+)" \
+            --base main \
+            --head "$BRANCH"

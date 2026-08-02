@@ -65,7 +65,7 @@ source for paths and the aggregator-host set.
 | Venue page fetch fails / LLM returns nothing | Keep previous data for that venue (never blank) |
 | `discover_venues.py` crashes | Logged, job continues with existing venues (best-effort) |
 | **Validation fails** (schema / hours grammar / coverage / parity) | **Job fails before commit** — broken JSON never reaches Pages |
-| **Regression gate fails** (venue drop / hours wipe / specials collapse) | **Job fails before commit** — run `python scripts/check_data_regression.py --allow-regression` locally to inspect; set `--allow-regression` in the workflow step for intentional bulk changes |
+| **Regression gate fails** (venue drop / hours wipe / specials collapse) | **PR mode on (default):** push `scrape/YYYY-MM-DD` branch + open PR; job succeeds. **PR mode off:** job fails before commit. Run `--allow-regression` locally to inspect; see PR mode docs below |
 | `check_venue_status.py` flags a venue (site dead 2× runs / closure wording) | Report-only. Human reviews `data/state/closure_report.md` |
 | Closure confirmed by a human | `python scripts/remove_venue.py <id> --reason "…"` → removes from config + data, writes tombstone; discovery can never re-add it |
 
@@ -90,12 +90,37 @@ Hard-fail conditions:
 - **COVERAGE_BROKEN** — venues with no specials AND no notes
 
 Report (always printed): count + ids of venues whose hours/specials hash changed — this
-feeds issue #46 (change attribution).
+is the change attribution signal used by PR mode (#46).
 
-**Mode precedence / PR mode (#46):** in a future PR-check workflow the hard-fail should
-become a PR review comment instead of a bare `exit 1`.  Until PR mode is wired, `exit 1`
-is the only signal.  `--allow-regression` is the escape hatch: it prints the full report
-but always exits 0 — use it for intentional bulk data changes.
+`--allow-regression` is the escape hatch: prints the full report but always exits 0 — use
+for intentional bulk data changes.
+
+## PR mode for large scrape deltas (issue #46)
+
+When the regression gate returns exit 2 (PR signal), `scrape.yml` **does not push to `main`**.
+Instead it pushes a `scrape/YYYY-MM-DD` branch and opens a PR with the regression report in
+the body for human review before the data reaches GitHub Pages.
+
+**Exit code semantics:**
+
+| Code | Meaning | Workflow action |
+|---|---|---|
+| `0` | All checks pass | Auto-commit to `main` (happy path) |
+| `1` | Hard-fail, PR mode off | Job fails; no commit |
+| `2` | Hard-fail OR large-delta, PR mode on | Push `scrape/YYYY-MM-DD`, open PR |
+
+**Trigger table (mode precedence — #40 and #46 do not contradict):**
+
+| Trigger | PR mode on | PR mode off |
+|---|---|---|
+| Regression hard-fail (#40 loss checks) | Exit 2 → open PR; job succeeds | Exit 1 → job fails |
+| Hash-change count > `HASH_CHANGE_THRESHOLD` (default 5) | Exit 2 → open PR | Exit 0 (logged only) |
+| `workflow_dispatch` with `force_commit: true` | Forced commit to `main` (bypasses PR mode) | Same |
+| `workflow_dispatch` with `pr_mode: false` | Forced commit path (PR mode disabled) | Same |
+
+**Baseline-vs-main:** unmerged scrape PRs are **never** used as the regression baseline.
+The next scheduled run always diffs against HEAD on `main`. A sitting-open scrape PR does
+not poison the subsequent run's baseline — it is simply left for review or close.
 
 ## Fail-fast gates (issue #50)
 
