@@ -411,9 +411,9 @@ body.dark .hours-value { color: var(--text); }
   flex-shrink: 0;
   padding: 10px 14px;
   border-radius: 20px;
+  font: inherit;
   font-size: 0.8rem;
   font-weight: 600;
-  font: inherit;
   color: var(--text);
   background: var(--card);
   border: 1.5px solid #e0d5c5;

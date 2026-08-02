@@ -360,6 +360,7 @@ function renderDealOfDay() {
 
 // ─── Status Bar ───
 const CLOSED_LABEL = 'Done'; // funny stand-in for "closed" (happy hour not running)
+const UNKNOWN_LABEL = 'Hours TBD'; // hours not listed yet
 function renderStatusBar() {
   const bar = document.getElementById('status-bar');
   bar.innerHTML = '';
@@ -370,8 +371,9 @@ function renderStatusBar() {
     pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : ' unknown');
     pill.textContent = status === 'live' ? `● ${v.name}` :
                        status === 'soon' ? `▲ ${v.name}` :
+                       status === 'unknown' ? `? ${v.name}` :
                        `○ ${v.name}`;
-    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : CLOSED_LABEL}`);
+    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : status === 'unknown' ? 'hours unknown' : 'closed'}`);
     pill.onclick = () => scrollToVenue(v.id);
     bar.appendChild(pill);
   });
@@ -427,8 +429,8 @@ function renderVenueCard(venue, container) {
 
   const statusText = status === 'live' ? '● Live now' :
                      status === 'soon' ? `▲ Opens in ${timeUntil(getStartMinutes(venue.hours))}` :
+                     status === 'unknown' ? `? ${UNKNOWN_LABEL}` :
                      `○ ${CLOSED_LABEL}`;
-
   const specialsId = `specials-${venue.id}`;
   const hoursId = `hours-${venue.id}`;
   const bizHoursId = `biz-hours-${venue.id}`;
@@ -843,8 +845,10 @@ function renderHoroscope(cow) {
   }
 
   document.getElementById('horoscope-sign').textContent = `♈ ${sign} · ${cow.name} the ${cow.mood} Cow`;
+  const luckyPrice = (lucky && typeof lucky.price === 'number' && lucky.price > 0)
+    ? ` — $${lucky.price.toFixed(2)}` : '';
   const luckyHtml = lucky
-    ? `Lucky drink: <button type="button" class="lucky-drink" data-venue="${esc(lucky.venue.id)}">${esc(lucky.item)}${lucky.price > 0 ? ` — $${lucky.price.toFixed(2)}` : ''} at ${esc(lucky.venue.name)} →</button>`
+    ? `Lucky drink: <button type="button" class="lucky-drink" data-venue="${esc(lucky.venue.id)}">${esc(lucky.item)}${luckyPrice} at ${esc(lucky.venue.name)} →</button>`
     : `Lucky drink: ${esc(['$4 PBR','$6 Margarita','$5 Old Fashioned','$3 Wells','$2.50 Hamms','$7 Wine','$4 Local IPA'][Math.floor(rng()*7)])}`;
   document.getElementById('horoscope-text').innerHTML =
     `${extras[Math.floor(rng() * extras.length)]}<br><br>
