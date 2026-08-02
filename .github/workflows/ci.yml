@@ -31,4 +31,6 @@ jobs:
           node scripts/validate_hours.mjs data/happy_hour_data.json
 
       - name: Hours parser tests
-        run: node --test tests/
+        # No-arg discovery (node 18+); `node --test tests/` fails on some
+        # node versions and the glob form needs node 21+.
+        run: node --test
