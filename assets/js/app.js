@@ -37,6 +37,25 @@ function seededRandom(seed) {
   };
 }
 
+// ─── Venue Nicknames ───
+// Every venue has a nickname; 1 in 10 draws (seeded per-day) show a ridiculous one.
+// Seeded by todaySeed + venue id so cards don't flicker between renders —
+// the whole app just gets weirder on some days.
+function nicknameSeed(id) {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+function venueNickname(venue) {
+  if (!venue.nickname) return '';
+  const alts = venue.nickname_alts || [];
+  const rng = seededRandom(state.todaySeed * 1000003 + nicknameSeed(venue.id));
+  if (alts.length && Math.floor(rng() * 10) === 0) {
+    return alts[Math.floor(rng() * alts.length)];
+  }
+  return venue.nickname;
+}
+
 // ─── Impostor Cows ───
 const IMPOSTORS = [13, 21, 23, 25, 27];
 const IMPOSTOR_REAL_ANIMAL = {
@@ -462,7 +481,7 @@ function renderVenueCard(venue, container) {
         ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" class="venue-link">🔗 Website</a>` : ''}
         ${venue.hours ? `<button type="button" class="venue-link hours-toggle" aria-expanded="false" aria-controls="${hoursId}">🕐 Hours</button>` : ''}
         ${venue.business_hours ? `<button type="button" class="venue-link biz-hours-toggle" aria-expanded="false" aria-controls="${bizHoursId}">🏪 Biz Hours</button>` : ''}
-        <span class="venue-noise">Noise: ${esc(venue.noise_level)} · ${esc(venue.mood)}</span>
+        <span class="venue-noise" title="Noise: ${esc(venue.noise_level)} · ${esc(venue.mood)}">${esc(venueNickname(venue) || `Noise: ${venue.noise_level} · ${venue.mood}`)}</span>
       </div>
       ${venue.hours ? `
       <div class="hours-panel" id="${hoursId}" hidden>

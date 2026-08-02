@@ -6,6 +6,11 @@
     {
       "id": "ale-works",
       "name": "Ale Works",
+      "nickname": "The Track Hoppers",
+      "nickname_alts": [
+        "Double-Shot Depot",
+        "Moo Works"
+      ],
       "address": "611 E Main St",
       "phone": "406-587-7700",
       "website": "https://www.montanaaleworks.com/",
@@ -39,14 +44,19 @@
           "item": "Double shot signature cocktails",
           "price": 6.0,
           "category": "drinks",
-          "description": "$6.00 double shot signature cocktails \u2013 Hop the tracks \u2013 Rosemary Poloma \u2013 Cherry wine sour \u2013 Rasberrie cosmo \u2013 Kaffir gin and tonic"
+          "description": "$6.00 double shot signature cocktails – Hop the tracks – Rosemary Poloma – Cherry wine sour – Rasberrie cosmo – Kaffir gin and tonic"
         }
       ],
       "business_hours": "Mon-Sun 4pm-10pm"
     },
     {
       "id": "applebees-bozeman",
-      "name": "Applebee\u2019s Bozeman",
+      "name": "Applebee’s Bozeman",
+      "nickname": "The Half-Off House",
+      "nickname_alts": [
+        "App Half Hour",
+        "The Chain That Feels Local at 5pm"
+      ],
       "address": "1108 N 7th Ave",
       "phone": "406-587-3445",
       "website": "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019",
@@ -94,6 +104,11 @@
     {
       "id": "bar-ix",
       "name": "Bar IX",
+      "nickname": "The Nine-Lives Bar",
+      "nickname_alts": [
+        "Two-Fer the Price of One",
+        "The Nine-Lives Udder"
+      ],
       "address": "311 E Main Street",
       "phone": "406-551-2185",
       "website": "https://bar-ix.com",
@@ -117,6 +132,11 @@
     {
       "id": "bitterroot-bistro",
       "name": "Bitterroot Bistro",
+      "nickname": "The Root of All Fine",
+      "nickname_alts": [
+        "The Early Root",
+        "Bitterroot, But Make It Happy"
+      ],
       "address": "19 S Willson Ave",
       "phone": "",
       "website": "https://www.bitterrootbistro.com",
@@ -133,6 +153,11 @@
     {
       "id": "blackbird",
       "name": "Blackbird",
+      "nickname": "Half-Off Flight",
+      "nickname_alts": [
+        "The 4:30 Avian",
+        "Blackbird Singing in the Dead of 5pm"
+      ],
       "address": "140 E Main St, Bozeman, MT",
       "phone": "406.586.0010",
       "website": "https://www.blackbirdkitchen.com/",
@@ -156,6 +181,11 @@
     {
       "id": "bourbon",
       "name": "Bourbon",
+      "nickname": "BBQ on the Rocks",
+      "nickname_alts": [
+        "The Smoky Whisper",
+        "Bourbon & Briskets"
+      ],
       "address": "515 W Aspen St",
       "phone": "(406) 586-3443",
       "website": "https://bourbonmt.com",
@@ -185,6 +215,11 @@
     {
       "id": "bozeman-brewing-company",
       "name": "Bozeman Brewing Company",
+      "nickname": "The 64-Ounce Solution",
+      "nickname_alts": [
+        "Growler Gallows",
+        "The Fill 'er Up"
+      ],
       "address": "504 N Broadway Ave",
       "phone": "406-585-9142",
       "website": "https://bozemanbrewing.com/",
@@ -214,6 +249,11 @@
     {
       "id": "bozeman-spirits-distillery",
       "name": "Bozeman Spirits Distillery",
+      "nickname": "The Monday Still",
+      "nickname_alts": [
+        "The $7 Man",
+        "Still Standing at 6"
+      ],
       "address": "121 W Main St, Bozeman, MT 59715",
       "phone": "",
       "website": "",
@@ -229,7 +269,7 @@
           "item": "Men's drinks",
           "price": 7.0,
           "category": "drinks",
-          "description": "Mondays: Men\u2019s night, $7 for all mens drinks"
+          "description": "Mondays: Men’s night, $7 for all mens drinks"
         },
         {
           "item": "Mule",
@@ -247,7 +287,7 @@
           "item": "Women's drinks",
           "price": 7.0,
           "category": "drinks",
-          "description": "Thursday: Ladies night all day. $7 for all women\u2019s drinks"
+          "description": "Thursday: Ladies night all day. $7 for all women’s drinks"
         },
         {
           "item": "All drinks",
@@ -267,6 +307,11 @@
     {
       "id": "bozeman-taproom",
       "name": "Bozeman Taproom",
+      "nickname": "The 11 A.M. Problem",
+      "nickname_alts": [
+        "Lunch & a Half-Pint",
+        "The Noon Beer Society"
+      ],
       "address": "101 N Rouse Ave, Bozeman, MT 59715",
       "phone": "",
       "website": "https://www.bozemantaproom.com",
@@ -326,6 +371,11 @@
     {
       "id": "bridger-brewing",
       "name": "Bridger Brewing",
+      "nickname": "One Buck Bridger",
+      "nickname_alts": [
+        "The $1 Bridge",
+        "The Bridger Discount"
+      ],
       "address": "1609 S 11th Ave",
       "phone": "406-587-2124",
       "website": "http://www.bridgerbrewing.com/",
@@ -380,7 +430,7 @@
           "description": "Saturday special"
         },
         {
-          "item": "Nana Rose\u2019s Meatball Dinner",
+          "item": "Nana Rose’s Meatball Dinner",
           "price": 0.0,
           "category": "food",
           "description": "Sunday special"
@@ -391,6 +441,11 @@
     {
       "id": "brigade",
       "name": "Brigade",
+      "nickname": "The $3 Martinis Brigade",
+      "nickname_alts": [
+        "Martini Battalion",
+        "Three-Buck Up"
+      ],
       "address": "233 E Main Street #201",
       "phone": "(406) 624-6161",
       "website": "https://brigadebozeman.com",
@@ -479,7 +534,12 @@
     },
     {
       "id": "daves-sushi",
-      "name": "Dave\u2019s Sushi",
+      "name": "Dave’s Sushi",
+      "nickname": "The Monday Roll",
+      "nickname_alts": [
+        "Half-Off, Full Roll",
+        "The Raw Deal"
+      ],
       "address": "115 N Bozeman Ave",
       "phone": "406-556-1351",
       "website": "http://daves-sushi.com/",
@@ -515,6 +575,11 @@
     {
       "id": "devils-toboggan",
       "name": "Devils Toboggan",
+      "nickname": "The Downhill Draft",
+      "nickname_alts": [
+        "$4 and Let It Slide",
+        "The Slippery Slope"
+      ],
       "address": "113 E Oak St #2b, Bozeman, MT 59715",
       "phone": "406 587 4829",
       "website": "https://www.devilstoboggan.com/",
@@ -556,6 +621,11 @@
     {
       "id": "dry-hills-distillery",
       "name": "Dry Hills Distillery",
+      "nickname": "Free-Rack Tuesday",
+      "nickname_alts": [
+        "Eight-Ball & On the Rocks",
+        "The Cue Ball & The Still"
+      ],
       "address": "106 Village Center Lane, Bozeman, MT 59718",
       "phone": "",
       "website": "",
@@ -615,6 +685,11 @@
     {
       "id": "est-1864-noir-bar-restaurant",
       "name": "Est.1864 Noir Bar & Restaurant",
+      "nickname": "Noir at Five",
+      "nickname_alts": [
+        "The $5 Film Noir",
+        "1864 & Dry"
+      ],
       "address": "233 E Main St",
       "phone": "(406) 404-1066",
       "website": "http://www.est1864bozeman.com",
@@ -656,6 +731,11 @@
     {
       "id": "finks-deli",
       "name": "Finks Deli",
+      "nickname": "The 2-4 Fink",
+      "nickname_alts": [
+        "The Two-to-Four Informant",
+        "Fink's Finest Hour"
+      ],
       "address": "600 N Wallace Ave Suite 4, Bozeman, MT 59715-3001",
       "phone": "406.577.2706",
       "website": "https://www.finksdeli.com/",
@@ -685,6 +765,11 @@
     {
       "id": "la-brasserie",
       "name": "La Brasserie",
+      "nickname": "Le Six",
+      "nickname_alts": [
+        "The Six-Buck Snobbery",
+        "Faux French at Six"
+      ],
       "address": "31 S Willson Ave",
       "phone": "",
       "website": "https://www.labrasseriemt.com",
@@ -720,6 +805,11 @@
     {
       "id": "map-brewing",
       "name": "MAP Brewing Company",
+      "nickname": "One-Dollar Off-Map",
+      "nickname_alts": [
+        "The Cartographer's Discount",
+        "Off the Map, On the Pint"
+      ],
       "address": "510 Manley Rd",
       "phone": "406-587-4070",
       "website": "https://www.mapbrewing.com/",
@@ -743,6 +833,11 @@
     {
       "id": "mountains-walking-brewery",
       "name": "Mountains Walking Brewery",
+      "nickname": "The Scenic Route",
+      "nickname_alts": [
+        "Walking Nowhere Fast",
+        "The Hike & Pint"
+      ],
       "address": "422 Plum Ave, Bozeman, MT 59715",
       "phone": "",
       "website": "",
@@ -759,6 +854,11 @@
     {
       "id": "revelry",
       "name": "Revelry",
+      "nickname": "Rainier or Shine",
+      "nickname_alts": [
+        "The $2 Rager",
+        "Rainier, Poured Wherever"
+      ],
       "address": "24 N Tracy Ave, Bozeman, MT 59715",
       "phone": "",
       "website": "https://www.revelrymt.com",
@@ -830,6 +930,11 @@
     {
       "id": "rocking-r",
       "name": "Rocking R Bar",
+      "nickname": "R&R at the R",
+      "nickname_alts": [
+        "The Four-Buck Brand",
+        "The Rocking Rodeo"
+      ],
       "address": "211 E Main St",
       "phone": "406-587-9355",
       "website": "https://rockingrbar.com/",
@@ -871,6 +976,11 @@
     {
       "id": "shine-beer-sanctuary",
       "name": "Shine Beer Sanctuary",
+      "nickname": "The 3-5 Retreat",
+      "nickname_alts": [
+        "The Beer Monastery",
+        "The Sanctuary of Suds"
+      ],
       "address": "451 E Main St, Bozeman, MT 59715",
       "phone": "4065512019",
       "website": "https://www.shinebeer.com/",
@@ -887,6 +997,11 @@
     {
       "id": "the-bacchus-pub",
       "name": "The Bacchus Pub",
+      "nickname": "The Grape God's Discount",
+      "nickname_alts": [
+        "Bacchus' Bargain Basement",
+        "The Wine God's Happy Hour"
+      ],
       "address": "105 W Main St Suite 1A, Bozeman, MT 59715",
       "phone": "",
       "website": "https://www.bacchuspub.com",
@@ -928,6 +1043,11 @@
     {
       "id": "the-club",
       "name": "The Club Tavern & Grill",
+      "nickname": "Club Dollar",
+      "nickname_alts": [
+        "The One-Dollar Club",
+        "The Club You Can Afford"
+      ],
       "address": "1325 N 7th Ave",
       "phone": "406-556-6212",
       "website": "https://www.theclubtavernandgrill.com/",
@@ -981,6 +1101,11 @@
     {
       "id": "urban-kitchen",
       "name": "Urban Kitchen",
+      "nickname": "Every Glass, Minus Two",
+      "nickname_alts": [
+        "The Two-Buck Sommelier",
+        "Urban Discount, Kitchen Prices"
+      ],
       "address": "5 W Mendenhall St Suite 102, Bozeman, MT 59715",
       "phone": "",
       "website": "",
@@ -1016,6 +1141,11 @@
     {
       "id": "wild-rye-distilling",
       "name": "Wild Rye Distilling",
+      "nickname": "Monday's Mule",
+      "nickname_alts": [
+        "Rye'd or Mule",
+        "The Mule Train Monday"
+      ],
       "address": "111 E Oak St Suite 1E Bozeman, Montana",
       "phone": "406.577.2288",
       "website": "https://www.wildryedistilling.com/",
@@ -1045,6 +1175,11 @@
     {
       "id": "the-filling-station",
       "name": "The Filling Station",
+      "nickname": "The 2AM Pit Stop",
+      "nickname_alts": [
+        "The Un-Filled Station",
+        "Gas 'n' Gigs"
+      ],
       "address": "2005 N. Rouse Ave",
       "phone": "(406) 587-0585",
       "website": "",
@@ -1062,6 +1197,11 @@
     {
       "id": "the-haufbrau",
       "name": "The Haufbrau",
+      "nickname": "The Day-Long Dive",
+      "nickname_alts": [
+        "Hauf the Day, Bräu the Night",
+        "The 15-Hour German"
+      ],
       "address": "22 S 8th Ave, Bozeman",
       "phone": "(406) 587-4931",
       "website": "",
@@ -1079,6 +1219,11 @@
     {
       "id": "the-molly-brown",
       "name": "The Molly Brown",
+      "nickname": "The Unsinkable",
+      "nickname_alts": [
+        "Of Course I'm Here at 2am",
+        "The Titanic Survivor's Casino"
+      ],
       "address": "703 W. Babcock",
       "phone": "(406) 552-7362",
       "website": "",
@@ -1096,6 +1241,11 @@
     {
       "id": "the-bay",
       "name": "The Bay",
+      "nickname": "Bay of Pints",
+      "nickname_alts": [
+        "The Mystery Bay",
+        "The Uncharted Bay"
+      ],
       "address": "2825 W Main St, Bozeman, MT 59718, Bozeman",
       "phone": "",
       "website": "",
@@ -1110,6 +1260,11 @@
     {
       "id": "the-buck",
       "name": "The Buck",
+      "nickname": "The Buck Stops Here",
+      "nickname_alts": [
+        "Buck Rogers' Saloon",
+        "The Only Buck That Goes Further"
+      ],
       "address": "28901 Norris Road, Bozeman",
       "phone": "",
       "website": "",
@@ -1124,6 +1279,11 @@
     {
       "id": "the-bunkhouse-brewery",
       "name": "The Bunkhouse Brewery",
+      "nickname": "Bunk 'n' Brew",
+      "nickname_alts": [
+        "The Cowboy Nap Room",
+        "Sleepy Suds"
+      ],
       "address": "1216 West Lincoln Street A, Bozeman",
       "phone": "",
       "website": "",
@@ -1138,6 +1298,11 @@
     {
       "id": "cafe-fresco",
       "name": "Cafe Fresco",
+      "nickname": "Al Fresco Hour",
+      "nickname_alts": [
+        "Fresh, Daily",
+        "The Fresco Fix"
+      ],
       "address": "317 E Mendenhall St, Bozeman",
       "phone": "",
       "website": "",
@@ -1152,6 +1317,11 @@
     {
       "id": "the-cannery",
       "name": "The Cannery",
+      "nickname": "The Can-Do Cannery",
+      "nickname_alts": [
+        "Canned & Ready",
+        "The Can-Do District"
+      ],
       "address": "43 W Main St, Bozeman, MT 59715, Bozeman",
       "phone": "",
       "website": "",
@@ -1166,6 +1336,11 @@
     {
       "id": "hooked-sushi",
       "name": "Hooked Sushi",
+      "nickname": "Hooked, Line & Sinker",
+      "nickname_alts": [
+        "The Bait & Switch",
+        "You Had Me at Sushi"
+      ],
       "address": "119 E Main St, Bozeman, MT 59715-4761, Bozeman",
       "phone": "",
       "website": "",
@@ -1180,6 +1355,11 @@
     {
       "id": "korner-klub",
       "name": "Korner Klub",
+      "nickname": "The Corner Office",
+      "nickname_alts": [
+        "The K-Korner",
+        "The Regulars' Desk"
+      ],
       "address": "8191 Huffine Lane, Bozeman",
       "phone": "",
       "website": "",
@@ -1194,6 +1374,11 @@
     {
       "id": "last-best-place-brewery",
       "name": "Last Best Place Brewery",
+      "nickname": "The First Best Pour",
+      "nickname_alts": [
+        "Montana's Second-Favorite",
+        "The Last Best Moo"
+      ],
       "address": "605 N 7th Ave, Bozeman, MT 59715, Bozeman",
       "phone": "",
       "website": "",
@@ -1208,6 +1393,11 @@
     {
       "id": "the-pour-house",
       "name": "The Pour House",
+      "nickname": "The Poor Decision House",
+      "nickname_alts": [
+        "House of Pour",
+        "The Udder Pour"
+      ],
       "address": "15 N Rouse Ave, Bozeman, MT 59715, Bozeman",
       "phone": "",
       "website": "",
@@ -1222,6 +1412,11 @@
     {
       "id": "sidewall-pizza-company",
       "name": "Sidewall Pizza Company",
+      "nickname": "The Tire Slice",
+      "nickname_alts": [
+        "The Flatbread & Flat Tire",
+        "The Slice Wall"
+      ],
       "address": "111 S Grand, Bozeman",
       "phone": "",
       "website": "",
@@ -1236,6 +1431,11 @@
     {
       "id": "tanoshii",
       "name": "Tanoshii",
+      "nickname": "The Literal Fun Spot",
+      "nickname_alts": [
+        "Fun, As Advertised",
+        "Tanoshii Times"
+      ],
       "address": "113 E Main St, Bozeman, MT 59715, Bozeman",
       "phone": "",
       "website": "",
@@ -1250,6 +1450,11 @@
     {
       "id": "valhalla-meadery",
       "name": "Valhalla Meadery",
+      "nickname": "Odin's Happy Hour",
+      "nickname_alts": [
+        "The Mead Hall of Fame",
+        "Valhalla, Bring Your Own Sword"
+      ],
       "address": "875 Bridger Drive, Bozeman, MT 59715, Bozeman",
       "phone": "",
       "website": "",
@@ -1264,6 +1469,11 @@
     {
       "id": "bar-3-bbq-and-brewery",
       "name": "Bar 3 BBQ and Brewery",
+      "nickname": "Three Sheets & Smoked",
+      "nickname_alts": [
+        "The Smoke Signal",
+        "Bar 3, Smoked & Loaded"
+      ],
       "address": "100 S Broadway, Belgrade",
       "phone": "",
       "website": "",
@@ -1278,6 +1488,11 @@
     {
       "id": "broken-spoke-bar-grill",
       "name": "Broken Spoke Bar & Grill",
+      "nickname": "The Wobbly Wagon",
+      "nickname_alts": [
+        "The Flat Tire Saloon",
+        "The Spoke Bender"
+      ],
       "address": "120 Big Pine Dr, Gallatin Gateway",
       "phone": "",
       "website": "",
@@ -1292,6 +1507,11 @@
     {
       "id": "buffalo-wild-wings",
       "name": "Buffalo Wild Wings",
+      "nickname": "The Wingding",
+      "nickname_alts": [
+        "The B-Dubs Bargain",
+        "The Wing Council"
+      ],
       "address": "2047 W Oak St, Bozeman",
       "phone": "",
       "website": "",
@@ -1306,6 +1526,11 @@
     {
       "id": "copper-whiskey-bar",
       "name": "Copper Whiskey Bar",
+      "nickname": "The Copper Standard",
+      "nickname_alts": [
+        "Rust & Rye",
+        "The Copper Still Social"
+      ],
       "address": "101 E Main St, Bozeman",
       "phone": "",
       "website": "",
@@ -1320,6 +1545,11 @@
     {
       "id": "madison-river-brewing-co",
       "name": "Madison River Brewing Co",
+      "nickname": "The River of Pints",
+      "nickname_alts": [
+        "The Fly-Fishing Float",
+        "The Madison Drift"
+      ],
       "address": "20900 Frontage Rd Building B, Belgrade",
       "phone": "",
       "website": "",
@@ -1334,6 +1564,11 @@
     {
       "id": "old-chicago",
       "name": "Old Chicago",
+      "nickname": "The Windy City, Half-Baked",
+      "nickname_alts": [
+        "Deep Dish & Deep Discounts",
+        "The Second City, First Pour"
+      ],
       "address": "1940 N 19th Ave, Bozeman",
       "phone": "",
       "website": "",
@@ -1348,6 +1583,11 @@
     {
       "id": "open-range",
       "name": "Open Range",
+      "nickname": "The Unfenced Hour",
+      "nickname_alts": [
+        "No Fences, No Cover",
+        "The Open Tab Range"
+      ],
       "address": "241 E Main St, Bozeman",
       "phone": "",
       "website": "",
@@ -1362,6 +1602,11 @@
     {
       "id": "outlaw-brewing",
       "name": "Outlaw Brewing",
+      "nickname": "Wanted: Fresh Pours",
+      "nickname_alts": [
+        "Fermenting Outside the Law",
+        "The Most Wanted Pour"
+      ],
       "address": "2876 N 27th Ave, Bozeman",
       "phone": "",
       "website": "",
@@ -1376,6 +1621,11 @@
     {
       "id": "plonk",
       "name": "Plonk",
+      "nickname": "Cheap Wine, Proudly",
+      "nickname_alts": [
+        "The Self-Aware Pour",
+        "Plonk's Own Brand"
+      ],
       "address": "29 E Main St, Bozeman",
       "phone": "",
       "website": "",
@@ -1390,6 +1640,11 @@
     {
       "id": "pub-317",
       "name": "Pub 317",
+      "nickname": "Prime Pour 317",
+      "nickname_alts": [
+        "Room 317",
+        "The Shining Pub"
+      ],
       "address": "321 E Main St, Bozeman",
       "phone": "",
       "website": "",
@@ -1403,7 +1658,12 @@
     },
     {
       "id": "rialto-bar-burn-box",
-      "name": "Rialto Bar \u2013 Burn Box",
+      "name": "Rialto Bar – Burn Box",
+      "nickname": "The Bridge to Burn",
+      "nickname_alts": [
+        "Venice, MT",
+        "The Venetian Wood-Fire"
+      ],
       "address": "10 W Main St, Bozeman",
       "phone": "",
       "website": "",
@@ -1418,6 +1678,11 @@
     {
       "id": "santa-fe-reds",
       "name": "Santa Fe Reds",
+      "nickname": "The Red Chile Recess",
+      "nickname_alts": [
+        "New Mexico, North",
+        "Red Hot Hours"
+      ],
       "address": "1235 N 7th Ave, Bozeman",
       "phone": "",
       "website": "",
@@ -1432,6 +1697,11 @@
     {
       "id": "seven-sushi",
       "name": "Seven Sushi",
+      "nickname": "Lucky Seven Rolls",
+      "nickname_alts": [
+        "The 7-Eleven of Sushi",
+        "Seven Deadly Rolls"
+      ],
       "address": "113 E Oak St, Bozeman",
       "phone": "",
       "website": "",
@@ -1446,6 +1716,11 @@
     {
       "id": "spectators-bar-and-grill",
       "name": "Spectators Bar and Grill",
+      "nickname": "The Benchwarmer",
+      "nickname_alts": [
+        "The Armchair Quarterback",
+        "The 4th Quarter Pint"
+      ],
       "address": "19 Tai Ln, Bozeman",
       "phone": "",
       "website": "",
@@ -1460,6 +1735,11 @@
     {
       "id": "stacey-s-old-faithful-bar-steakhouse",
       "name": "Stacey's Old Faithful Bar & Steakhouse",
+      "nickname": "The Geyser Grill",
+      "nickname_alts": [
+        "The Erupting Steakhouse",
+        "The Old Faithful Moo-er"
+      ],
       "address": "300 Mill St",
       "phone": "(406) 763-4425",
       "website": "http://www.staceysbar.com",
