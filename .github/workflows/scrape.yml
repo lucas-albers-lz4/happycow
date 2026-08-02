@@ -52,6 +52,14 @@ jobs:
           # mthappyhour entry says closed. Human reviews closure_report.md.
           python scripts/check_venue_status.py 2>&1 | tee /tmp/closure.log || true
 
+      - name: Validate data
+        # Phase 3 (issue #30): broken JSON / schema violations / unparseable
+        # hours / config-data drift must fail the job BEFORE anything commits —
+        # otherwise bad output ships straight to GitHub Pages.
+        run: |
+          python scripts/validate_data.py
+          node scripts/validate_hours.mjs data/happy_hour_data.json
+
       - name: Commit updated data
         run: |
           git config user.name "happycow-bot"

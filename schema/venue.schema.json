@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HappyCowVenue",
+  "description": "Contract for data/happy_hour_data.json venue records. Enforced by scripts/validate_data.py (dependency-free mirror) + scripts/validate_hours.mjs (hours grammar, single source: assets/js/hours.js).",
+  "type": "object",
+  "required": [
+    "id", "name", "nickname", "address", "phone", "website", "maps",
+    "tags", "noise_level", "mood", "hours", "business_hours", "specials"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "nickname": { "type": "string", "minLength": 1 },
+    "nickname_alts": { "type": "array", "items": { "type": "string" } },
+    "address": { "type": "string", "minLength": 1 },
+    "phone": { "type": "string" },
+    "website": { "type": "string" },
+    "maps": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "noise_level": { "type": "string" },
+    "mood": { "type": "string" },
+    "hours": { "type": "string" },
+    "business_hours": { "type": "string" },
+    "notes": { "type": "string" },
+    "specials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "price", "category", "description"],
+        "properties": {
+          "item": { "type": "string", "minLength": 1 },
+          "price": { "type": "number", "minimum": 0 },
+          "category": { "enum": ["drinks", "food"] },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
