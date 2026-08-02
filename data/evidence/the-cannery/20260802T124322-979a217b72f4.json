@@ -1,0 +1,26 @@
+{
+  "venue_id": "the-cannery",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/the-cannery/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "979a217b72f448e17f3756bcc3175b8d2dce1cbab2abe148da5d82fef094b67c",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "The Cannery",
+  "matched_address": "43 W Main St, Bozeman, MT 59715, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Sun 11:00am-2:00am",
+    "specials": [],
+    "notes": "Menu + drink menu probed — regular prices, no HH (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/the-cannery/",
+      "https://thecannerybozeman.com/"
+    ]
+  }
+}

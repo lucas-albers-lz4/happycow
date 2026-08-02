@@ -1,0 +1,26 @@
+{
+  "venue_id": "sidewall-pizza-company",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/sidewall-pizza-company/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "400bd5474218455c4afdb1005817f64307223d9924910a05ed06a16195616586",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Sidewall Pizza Company",
+  "matched_address": "111 S Grand, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm",
+    "specials": [],
+    "notes": "Site probed — no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/sidewall-pizza-company/",
+      "https://www.sidewallpizzabozeman.com/"
+    ]
+  }
+}

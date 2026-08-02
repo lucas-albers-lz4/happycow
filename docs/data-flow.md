@@ -122,6 +122,40 @@ the body for human review before the data reaches GitHub Pages.
 The next scheduled run always diffs against HEAD on `main`. A sitting-open scrape PR does
 not poison the subsequent run's baseline — it is simply left for review or close.
 
+## Venue truth pipeline (observation → claim → decision)
+
+Separate from the scrape loop: multi-signal verification that **does not** change
+published site data until `data/state/truth_config.json` has `"suppress_enabled": true`.
+
+```
+Overture fixture/cache + site provenance (+ optional Overpass)
+        │
+        ▼
+data/evidence/<venue-id>/*.json     ← immutable observations
+        │
+        ▼
+scripts/truth/agreement.py          ← rule-based v1 (Depen/LLM deferred)
+        │
+        ├── data/state/shadow_decisions.json
+        ├── data/state/review_queue.json
+        └── data/state/cost_counters.json
+```
+
+| Entry | Role |
+|---|---|
+| `python scripts/run_venue_truth.py` | Shadow pipeline (default fixture if no Overture cache) |
+| `python scripts/eval_venue_truth.py` | Golden corpus gate (Santa Fe Reds class, etc.) |
+| `scripts/truth/` | Pure domain (schema, identity, agreement, freshness, synthesize, budget) |
+| `scripts/adapters/` | I/O only (overture, overpass, scrape_bridge; social stub deferred) |
+
+**Santa Fe class:** Overture `permanently_closed` + aggregator HH → `suppressed` status
+and suppressed specials/hours in shadow. Live `happy_hour_data.json` unchanged until
+suppress is enabled after eval precision is acceptable. Humans still confirm removals
+via `remove_venue.py`.
+
+**Uncertainty budget:** top-N venues in `cost_counters.json` are candidates for
+expensive LLM/deep/social work; social connectors remain stubs until needed.
+
 ## Fail-fast gates (issue #50)
 
 The scraper exits non-zero (and writes nothing) in two cases:
@@ -144,7 +178,7 @@ Scripts under `scripts/tools/` are manual-only and must never be added to the sc
 ## Scrape CI git add scope
 
 The "Commit updated data" step in `.github/workflows/scrape.yml` stages only runtime outputs:
-`data/happy_hour_data.json`, `data/state/`, `config/venues.json`.
+`data/happy_hour_data.json`, `data/state/`, `data/evidence/`, `config/venues.json`.
 
 Source files (`scripts/`, `assets/`, etc.) are never staged by CI — any change there goes through a normal PR. This prevents accidental script commits from automated runs.
 

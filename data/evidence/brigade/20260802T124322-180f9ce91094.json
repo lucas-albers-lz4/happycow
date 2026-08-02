@@ -1,0 +1,98 @@
+{
+  "venue_id": "brigade",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/brigade/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "180f9ce91094ceda26d286c227635633941663491759f439d1360ec31b36d5cf",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 3-6pm; specials=12 items",
+  "matched_name": "Brigade",
+  "matched_address": "233 E Main Street #201",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 3-6pm",
+    "business_hours": "Mon-Fri 3pm-10pm, Sat-Sun 9am-10pm",
+    "specials": [
+      {
+        "item": "Martinis (vodka, gin, cosmo, infused berry)",
+        "price": 3.0,
+        "category": "drinks",
+        "description": "$3 Martinis (vodka, gin, cosmo, infused berry)"
+      },
+      {
+        "item": "Draft Beers",
+        "price": 3.0,
+        "category": "drinks",
+        "description": "$3 Draft Beers"
+      },
+      {
+        "item": "Oysters (chef's choice)",
+        "price": 3.0,
+        "category": "food",
+        "description": "$3 Oysters (chef's choice)"
+      },
+      {
+        "item": "Fresh Baguette (chef's choice of daily butter)",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Fresh Baguette"
+      },
+      {
+        "item": "Warm Marinated Olives",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Warm Marinated Olives"
+      },
+      {
+        "item": "Onion Rings",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Onion Rings"
+      },
+      {
+        "item": "Truffle Fries",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Truffle Fries"
+      },
+      {
+        "item": "French Onion Soup",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on French Onion Soup"
+      },
+      {
+        "item": "Edamame Hummus",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Edamame Hummus"
+      },
+      {
+        "item": "Shrimp Cocktail",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Shrimp Cocktail"
+      },
+      {
+        "item": "Charcuterie",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Charcuterie"
+      },
+      {
+        "item": "Brigade Burger",
+        "price": 0.0,
+        "category": "food",
+        "description": "Happy Hour Prices on Brigade Burger"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/brigade/"
+    ]
+  }
+}

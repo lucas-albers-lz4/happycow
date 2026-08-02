@@ -1,0 +1,68 @@
+{
+  "venue_id": "bozeman-taproom",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/bozeman-taproom/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "dce41a2192b71f809e044c58cf1e0209a8146fc47fde912926a540cd8e6f0ce8",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 11am-3pm; specials=7 items",
+  "matched_name": "Bozeman Taproom",
+  "matched_address": "101 N Rouse Ave, Bozeman, MT 59715",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 11am-3pm",
+    "business_hours": "Mon-Thu 11:00am-12:00am, Fri 11:00am-1:00am, Sat Sunday, Sun 11:00am-1:00am",
+    "specials": [
+      {
+        "item": "Lunch with 10 oz beer",
+        "price": 10.0,
+        "category": "food",
+        "description": "$8 lunches, add on a 10 oz beer for $2. Options include 1/2 sandwich (Turkey Club or Dagwood) with chips and pickle, 1/4 lb Cheeseburger with chips and pickle, Sausage with chips and pickle, Taco Combo (2 tacos with tortilla chips and salsa), or Soup and Salad Combo."
+      },
+      {
+        "item": "1/2 sandwich lunch",
+        "price": 8.0,
+        "category": "food",
+        "description": "Turkey Club or Dagwood with chips and a pickle"
+      },
+      {
+        "item": "1/4 lb Cheeseburger lunch",
+        "price": 8.0,
+        "category": "food",
+        "description": "with chips and a pickle"
+      },
+      {
+        "item": "Sausage lunch",
+        "price": 8.0,
+        "category": "food",
+        "description": "with chips and a pickle"
+      },
+      {
+        "item": "Taco Combo",
+        "price": 8.0,
+        "category": "food",
+        "description": "2 tacos with tortilla chips and salsa"
+      },
+      {
+        "item": "Soup and Salad Combo",
+        "price": 8.0,
+        "category": "food",
+        "description": "soup and salad"
+      },
+      {
+        "item": "10 oz beer add-on",
+        "price": 2.0,
+        "category": "drinks",
+        "description": "Add a 10 oz beer to any lunch special"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/bozeman-taproom/"
+    ]
+  }
+}

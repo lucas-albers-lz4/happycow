@@ -1,0 +1,68 @@
+{
+  "venue_id": "dry-hills-distillery",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/dry-hills-distillery/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "a9057f29955a1689b0a0bc2c0bb773db048272abd8207d13a7c3d9bc53a7d6b1",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Tue 4-8pm; specials=7 items",
+  "matched_name": "Dry Hills Distillery",
+  "matched_address": "106 Village Center Lane, Bozeman, MT 59718",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Tue 4-8pm",
+    "business_hours": "Mon Closed, Tue-Sun 12pm-8pm",
+    "specials": [
+      {
+        "item": "All Cocktails",
+        "price": 2.0,
+        "category": "drinks",
+        "description": "$2 off all cocktails, plus free pool"
+      },
+      {
+        "item": "Whiskey Cocktails",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "$5 whiskey cocktails all day"
+      },
+      {
+        "item": "All Cocktails (Ladies Night)",
+        "price": 2.0,
+        "category": "drinks",
+        "description": "$2 off all cocktails"
+      },
+      {
+        "item": "Drink (Date Night)",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "Buy one drink, get one free with purchase of locally sourced meat & cheese board from 4-8pm"
+      },
+      {
+        "item": "Moscow Mule",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "Any mules just $5 all day"
+      },
+      {
+        "item": "Bloody Mary or Caesar",
+        "price": 2.0,
+        "category": "drinks",
+        "description": "$2 off a Bloody Mary or a Caesar"
+      },
+      {
+        "item": "Screwdriver",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "$5 Screwdrivers all day"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/dry-hills-distillery/"
+    ]
+  }
+}

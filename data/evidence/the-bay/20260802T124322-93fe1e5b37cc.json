@@ -1,0 +1,93 @@
+{
+  "venue_id": "the-bay",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/the-bay/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "93fe1e5b37cce74ef534f07c6e611ac078a3ffd976d07a1fab61887164a40972",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 3-5pm & 8-9pm; specials=11 items",
+  "matched_name": "The Bay",
+  "matched_address": "2825 W Main St, Bozeman, MT 59718, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 3-5pm & 8-9pm",
+    "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm",
+    "specials": [
+      {
+        "item": "Draft beers",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "1/2 off all draft beers"
+      },
+      {
+        "item": "Wine pours",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "1/2 off 8oz wine pours"
+      },
+      {
+        "item": "Margarita",
+        "price": 6.0,
+        "category": "drinks",
+        "description": "$6"
+      },
+      {
+        "item": "Moscow Mule",
+        "price": 6.0,
+        "category": "drinks",
+        "description": "$6"
+      },
+      {
+        "item": "Aperol Spritz",
+        "price": 7.0,
+        "category": "drinks",
+        "description": "$7"
+      },
+      {
+        "item": "Peach Long Island Tea",
+        "price": 9.0,
+        "category": "drinks",
+        "description": "$9"
+      },
+      {
+        "item": "Reuben Eggrolls",
+        "price": 10.0,
+        "category": "food",
+        "description": "$10"
+      },
+      {
+        "item": "Mint Goat Cheese Stuffed Peppers",
+        "price": 10.0,
+        "category": "food",
+        "description": "$10"
+      },
+      {
+        "item": "Hand-Battered Steak Bites",
+        "price": 10.0,
+        "category": "food",
+        "description": "$10"
+      },
+      {
+        "item": "Fried Bison Short Rib Ravioli",
+        "price": 12.0,
+        "category": "food",
+        "description": "$12 — red sauce"
+      },
+      {
+        "item": "Sirloin Steak Tostadas",
+        "price": 15.0,
+        "category": "food",
+        "description": "$15"
+      }
+    ],
+    "notes": "Happy hour every day 3-5pm & 8-9pm. Source: thebaybarandgrille.com/happy-hour menu image (Aug 2026).",
+    "source_urls": [
+      "https://mthappyhour.com/locations/the-bay/",
+      "https://www.thebaybarandgrille.com/"
+    ]
+  }
+}

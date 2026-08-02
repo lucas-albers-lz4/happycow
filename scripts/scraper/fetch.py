@@ -21,6 +21,17 @@ from tenacity import (
 )
 
 from common import is_aggregator
+from truth.identity import page_matches_venue
+
+# Re-export for tests / callers that imported from scraper.fetch
+__all__ = [
+    "fetch_html",
+    "trim_happy_hour_section",
+    "html_section_by_heading",
+    "html_to_trimmed_text",
+    "page_matches_venue",
+    "gather_page_text",
+]
 
 INTER_REQUEST_SLEEP = 1.0
 MAX_PAGE_CHARS = 8000  # post-trim budget for the model
@@ -143,37 +154,6 @@ def html_to_trimmed_text(html: str) -> str:
     trimmed = trim_happy_hour_section(extracted)
     trimmed = re.sub(r"\n{3,}", "\n\n", trimmed).strip()
     return trimmed[:MAX_PAGE_CHARS]
-
-
-def _norm(s: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "", s.lower())
-
-
-def page_matches_venue(text: str, venue: dict, require_address: bool) -> bool:
-    """Contamination guard (Phase 2, issue #30).
-
-    Aggregator pages (mthappyhour et al.) have been caught carrying OTHER
-    venues' content (Old Chicago <- Bozeman Spirits, Shine <- Ale Works,
-    Tanoshii <- Old Chicago-ish text). Only accept an aggregator page as this
-    venue's own when its name AND street number + first street word appear.
-    Own-site pages are curated/trusted: name is a soft signal (WARN only) —
-    hard-requiring the address there false-negatives, since many sites keep
-    the address only in the footer, which trimming cuts off.
-
-    Known limitation: a page containing BOTH the venue's own info and a
-    contaminated snippet still passes (presence check, not exclusivity).
-    """
-    t = _norm(text)
-    name = _norm((venue.get("name") or "").replace("The ", "").replace("the ", ""))
-    if not name or name not in t:
-        return False
-    if require_address:
-        addr = _norm(venue.get("address") or "")
-        m = re.match(r"(\d+[a-z]+?)", addr)  # street number + FIRST street word only
-        if not m:
-            return True  # no parseable address -> soft pass, avoid false negatives
-        return m.group(1) in t
-    return True
 
 
 def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]:

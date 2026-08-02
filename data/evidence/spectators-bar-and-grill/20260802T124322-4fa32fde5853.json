@@ -1,0 +1,57 @@
+{
+  "venue_id": "spectators-bar-and-grill",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/spectators-bar-and-grill/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "4fa32fde58532d71efe633aeff7972fb7986f7e12126a35b5d414f7b90146f76",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "specials=5 items",
+  "matched_name": "Spectators Bar and Grill",
+  "matched_address": "19 Tai Ln, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Sun 10am-12am",
+    "specials": [
+      {
+        "item": "Draft beer",
+        "price": 4.0,
+        "category": "drinks",
+        "description": "$4 Mondays — all day"
+      },
+      {
+        "item": "Pitcher & pizza",
+        "price": 0.0,
+        "category": "food",
+        "description": "Tuesdays — pitcher and pizza deal"
+      },
+      {
+        "item": "Steak Night",
+        "price": 0.0,
+        "category": "food",
+        "description": "Wednesdays (price not specified)"
+      },
+      {
+        "item": "B.A.B.B. night",
+        "price": 0.0,
+        "category": "food",
+        "description": "Thursdays — big ass burger and a pint of beer (price not specified)"
+      },
+      {
+        "item": "Breakfast sandwich or burrito",
+        "price": 0.0,
+        "category": "food",
+        "description": "Saturdays & Sundays (price not specified)"
+      }
+    ],
+    "notes": "No formal HH window; daily specials per site (food-menu page). Details posted on Instagram story. Source: specsbzn.com",
+    "source_urls": [
+      "https://mthappyhour.com/locations/spectators-bar-and-grill/",
+      "https://specsbzn.com/"
+    ]
+  }
+}

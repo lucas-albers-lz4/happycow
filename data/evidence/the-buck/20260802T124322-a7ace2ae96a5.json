@@ -1,0 +1,26 @@
+{
+  "venue_id": "the-buck",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/the-buck/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "a7ace2ae96a52a7ec9fadbae746c298e27bb39e8f3301ecc7750ce386b15793a",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "The Buck",
+  "matched_address": "28901 Norris Road, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm",
+    "specials": [],
+    "notes": "Site menu probed — regular prices only, no HH (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/the-buck/",
+      "https://thebuckbozeman.com/"
+    ]
+  }
+}

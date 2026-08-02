@@ -35,6 +35,24 @@ TOMBSTONES_PATH = STATE_DIR / "removed_venues.json"   # removed-venue blocklist
 CLOSURE_STATE_PATH = STATE_DIR / "closure_state.json" # consecutive-failure flags
 CLOSURE_REPORT_PATH = STATE_DIR / "closure_report.md" # human-review report
 
+# ─── Venue truth pipeline (observation → claim → decision) ───
+EVIDENCE_DIR = ROOT / "data" / "evidence"
+EVAL_DIR = ROOT / "data" / "eval"
+SHADOW_DECISIONS_PATH = STATE_DIR / "shadow_decisions.json"
+REVIEW_QUEUE_PATH = STATE_DIR / "review_queue.json"
+TRUTH_CONFIG_PATH = STATE_DIR / "truth_config.json"
+OVERTURE_CACHE_PATH = STATE_DIR / "overture_priors.json"
+OVERPASS_CACHE_PATH = STATE_DIR / "overpass_snapshot.json"
+COST_COUNTERS_PATH = STATE_DIR / "cost_counters.json"
+
+# Gallatin Valley bbox for Overture / Overpass (approx Bozeman + Belgrade)
+BOZEMAN_BBOX = {
+    "xmin": -111.20,
+    "xmax": -110.90,
+    "ymin": 45.55,
+    "ymax": 45.85,
+}
+
 # Directory/aggregator hosts — curated venue pages (own site, HH subpages)
 # outrank these in gather_page_text so their boilerplate can't starve the
 # dedicated sources that actually hold the deals.

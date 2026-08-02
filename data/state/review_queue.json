@@ -1,0 +1,57 @@
+{
+  "updated_at": "2026-08-02T12:43:22Z",
+  "items": [
+    {
+      "venue_id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "field": "business_status",
+      "kind": "suppressed",
+      "value": "permanently_closed",
+      "rationale": "strong closed signal from overture/overture",
+      "cited_sources": [
+        "overture:places:overture-santa-fe-reds-fixture",
+        "https://mthappyhour.com/locations/santa-fe-reds/"
+      ],
+      "queued_at": "2026-08-02T12:43:22Z"
+    },
+    {
+      "venue_id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "field": "hours",
+      "kind": "suppressed",
+      "value": "Daily 3-6pm, Fri-Sat 10pm-12am",
+      "rationale": "suppressed due to business_status=permanently_closed",
+      "cited_sources": [
+        "overture:places:overture-santa-fe-reds-fixture",
+        "https://mthappyhour.com/locations/santa-fe-reds/"
+      ],
+      "queued_at": "2026-08-02T12:43:22Z"
+    },
+    {
+      "venue_id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "field": "business_hours",
+      "kind": "suppressed",
+      "value": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
+      "rationale": "suppressed due to business_status=permanently_closed",
+      "cited_sources": [
+        "overture:places:overture-santa-fe-reds-fixture",
+        "https://mthappyhour.com/locations/santa-fe-reds/"
+      ],
+      "queued_at": "2026-08-02T12:43:22Z"
+    },
+    {
+      "venue_id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "field": "specials",
+      "kind": "suppressed",
+      "value": null,
+      "rationale": "suppressed due to business_status=permanently_closed",
+      "cited_sources": [
+        "overture:places:overture-santa-fe-reds-fixture",
+        "https://mthappyhour.com/locations/santa-fe-reds/"
+      ],
+      "queued_at": "2026-08-02T12:43:22Z"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "venue_id": "blackbird",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/blackbird/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "a3a40e5c77638476e0831ee90f88f29bdddc9edc410b6ef015248539714a4055",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 4:30-5:30pm; specials=1 items",
+  "matched_name": "Blackbird",
+  "matched_address": "140 E Main St, Bozeman, MT",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 4:30-5:30pm",
+    "business_hours": "Mon-Sun 4:30pm-9:00pm",
+    "specials": [
+      {
+        "item": "Select bottles of wine",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "Half price select bottles of wine"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/blackbird/",
+      "https://www.blackbirdkitchen.com/"
+    ]
+  }
+}

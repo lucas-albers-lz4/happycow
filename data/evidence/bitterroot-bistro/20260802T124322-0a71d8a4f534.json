@@ -1,0 +1,58 @@
+{
+  "venue_id": "bitterroot-bistro",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/bitterroot-bistro/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "0a71d8a4f534deb714261850adccae3c996eef74bf887708fa001ff610b869e2",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 2-5pm; specials=5 items",
+  "matched_name": "Bitterroot Bistro",
+  "matched_address": "19 S Willson Ave",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 2-5pm",
+    "business_hours": "Mon-Sun 2pm-10pm",
+    "specials": [
+      {
+        "item": "Beef pasty",
+        "price": 15.0,
+        "category": "food",
+        "description": "$15 — two Butte-style pasties, MT Wagyu, served with brown gravy"
+      },
+      {
+        "item": "Bison tartare",
+        "price": 13.0,
+        "category": "food",
+        "description": "$13 — hand-chopped bison on focaccia crostini, cured egg yolk"
+      },
+      {
+        "item": "Hand-cut fries",
+        "price": 7.0,
+        "category": "food",
+        "description": "$7 — with house fry sauce"
+      },
+      {
+        "item": "All draft beer",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "$5"
+      },
+      {
+        "item": "House wine",
+        "price": 7.0,
+        "category": "drinks",
+        "description": "$7 — house red, white, or sparkling"
+      }
+    ],
+    "notes": "HH food + drink menu published on site. Source: bitterrootbistro.com/menu",
+    "source_urls": [
+      "https://mthappyhour.com/locations/bitterroot-bistro/",
+      "https://www.bitterrootbistro.com",
+      "https://www.bitterrootbistro.com/menu"
+    ]
+  }
+}

@@ -18,6 +18,17 @@ from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, save_json
 from scraper.extract import ANTHROPIC_API_KEY, MODEL, extract_venue
 from scraper.merge import reject_unparseable_hours, venue_to_site_record
 
+# Optional truth-pipeline provenance (shadow; suppress gated by truth_config)
+try:
+    from adapters.scrape_bridge import observation_from_scrape
+    from common import EVIDENCE_DIR, TRUTH_CONFIG_PATH, SHADOW_DECISIONS_PATH, load_json as _load
+    from truth.schema import ObservationStore
+    from truth.synthesize import apply_decisions_to_record
+
+    _TRUTH_AVAILABLE = True
+except Exception:  # noqa: BLE001
+    _TRUTH_AVAILABLE = False
+
 ROOT = Path(__file__).resolve().parent.parent.parent
 USER_AGENT = "happycow-scraper/1.0 (+https://github.com/lucas-albers-lz4/happycow)"
 REQUEST_TIMEOUT = 30.0
@@ -93,6 +104,21 @@ def run(
     # Phase C: merge into site records.
     results = []
     ok = fail = kept = 0
+    truth_store = None
+    suppress_enabled = False
+    shadow_by_id: dict = {}
+    if _TRUTH_AVAILABLE:
+        truth_store = ObservationStore(EVIDENCE_DIR)
+        tcfg = _load(TRUTH_CONFIG_PATH, fallback={}) or {}
+        suppress_enabled = bool(tcfg.get("suppress_enabled"))
+        shadow = _load(SHADOW_DECISIONS_PATH, fallback={}) or {}
+        for vid, fields in (shadow.get("venues") or {}).items():
+            from truth.schema import Decision
+
+            shadow_by_id[vid] = {
+                k: Decision.model_validate(v) for k, v in fields.items()
+            }
+
     for venue, extract, _from_cache in pending:
         prev = prev_by_id.get(venue["id"])
         usable = (
@@ -103,6 +129,16 @@ def run(
         if usable:
             ok += 1
             record = venue_to_site_record(venue, extract, prev)
+            if truth_store is not None:
+                cached = cache_venues.get(venue["id"]) or {}
+                obs = observation_from_scrape(
+                    venue,
+                    extract,
+                    list(cached.get("sources") or venue.get("scrape_urls") or []),
+                    content_hash=str(cached.get("content_hash") or ""),
+                )
+                if obs:
+                    truth_store.write(obs)
         elif prev:
             kept += 1
             print(f"  keeping previous data for {venue['id']}")
@@ -110,6 +146,11 @@ def run(
         else:
             fail += 1
             record = venue_to_site_record(venue, {"hours": "", "specials": []}, None)
+
+        if suppress_enabled and venue["id"] in shadow_by_id:
+            record = apply_decisions_to_record(
+                record, shadow_by_id[venue["id"]], suppress_enabled=True
+            )
         results.append(record)
 
     if venue_ids:

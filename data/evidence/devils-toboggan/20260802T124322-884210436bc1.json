@@ -1,0 +1,51 @@
+{
+  "venue_id": "devils-toboggan",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/devils-toboggan/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "884210436bc16defc9da030ccc9b1e3c51264e4a2f041ff67e2c78bc75da507e",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 4-6pm; specials=4 items",
+  "matched_name": "Devils Toboggan",
+  "matched_address": "113 E Oak St #2b, Bozeman, MT 59715",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 4-6pm",
+    "business_hours": "Sun-Thu 4-11pm, Fri-Sat 4pm-Midnight (Kitchen Sun-Thu 4-8pm, Fri-Sat 4-10pm)",
+    "specials": [
+      {
+        "item": "Beers",
+        "price": 3.0,
+        "category": "drinks",
+        "description": "$3.00 - $4.00 beers"
+      },
+      {
+        "item": "House wines",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "$5.00 house wines"
+      },
+      {
+        "item": "Single well drinks",
+        "price": 4.0,
+        "category": "drinks",
+        "description": "$4.00 single well drinks"
+      },
+      {
+        "item": "Appetizer specials",
+        "price": 0.0,
+        "category": "food",
+        "description": "Appetizer specials (price not specified)"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/devils-toboggan/",
+      "https://www.devilstoboggan.com/"
+    ]
+  }
+}

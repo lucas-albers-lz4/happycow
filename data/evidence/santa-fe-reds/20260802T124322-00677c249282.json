@@ -1,0 +1,21 @@
+{
+  "venue_id": "santa-fe-reds",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "overture:places:overture-santa-fe-reds-fixture",
+  "source_type": "overture",
+  "source_family": "overture",
+  "content_hash": "00677c249282e97bdd0cb3a4cfa98f6b12556dad952026287f168b049197aff9",
+  "http_status": null,
+  "extraction_method": "prior",
+  "evidence_excerpt": "Overture id=overture-santa-fe-reds-fixture name='Santa Fe Reds' operating_status=permanently_closed confidence=0.0",
+  "matched_name": "Santa Fe Reds",
+  "matched_address": "1235 N 7th Ave, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": "overture-santa-fe-reds-fixture",
+  "payload": {
+    "business_status": "permanently_closed",
+    "overture_confidence": 0.0,
+    "address": "1235 N 7th Ave, Bozeman",
+    "phone": ""
+  }
+}

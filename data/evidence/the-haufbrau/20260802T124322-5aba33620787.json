@@ -1,0 +1,25 @@
+{
+  "venue_id": "the-haufbrau",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://visit-bozeman.com/listings/haufbrau-house",
+  "source_type": "aggregator",
+  "source_family": "local_directory",
+  "content_hash": "5aba336207872770354230cf71b8d90fc8e281d3ace6e09499cc330b2aa86d76",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "The Haufbrau",
+  "matched_address": "22 S 8th Ave, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Sun-Thu 11am-2am, Fri-Sat 1pm-2am",
+    "specials": [],
+    "notes": "No published HH details found (verified 2026-08-02); CVB nightlife blog describes the bar without HH specifics",
+    "source_urls": [
+      "https://visit-bozeman.com/listings/haufbrau-house"
+    ]
+  }
+}

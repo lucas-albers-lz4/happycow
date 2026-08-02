@@ -1,0 +1,45 @@
+{
+  "venue_id": "daves-sushi",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/daves-sushi/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "7e937ac5a14cdc3b8873ba3671e06c8fef6270680d1ea65da1aad1f0d87bf7a1",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Mon 3-close; specials=3 items",
+  "matched_name": "Dave’s Sushi",
+  "matched_address": "115 N Bozeman Ave",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Mon 3-close",
+    "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm",
+    "specials": [
+      {
+        "item": "Beer",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "1/2 off"
+      },
+      {
+        "item": "Wine",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "1/2 off"
+      },
+      {
+        "item": "Sake",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "1/2 off"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/daves-sushi/",
+      "http://daves-sushi.com/"
+    ]
+  }
+}

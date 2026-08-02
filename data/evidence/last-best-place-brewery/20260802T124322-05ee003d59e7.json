@@ -1,0 +1,26 @@
+{
+  "venue_id": "last-best-place-brewery",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/last-best-place-brewery/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "05ee003d59e743510d446dbb0be9b1d4687da52cf9a12fa131f24c00b80643ea",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Last Best Place Brewery",
+  "matched_address": "605 N 7th Ave, Bozeman, MT 59715, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Sun 12:00am-8:00pm",
+    "specials": [],
+    "notes": "Site probed — no HH published (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/last-best-place-brewery/",
+      "https://www.lbpbrewing.com/"
+    ]
+  }
+}

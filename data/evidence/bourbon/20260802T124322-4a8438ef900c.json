@@ -1,0 +1,39 @@
+{
+  "venue_id": "bourbon",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/bourbon/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "4a8438ef900c1dd2150475e13a0aac61546ee61b34559682170fec858ced5610",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 4-6pm; specials=2 items",
+  "matched_name": "Bourbon",
+  "matched_address": "515 W Aspen St",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 4-6pm",
+    "business_hours": "Mon-Thu 11:30am-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-9pm",
+    "specials": [
+      {
+        "item": "Classic American BBQ favorites",
+        "price": 0.0,
+        "category": "food",
+        "description": "Food specials featuring classic American BBQ favorites"
+      },
+      {
+        "item": "Craft whiskey cocktails",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "Drink specials featuring craft whiskey cocktails"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/bourbon/",
+      "https://bourbonmt.com"
+    ]
+  }
+}

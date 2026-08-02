@@ -1,0 +1,26 @@
+{
+  "venue_id": "rialto-bar-burn-box",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/rialto-bar/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "d6a236ee62d8354fa350879dd31921ff4c9f179694b9e6d2f3904f69109983a5",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Rialto Bar – Burn Box",
+  "matched_address": "10 W Main St, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Thu Closed, Fri-Sat 7pm-Close, Sun Closed",
+    "specials": [],
+    "notes": "Rialto is The Lark hotel's venue; no HH published (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/rialto-bar/",
+      "https://www.larkbozeman.com/"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "venue_id": "santa-fe-reds",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/santa-fe-reds/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "057cc0f4747edb7b02ba1fce45cd47c664b4aa36b9e7b3f3b408a381df57f0af",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 3-6pm, Fri-Sat 10pm-12am; specials=3 items",
+  "matched_name": "Santa Fe Reds",
+  "matched_address": "1235 N 7th Ave, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
+    "business_hours": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
+    "specials": [
+      {
+        "item": "Draft pints",
+        "price": 2.0,
+        "category": "drinks",
+        "description": "$2 draft pints"
+      },
+      {
+        "item": "Red's margaritas",
+        "price": 4.0,
+        "category": "drinks",
+        "description": "$4 Red's margaritas"
+      },
+      {
+        "item": "Flavored margaritas",
+        "price": 5.0,
+        "category": "drinks",
+        "description": "$5 flavored margaritas"
+      }
+    ],
+    "notes": "Source: mthappyhour.com",
+    "source_urls": [
+      "https://mthappyhour.com/locations/santa-fe-reds/"
+    ]
+  }
+}

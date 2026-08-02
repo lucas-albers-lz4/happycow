@@ -1,0 +1,25 @@
+{
+  "venue_id": "cafe-fresco",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/cafe-fresco/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "0d2aa822ed930d6b25c9997ade2f63e517c508904d73724dd9dc1ff3fd3b7277",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Cafe Fresco",
+  "matched_address": "317 E Mendenhall St, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Sat 11am-9pm, Sun Closed",
+    "specials": [],
+    "notes": "No official site found; no published happy hour as of 2026-08-02",
+    "source_urls": [
+      "https://mthappyhour.com/locations/cafe-fresco/"
+    ]
+  }
+}

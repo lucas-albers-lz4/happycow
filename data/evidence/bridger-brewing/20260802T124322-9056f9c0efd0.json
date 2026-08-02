@@ -1,0 +1,75 @@
+{
+  "venue_id": "bridger-brewing",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/bridger-brewing/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "9056f9c0efd01add1317e6e214e701eb3bad948069ec674b48e4625d43971e05",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 2-4pm; specials=8 items",
+  "matched_name": "Bridger Brewing",
+  "matched_address": "1609 S 11th Ave",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 2-4pm",
+    "business_hours": "Mon-Sun 11:30am-9pm",
+    "specials": [
+      {
+        "item": "Beers",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "$1 off beers"
+      },
+      {
+        "item": "Alaskan True Cod Cakes",
+        "price": 0.0,
+        "category": "food",
+        "description": "Monday special"
+      },
+      {
+        "item": "Craft Beer Sliders",
+        "price": 0.0,
+        "category": "food",
+        "description": "Tuesday special"
+      },
+      {
+        "item": "Prince Edward Island Mussels",
+        "price": 0.0,
+        "category": "food",
+        "description": "Wednesday special; 5:30pm Music & Mussels"
+      },
+      {
+        "item": "Pigs in Zen",
+        "price": 0.0,
+        "category": "food",
+        "description": "Thursday special"
+      },
+      {
+        "item": "Growler Fills",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "$3 off growler fills 11:30am until 5 p.m. on Thursdays"
+      },
+      {
+        "item": "Bobcat Brats",
+        "price": 0.0,
+        "category": "food",
+        "description": "Saturday special"
+      },
+      {
+        "item": "Nana Rose’s Meatball Dinner",
+        "price": 0.0,
+        "category": "food",
+        "description": "Sunday special"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/bridger-brewing/",
+      "http://www.bridgerbrewing.com/"
+    ]
+  }
+}

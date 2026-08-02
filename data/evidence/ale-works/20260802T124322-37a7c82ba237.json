@@ -1,0 +1,52 @@
+{
+  "venue_id": "ale-works",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/ale-works/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "37a7c82ba237e22d99d3163cd96f287d5af70ed657bc0343d3aed333e0be3af6",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "hours=Daily 4-6pm; specials=4 items",
+  "matched_name": "Ale Works",
+  "matched_address": "611 E Main St",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "Daily 4-6pm",
+    "business_hours": "Mon-Sun 4pm-10pm",
+    "specials": [
+      {
+        "item": "Draft beers",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "$1.00 off draft beers"
+      },
+      {
+        "item": "Wine by the glass",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "$1.00 off wine by the glass"
+      },
+      {
+        "item": "Well drinks",
+        "price": 0.0,
+        "category": "drinks",
+        "description": "$1.00 off well drinks"
+      },
+      {
+        "item": "Double shot signature cocktails",
+        "price": 6.0,
+        "category": "drinks",
+        "description": "$6.00 double shot signature cocktails – Hop the tracks – Rosemary Poloma – Cherry wine sour – Rasberrie cosmo – Kaffir gin and tonic"
+      }
+    ],
+    "notes": "",
+    "source_urls": [
+      "https://mthappyhour.com/locations/ale-works/",
+      "https://www.montanaaleworks.com/",
+      "https://www.montanaaleworks.com/happy-hour"
+    ]
+  }
+}

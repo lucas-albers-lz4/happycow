@@ -1,0 +1,112 @@
+{
+  "description": "Golden eval corpus for venue truth agreement / closure precision",
+  "cases": [
+    {
+      "id": "santa-fe-reds-closed",
+      "venue_id": "santa-fe-reds",
+      "scenario": "closed_aggregator_only",
+      "expected_status_kind": "suppressed",
+      "expected_status_value": ["permanently_closed", "likely_closed"],
+      "expected_specials_kind": "suppressed",
+      "notes": "Canonical Santa Fe Reds failure — aggregator HH + closed prior"
+    },
+    {
+      "id": "confirmed-open-primary",
+      "venue_id": "ale-works",
+      "scenario": "confirmed_open",
+      "fixture_override": null,
+      "expected_status_kind": "verified",
+      "expected_status_value": ["open"],
+      "notes": "Open venue with Overture open prior and own-site primary"
+    },
+    {
+      "id": "stale-aggregator-hh",
+      "venue_id": "synthetic-stale-agg",
+      "scenario": "stale_aggregator_hh",
+      "synthetic": true,
+      "venue": {
+        "id": "synthetic-stale-agg",
+        "name": "Synthetic Stale Pub",
+        "address": "100 Test St, Bozeman",
+        "website": "",
+        "scrape_urls": ["https://mthappyhour.com/locations/synthetic-stale/"]
+      },
+      "observations": [
+        {
+          "source_type": "aggregator",
+          "source_family": "mthappyhour",
+          "payload": {
+            "business_status": "open",
+            "hours": "Daily 3-6pm",
+            "specials": [{"item": "$5 Beer", "price": 5, "category": "drinks", "description": ""}]
+          },
+          "observed_at": "2020-01-01T00:00:00Z"
+        },
+        {
+          "source_type": "overture",
+          "source_family": "overture",
+          "payload": {"business_status": "permanently_closed", "overture_confidence": 0.0},
+          "observed_at": "2026-08-01T00:00:00Z",
+          "evidence_excerpt": "Overture permanently_closed"
+        }
+      ],
+      "expected_status_kind": "suppressed",
+      "expected_status_value": ["permanently_closed", "likely_closed"],
+      "expected_specials_kind": "suppressed"
+    },
+    {
+      "id": "copied-aggregators",
+      "venue_id": "synthetic-copy",
+      "scenario": "copied_aggregator_content",
+      "synthetic": true,
+      "venue": {
+        "id": "synthetic-copy",
+        "name": "Copy Cat Cafe",
+        "address": "200 Test St, Bozeman",
+        "website": "",
+        "scrape_urls": [
+          "https://mthappyhour.com/locations/copy/",
+          "https://bozemanmagazine.com/copy"
+        ]
+      },
+      "observations": [
+        {
+          "source_type": "aggregator",
+          "source_family": "mthappyhour",
+          "payload": {"business_status": "open", "hours": "Mon-Fri 4-6pm"},
+          "observed_at": "2026-08-01T00:00:00Z"
+        },
+        {
+          "source_type": "aggregator",
+          "source_family": "local_directory",
+          "payload": {"business_status": "open", "hours": "Mon-Fri 4-6pm"},
+          "observed_at": "2026-08-01T00:00:00Z"
+        }
+      ],
+      "expected_status_kind": "unverified",
+      "expected_status_value": ["open"],
+      "notes": "Two aggregators — still cannot verified:open without primary"
+    },
+    {
+      "id": "same-name-mismatch",
+      "venue_id": "synthetic-namesake",
+      "scenario": "same_name_different_venue",
+      "synthetic": true,
+      "venue": {
+        "id": "synthetic-namesake",
+        "name": "Main Street Grill",
+        "address": "1 Main St, Bozeman",
+        "website": "https://example.com",
+        "scrape_urls": ["https://example.com/hh"]
+      },
+      "overture_candidate": {
+        "name": "Main Street Grill",
+        "address": "999 Other Ave, Belgrade",
+        "operating_status": "permanently_closed",
+        "confidence": 0.0
+      },
+      "expect_no_overture_match": true,
+      "notes": "Wrong address must not match closed namesake"
+    }
+  ]
+}

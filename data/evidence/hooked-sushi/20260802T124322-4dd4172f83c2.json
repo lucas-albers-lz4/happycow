@@ -1,0 +1,26 @@
+{
+  "venue_id": "hooked-sushi",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/hooked-sushi/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "4dd4172f83c281f233bc85ef9a40ef35695608e5dc59b79f64c52a774293629e",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Hooked Sushi",
+  "matched_address": "119 E Main St, Bozeman, MT 59715-4761, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm",
+    "specials": [],
+    "notes": "Site menu probed — no HH (verified 2026-08-02)",
+    "source_urls": [
+      "https://mthappyhour.com/locations/hooked-sushi/",
+      "https://www.hookedmt.com/"
+    ]
+  }
+}

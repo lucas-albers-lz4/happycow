@@ -8,6 +8,14 @@ System overview for the Bozeman happy-hour finder. It shows how the app, the dat
 - **Working on the code:** see [development.md](development.md) (setup, tasks, testing)
 - **Refactor history/roadmap:** see [architecture-refactor-plan.md](architecture-refactor-plan.md) (issue #30, all 5 phases done)
 
+## Pipeline (GitHub Actions, Sun+Thu + PRs)
+
+```
+discover → scrape → closure check → venue truth (shadow) → validate → regression → commit
+```
+
+Venue truth writes `data/state/shadow_decisions.json` + `review_queue.json`; see [data-flow.md](data-flow.md).
+
 ## Component map
 
 ```mermaid

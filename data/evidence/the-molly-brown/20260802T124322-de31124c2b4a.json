@@ -1,0 +1,25 @@
+{
+  "venue_id": "the-molly-brown",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown",
+  "source_type": "aggregator",
+  "source_family": "local_directory",
+  "content_hash": "de31124c2b4ab1009a367e172f16794dce2ec318934fdec695b005ab89b2cedc",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "The Molly Brown",
+  "matched_address": "703 W. Babcock",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Daily 11am-2am",
+    "specials": [],
+    "notes": "No published HH program found (verified 2026-08-02); reviews mention HH drinks but no details",
+    "source_urls": [
+      "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
+    ]
+  }
+}

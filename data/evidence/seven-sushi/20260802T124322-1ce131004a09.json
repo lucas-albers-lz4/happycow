@@ -1,0 +1,26 @@
+{
+  "venue_id": "seven-sushi",
+  "observed_at": "2026-08-02T12:43:22Z",
+  "source_url": "https://mthappyhour.com/locations/seven-sushi/",
+  "source_type": "aggregator",
+  "source_family": "mthappyhour",
+  "content_hash": "1ce131004a09df92ab26edbe09cf855ecd38356c344f49efbc592db3eb6450da",
+  "http_status": null,
+  "extraction_method": "llm",
+  "evidence_excerpt": "",
+  "matched_name": "Seven Sushi",
+  "matched_address": "113 E Oak St, Bozeman",
+  "matched_phone": null,
+  "matched_overture_id": null,
+  "payload": {
+    "business_status": "open",
+    "hours": "",
+    "business_hours": "Mon-Sat 11:30am-10pm, Sun 4pm-10pm",
+    "specials": [],
+    "notes": "Site HH page exists but is an empty template (Squarespace 'Your Custom Text Here') — no published HH",
+    "source_urls": [
+      "https://mthappyhour.com/locations/seven-sushi/",
+      "https://www.7bozeman.com/"
+    ]
+  }
+}
