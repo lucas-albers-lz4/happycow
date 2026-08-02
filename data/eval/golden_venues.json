@@ -11,6 +11,15 @@
       "notes": "Canonical Santa Fe Reds failure — aggregator HH + closed prior"
     },
     {
+      "id": "freefall-audreys-closed",
+      "venue_id": "freefall-brewery-audreys-pizza",
+      "scenario": "closed_aggregator_only",
+      "expected_status_kind": "suppressed",
+      "expected_status_value": ["permanently_closed", "likely_closed"],
+      "expected_specials_kind": "suppressed",
+      "notes": "Recent closure (2026-05-30); stale own-site still looks open — #77"
+    },
+    {
       "id": "confirmed-open-primary",
       "venue_id": "ale-works",
       "scenario": "confirmed_open",

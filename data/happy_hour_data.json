@@ -258,7 +258,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Brewing%20Company%20Bozeman%20MT",
       "hours": "Fri 12-8pm",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -414,7 +415,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Bridger%20Brewing%20Bozeman%20MT",
       "hours": "Daily 2-4pm",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -848,7 +850,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=MAP%20Brewing%20Company%20Bozeman%20MT",
       "hours": "Mon-Thu 2-4pm",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -876,7 +879,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -1437,7 +1441,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -1554,7 +1559,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -1707,7 +1713,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -1847,7 +1854,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -1959,7 +1967,8 @@
       "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
       "hours": "",
       "tags": [
-        "craft-beer"
+        "craft-beer",
+        "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
@@ -2191,6 +2200,29 @@
       "specials": [],
       "business_hours": "Mon Closed, Tue 4-9pm, Wed-Sun 11am-close",
       "notes": "Site (staceysbar.com) has no HH page; no published HH found (verified 2026-08-02)"
+    },
+    {
+      "id": "freefall-brewery-audreys-pizza",
+      "name": "Freefall Brewery & Audrey's Pizza",
+      "nickname": "The Soft Landing",
+      "nickname_alts": [
+        "Audrey's Last Slice",
+        "Freefall From Grace"
+      ],
+      "address": "806 N 7th Ave, Bozeman",
+      "phone": "(406) 522-5456",
+      "website": "https://freefallbreweryandaudreyspizza.com/",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Freefall%20Brewery%20Audrey%27s%20Pizza%20Bozeman%20MT",
+      "tags": [
+        "craft-beer",
+        "brewery"
+      ],
+      "noise_level": "moderate",
+      "mood": "casual",
+      "hours": "",
+      "specials": [],
+      "business_hours": "",
+      "notes": "Closed 2026-05-30 (Audrey's Pizza + Freefall at 806 N 7th). Own site still presents as open — do not treat site HH as live. Freefall reported relocating; 7th Ave co-location is closed. Truth/eval fixture (#77)."
     }
   ]
 }

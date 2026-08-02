@@ -27,6 +27,15 @@
       "operating_status": "permanently_closed",
       "confidence": 0.0,
       "categories": {"primary": "restaurant"}
+    },
+    {
+      "id": "overture-freefall-fixture",
+      "name": "Freefall Brewery & Audrey's Pizza",
+      "address": "806 N 7th Ave, Bozeman",
+      "phone": "(406) 522-5456",
+      "operating_status": "permanently_closed",
+      "confidence": 0.0,
+      "categories": {"primary": "brewery"}
     }
   ]
 }

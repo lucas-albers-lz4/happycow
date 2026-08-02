@@ -214,6 +214,23 @@ class OvertureFixture(unittest.TestCase):
         obs = observations_from_matches(matches)
         self.assertEqual(obs[0].payload["business_status"], "permanently_closed")
 
+    def test_fixture_matches_freefall(self):
+        places = load_fixture(ROOT / "data" / "eval" / "overture_fixture.json")
+        venue = {
+            "id": "freefall-brewery-audreys-pizza",
+            "name": "Freefall Brewery & Audrey's Pizza",
+            "address": "806 N 7th Ave, Bozeman",
+            "phone": "(406) 522-5456",
+        }
+        matches = match_venues_to_candidates([venue], places)
+        self.assertIn("freefall-brewery-audreys-pizza", matches)
+        self.assertEqual(
+            matches["freefall-brewery-audreys-pizza"]["operating_status"],
+            "permanently_closed",
+        )
+        obs = observations_from_matches(matches)
+        self.assertEqual(obs[0].payload["business_status"], "permanently_closed")
+
     def test_confidence_zero_does_not_force_closed(self):
         matches = {
             "open-low-conf": {
