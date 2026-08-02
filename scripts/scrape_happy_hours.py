@@ -555,31 +555,28 @@ def extract_venue(
     return extract, False
 
 
+# Keys that exist in config/venues.json but must never appear in the site data.
+_PIPELINE_ONLY_KEYS = {"scrape_urls"}
+
+
 def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | None) -> dict:
+    """Merge config venue + fresh extraction into a site record.
+
+    Carry-through by construction (Phase 3, issue #30): start from ALL config
+    fields (minus pipeline-only keys) and override only the runtime fields —
+    so a new curated field can never silently vanish again (the old code
+    hand-listed every key; `notes` and `nickname` both fell through it).
+    """
     prev = previous or {}
-    hours = (extract or {}).get("hours") or prev.get("hours") or ""
-    business_hours = (extract or {}).get("business_hours") or prev.get("business_hours") or ""
-    specials = (extract or {}).get("specials")
+    ex = extract or {}
+    record = {k: v for k, v in venue.items() if k not in _PIPELINE_ONLY_KEYS}
+    for key in ("hours", "business_hours", "notes"):
+        record[key] = ex.get(key) or prev.get(key) or ""
+    specials = ex.get("specials")
     if not specials:
         specials = prev.get("specials") or []
-
-    return {
-        "id": venue["id"],
-        "name": venue["name"],
-        "nickname": venue.get("nickname") or prev.get("nickname") or "",
-        "nickname_alts": venue.get("nickname_alts") or prev.get("nickname_alts") or [],
-        "address": venue.get("address") or prev.get("address") or "",
-        "phone": venue.get("phone") or prev.get("phone") or "",
-        "website": venue.get("website") or prev.get("website") or "",
-        "maps": venue.get("maps") or prev.get("maps") or "",
-        "hours": hours,
-        "business_hours": business_hours,
-        "tags": venue.get("tags") or prev.get("tags") or [],
-        "noise_level": venue.get("noise_level") or prev.get("noise_level") or "",
-        "mood": venue.get("mood") or prev.get("mood") or "",
-        "notes": (extract or {}).get("notes") or prev.get("notes") or "",
-        "specials": specials,
-    }
+    record["specials"] = specials
+    return record
 
 
 def run(

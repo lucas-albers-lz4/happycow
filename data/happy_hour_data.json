@@ -2103,19 +2103,19 @@
           "item": "Steak Night",
           "price": 0.0,
           "category": "food",
-          "description": "Wednesdays"
+          "description": "Wednesdays (price not specified)"
         },
         {
           "item": "B.A.B.B. night",
           "price": 0.0,
           "category": "food",
-          "description": "Thursdays — big ass burger and a pint of beer"
+          "description": "Thursdays — big ass burger and a pint of beer (price not specified)"
         },
         {
           "item": "Breakfast sandwich or burrito",
           "price": 0.0,
           "category": "food",
-          "description": "Saturdays & Sundays"
+          "description": "Saturdays & Sundays (price not specified)"
         }
       ],
       "business_hours": "Mon-Sun 10am-12am",
