@@ -971,7 +971,7 @@
         "The Flat Tire Saloon",
         "The Spoke Bender"
       ],
-      "address": "120 Big Pine Dr, Gallatin Gateway",
+      "address": "120 Big Pine Dr, Big Sky, MT 59716 (Meadow Village)",
       "phone": "",
       "website": "",
       "scrape_urls": [
@@ -1059,25 +1059,6 @@
         "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
-    },
-    {
-      "id": "open-range",
-      "name": "Open Range",
-      "nickname": "The Unfenced Hour",
-      "nickname_alts": [
-        "No Fences, No Cover",
-        "The Open Tab Range"
-      ],
-      "address": "241 E Main St, Bozeman",
-      "phone": "",
-      "website": "",
-      "scrape_urls": [
-        "https://mthappyhour.com/locations/open-range/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Open%20Range%20Bozeman%20MT",
       "tags": [],
       "noise_level": "",
       "mood": ""
