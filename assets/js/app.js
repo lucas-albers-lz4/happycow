@@ -177,6 +177,16 @@ function esc(s) {
   }[c]));
 }
 
+// A special's price cell. price 0 is ambiguous: it can mean genuinely free,
+// or a discount-only deal ("$1 off") with no base price in the data. The old
+// renderer printed FREE for both, which mislabeled "$1.00 off well drinks"
+// as a free drink. Discount wording lives in `description`, so show a dash.
+function specialPriceLabel(s) {
+  if (s.price > 0) return '$' + s.price.toFixed(2);
+  if (s.description && /off|discount|half|bogo|\$\d/i.test(s.description)) return '—';
+  return 'FREE';
+}
+
 async function loadData() {
   const url = assetUrl('data/happy_hour_data.json');
   try {
@@ -473,7 +483,7 @@ function renderVenueCard(venue, container) {
             <div>${esc(s.item)}</div>
             <div class="special-desc">${esc(s.description)}</div>
           </div>
-          <div class="special-price">${s.price === 0 ? 'FREE' : '$' + s.price.toFixed(2)}</div>
+          <div class="special-price">${specialPriceLabel(s)}</div>
         </div>
       `).join('')}
       <div class="venue-actions">
@@ -994,7 +1004,7 @@ function doMysteryDrink() {
   });
   const pick = allSpecials[Math.floor(Math.random() * allSpecials.length)];
   const btn = document.getElementById('mystery-btn');
-  btn.textContent = `🍸 ${pick.item} — $${pick.price.toFixed(2)} at ${pick.venue}! Tap for another`;
+  btn.textContent = `🍸 ${pick.item} — ${specialPriceLabel(pick)} at ${pick.venue}! Tap for another`;
   setTimeout(() => {
     btn.textContent = "🍸 I'll Have What They're Having — Surprise Me";
   }, 8000);

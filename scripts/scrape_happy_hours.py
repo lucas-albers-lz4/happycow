@@ -22,6 +22,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
+from urllib.parse import urlsplit
 
 import httpx
 import trafilatura
@@ -51,6 +52,20 @@ USER_AGENT = "happycow-scraper/1.0 (+https://github.com/lucas-albers-lz4/happyco
 REQUEST_TIMEOUT = 30.0
 INTER_REQUEST_SLEEP = 1.0
 MAX_PAGE_CHARS = 8000  # post-trim budget for the model
+
+# Directory/aggregator hosts — curated venue pages (own site, HH subpages)
+# outrank these in gather_page_text so their boilerplate can't starve the
+# dedicated sources that actually hold the deals.
+AGGREGATOR_HOSTS = {
+    "mthappyhour.com",
+    "bozemanmagazine.com",
+    "visit-bozeman.com",
+    "menupix.com",
+    "sellout.io",
+    "google.com",
+    "yelp.com",
+    "facebook.com",
+}
 
 
 # ─── Pydantic schema ───
@@ -414,10 +429,17 @@ def llm_extract(
 # ─── Venue pipeline ───
 
 def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]:
-    # Primary sources first (usually mthappyhour). Website is optional fallback only.
-    primary = list(venue.get("scrape_urls") or [])
+    # Dedicated venue pages first (own site, HH subpages) — that's where the
+    # real deals live. Aggregator directories (mthappyhour et al.) are fetched
+    # after, with an early-break once enough signal exists — so their
+    # boilerplate can't starve the curated own-site URLs.
+    urls = list(venue.get("scrape_urls") or [])
+    def _host(u: str) -> str:
+        return urlsplit(u).hostname or ""
+    dedicated = [u for u in urls if _host(u) not in AGGREGATOR_HOSTS]
+    aggregators = [u for u in urls if _host(u) in AGGREGATOR_HOSTS]
     website = venue.get("website") or ""
-    fallback = [website] if website and website not in primary else []
+    fallback = [website] if website and website not in urls else []
 
     chunks: list[str] = []
     used: list[str] = []
@@ -436,7 +458,9 @@ def gather_page_text(client: httpx.Client, venue: dict) -> tuple[str, list[str]]
         used.append(url)
         return True
 
-    for url in primary:
+    for url in dedicated:
+        _ingest(url)
+    for url in aggregators:
         _ingest(url)
         # Enough signal from curated sources — don't waste time on gated own-sites
         if chunks and sum(len(c) for c in chunks) >= 200:
