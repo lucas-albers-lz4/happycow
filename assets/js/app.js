@@ -360,7 +360,6 @@ function renderDealOfDay() {
 
 // ─── Status Bar ───
 const CLOSED_LABEL = 'Done'; // funny stand-in for "closed" (happy hour not running)
-const UNKNOWN_LABEL = 'Hours TBD'; // hours not listed yet
 function renderStatusBar() {
   const bar = document.getElementById('status-bar');
   bar.innerHTML = '';
@@ -368,12 +367,13 @@ function renderStatusBar() {
     const status = isHHLive(v.hours);
     const pill = document.createElement('button');
     pill.type = 'button';
-    pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : ' unknown');
+    // Unknown hours: plain pill, no status glyph/color — nothing useful to signal.
+    pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : '');
     pill.textContent = status === 'live' ? `● ${v.name}` :
                        status === 'soon' ? `▲ ${v.name}` :
-                       status === 'unknown' ? `? ${v.name}` :
-                       `○ ${v.name}`;
-    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : status === 'unknown' ? 'hours unknown' : 'closed'}`);
+                       status === 'closed' ? `○ ${v.name}` :
+                       v.name;
+    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : status === 'closed' ? 'closed' : 'hours unknown'}`);
     pill.onclick = () => scrollToVenue(v.id);
     bar.appendChild(pill);
   });
@@ -427,10 +427,12 @@ function renderVenueCard(venue, container) {
   card.className = 'venue-card' + (expanded ? ' expanded' : '');
   card.id = `venue-${venue.id}`;
 
+  // Unknown hours → no status badge at all; nothing useful to signal.
   const statusText = status === 'live' ? '● Live now' :
                      status === 'soon' ? `▲ Opens in ${timeUntil(getStartMinutes(venue.hours))}` :
-                     status === 'unknown' ? `? ${UNKNOWN_LABEL}` :
-                     `○ ${CLOSED_LABEL}`;
+                     status === 'closed' ? `○ ${CLOSED_LABEL}` :
+                     '';
+  const statusBadge = statusText ? `<div class="hh-status ${status}">${statusText}</div>` : '';
   const specialsId = `specials-${venue.id}`;
   const hoursId = `hours-${venue.id}`;
   const bizHoursId = `biz-hours-${venue.id}`;
@@ -442,7 +444,7 @@ function renderVenueCard(venue, container) {
           <div class="venue-detail">${esc(venue.hours)} · ${esc(venue.address)}</div>
           <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         </div>
-        <div class="hh-status ${status}">${statusText}</div>
+        ${statusBadge}
       </div>
     </button>
     <div class="venue-specials" id="${specialsId}" ${expanded ? '' : 'hidden'}>
