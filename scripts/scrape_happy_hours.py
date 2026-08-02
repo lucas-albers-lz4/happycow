@@ -513,6 +513,8 @@ def venue_to_site_record(venue: dict, extract: dict | None, previous: dict | Non
     return {
         "id": venue["id"],
         "name": venue["name"],
+        "nickname": venue.get("nickname") or prev.get("nickname") or "",
+        "nickname_alts": venue.get("nickname_alts") or prev.get("nickname_alts") or [],
         "address": venue.get("address") or prev.get("address") or "",
         "phone": venue.get("phone") or prev.get("phone") or "",
         "website": venue.get("website") or prev.get("website") or "",
