@@ -70,6 +70,16 @@ jobs:
           python scripts/validate_data.py
           node scripts/validate_hours.mjs data/happy_hour_data.json
 
+      - name: Data regression gate
+        timeout-minutes: 2
+        # Issue #40: hard-fail if this scrape run drops venues, wipes hours
+        # en masse, or collapses specials coverage vs HEAD baseline.
+        # --allow-regression overrides all hard-fails (escape hatch for
+        # intentional bulk data changes). PR-mode annotation (#46): once a
+        # PR-check workflow exists, surface failures as review comments instead
+        # of exit 1; until then exit 1 is the only signal.
+        run: python scripts/check_data_regression.py
+
       - name: Commit updated data
         timeout-minutes: 3
         run: |

@@ -19,6 +19,9 @@ config/venues.json  ──►  discover_venues.py  ──►  (new venues append
         validate_data.py + validate_hours.mjs   ← fail the job on any violation
                     │
                     ▼
+        check_data_regression.py               ← regression gate vs HEAD baseline
+                    │
+                    ▼
         commit → GitHub Pages deploys automatically
 ```
 
@@ -62,6 +65,7 @@ source for paths and the aggregator-host set.
 | Venue page fetch fails / LLM returns nothing | Keep previous data for that venue (never blank) |
 | `discover_venues.py` crashes | Logged, job continues with existing venues (best-effort) |
 | **Validation fails** (schema / hours grammar / coverage / parity) | **Job fails before commit** — broken JSON never reaches Pages |
+| **Regression gate fails** (venue drop / hours wipe / specials collapse) | **Job fails before commit** — run `python scripts/check_data_regression.py --allow-regression` locally to inspect; set `--allow-regression` in the workflow step for intentional bulk changes |
 | `check_venue_status.py` flags a venue (site dead 2× runs / closure wording) | Report-only. Human reviews `data/state/closure_report.md` |
 | Closure confirmed by a human | `python scripts/remove_venue.py <id> --reason "…"` → removes from config + data, writes tombstone; discovery can never re-add it |
 
@@ -71,6 +75,27 @@ source for paths and the aggregator-host set.
 - Editing `config/venues.json` `scrape_urls` — add a venue's own HH page; it outranks aggregators.
 - Known-gap notes: set `notes` on a venue in the **site data** with "(verified …)" so the coverage invariant (specials OR note) stays satisfied.
 - `python scripts/scrape_happy_hours.py --venue <id> --force` — re-scrape one venue, bypassing the cache.
+
+## Regression gate (issue #40)
+
+`scripts/check_data_regression.py` runs **after** validate and **before** commit in `scrape.yml`.
+It compares the candidate `data/happy_hour_data.json` (just produced by the scraper) to the
+HEAD version (via `git show HEAD:data/happy_hour_data.json`).
+
+Hard-fail conditions:
+- **VENUE_COUNT_DROP** — fewer venues than baseline
+- **MISSING_IDS** — baseline ids absent from candidate (unexplained removal)
+- **SPECIALS_COVERAGE** — more than `SPECIALS_DROP_THRESHOLD` (default 2) venues lost all specials
+- **HOURS_WIPE** — more than `HOURS_WIPE_THRESHOLD` (default 1) venues lost hours entirely
+- **COVERAGE_BROKEN** — venues with no specials AND no notes
+
+Report (always printed): count + ids of venues whose hours/specials hash changed — this
+feeds issue #46 (change attribution).
+
+**Mode precedence / PR mode (#46):** in a future PR-check workflow the hard-fail should
+become a PR review comment instead of a bare `exit 1`.  Until PR mode is wired, `exit 1`
+is the only signal.  `--allow-regression` is the escape hatch: it prints the full report
+but always exits 0 — use it for intentional bulk data changes.
 
 ## Fail-fast gates (issue #50)
 
