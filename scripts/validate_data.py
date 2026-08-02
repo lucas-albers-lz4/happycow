@@ -16,7 +16,10 @@ Checks:
 4. Hours strings parse — delegated to the SINGLE source of truth (the JS
    parser in assets/js/hours.js) via node scripts/validate_hours.mjs
 5. Coverage invariant: every venue has specials OR a notes entry
-6. Config/data parity: identical id sets between config and data
+6. Config/data parity: identical id sets between config and data (shallow)
+7. Tags minItems: tags must be a non-empty list (issue #52)
+8. Deep config/data parity for CONFIG_OWNED_KEYS: when config carries a
+   non-empty value for a curated field, the data record must match (issue #52)
 
 Exit 0 = pass, 1 = fail (details printed to stdout).
 """
@@ -33,6 +36,19 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
 CONFIG_PATH = ROOT / "config" / "venues.json"
 HOURS_VALIDATOR = ROOT / "scripts" / "validate_hours.mjs"
+
+# Import CONFIG_OWNED_KEYS from the single source of truth in merge.py.
+# Fallback to a local copy if the import fails (e.g. missing deps in a
+# minimal environment); the set must be kept in sync with merge.py.
+try:
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from scraper.merge import CONFIG_OWNED_KEYS as _MERGE_OWNED_KEYS
+    CONFIG_OWNED_KEYS: frozenset[str] = _MERGE_OWNED_KEYS
+except Exception:  # noqa: BLE001
+    CONFIG_OWNED_KEYS = frozenset({
+        "name", "nickname", "nickname_alts", "address", "phone",
+        "website", "maps", "tags", "noise_level", "mood",
+    })
 
 REQUIRED_KEYS = {
     "id", "name", "nickname", "address", "phone", "website", "maps",
@@ -78,7 +94,9 @@ def main() -> int:
         for k in PIPELINE_ONLY_KEYS:
             check(k not in v, f"{vid}: pipeline-only key '{k}' leaked into site data")
         check(bool(v.get("nickname")), f"{vid}: empty nickname")
-        check(isinstance(v.get("tags"), list), f"{vid}: 'tags' must be a list")
+        tags = v.get("tags")
+        check(isinstance(tags, list), f"{vid}: 'tags' must be a list")
+        check(bool(tags), f"{vid}: 'tags' must be non-empty (minItems 1)")
 
         specs = v.get("specials")
         check(isinstance(specs, list), f"{vid}: 'specials' must be a list")
@@ -106,10 +124,31 @@ def main() -> int:
 
     try:
         cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-        cfg_ids = {v["id"] for v in cfg.get("venues", [])}
+        cfg_venues = cfg.get("venues", [])
+        cfg_ids = {v["id"] for v in cfg_venues}
         data_ids = {x for x in ids if x}
         check(not (cfg_ids - data_ids), f"config venues missing from data: {sorted(cfg_ids - data_ids)}")
         check(not (data_ids - cfg_ids), f"data venues missing from config: {sorted(data_ids - cfg_ids)}")
+
+        # Deep parity (issue #52): for CONFIG_OWNED_KEYS, when config carries a
+        # non-empty value the data record must carry the same value. Falsy config
+        # values are exempt because falsy-keeps-prev (issue #48) allows the data
+        # to retain a richer previous value when config is blank.
+        cfg_by_id = {v["id"]: v for v in cfg_venues if v.get("id")}
+        data_by_id = {v["id"]: v for v in (venues or []) if isinstance(v, dict) and v.get("id")}
+        for vid, cv in cfg_by_id.items():
+            dv = data_by_id.get(vid)
+            if not dv:
+                continue
+            for key in CONFIG_OWNED_KEYS:
+                cfg_val = cv.get(key)
+                is_falsy = cfg_val == "" or cfg_val == [] or cfg_val is None
+                if is_falsy:
+                    continue
+                data_val = dv.get(key)
+                check(data_val == cfg_val,
+                      f"{vid}: deep parity mismatch for '{key}': "
+                      f"config={cfg_val!r} but data={data_val!r}")
     except Exception as exc:  # noqa: BLE001
         check(False, f"config parity check failed: {exc}")
 
@@ -130,7 +169,7 @@ def main() -> int:
         for e in errors:
             print(f"  - {e}")
         return 1
-    print(f"OK: {len(venues)} venues — schema, ids, price-0 semantics, hours grammar, coverage, config parity all valid")
+    print(f"OK: {len(venues)} venues — schema, ids, price-0 semantics, hours grammar, coverage, config parity (shallow + deep) all valid")
     return 0
 
 
