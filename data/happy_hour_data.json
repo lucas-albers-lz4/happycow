@@ -881,7 +881,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Sun 11:30am-8:00pm"
+      "business_hours": "Mon-Sun 11:30am-8:00pm",
+      "notes": "Site probed (mountainswalking.com) — no HH published (verified 2026-08-02)"
     },
     {
       "id": "revelry",
@@ -1415,7 +1416,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm"
+      "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm",
+      "notes": "Site menu probed — regular prices only, no HH (verified 2026-08-02)"
     },
     {
       "id": "the-bunkhouse-brewery",
@@ -1434,7 +1436,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Sun 2pm-8pm"
+      "business_hours": "Mon-Sun 2pm-8pm",
+      "notes": "Site unreachable (404s); no published HH (verified 2026-08-02)"
     },
     {
       "id": "cafe-fresco",
@@ -1473,7 +1476,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Sun 11:00am-2:00am"
+      "business_hours": "Mon-Sun 11:00am-2:00am",
+      "notes": "Menu + drink menu probed — regular prices, no HH (verified 2026-08-02)"
     },
     {
       "id": "hooked-sushi",
@@ -1492,7 +1496,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm"
+      "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm",
+      "notes": "Site menu probed — no HH (verified 2026-08-02)"
     },
     {
       "id": "korner-klub",
@@ -1538,7 +1543,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Sun 12:00am-8:00pm"
+      "business_hours": "Mon-Sun 12:00am-8:00pm",
+      "notes": "Site probed — no HH published (verified 2026-08-02)"
     },
     {
       "id": "the-pour-house",
@@ -1620,7 +1626,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm"
+      "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm",
+      "notes": "Site probed — no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)"
     },
     {
       "id": "tanoshii",
@@ -1659,7 +1666,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm"
+      "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm",
+      "notes": "Site probed — mead pricing only, no HH (verified 2026-08-02)"
     },
     {
       "id": "bar-3-bbq-and-brewery",
@@ -1678,7 +1686,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Fri 11am-8pm, Sat-Sun 9am-8pm"
+      "business_hours": "Mon-Fri 11am-8pm, Sat-Sun 9am-8pm",
+      "notes": "Weekday lunch specials advertised on site; no formal HH; details not published (verified 2026-08-02)"
     },
     {
       "id": "broken-spoke-bar-grill",
@@ -1972,7 +1981,8 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "specials": [],
-      "business_hours": "Mon-Sun 3pm-1:30am"
+      "business_hours": "Mon-Sun 3pm-1:30am",
+      "notes": "Site probed (plonkwine.com) — no HH published (verified 2026-08-02)"
     },
     {
       "id": "pub-317",
@@ -2096,8 +2106,40 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Sun 10am-12am"
+      "specials": [
+        {
+          "item": "Draft beer",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "$4 Mondays — all day"
+        },
+        {
+          "item": "Pitcher & pizza",
+          "price": 0.0,
+          "category": "food",
+          "description": "Tuesdays — pitcher and pizza deal"
+        },
+        {
+          "item": "Steak Night",
+          "price": 0.0,
+          "category": "food",
+          "description": "Wednesdays"
+        },
+        {
+          "item": "B.A.B.B. night",
+          "price": 0.0,
+          "category": "food",
+          "description": "Thursdays — big ass burger and a pint of beer"
+        },
+        {
+          "item": "Breakfast sandwich or burrito",
+          "price": 0.0,
+          "category": "food",
+          "description": "Saturdays & Sundays"
+        }
+      ],
+      "business_hours": "Mon-Sun 10am-12am",
+      "notes": "No formal HH window; daily specials per site (food-menu page). Details posted on Instagram story. Source: specsbzn.com"
     },
     {
       "id": "stacey-s-old-faithful-bar-steakhouse",
