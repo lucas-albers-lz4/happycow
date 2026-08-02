@@ -27,11 +27,11 @@ export DEEPSEEK_MODEL=deepseek-v4-flash
 ## Verify your setup (run all of these — they are fast)
 
 ```bash
-node --test                                          # hours parser suite (19 tests)
+node --test                                          # hours + format suites (price label / esc)
 python3 scripts/validate_data.py                     # full data gate: schema/coverage/parity/hours
 node scripts/validate_hours.mjs data/happy_hour_data.json
 python3 -m py_compile scripts/*.py scripts/scraper/*.py
-node --check assets/js/app.js && node --check assets/js/hours.js
+node --check assets/js/app.js && node --check assets/js/hours.js && node --check assets/js/format.js
 ```
 
 All green = the repo is sound. CI runs the same gates on every PR.
@@ -84,6 +84,12 @@ python scripts/remove_venue.py <id> --reason "closed June 2026, X taking over"
 This removes the venue from config + data AND writes a tombstone. Discovery can
 never re-add it. First confirm the closure (news/FB announcement), because the
 venue can be open with changed hours instead.
+
+### Change price labels or HTML escaping
+
+Edit `assets/js/format.js` + add cases to `tests/price_label.test.mjs`. Run
+`node --test`. Covers `specialPriceLabel` (FREE vs discount dash) and `esc`
+(XSS boundary for venue-card `innerHTML`).
 
 ### Change the hours grammar
 
