@@ -1690,26 +1690,6 @@
       "notes": "Weekday lunch specials advertised on site; no formal HH; details not published (verified 2026-08-02)"
     },
     {
-      "id": "broken-spoke-bar-grill",
-      "name": "Broken Spoke Bar & Grill",
-      "nickname": "The Wobbly Wagon",
-      "nickname_alts": [
-        "The Flat Tire Saloon",
-        "The Spoke Bender"
-      ],
-      "address": "120 Big Pine Dr, Big Sky, MT 59716 (Meadow Village)",
-      "phone": "",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%20Bar%20%26%20Grill%20Gallatin%20Gateway%20MT",
-      "hours": "",
-      "tags": [],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Thu 11am-2am, Fri-Sun 8am-2am",
-      "notes": "Venue is in Big Sky (Meadow Village), NOT Bozeman/Gallatin Gateway — outside the app’s 4-city coverage. brokenspokebigsky.com mentions a happy hour (details not published). Decide: keep as out-of-area or remove."
-    },
-    {
       "id": "buffalo-wild-wings",
       "name": "Buffalo Wild Wings",
       "nickname": "The Wingding",

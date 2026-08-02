@@ -964,26 +964,6 @@
       "mood": ""
     },
     {
-      "id": "broken-spoke-bar-grill",
-      "name": "Broken Spoke Bar & Grill",
-      "nickname": "The Wobbly Wagon",
-      "nickname_alts": [
-        "The Flat Tire Saloon",
-        "The Spoke Bender"
-      ],
-      "address": "120 Big Pine Dr, Big Sky, MT 59716 (Meadow Village)",
-      "phone": "",
-      "website": "",
-      "scrape_urls": [
-        "https://mthappyhour.com/locations/broken-spoke-bar-grill/",
-        "https://www.brokenspokebigsky.com/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Broken%20Spoke%20Bar%20%26%20Grill%20Gallatin%20Gateway%20MT",
-      "tags": [],
-      "noise_level": "",
-      "mood": ""
-    },
-    {
       "id": "buffalo-wild-wings",
       "name": "Buffalo Wild Wings",
       "nickname": "The Wingding",
