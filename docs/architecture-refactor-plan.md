@@ -1,8 +1,20 @@
 # Architecture Refactor Plan — Non-Fragile Scraping + Calculations
 
-Issue: [#30](https://github.com/lucas-albers-lz4/happycow/issues/30) · Status: proposed · Date: 2026-08-02
+Issue: [#30](https://github.com/lucas-albers-lz4/happycow/issues/30) · Status: **Phase 1 DONE (2026-08-02)** · Date: 2026-08-02
 
 Priorities are ordered by **user-facing risk**, not size. Every phase ends with the repo in a working state (shippable increments, not a big-bang rewrite).
+
+## Zen MCR verdict (2026-08-02) — REQUEST_CHANGES on Phase 1 scope; deltas applied
+
+Big Pickle + MiMo V2.5 Free verified every fragility claim against the code. Their consensus findings, all folded into Phase 1 as implemented:
+- **`close` needs a business-hours parser** (live `business_hours` is unnormalized: "Sat Sunday", "…(Kitchen Sun-Thu 4-8pm)") → `parseBusinessHours()` best-effort + 23:59 fallback
+- **`all day` terminal missing from the grammar** (Copper "Mon-Fri 3-5pm, Sun all day") → added (0–23:59, day-scoped)
+- **Single source of truth for the parser** (no JS↔Python duality) → parser lives in `assets/js/hours.js`; Phase 3 validation will run it under node, not re-implement in Python
+- **Midnight-crossing semantics** → explicit `endMin > startMin` spill + tail-day check (tested: "Fri-Sat 11am-2am" live at 1am)
+- **Injectable `now`** for deterministic tests (`hhStatus(hours, biz, now)`)
+- Contamination guard (Phase 2) will **hard-require address only on aggregator hosts** (own-site pages cut the footer where the address lives)
+- Fixture matrix auto-derived from live data (22 distinct hours strings) + MCR edge cases; `node --test` (19/19 green)
+- Plan fix: Phase 3 task 2 depends on the Phase-1 parser — ordering corrected below
 
 ---
 

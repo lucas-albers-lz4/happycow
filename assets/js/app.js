@@ -217,70 +217,10 @@ async function loadData() {
 }
 
 // ─── Time Helpers ───
-// Align with Date.getDay(): Sun=0 … Sat=6
-const DAY_MAP = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-
-function parseAmpmHour(hour, ampm, fallbackAmpm) {
-  let h = parseInt(hour, 10);
-  const mer = (ampm || fallbackAmpm || 'pm').toLowerCase();
-  if (mer === 'pm' && h < 12) h += 12;
-  if (mer === 'am' && h === 12) h = 0;
-  return h;
-}
-
-function isTodayInDayRange(dayRange) {
-  if (!dayRange) return false;
-  const raw = dayRange.trim();
-  const lower = raw.toLowerCase();
-  if (lower === 'daily' || lower === 'everyday' || lower === 'every day') return true;
-
-  const today = new Date().getDay();
-  const dayParts = raw.split('-').map(p => p.trim());
-  const startDay = DAY_MAP[dayParts[0]];
-  const endDay = dayParts[1] ? DAY_MAP[dayParts[1]] : startDay;
-  if (startDay === undefined || endDay === undefined) return false;
-
-  if (endDay >= startDay) return today >= startDay && today <= endDay;
-  return today >= startDay || today <= endDay;
-}
-
-function isHHLive(hoursStr) {
-  if (!hoursStr) return 'unknown';
-
-  // Parse "Mon-Fri 4-6pm", "Daily 3-6pm", "Thu-Sat 4-7pm" style
-  const parts = hoursStr.trim().split(/\s+/);
-  if (parts.length < 2) return 'unknown';
-
-  const dayRange = parts[0];
-  const timeRange = parts.slice(1).join(' ');
-
-  if (!isTodayInDayRange(dayRange)) return 'closed';
-
-  const timeMatch = timeRange.match(/(\d+)(?::(\d+))?(am|pm)?\s*-\s*(\d+)(?::(\d+))?(am|pm)?/i);
-  if (!timeMatch) return 'unknown';
-
-  const startAmpm = timeMatch[3] || timeMatch[6] || 'pm';
-  const endAmpm = timeMatch[6] || startAmpm;
-  const startH = parseAmpmHour(timeMatch[1], timeMatch[3], startAmpm);
-  const endH = parseAmpmHour(timeMatch[4], timeMatch[6], endAmpm);
-  const startMin = startH * 60 + parseInt(timeMatch[2] || '0', 10);
-  const endMin = endH * 60 + parseInt(timeMatch[5] || '0', 10);
-
-  const now = new Date();
-  const currentMin = now.getHours() * 60 + now.getMinutes();
-
-  if (currentMin >= startMin && currentMin < endMin) return 'live';
-  if (currentMin < startMin && (startMin - currentMin) <= 120) return 'soon';
-  return 'closed';
-}
-
-function timeUntil(startMin) {
-  const diff = startMin - (new Date().getHours() * 60 + new Date().getMinutes());
-  if (diff <= 0) return '';
-  const h = Math.floor(diff / 60);
-  const m = diff % 60;
-  return h > 0 ? `${h}h ${m}m` : `${m}m`;
-}
+// ─── Hours/status logic lives in assets/js/hours.js (loaded before app.js) ───
+// globals provided: HappyCowHours.{parseHours, parseBusinessHours, hhStatus,
+// timeUntil} + isHHLive(hoursStr, bizHoursStr) / timeUntil(min) /
+// getStartMinutes(hoursStr) back-compat wrappers. Phase 1, issue #30.
 
 // ─── Render ───
 function render() {
@@ -394,7 +334,7 @@ function renderStatusBar() {
   const bar = document.getElementById('status-bar');
   bar.innerHTML = '';
   state.data.venues.forEach(v => {
-    const status = isHHLive(v.hours);
+    const status = isHHLive(v.hours, v.business_hours);
     const pill = document.createElement('button');
     pill.type = 'button';
     // Unknown hours: plain pill, no status glyph/color — nothing useful to signal.
@@ -427,8 +367,8 @@ function renderVenues() {
 
   // Sort: live first, then alphabetical
   filtered.sort((a,b) => {
-    const statusA = isHHLive(a.hours);
-    const statusB = isHHLive(b.hours);
+    const statusA = isHHLive(a.hours, a.business_hours);
+    const statusB = isHHLive(b.hours, b.business_hours);
     if (statusA === 'live' && statusB !== 'live') return -1;
     if (statusA !== 'live' && statusB === 'live') return 1;
     return a.name.localeCompare(b.name);
@@ -451,7 +391,8 @@ function wirePanelToggle(card, btnSel, panelSel) {
 }
 
 function renderVenueCard(venue, container) {
-  const status = isHHLive(venue.hours);
+  const st = HappyCowHours.hhStatus(venue.hours, venue.business_hours, new Date());
+  const status = st.kind;
   const expanded = state.expanded === venue.id;
   const card = document.createElement('article');
   card.className = 'venue-card' + (expanded ? ' expanded' : '');
@@ -459,7 +400,7 @@ function renderVenueCard(venue, container) {
 
   // Unknown hours → no status badge at all; nothing useful to signal.
   const statusText = status === 'live' ? '● Live now' :
-                     status === 'soon' ? `▲ Opens in ${timeUntil(getStartMinutes(venue.hours))}` :
+                     status === 'soon' ? `▲ Opens in ${HappyCowHours.timeUntil(st.nextStartMin, new Date())}` :
                      status === 'closed' ? `○ ${CLOSED_LABEL}` :
                      '';
   const statusBadge = statusText ? `<div class="hh-status ${status}">${statusText}</div>` : '';
@@ -538,13 +479,7 @@ function renderVenueCard(venue, container) {
   container.appendChild(card);
 }
 
-function getStartMinutes(hoursStr) {
-  const timeMatch = (hoursStr || '').match(/(\d+)(?::(\d+))?(am|pm)?/i);
-  if (!timeMatch) return 0;
-  const h = parseAmpmHour(timeMatch[1], timeMatch[3], 'pm');
-  return h * 60 + parseInt(timeMatch[2] || '0', 10);
-}
-
+// ─── Roulette ───
 function scrollToVenue(id) {
   const el = document.getElementById(`venue-${id}`);
   if (el) {
@@ -557,7 +492,7 @@ function scrollToVenue(id) {
 
 // ─── Roulette ───
 function doRoulette() {
-  const live = state.data.venues.filter(v => isHHLive(v.hours) === 'live');
+  const live = state.data.venues.filter(v => isHHLive(v.hours, v.business_hours) === 'live');
   const pool = live.length > 0 ? live : state.data.venues;
   const pick = pool[Math.floor(Math.random() * pool.length)];
   scrollToVenue(pick.id);
@@ -1022,7 +957,7 @@ function doMysteryDrink() {
 // ─── Sad Hour ───
 function renderSadHour() {
   if (!state.data) return;
-  const anyLive = state.data.venues.some(v => isHHLive(v.hours) === 'live');
+  const anyLive = state.data.venues.some(v => isHHLive(v.hours, v.business_hours) === 'live');
   const banner = document.getElementById('sad-hour');
   banner.hidden = !!anyLive;
 }
