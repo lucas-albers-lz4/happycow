@@ -1323,12 +1323,80 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
-      "hours": "",
+      "hours": "Daily 3-5pm & 8-9pm",
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm"
+      "specials": [
+        {
+          "item": "Draft beers",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "1/2 off all draft beers"
+        },
+        {
+          "item": "Wine pours",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "1/2 off 8oz wine pours"
+        },
+        {
+          "item": "Margarita",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "$6"
+        },
+        {
+          "item": "Moscow Mule",
+          "price": 6.0,
+          "category": "drinks",
+          "description": "$6"
+        },
+        {
+          "item": "Aperol Spritz",
+          "price": 7.0,
+          "category": "drinks",
+          "description": "$7"
+        },
+        {
+          "item": "Peach Long Island Tea",
+          "price": 9.0,
+          "category": "drinks",
+          "description": "$9"
+        },
+        {
+          "item": "Reuben Eggrolls",
+          "price": 10.0,
+          "category": "food",
+          "description": "$10"
+        },
+        {
+          "item": "Mint Goat Cheese Stuffed Peppers",
+          "price": 10.0,
+          "category": "food",
+          "description": "$10"
+        },
+        {
+          "item": "Hand-Battered Steak Bites",
+          "price": 10.0,
+          "category": "food",
+          "description": "$10"
+        },
+        {
+          "item": "Fried Bison Short Rib Ravioli",
+          "price": 12.0,
+          "category": "food",
+          "description": "$12 — red sauce"
+        },
+        {
+          "item": "Sirloin Steak Tostadas",
+          "price": 15.0,
+          "category": "food",
+          "description": "$15"
+        }
+      ],
+      "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm",
+      "notes": "Happy hour every day 3-5pm & 8-9pm. Source: thebaybarandgrille.com/happy-hour menu image (Aug 2026)."
     },
     {
       "id": "the-buck",
@@ -1717,9 +1785,34 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "specials": [
+        {
+          "item": "Draft beer",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5"
+        },
+        {
+          "item": "House cocktails",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5"
+        },
+        {
+          "item": "House wine",
+          "price": 5.0,
+          "category": "drinks",
+          "description": "$5"
+        },
+        {
+          "item": "Appetizers",
+          "price": 0.0,
+          "category": "food",
+          "description": "$2.00 off ALL appetizers"
+        }
+      ],
       "business_hours": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am",
-      "notes": "HH Mon-Fri 3-5pm & all-day Sunday per site; specific deals on JS-rendered menu page (not extractable)"
+      "notes": "The $5 happy hour — Mon-Fri 3-5pm & all-day Sunday (3pm-close). Sources: OpenTable, Facebook, Instagram (agree)."
     },
     {
       "id": "madison-river-brewing-co",
@@ -1737,8 +1830,34 @@
       "tags": [],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Mon-Sun 2pm-8pm"
+      "specials": [
+        {
+          "item": "All beer",
+          "price": 3.0,
+          "category": "drinks",
+          "description": "$3 — Sundays 12-2pm happy hour"
+        },
+        {
+          "item": "Pint Night",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Mondays — $1 off all beer all day"
+        },
+        {
+          "item": "Growler fills",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Tuesdays — $2 off growler fills all day"
+        },
+        {
+          "item": "Ladies Night",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Thursdays — $1 off all day for ladies"
+        }
+      ],
+      "business_hours": "Mon-Sun 2pm-8pm",
+      "notes": "No single HH window — weekly deals (Sun 12-2 all beer $3; Mon pint night; Tue growler fills; Thu ladies night). $3 Happy Hour Mug/Pint branded glassware sold on site. Source: mthappyhour.com + madisonriverbrewing.com."
     },
     {
       "id": "old-chicago",

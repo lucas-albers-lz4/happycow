@@ -253,6 +253,13 @@ body {
   background: #f0e8d8;
   color: var(--cow-spot-2);
 }
+.venue-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
 .hh-status {
   font-size: 0.7rem;
   font-weight: 700;
@@ -265,6 +272,7 @@ body {
 .hh-status.soon { background: var(--gold); color: #fff; }
 .hh-status.closed { background: var(--red); color: #fff; }
 .hh-status.unknown { background: var(--text-dim); color: #fff; }
+.hh-status.specials { background: var(--cow-spot-2); color: #fff; }
 
 .venue-specials {
   padding: 0 16px 14px;

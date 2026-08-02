@@ -180,10 +180,11 @@ function esc(s) {
 // A special's price cell. price 0 is ambiguous: it can mean genuinely free,
 // or a discount-only deal ("$1 off") with no base price in the data. The old
 // renderer printed FREE for both, which mislabeled "$1.00 off well drinks"
-// as a free drink. Discount wording lives in `description`, so show a dash.
+// as a free drink. Any deal/pricing wording in `description` → dash; only
+// descriptions with no pricing signal at all read as genuinely free.
 function specialPriceLabel(s) {
   if (s.price > 0) return '$' + s.price.toFixed(2);
-  if (s.description && /off|discount|half|bogo|\$\d/i.test(s.description)) return '—';
+  if (s.description && /\$|cents|%|off|discount|half|bogo|special|deal|price|happy\s*hour|2\s*for\s*1|2-4-1|one\s*free/i.test(s.description)) return '—';
   return 'FREE';
 }
 
@@ -462,6 +463,13 @@ function renderVenueCard(venue, container) {
                      status === 'closed' ? `○ ${CLOSED_LABEL}` :
                      '';
   const statusBadge = statusText ? `<div class="hh-status ${status}">${statusText}</div>` : '';
+  // "Has specials" is independent of hours — venues like Korner Klub have
+  // deals with no HH window, and cards showed no sign of them at all.
+  const nSpecials = (venue.specials || []).length;
+  const specialsChip = nSpecials
+    ? `<div class="hh-status specials">🍸 ${nSpecials} special${nSpecials === 1 ? '' : 's'}</div>` : '';
+  const badges = (statusBadge || specialsChip)
+    ? `<div class="venue-badges">${statusBadge}${specialsChip}</div>` : '';
   const specialsId = `specials-${venue.id}`;
   const hoursId = `hours-${venue.id}`;
   const bizHoursId = `biz-hours-${venue.id}`;
@@ -470,10 +478,10 @@ function renderVenueCard(venue, container) {
       <div class="venue-header">
         <div>
           <div class="venue-name">${esc(venue.name)}</div>
-          <div class="venue-detail">${esc(venue.hours)} · ${esc(venue.address)}</div>
+          <div class="venue-detail">${esc([venue.hours, venue.address].filter(Boolean).join(' · '))}</div>
           <div class="venue-tags">${venue.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         </div>
-        ${statusBadge}
+        ${badges}
       </div>
     </button>
     <div class="venue-specials" id="${specialsId}" ${expanded ? '' : 'hidden'}>
@@ -486,6 +494,7 @@ function renderVenueCard(venue, container) {
           <div class="special-price">${specialPriceLabel(s)}</div>
         </div>
       `).join('')}
+      ${!venue.hours && venue.notes ? `<div class="hours-notes">${esc(venue.notes)}</div>` : ''}
       <div class="venue-actions">
         <a href="${venue.maps}" target="_blank" rel="noopener" class="venue-link">📍 Directions</a>
         ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" class="venue-link">🔗 Website</a>` : ''}
