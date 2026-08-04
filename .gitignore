@@ -5,3 +5,6 @@ __pycache__/
 # Runtime evidence payloads (excerpts/hashes live in derived state; keep dir only)
 data/evidence/**
 !data/evidence/.gitkeep
+
+# Playwright MCP local artifacts
+.cursor/browser-output/
