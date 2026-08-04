@@ -27,68 +27,82 @@
     <div class="cow-collected" id="cow-collected">0/30</div>
   </div>
 
-  <!-- ═══ Hero ═══ -->
-  <div class="hero">
-    <h1 id="hero-title">Happy Cow</h1>
-    <div class="tagline">Cow-curated happy hour deals for your city. It's moo-ving.</div>
+  <div id="deals-pane" class="deals-pane">
+    <!-- ═══ Ending Soonest (014 pin) ═══ -->
+    <button type="button" class="ending-pin" id="ending-pin" hidden>
+      <div class="ending-pin-kicker">Ending soonest</div>
+      <div class="ending-pin-top">
+        <div class="ending-pin-name" id="ending-pin-name">…</div>
+        <div class="ending-pin-count" id="ending-pin-count">—</div>
+      </div>
+      <div class="ending-pin-deal" id="ending-pin-deal"></div>
+      <div class="ending-pin-meta" id="ending-pin-meta"></div>
+    </button>
+
+    <!-- ═══ Sad Hour Banner ═══ -->
+    <div class="sad-hour" id="sad-hour" hidden>😔 Sad Hour — no happy hours running right now. The herd is moo-ving on. Check back later.</div>
+
+    <!-- ═══ Decision shortcuts ═══ -->
+    <div class="shortcuts">
+      <button type="button" class="shortcut" id="roulette-btn">
+        <span class="shortcut-ico">🎲</span>Pick for me
+        <small>Cow chooses a live deal</small>
+      </button>
+      <button type="button" class="shortcut" id="mystery-btn">
+        <span class="shortcut-ico">👥</span>What they're having
+        <small>Surprise drink pick</small>
+      </button>
+    </div>
+
+    <!-- ═══ Search + vibe chips ═══ -->
+    <div class="controls">
+      <input type="search" id="filter-search" placeholder="🔍 Search drinks, venues..." autocomplete="off">
+    </div>
+    <div class="vibe-chips" id="vibe-chips" role="listbox" aria-label="Vibes"></div>
+    <select id="filter-tag" hidden aria-hidden="true">
+      <option value="">All vibes</option>
+    </select>
+
     <div class="last-updated" id="last-updated"></div>
+
+    <!-- ═══ Venue List (dense rows) ═══ -->
+    <div class="venue-list" id="venue-list">
+      <div style="text-align:center;padding:40px;color:var(--text-dim);">🐄 Loading happy hours...</div>
+    </div>
   </div>
 
-  <!-- ═══ Deal of the Day ═══ -->
-  <button type="button" class="deal-day" id="deal-day" aria-expanded="false" aria-controls="deal-lie">
+  <!-- Hidden legacy hooks kept for JS that still references them -->
+  <h1 id="hero-title" hidden>Happy Cow</h1>
+  <button type="button" class="deal-day" id="deal-day" hidden aria-expanded="false" aria-controls="deal-lie">
     <div class="deal-day-title">🐄 Deal of the Day</div>
     <div class="deal-day-text" id="deal-text">Loading...</div>
     <div class="deal-day-lie" id="deal-lie" hidden>It's a lie — it's just the cheapest special we found. Utterly deceiving. Udderly, too.</div>
   </button>
-
-  <!-- ═══ Sad Hour Banner ═══ -->
-  <div class="sad-hour" id="sad-hour" hidden>😔 Sad Hour — no happy hours running right now. The herd is moo-ving on. Check back later.</div>
-
-  <!-- ═══ Mystery Drink ═══ -->
-  <button class="mystery-btn" id="mystery-btn">🍸 I'll Have What They're Having — Surprise Me</button>
-
-  <!-- ═══ Status Bar ═══ -->
-  <div class="status-bar" id="status-bar" role="navigation" aria-label="Venue happy hour status">
-    <span class="status-pill">Loading...</span>
-  </div>
-
-  <!-- ═══ Features ═══ -->
-  <div class="feature-bar">
-    <button class="feature-btn" id="btn-what"><span class="emoji">🐄</span>What</button>
-    <button class="feature-btn" id="btn-horoscope"><span class="emoji">♈</span>HH Horoscope</button>
+  <div class="status-bar" id="status-bar" hidden></div>
+  <div class="feature-bar" hidden>
+    <button class="feature-btn" id="btn-what" type="button"><span class="emoji">🐄</span>What</button>
+    <button class="feature-btn" id="btn-horoscope" type="button"><span class="emoji">♈</span>HH Horoscope</button>
     <button class="feature-btn" id="btn-moo" type="button"><span class="emoji">🐄</span>Moo</button>
-    <button class="feature-btn" id="btn-tip"><span class="emoji">🧮</span>Math</button>
-    <button class="feature-btn" id="btn-quiz"><span class="emoji">❓</span>What Cow R U?</button>
+    <button class="feature-btn" id="btn-tip" type="button"><span class="emoji">🧮</span>Math</button>
+    <button class="feature-btn" id="btn-quiz" type="button"><span class="emoji">❓</span>What Cow R U?</button>
   </div>
 
-  <!-- ═══ Controls ═══ -->
-  <div class="controls">
-    <input type="search" id="filter-search" placeholder="🔍 Search drinks, venues..." autocomplete="off">
-    <select id="filter-tag">
-      <option value="">All vibes</option>
-      <option value="dive">Dive</option>
-      <option value="craft-beer">Craft Beer</option>
-      <option value="brewery">Brewery</option>
-      <option value="patio">Patio</option>
-      <option value="whiskey">Whiskey</option>
-      <option value="cocktails">Cocktails</option>
-      <option value="classy">Classy</option>
-      <option value="hidden">Hidden</option>
-      <option value="pub">Pub</option>
-      <option value="downtown">Downtown</option>
-      <option value="wine">Wine</option>
-      <option value="bbq">BBQ</option>
-      <option value="sports">Sports</option>
-      <option value="late-night">Late Night</option>
-    </select>
-  </div>
+  <!-- ═══ Bottom tabs — games demoted out of the decision path ═══ -->
+  <nav class="app-tabs" aria-label="Primary">
+    <button type="button" class="app-tab on" data-tab="deals"><span class="app-tab-e">🍺</span>Deals</button>
+    <button type="button" class="app-tab" data-tab="horoscope" id="tab-horoscope"><span class="app-tab-e">♈</span>Horoscope</button>
+    <button type="button" class="app-tab" data-tab="quiz" id="tab-quiz"><span class="app-tab-e">❓</span>Cow quiz</button>
+    <button type="button" class="app-tab" data-tab="more" id="tab-more"><span class="app-tab-e">···</span>More</button>
+  </nav>
 
-  <!-- ═══ Roulette ═══ -->
-  <button class="roulette-btn" id="roulette-btn">🎲 I'm Not Picky — Pick For Me</button>
-
-  <!-- ═══ Venue List ═══ -->
-  <div class="venue-list" id="venue-list">
-    <div style="text-align:center;padding:40px;color:var(--text-dim);">🐄 Loading happy hours...</div>
+  <div class="more-sheet" id="more-sheet" hidden>
+    <div class="more-sheet-inner">
+      <button type="button" class="more-opt" id="more-tip">🧮 Math<small>Split the tab with attitude</small></button>
+      <button type="button" class="more-opt" id="more-what">🐄 What<small>A cow question</small></button>
+      <button type="button" class="more-opt" id="more-moo">🔊 Moo<small>Deploy the bovine asset</small></button>
+      <button type="button" class="more-opt" id="more-deal">🐄 Deal of the Day<small>The cheapest special we found</small></button>
+      <button type="button" class="more-close" id="more-close">Close</button>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════ -->
@@ -294,10 +308,10 @@
     <div style="margin-top:4px;"><a href="#" id="footer-cow-link" title="你太牛了!">你很牛</a> · <a href="#" id="footer-about-link">about</a></div>
   </div>
 
-  <script src="assets/js/hours.js?v=20260802"></script>
-  <script src="assets/js/format.js?v=20260802"></script>
-  <script src="assets/js/render.js?v=20260802"></script>
-  <script src="assets/js/app.js?v=20260802"></script>
+  <script src="assets/js/hours.js?v=20260804"></script>
+  <script src="assets/js/format.js?v=20260804"></script>
+  <script src="assets/js/render.js?v=20260804"></script>
+  <script src="assets/js/app.js?v=20260804"></script>
   <script>
     // Inject quiz questions
     const QUIZ = [

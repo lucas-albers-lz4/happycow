@@ -131,12 +131,20 @@
     return false;
   }
 
-  // hhStatus(hoursStr, bizHoursStr, now) -> {kind, nextStartMin}
+  // Effective end minute-of-day for a live window at (day, min).
+  function liveEndMin(w, day, min) {
+    if (w.endMin > DAY_MIN && dayInRange(prevDay(day), w.startDay, w.endDay) && min < w.endMin - DAY_MIN) {
+      return w.endMin - DAY_MIN;
+    }
+    return Math.min(w.endMin, DAY_MIN);
+  }
+
+  // hhStatus(hoursStr, bizHoursStr, now) -> {kind, nextStartMin, endMin}
   // kind: 'live' | 'soon' | 'closed' | 'unknown'. `soon` = next same-day window
-  // start within 120 minutes (mirrors the old behaviour, now multi-window aware).
+  // start within 120 minutes. `endMin` set when kind === 'live' (for "Xm left").
   function hhStatus(hoursStr, bizHoursStr, now) {
     const windows = parseHours(hoursStr);
-    if (!windows.length) return { kind: 'unknown', nextStartMin: null };
+    if (!windows.length) return { kind: 'unknown', nextStartMin: null, endMin: null };
     const d = now || new Date();
     const day = dayOfDate(d);
     const min = d.getHours() * MIN + d.getMinutes();
@@ -145,9 +153,11 @@
     for (const w of windows) {
       if (w.close && biz[day] != null) {
         const rw = { ...w, endMin: biz[day], spansNextDay: biz[day] <= w.startMin };
-        if (windowActive(rw, day, min)) return { kind: 'live', nextStartMin: null };
+        if (windowActive(rw, day, min)) {
+          return { kind: 'live', nextStartMin: null, endMin: liveEndMin(rw, day, min) };
+        }
       } else if (windowActive(w, day, min)) {
-        return { kind: 'live', nextStartMin: null };
+        return { kind: 'live', nextStartMin: null, endMin: liveEndMin(w, day, min) };
       }
     }
 
@@ -167,8 +177,8 @@
         }
       }
     }
-    if (best) return { kind: 'soon', nextStartMin: best.startMin };
-    return { kind: 'closed', nextStartMin: null };
+    if (best) return { kind: 'soon', nextStartMin: best.startMin, endMin: null };
+    return { kind: 'closed', nextStartMin: null, endMin: null };
   }
 
   function timeUntil(startMin, now) {

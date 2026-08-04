@@ -99,6 +99,12 @@ test('BUG FIX: The Bay live in its second window (8-9pm)', () => {
   assert.equal(hhStatus('Daily 3-5pm & 8-9pm', '', sun(12, 0)).kind, 'closed');
 });
 
+test('live status includes endMin for countdown', () => {
+  const st = hhStatus('Daily 3-6pm', '', sun(17, 0));
+  assert.equal(st.kind, 'live');
+  assert.equal(st.endMin, 18 * 60); // 6pm
+});
+
 test('Dave\u2019s 3-close resolves via business hours', () => {
   const biz = 'Mon-Sun 4pm-10pm';
   assert.equal(hhStatus('Mon 3-close', biz, mon(17, 0)).kind, 'live');
