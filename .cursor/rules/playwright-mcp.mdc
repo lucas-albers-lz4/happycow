@@ -1,0 +1,15 @@
+---
+description: Use Playwright MCP for UI verification on Happy Cow
+alwaysApply: true
+---
+
+# Playwright MCP
+
+This repo has a project Playwright MCP server in `.cursor/mcp.json`.
+
+When checking live UI (Pages or local), desktop vs mobile layout, or visual regressions after UI changes:
+
+1. Prefer the **playwright** MCP tools over guessing from HTML alone.
+2. Default live URL: `https://lucas-albers-lz4.github.io/happycow/`
+3. Compare at least one desktop viewport (~1440×900) and one phone viewport (~390×844) for layout issues.
+4. Screenshots land under `.cursor/browser-output/` (gitignored).
