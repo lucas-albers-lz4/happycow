@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Prototype Gallery</title>
+<style>
+  :root{
+    --bg:#f5ebe0; --card:#fffaf3; --text:#2c1810; --dim:#8b7355;
+    --gold:#d4a04a; --spot:#c48450; --line:rgba(44,24,16,.1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:ui-rounded,"Segoe UI",system-ui,sans-serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(212,160,74,.25), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(196,132,80,.18), transparent),
+      var(--bg);
+    color:var(--text);line-height:1.4;min-height:100vh;
+  }
+  header{padding:28px 24px 12px;max-width:1400px;margin:0 auto}
+  header h1{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.03em;font-weight:850}
+  header h1 span{color:var(--spot)}
+  header p{color:var(--dim);margin-top:6px;max-width:52ch;font-size:.95rem}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pill{font-size:.72rem;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--dim)}
+  .pill.wave{background:linear-gradient(135deg,var(--spot),var(--gold));color:#fff;border:none}
+  nav.waves{display:flex;gap:8px;flex-wrap:wrap;padding:8px 24px 18px;max-width:1400px;margin:0 auto}
+  nav.waves button{
+    border:1.5px solid var(--line);background:var(--card);color:var(--text);
+    border-radius:999px;padding:8px 14px;font:inherit;font-size:.8rem;font-weight:750;cursor:pointer
+  }
+  nav.waves button.on{background:var(--text);color:#fff;border-color:var(--text)}
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:22px;padding:0 24px 48px;max-width:1400px;margin:0 auto
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:0 10px 30px rgba(44,24,16,.06);
+    transition:transform .15s, box-shadow .15s
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(44,24,16,.1)}
+  .card.hidden{display:none}
+  .phone{
+    background:#1a1410;padding:14px 14px 0;display:flex;justify-content:center
+  }
+  .bezel{
+    width:100%;max-width:280px;aspect-ratio:9/16;background:#0d0a08;
+    border-radius:22px;overflow:hidden;border:2px solid #3a2e24;position:relative
+  }
+  .bezel iframe{width:200%;height:200%;border:0;transform:scale(.5);transform-origin:0 0;pointer-events:none}
+  .info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .info .num{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--spot)}
+  .info h2{font-size:1.05rem;letter-spacing:-.02em}
+  .info p{font-size:.8rem;color:var(--dim);flex:1}
+  .actions{display:flex;gap:8px;margin-top:4px}
+  .actions a{
+    flex:1;text-align:center;text-decoration:none;font-size:.78rem;font-weight:750;
+    padding:9px 10px;border-radius:10px;border:1.5px solid var(--line);color:var(--text);background:#fff
+  }
+  .actions a.primary{background:var(--spot);border-color:var(--spot);color:#fff}
+  footer{text-align:center;padding:0 24px 40px;color:var(--dim);font-size:.75rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>🐄 Happy <span>Cow</span> prototypes</h1>
+  <p>Throwaway sketches for head-to-head comparison. Start with <b>Wave C</b> — the synthesis based on your feedback. Demo clock Wed 5:12pm.</p>
+  <div class="meta">
+    <span class="pill wave">Wave D · wireframe #85 ← start here</span>
+    <span class="pill">013–014</span>
+    <span class="pill wave">Wave C · synthesis</span>
+    <span class="pill">011–012</span>
+    <span class="pill wave">Wave A · directions</span>
+    <span class="pill">001–003</span>
+    <span class="pill wave">Wave B · ideas</span>
+    <span class="pill">004–010</span>
+  </div>
+</header>
+
+<nav class="waves">
+  <button class="on" data-f="d">Wave D — wireframe</button>
+  <button data-f="c">Wave C — synthesis</button>
+  <button data-f="a">Wave A — directions</button>
+  <button data-f="b">Wave B — ideas</button>
+  <button data-f="all">All</button>
+</nav>
+
+<div class="grid" id="grid"></div>
+<footer>Self-contained HTML · no build · cream/leather tokens match the live app</footer>
+
+<script>
+const SKETCHES = [
+  {n:'014', wave:'d', dir:'014-mobile-dense-rows', title:'Dense venue rows', blurb:'013 iteration — left-aligned name / deal / hours·place. No chevron. Compact time status. More list on screen.'},
+  {n:'013', wave:'d', dir:'013-mobile-deal-first', title:'Mobile deal-first', blurb:'Issue #85 wireframe capture — phone frame, ending-soonest pin, Pick for me / What they\'re having, compact rows, games in tab bar.'},
+  {n:'011', wave:'c', dir:'011-form-follows-fun', title:'Form Follows Fun', blurb:'Deal-First spine. Bottom: Deals · Vibe · Spin · More. Compare tray on demand. Crawl buried in More.'},
+  {n:'012', wave:'c', dir:'012-deal-plus-pocket', title:'Deal + Pocket', blurb:'Same synthesis, quieter tabs. “Spin the herd” on home; tiny ⇄ compare; crawl still in More.'},
+  {n:'001', wave:'a', dir:'001-deal-first', title:'Deal-First', blurb:'Pinned ending-soonest card, decision shortcuts, multi-select vibes, games demoted to a bottom tab bar.'},
+  {n:'002', wave:'a', dir:'002-mood-board', title:'Moo-d Board', blurb:'Search by vibe — mood cow-faces, Sacred Cow of the Day, heatmap, streak banner, crowd moo-ters.'},
+  {n:'003', wave:'a', dir:'003-grazing-map', title:'Grazing Map', blurb:'SVG downtown map, moo-distances, cowbell countdowns, Cow Path crawl planner (tap 2+ pins).'},
+  {n:'004', wave:'b', dir:'004-the-herd', title:'The Herd', blurb:'Group consensus voting with mini cow avatars. Friends pick; tallies crown a winner.'},
+  {n:'005', wave:'b', dir:'005-udderly-broke', title:'Udderly Broke', blurb:'Budget mode + Cow-culator. Milk-money meter filters the list; bar chart estimates your tab.'},
+  {n:'006', wave:'b', dir:'006-mooch-list', title:'Mooch List', blurb:'Value leaderboard with podium and cowbell ratings — cheapest bang-for-buck first.'},
+  {n:'007', wave:'b', dir:'007-cow-pare', title:'Cow-pare', blurb:'Side-by-side venue comparison — hours, tags, specials, and live status in two columns.'},
+  {n:'008', wave:'b', dir:'008-mooty-booty', title:'Moo-ty Booty', blurb:'Spin-the-wheel indecision killer. Live venues only; lands with a cowbell flourish.'},
+  {n:'009', wave:'b', dir:'009-game-linkage', title:'Game → Deals', blurb:'What Cow Are You quiz result auto-applies a vibe filter so whimsy pays off in the deal list.'},
+  {n:'010', wave:'b', dir:'010-day-planner', title:'Day Planner', blurb:'Day-of-week picker recomputes live/soon/closed for planning ahead (not just right now).'},
+];
+
+const grid = document.getElementById('grid');
+grid.innerHTML = SKETCHES.map(s => `
+  <article class="card" data-wave="${s.wave}">
+    <div class="phone"><div class="bezel">
+      <iframe src="${s.dir}/index.html" title="${s.title}" loading="lazy" tabindex="-1"></iframe>
+    </div></div>
+    <div class="info">
+      <div class="num">Sketch ${s.n} · ${s.wave === 'd' ? 'wireframe' : s.wave === 'c' ? 'synthesis' : s.wave === 'a' ? 'direction' : 'idea'}</div>
+      <h2>${s.title}</h2>
+      <p>${s.blurb}</p>
+      <div class="actions">
+        <a class="primary" href="${s.dir}/index.html" target="_blank" rel="noopener">Open full</a>
+        <a href="${s.dir}/README.md" target="_blank" rel="noopener">README</a>
+      </div>
+    </div>
+  </article>
+`).join('');
+
+function applyFilter(f){
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden', f !== 'all' && c.dataset.wave !== f);
+  });
+}
+document.querySelectorAll('nav.waves button').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('nav.waves button').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    applyFilter(btn.dataset.f);
+  };
+});
+applyFilter('d');
+</script>
+</body>
+</html>

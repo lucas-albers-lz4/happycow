@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Form Follows Fun (011)</title>
+<style>
+  :root{
+    --bg:#fdf6ec; --card:#ffffff; --text:#2c1810; --dim:#8b7355;
+    --gold:#d4a04a; --red:#d46a6a; --green:#5a9c69; --spot1:#d4a04a; --spot2:#c48450;
+    --radius:16px; --radius-sm:10px; --shadow:0 2px 12px rgba(0,0,0,0.08);
+  }
+  body.dark{
+    --bg:#120e0a; --card:#1e1814; --text:#e8ddd0; --dim:#8b7a6a;
+    --gold:#c48450; --red:#c44a4a; --green:#4a7c59; --shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 120px}
+  header{position:sticky;top:0;z-index:20;background:var(--bg);padding:12px 0 8px}
+  .row{display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+  .logo span{color:var(--gold)}
+  .spacer{flex:1}
+  .icon-btn{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;box-shadow:var(--shadow)}
+
+  .pin{position:relative;margin:10px 0 12px;background:linear-gradient(135deg,var(--spot2),var(--gold));color:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);overflow:hidden}
+  .pin::after{content:"🐄";position:absolute;right:-8px;bottom:-14px;font-size:64px;opacity:.18;transform:rotate(-12deg)}
+  .pin .kicker{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .pin h2{font-size:1.05rem;margin:4px 0 2px}
+  .pin .sub{font-size:.8rem;opacity:.95}
+  .pin .count{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:800}
+
+  .vibe-pill{display:none;align-items:center;gap:8px;margin:0 0 10px;padding:8px 12px;border-radius:999px;background:var(--card);border:2px solid var(--spot2);box-shadow:var(--shadow);font-size:.78rem;font-weight:750}
+  .vibe-pill.show{display:flex}
+  .vibe-pill button{margin-left:auto;border:none;background:transparent;font:inherit;font-weight:800;color:var(--spot2);cursor:pointer}
+
+  .sortrow{display:flex;align-items:center;gap:8px;margin:2px 0 10px;font-size:.75rem;color:var(--dim);font-weight:700}
+  .sortrow select{flex:1;background:var(--card);border:1px solid rgba(0,0,0,.1);border-radius:var(--radius-sm);padding:7px 10px;font:inherit;font-size:.78rem;color:var(--text)}
+
+  .venue{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:12px;box-shadow:var(--shadow);border-left:4px solid var(--green);position:relative}
+  .venue.live{border-left-color:var(--green)}
+  .venue.soon{border-left-color:var(--gold)}
+  .venue.done{border-left-color:#bbb;opacity:.72}
+  .venue.cmp{outline:2px solid var(--spot2);outline-offset:1px}
+  .vtop{display:flex;align-items:baseline;gap:8px}
+  .vname{font-weight:800;font-size:1rem}
+  .vtags{font-size:.68rem;color:var(--dim);font-weight:600}
+  .vstatus{margin-left:auto;font-size:.66rem;font-weight:800;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .live .vstatus{background:var(--green);color:#fff}
+  .soon .vstatus{background:var(--gold);color:#fff}
+  .done .vstatus{background:#ccc;color:#555}
+  .vhours{font-size:.75rem;color:var(--dim);font-weight:600;margin:6px 0 8px}
+  .special{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px dashed rgba(0,0,0,.08);font-size:.82rem}
+  body.dark .special{border-color:rgba(255,255,255,.08)}
+  .special .item{font-weight:600}
+  .special .price{font-weight:800;color:var(--spot2);white-space:nowrap}
+  .vactions{display:flex;gap:8px;margin-top:10px}
+  .vactions button{flex:1;padding:8px;border-radius:var(--radius-sm);border:1.5px solid rgba(0,0,0,.1);background:var(--bg);font:inherit;font-size:.72rem;font-weight:750;cursor:pointer;color:var(--text)}
+  body.dark .vactions button{border-color:rgba(255,255,255,.12)}
+  .vactions button.on{border-color:var(--spot2);background:rgba(196,132,80,.12);color:var(--spot2)}
+
+  /* compare tray — minimal, only when selecting */
+  .cmp-tray{
+    position:fixed;left:50%;transform:translateX(-50%) translateY(120%);
+    bottom:68px;width:calc(100% - 28px);max-width:532px;z-index:35;
+    background:var(--card);border:2px solid var(--spot2);border-radius:14px;
+    padding:10px 12px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;
+    transition:transform .25s ease;
+  }
+  .cmp-tray.show{transform:translateX(-50%) translateY(0)}
+  .cmp-tray .slots{flex:1;font-size:.78rem;font-weight:750}
+  .cmp-tray .slots span{color:var(--dim);font-weight:650}
+  .cmp-tray button{border:none;border-radius:10px;padding:8px 12px;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
+  .cmp-go{background:var(--spot2);color:#fff}
+  .cmp-go:disabled{opacity:.4;cursor:default}
+  .cmp-x{background:transparent;color:var(--dim)}
+
+  nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid rgba(0,0,0,.08);display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom)}
+  body.dark nav.tabs{border-color:rgba(255,255,255,.08)}
+  .tab{flex:1;padding:9px 0 8px;text-align:center;font-size:.62rem;font-weight:700;color:var(--dim);cursor:pointer;background:none;border:none;border-top:3px solid transparent}
+  .tab .e{font-size:1.15rem;display:block;margin-bottom:2px}
+  .tab.on{color:var(--spot2);border-top-color:var(--spot2)}
+  .tab.spin-tab .e{animation:none}
+  .tab.spin-tab:active .e{transform:rotate(20deg)}
+
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
+  .overlay.show{display:flex}
+  .sheet{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:20px 18px 28px;max-height:82vh;overflow:auto}
+  .sheet h3{font-size:1.05rem;margin-bottom:6px}
+  .sheet .lead{font-size:.8rem;color:var(--dim);font-weight:600;margin-bottom:14px}
+  .sheet .close{float:right;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--dim)}
+  .moods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mood{padding:14px 10px;border-radius:var(--radius);border:2px solid rgba(0,0,0,.08);background:var(--bg);font:inherit;cursor:pointer;text-align:center}
+  body.dark .mood{border-color:rgba(255,255,255,.1)}
+  .mood.on{border-color:var(--spot2);background:rgba(196,132,80,.12)}
+  .mood .face{font-size:1.6rem;display:block;margin-bottom:4px}
+  .mood b{display:block;font-size:.85rem}
+  .mood small{display:block;font-size:.68rem;color:var(--dim);font-weight:650;margin-top:2px}
+  .sheet .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px;font:inherit;font-size:.85rem;cursor:pointer;font-weight:700}
+  .sheet .opt small{display:block;font-weight:600;color:var(--dim);font-size:.72rem;margin-top:2px}
+  .crawl-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+  .crawl-item{display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg);border-radius:12px;font-size:.85rem;font-weight:750}
+  .crawl-item .n{width:24px;height:24px;border-radius:50%;background:var(--spot2);color:#fff;display:grid;place-items:center;font-size:.7rem;font-weight:850}
+  .crawl-item button{margin-left:auto;border:none;background:transparent;color:var(--dim);font-size:1.1rem;cursor:pointer}
+  .crawl-add{width:100%;padding:10px;border:2px dashed var(--spot1);border-radius:12px;background:transparent;font:inherit;font-weight:750;font-size:.82rem;cursor:pointer;color:var(--text);margin-bottom:8px}
+  .crawl-meta{font-size:.78rem;color:var(--dim);font-weight:650;margin-top:8px}
+  .cmp-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cmp-col{background:var(--bg);border-radius:12px;padding:12px;border-top:3px solid var(--spot2)}
+  .cmp-col:last-child{border-top-color:var(--green)}
+  .cmp-col h4{font-size:.95rem;margin-bottom:6px}
+  .cmp-col .st{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--green);color:#fff;margin-bottom:8px}
+  .cmp-col .st.soon{background:var(--gold)}.cmp-col .st.done{background:#ccc;color:#555}
+  .cmp-row{display:flex;justify-content:space-between;font-size:.75rem;padding:5px 0;border-top:1px dashed rgba(0,0,0,.08);font-weight:700}
+  .cmp-row span:first-child{color:var(--dim)}
+  .cmp-verdict{margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--spot2),var(--gold));color:#fff;font-size:.85rem;font-weight:750}
+  .spin-hero{text-align:center;padding:10px 0 6px}
+  .spin-hero .big{font-size:3rem;margin:8px 0;transition:transform .3s}
+  .spin-hero .big.spinning{animation:wiggle .15s linear infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  .spin-cta{width:100%;padding:14px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--spot2),var(--gold));color:#fff;font:inherit;font-size:1rem;font-weight:850;cursor:pointer;margin:10px 0}
+  .spin-out{min-height:72px;padding:12px;border-radius:12px;background:var(--bg);font-weight:750;font-size:.9rem}
+  .spin-out .deal{color:var(--spot2);margin-top:4px;font-weight:800}
+  .toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%);background:var(--spot2);color:#fff;padding:10px 18px;border-radius:999px;font-size:.8rem;font-weight:700;opacity:0;transition:opacity .3s;z-index:60;pointer-events:none;max-width:90%}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="row">
+      <div class="logo">🐄 Happy <span>Cow</span></div>
+      <div class="spacer"></div>
+      <button class="icon-btn" id="themeBtn" title="Theme">🌙</button>
+    </div>
+  </header>
+
+  <div class="pin" id="pinCard">
+    <div class="kicker">⏰ Ending Soonest</div>
+    <h2 id="pinName">…</h2>
+    <div class="sub" id="pinSub"></div>
+    <div class="count" id="pinCount"></div>
+  </div>
+
+  <div class="vibe-pill" id="vibePill">
+    <span id="vibePillText"></span>
+    <button id="vibeClear">Clear</button>
+  </div>
+
+  <div class="sortrow">
+    <span>Sort:</span>
+    <select id="sortSel">
+      <option value="closing">Closing soonest</option>
+      <option value="cheap">Cheapest first</option>
+      <option value="alpha">A–Z</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<!-- Cow-pare tray: invisible until you tap Compare on a card -->
+<div class="cmp-tray" id="cmpTray">
+  <div class="slots" id="cmpSlots"><span>Tap Compare on a second spot</span></div>
+  <button class="cmp-x" id="cmpClear">✕</button>
+  <button class="cmp-go" id="cmpGo" disabled>Cow-pare</button>
+</div>
+
+<nav class="tabs">
+  <button class="tab on" data-tab="deals"><span class="e">🍺</span>Deals</button>
+  <button class="tab" data-tab="vibe"><span class="e">✨</span>Vibe</button>
+  <button class="tab spin-tab" data-tab="spin"><span class="e">🎰</span>Spin</button>
+  <button class="tab" data-tab="more"><span class="e">···</span>More</button>
+</nav>
+
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <button class="close" id="sheetClose">&times;</button>
+    <h3 id="sheetTitle"></h3>
+    <div class="lead" id="sheetLead"></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const NOW = new Date('2026-08-05T17:12:00');
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAY = DAYS[NOW.getDay()];
+
+const VENUES = [
+  {id:'ale-works',name:'Ale Works',tags:['downtown','craft-beer'],hours:'Daily 4-6pm',
+   specials:[{i:'Draft beers',p:0,d:'$1 off'},{i:'Wine by the glass',p:0,d:'$1 off'}]},
+  {id:'bar-ix',name:'Bar IX',tags:['dive'],hours:'Daily 2-7pm',
+   specials:[{i:'Two drinks for one',p:0,d:'2-4-1'},{i:'Well drinks',p:0,d:'2-for-1'}]},
+  {id:'bitterroot',name:'Bitterroot Bistro',tags:['classy'],hours:'Daily 2-5pm',
+   specials:[{i:'Beef pasty',p:15,d:''},{i:'Bison tartare',p:13,d:''}]},
+  {id:'blackbird',name:'Blackbird',tags:['downtown','classy'],hours:'Daily 4:30-5:30pm',
+   specials:[{i:'Select wine bottles',p:0,d:'Half price'}]},
+  {id:'bourbon',name:'Bourbon',tags:['whiskey','downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'BBQ favorites',p:0,d:'Food specials'},{i:'Whiskey cocktails',p:0,d:''}]},
+  {id:'brigade',name:'Brigade',tags:['downtown'],hours:'Daily 3-6pm',
+   specials:[{i:'Martinis',p:3,d:'Berry, cosmo, gin'}]},
+  {id:'devils',name:'Devils Toboggan',tags:['downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'Beers',p:3,d:''},{i:'Wine',p:4,d:''}]},
+  {id:'finks',name:'Finks Deli',tags:['downtown'],hours:'Daily 2-4pm',
+   specials:[{i:'Beer',p:3,d:''},{i:'Sandwiches',p:0,d:'Half off'}]},
+  {id:'la-brasserie',name:'La Brasserie',tags:['classy'],hours:'Daily 4-6pm',
+   specials:[{i:'Select wines',p:6,d:''}]},
+  {id:'revelry',name:'Revelry',tags:['downtown'],hours:'Daily 2:30-4pm',
+   specials:[{i:'Rainier',p:2,d:'Tallboys'},{i:'Well drinks',p:3,d:''}]},
+  {id:'rocking-r',name:'Rocking R Bar',tags:['dive','western'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Drafts',p:4,d:''},{i:'Wings',p:0,d:'50¢ wings'}]},
+  {id:'shine',name:'Shine Beer Sanctuary',tags:['craft-beer'],hours:'Daily 3-5pm',
+   specials:[{i:'Local pints',p:4,d:''},{i:'Flights',p:0,d:'2-for-1'}]},
+  {id:'bacchus',name:'The Bacchus Pub',tags:['pub'],hours:'Daily 2-6pm',
+   specials:[{i:'Well drinks',p:3.5,d:''},{i:'Domestic pints',p:4,d:''}]},
+  {id:'club-tavern',name:'The Club Tavern',tags:['pub','sports'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Draft beer',p:1,d:'$1 drafts'}]},
+  {id:'urban-kitchen',name:'Urban Kitchen',tags:['classy'],hours:'Daily 3-6pm',
+   specials:[{i:'Wines by the glass',p:2,d:''},{i:'Small plates',p:0,d:'Half off'}]},
+  {id:'pour-house',name:'The Pour House',tags:['downtown'],hours:'Mon-Fri 2-6pm',
+   specials:[{i:'Micro drafts',p:3.75,d:''}]},
+  {id:'old-chicago',name:'Old Chicago',tags:['pub'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Domestic bottles',p:2.5,d:''}]},
+  {id:'bww',name:'Buffalo Wild Wings',tags:['sports'],hours:'Mon-Fri 3-6pm',
+   specials:[{i:'Strawberry margarita',p:6,d:''},{i:'Wings',p:0,d:'BOGO'}]},
+  {id:'copper',name:'Copper Whiskey Bar',tags:['whiskey'],hours:'Mon-Fri 3-5pm',
+   specials:[{i:'Draft beer',p:5,d:''},{i:'Whiskey flights',p:0,d:'$5 off'}]},
+];
+
+const MOODS = [
+  {k:'cheap',face:'🤑',name:'Cheap Thrills',tags:['dive','pub']},
+  {k:'date',face:'💕',name:'Date Night',tags:['classy','downtown']},
+  {k:'rowdy',face:'🤪',name:'Rowdy',tags:['sports','western','dive']},
+  {k:'chill',face:'😌',name:'Chill Vibes',tags:['craft-beer','whiskey']},
+  {k:'day',face:'☀️',name:'Day Drinking',tags:null}, // live only
+];
+
+function toMin(s){const m=s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);if(!m)return null;let h=+m[1],mi=+(m[2]||0);const ap=m[3].toLowerCase();if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;return h*60+mi;}
+function windowsOf(hoursStr){
+  const wins=[];
+  for(const part of hoursStr.split(',')){
+    const m=part.trim().match(/^([A-Za-z,\- ]+?)\s+(\d[^ ]*(?:-\d[^ ]*)?(?:\s*[ap]m)?)/i);if(!m)continue;
+    const daySet=new Set();
+    if(/daily/i.test(m[1]))DAYS.forEach(d=>daySet.add(d));
+    else{for(const range of m[1].trim().split(/\s+(?=[A-Z])/)){const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);if(!r)continue;const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}}}
+    const mm=m[2].match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(\d{1,2}(?::\d{2})?)\s*(am|pm)/i);
+    if(mm){const ss=mm[2]||mm[4];wins.push({days:daySet,s:toMin(mm[1]+' '+ss),e:toMin(mm[3]+' '+mm[4])});}
+  }
+  return wins;
+}
+function status(v){
+  const wins=windowsOf(v.hours);const h=NOW.getHours()*60+NOW.getMinutes();
+  let best=null;
+  for(const w of wins){
+    if(!w.days.has(DAY))continue;
+    if(h>=w.s&&h<=w.e)return{key:'live',label:'LIVE now',end:w.e};
+    const until=w.s-h;if(until>0&&(best===null||until<best.until))best={until,start:w.s};
+  }
+  if(best)return{key:'soon',label:best.until<=120?`Opens in ${best.until}m`:`Opens in ${Math.round(best.until/60)}h`,until:best.until};
+  return{key:'done',label:'Closed today'};
+}
+function priceLabel(sp){
+  if(sp.p>0)return '$'+sp.p.toFixed(2).replace(/\.00$/,'');
+  if(/off|discount|half|bogo|special|price|deal|2 for 1|2-4-1|one free|\$|cents|%/i.test(sp.d||''))return '—';
+  return 'FREE';
+}
+function minsLeft(end){return end-NOW.getHours()*60-NOW.getMinutes();}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+
+let sortKey='closing', activeMood=null, compare=[], crawl=[];
+
+function openSheet(title, lead, bodyHTML){
+  document.getElementById('sheetTitle').textContent=title;
+  document.getElementById('sheetLead').textContent=lead||'';
+  document.getElementById('sheetBody').innerHTML=bodyHTML;
+  document.getElementById('overlay').classList.add('show');
+}
+function closeSheet(){document.getElementById('overlay').classList.remove('show');}
+
+function filtered(){
+  let list=[...VENUES];
+  if(activeMood){
+    if(activeMood.tags===null) list=list.filter(v=>status(v).key==='live');
+    else list=list.filter(v=>v.tags.some(t=>activeMood.tags.includes(t)));
+  }
+  const withSt=list.map(v=>({v,st:status(v)}));
+  if(sortKey==='closing')withSt.sort((a,b)=>{
+    const la=a.st.key==='live'?minsLeft(a.st.end):(a.st.until||9999);
+    const lb=b.st.key==='live'?minsLeft(b.st.end):(b.st.until||9999);
+    return la-lb;});
+  else if(sortKey==='cheap')withSt.sort((a,b)=>Math.min(...a.v.specials.map(s=>s.p>0?s.p:99))-Math.min(...b.v.specials.map(s=>s.p>0?s.p:99)));
+  else withSt.sort((a,b)=>a.v.name.localeCompare(b.v.name));
+  return withSt;
+}
+
+function updateCmpTray(){
+  const tray=document.getElementById('cmpTray');
+  const go=document.getElementById('cmpGo');
+  if(!compare.length){tray.classList.remove('show');return;}
+  tray.classList.add('show');
+  const names=compare.map(id=>VENUES.find(v=>v.id===id).name);
+  document.getElementById('cmpSlots').innerHTML = names.length===1
+    ? `<b>${names[0]}</b> <span>· pick one more</span>`
+    : `<b>${names[0]}</b> <span>vs</span> <b>${names[1]}</b>`;
+  go.disabled = compare.length!==2;
+}
+
+function toggleCompare(id){
+  if(compare.includes(id)) compare=compare.filter(x=>x!==id);
+  else if(compare.length<2) compare.push(id);
+  else {compare=[compare[1],id]; toast('Swapped into Cow-pare');}
+  updateCmpTray();
+  render();
+}
+
+function showCompare(){
+  if(compare.length!==2)return;
+  const [A,B]=compare.map(id=>VENUES.find(v=>v.id===id));
+  const sa=status(A), sb=status(B);
+  const col=(v,st)=>`<div class="cmp-col">
+    <h4>${v.name}</h4>
+    <span class="st ${st.key}">${st.label}</span>
+    <div class="cmp-row"><span>Hours</span><span>${v.hours}</span></div>
+    <div class="cmp-row"><span>Vibe</span><span>${v.tags.join(', ')}</span></div>
+    ${v.specials.map(s=>`<div class="cmp-row"><span>${s.i}</span><span>${priceLabel(s)}</span></div>`).join('')}
+  </div>`;
+  let verdict;
+  if(sa.key==='live'&&sb.key!=='live') verdict=`${A.name} is live — go now.`;
+  else if(sb.key==='live'&&sa.key!=='live') verdict=`${B.name} is live — go now.`;
+  else if(sa.key==='live'&&sb.key==='live'){
+    const ma=minsLeft(sa.end), mb=minsLeft(sb.end);
+    verdict = ma<=mb ? `${A.name} closes sooner (${ma}m).` : `${B.name} closes sooner (${mb}m).`;
+  } else verdict = `Neither is live — ${A.name} vs ${B.name} on vibes alone.`;
+  openSheet('🐄 Cow-pare','Two spots. One cow. Minimal drama.',
+    `<div class="cmp-cols">${col(A,sa)}${col(B,sb)}</div><div class="cmp-verdict">👑 ${verdict}</div>`);
+}
+
+function showVibeSheet(){
+  openSheet('✨ Search by vibe','Pick a mood — filters the deal list. Task stays on Deals.',
+    `<div class="moods">${MOODS.map(m=>`
+      <button class="mood ${activeMood&&activeMood.k===m.k?'on':''}" data-k="${m.k}">
+        <span class="face">${m.face}</span><b>${m.name}</b>
+        <small>${m.tags?m.tags.join(' · '):'whatever is LIVE'}</small>
+      </button>`).join('')}</div>`);
+  document.querySelectorAll('.mood').forEach(btn=>btn.onclick=()=>{
+    const m=MOODS.find(x=>x.k===btn.dataset.k);
+    activeMood = (activeMood&&activeMood.k===m.k)?null:m;
+    closeSheet();
+    setTab('deals');
+    render();
+    if(activeMood) toast(`${activeMood.face} ${activeMood.name} on`);
+  });
+}
+
+function showSpinSheet(){
+  openSheet('🎰 Spin the herd','One tap. Fate picks a live spot. Ridiculous on purpose.',
+    `<div class="spin-hero"><div class="big" id="spinCow">🐄</div>
+     <button class="spin-cta" id="spinBtn">🔔 Spin the herd</button>
+     <div class="spin-out" id="spinOut"><span style="color:var(--dim)">Live venues only · demo clock Wed 5:12pm</span></div>
+    </div>`);
+  document.getElementById('spinBtn').onclick=()=>{
+    const live=VENUES.filter(v=>status(v).key==='live');
+    const pool=live.length?live:VENUES;
+    const cow=document.getElementById('spinCow');
+    cow.classList.add('spinning');
+    document.getElementById('spinBtn').disabled=true;
+    let n=0; const tick=setInterval(()=>{
+      const tmp=pool[n%pool.length];
+      document.getElementById('spinOut').innerHTML=`<div>${tmp.name}</div>`;
+      n++;
+    },80);
+    setTimeout(()=>{
+      clearInterval(tick);cow.classList.remove('spinning');
+      document.getElementById('spinBtn').disabled=false;
+      const pick=pool[Math.floor(Math.random()*pool.length)];
+      const sp=pick.specials[Math.floor(Math.random()*pick.specials.length)];
+      document.getElementById('spinOut').innerHTML=`
+        <div>🎉 <b>${pick.name}</b></div>
+        <div style="font-size:.78rem;color:var(--dim);margin-top:2px">${pick.hours} · ${status(pick).label}</div>
+        <div class="deal">${sp.i} · ${priceLabel(sp)}</div>`;
+      toast(`Herd says: ${pick.name}`);
+    },1400);
+  };
+}
+
+function showMoreSheet(){
+  openSheet('More','Entertainment + planning — tucked away so deals stay king.',
+    `<button class="opt" id="moreCrawl">🗺️ Plan a pub crawl<small>Build a Cow Path · 2+ stops · stays out of the way</small></button>
+     <button class="opt" id="moreQuiz">❓ What Cow Are You<small>Quiz · result can apply a vibe filter</small></button>
+     <button class="opt" id="moreHerd">🐮 The Herd<small>12/30 cows collected</small></button>
+     <button class="opt" id="moreHoro">♈ HH Horoscope<small>Today's ridiculous guidance</small></button>`);
+  document.getElementById('moreCrawl').onclick=showCrawlSheet;
+  document.getElementById('moreQuiz').onclick=()=>openSheet('❓ What Cow Are You','','<p style="font-size:.85rem;font-weight:650;color:var(--dim)">Short quiz ships later — in production it would dump you back into Deals with a vibe applied (see sketch 009).</p><button class="opt" id="applyRowdy">Pretend I\'m a Rowdy Cow</button>');
+  setTimeout(()=>{
+    const b=document.getElementById('applyRowdy');
+    if(b)b.onclick=()=>{activeMood=MOODS.find(m=>m.k==='rowdy');closeSheet();setTab('deals');render();toast('🤪 Rowdy filter on');};
+  },0);
+  document.getElementById('moreHerd').onclick=()=>openSheet('🐮 The Herd','','<p style="font-size:.85rem;font-weight:650">12/30 collected. Visit venues to moo-ve up.</p>');
+  document.getElementById('moreHoro').onclick=()=>openSheet('♈ HH Horoscope','','<p style="font-size:.85rem;font-weight:650">Your sign wants a dive bar and a $1 draft. Trust the cow.</p>');
+}
+
+function showCrawlSheet(){
+  const renderCrawl=()=>{
+    const body=`
+      <div class="crawl-list" id="crawlList">
+        ${crawl.length?crawl.map((id,i)=>{
+          const v=VENUES.find(x=>x.id===id);
+          return `<div class="crawl-item"><span class="n">${i+1}</span><span>${v.name}</span><button data-rm="${id}">✕</button></div>`;
+        }).join(''):'<div style="font-size:.8rem;color:var(--dim);font-weight:650;padding:8px 0">No stops yet — add from the list below.</div>'}
+      </div>
+      <div class="crawl-meta">${crawl.length>=2?`~${crawl.length*4} moos · ~${crawl.length*6} min walk (mocked)`:'Add 2+ stops to see the path summary'}</div>
+      <button class="crawl-add" id="crawlClear" ${crawl.length?'':'hidden'}>Clear path</button>
+      <div style="font-size:.72rem;font-weight:800;color:var(--dim);margin:12px 0 8px;text-transform:uppercase;letter-spacing:.06em">Add a stop</div>
+      ${VENUES.filter(v=>!crawl.includes(v.id)).slice(0,10).map(v=>`
+        <button class="opt crawl-pick" data-id="${v.id}">${v.name}<small>${v.hours} · ${status(v).label}</small></button>`).join('')}`;
+    openSheet('🗺️ Plan a pub crawl','Useful when you need it. Hidden in More so it never overshadows "where do I drink now?"',body);
+    document.querySelectorAll('.crawl-pick').forEach(b=>b.onclick=()=>{crawl.push(b.dataset.id);renderCrawl();});
+    document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{crawl=crawl.filter(x=>x!==b.dataset.rm);renderCrawl();});
+    const clr=document.getElementById('crawlClear');
+    if(clr)clr.onclick=()=>{crawl=[];renderCrawl();};
+  };
+  renderCrawl();
+}
+
+function setTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===name));
+}
+
+function render(){
+  const withSt=filtered();
+  document.getElementById('list').innerHTML=withSt.map(({v,st})=>{
+    const sp=v.specials.map(s=>`<div class="special"><span class="item">${s.i}</span><span class="price">${priceLabel(s)}</span></div>`).join('');
+    const on=compare.includes(v.id);
+    return `<div class="venue ${st.key} ${on?'cmp':''}" data-id="${v.id}">
+      <div class="vtop"><span class="vname">${v.name}</span><span class="vtags">${v.tags.join(' · ')}</span><span class="vstatus">${st.label}</span></div>
+      <div class="vhours">🕒 ${v.hours}</div>${sp}
+      <div class="vactions">
+        <button class="cmp-btn ${on?'on':''}" data-cmp="${v.id}">${on?'✓ Comparing':'⇄ Compare'}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('.cmp-btn').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleCompare(b.dataset.cmp);});
+
+  const live=withSt.filter(x=>x.st.key==='live');
+  const pin=live.length?live.sort((a,b)=>minsLeft(a.st.end)-minsLeft(b.st.end))[0]:withSt[0];
+  if(pin){
+    document.getElementById('pinName').textContent=pin.v.name;
+    document.getElementById('pinSub').textContent=pin.v.tags.join(' · ')+' · '+pin.v.hours;
+    document.getElementById('pinCount').textContent=pin.st.key==='live'?`closes in ${minsLeft(pin.st.end)}m`:pin.st.label;
+  }
+
+  const pill=document.getElementById('vibePill');
+  if(activeMood){
+    pill.classList.add('show');
+    document.getElementById('vibePillText').textContent=`${activeMood.face} ${activeMood.name} · ${withSt.length} spots`;
+  } else pill.classList.remove('show');
+  updateCmpTray();
+}
+
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  const tab=t.dataset.tab;
+  setTab(tab);
+  if(tab==='deals'){closeSheet();return;}
+  if(tab==='vibe') showVibeSheet();
+  if(tab==='spin') showSpinSheet();
+  if(tab==='more') showMoreSheet();
+});
+
+document.getElementById('sheetClose').onclick=()=>{closeSheet();setTab('deals');};
+document.getElementById('overlay').onclick=e=>{if(e.target===e.currentTarget){closeSheet();setTab('deals');}};
+document.getElementById('vibeClear').onclick=()=>{activeMood=null;render();};
+document.getElementById('cmpClear').onclick=()=>{compare=[];updateCmpTray();render();};
+document.getElementById('cmpGo').onclick=showCompare;
+document.getElementById('sortSel').onchange=e=>{sortKey=e.target.value;render();};
+document.getElementById('themeBtn').onclick=()=>{
+  document.body.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';
+};
+
+render();
+</script>
+</body>
+</html>
