@@ -49,12 +49,20 @@ test('specials chip or rows present when venue has specials', () => {
     const nSpecials = (venue.specials || []).length;
     if (nSpecials === 0) continue;
     const html = renderVenueCardHtml(venue, helpers, NOW);
-    const hasChip = html.includes('hh-status specials');
+    const hasDeal = html.includes('venue-deal');
     const hasRow = html.includes('special-row');
     assert.ok(
-      hasChip || hasRow,
-      `venue "${venue.id}" has ${nSpecials} specials but no chip or rows in card`
+      hasDeal || hasRow,
+      `venue "${venue.id}" has ${nSpecials} specials but no deal line or rows in card`
     );
+  }
+});
+
+test('dense row exposes name and when label', () => {
+  for (const venue of venues) {
+    const html = renderVenueCardHtml(venue, helpers, NOW);
+    assert.ok(html.includes('venue-row-l1'), `venue "${venue.id}" missing dense row layout`);
+    assert.ok(html.includes('venue-when'), `venue "${venue.id}" missing when label`);
   }
 });
 

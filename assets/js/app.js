@@ -218,7 +218,7 @@ function render() {
   document.getElementById('cow-name').textContent = todayCow.name;
   document.getElementById('cow-mood').textContent = todayCow.mood;
   document.getElementById('cow-prophecy').textContent = `"${todayCow.prophecy}"`;
-  document.getElementById('cow-collected').textContent = `${state.collected.length}/30 collected`;
+  document.getElementById('cow-collected').textContent = `${state.collected.length}/30`;
 
   // Impostor detection badge
   const badge = document.getElementById('cow-impostor-badge');
@@ -229,19 +229,19 @@ function render() {
     badge.style.display = 'none';
   }
 
-  // ── Hero ──
-  document.getElementById('hero-title').innerHTML = `Happy Cow <span>${esc(state.data.city)}</span>`;
+  // ── Hero (hidden; keep city in document title context) ──
+  const heroTitle = document.getElementById('hero-title');
+  if (heroTitle) heroTitle.innerHTML = `Happy Cow <span>${esc(state.data.city)}</span>`;
   document.getElementById('last-updated').textContent = `Updated ${formatDate(state.data.last_updated)}`;
   const footerUpdated = document.getElementById('footer-updated');
   if (footerUpdated) footerUpdated.textContent = formatDate(state.data.last_updated);
 
-  // ── Deal of the Day ──
+  // ── Deal of the Day (More sheet) ──
   renderDealOfDay();
 
-  // ── Status Bar ──
-  renderStatusBar();
-
-  // ── Venue List ──
+  // ── Vibe chips + ending-soonest pin + venue list ──
+  renderVibeChips();
+  renderEndingPin();
   renderVenues();
 
   // ── Cow modal content (data-dependent; update each render) ──
@@ -282,16 +282,16 @@ function renderDealOfDay() {
   };
 }
 
-// ─── Status Bar ───
+// ─── Status Bar (legacy; hidden in 014 shell) ───
 const CLOSED_LABEL = 'Done'; // funny stand-in for "closed" (happy hour not running)
 function renderStatusBar() {
   const bar = document.getElementById('status-bar');
+  if (!bar || bar.hidden) return;
   bar.innerHTML = '';
   state.data.venues.forEach(v => {
     const status = isHHLive(v.hours, v.business_hours);
     const pill = document.createElement('button');
     pill.type = 'button';
-    // Unknown hours: plain pill, no status glyph/color — nothing useful to signal.
     pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : '');
     pill.textContent = status === 'live' ? `● ${v.name}` :
                        status === 'soon' ? `▲ ${v.name}` :
@@ -303,10 +303,80 @@ function renderStatusBar() {
   });
 }
 
+const VIBE_CHIP_ORDER = [
+  'patio', 'craft-beer', 'dive', 'downtown', 'brewery', 'whiskey',
+  'cocktails', 'classy', 'pub', 'wine', 'sports', 'bbq', 'late-night', 'hidden',
+];
+
+function renderVibeChips() {
+  const host = document.getElementById('vibe-chips');
+  const select = document.getElementById('filter-tag');
+  if (!host || !select || !state.data) return;
+
+  const present = new Set();
+  state.data.venues.forEach(v => (v.tags || []).forEach(t => present.add(t)));
+  const tags = VIBE_CHIP_ORDER.filter(t => present.has(t));
+  present.forEach(t => { if (!tags.includes(t)) tags.push(t); });
+
+  // Keep hidden select in sync for filter reads
+  const current = select.value;
+  select.innerHTML = `<option value="">All vibes</option>` +
+    tags.map(t => `<option value="${esc(t)}">${esc(t.replace(/-/g, ' '))}</option>`).join('');
+  if ([...select.options].some(o => o.value === current)) select.value = current;
+
+  const active = select.value;
+  host.innerHTML = [
+    `<button type="button" class="vibe-chip${!active ? ' on' : ''}" data-tag="" role="option" aria-selected="${!active}">All vibes</button>`,
+    ...tags.map(t => {
+      const on = active === t;
+      const label = t.replace(/-/g, ' ');
+      return `<button type="button" class="vibe-chip${on ? ' on' : ''}" data-tag="${esc(t)}" role="option" aria-selected="${on}">${esc(label)}</button>`;
+    }),
+  ].join('');
+
+  host.querySelectorAll('.vibe-chip').forEach(btn => {
+    btn.onclick = () => {
+      select.value = btn.dataset.tag || '';
+      renderVibeChips();
+      renderEndingPin();
+      renderVenues();
+    };
+  });
+}
+
+function dealHeadlineFor(venue) {
+  return HappyCowRender.dealHeadline(venue, specialPriceLabel);
+}
+
+function renderEndingPin() {
+  const pin = document.getElementById('ending-pin');
+  if (!pin || !state.data) return;
+  const now = new Date();
+  const live = state.data.venues
+    .map(v => ({ v, st: HappyCowHours.hhStatus(v.hours, v.business_hours, now) }))
+    .filter(x => x.st.kind === 'live' && x.st.endMin != null)
+    .sort((a, b) => a.st.endMin - b.st.endMin);
+
+  if (!live.length) {
+    pin.hidden = true;
+    return;
+  }
+  const top = live[0];
+  const left = HappyCowHours.timeUntil(top.st.endMin, now) || 'now';
+  pin.hidden = false;
+  document.getElementById('ending-pin-name').textContent = top.v.name;
+  document.getElementById('ending-pin-count').textContent = `${left} left`;
+  document.getElementById('ending-pin-deal').textContent = dealHeadlineFor(top.v);
+  document.getElementById('ending-pin-meta').textContent =
+    [top.v.hours, HappyCowRender.placeLabel(top.v)].filter(Boolean).join(' · ');
+  pin.onclick = () => scrollToVenue(top.v.id);
+}
+
 // ─── Venue List ───
 function renderVenues() {
   const search = (document.getElementById('filter-search').value || '').toLowerCase();
   const tagFilter = document.getElementById('filter-tag').value;
+  const now = new Date();
 
   const container = document.getElementById('venue-list');
   container.innerHTML = '';
@@ -319,29 +389,37 @@ function renderVenues() {
     return true;
   });
 
-  // Sort: live first, then alphabetical
-  filtered.sort((a,b) => {
-    const statusA = isHHLive(a.hours, a.business_hours);
-    const statusB = isHHLive(b.hours, b.business_hours);
-    if (statusA === 'live' && statusB !== 'live') return -1;
-    if (statusA !== 'live' && statusB === 'live') return 1;
+  // Sort: live by closing soonest, then soon by opens-in, then alpha
+  filtered.sort((a, b) => {
+    const sa = HappyCowHours.hhStatus(a.hours, a.business_hours, now);
+    const sb = HappyCowHours.hhStatus(b.hours, b.business_hours, now);
+    const rank = { live: 0, soon: 1, closed: 2, unknown: 3 };
+    const ra = rank[sa.kind] ?? 3;
+    const rb = rank[sb.kind] ?? 3;
+    if (ra !== rb) return ra - rb;
+    if (sa.kind === 'live' && sb.kind === 'live') {
+      return (sa.endMin ?? 9999) - (sb.endMin ?? 9999);
+    }
+    if (sa.kind === 'soon' && sb.kind === 'soon') {
+      return (sa.nextStartMin ?? 9999) - (sb.nextStartMin ?? 9999);
+    }
     return a.name.localeCompare(b.name);
   });
 
-  filtered.forEach(v => renderVenueCard(v, container));
+  filtered.forEach(v => renderVenueCard(v, container, now));
 }
 
 
-function renderVenueCard(venue, container) {
+function renderVenueCard(venue, container, now) {
   const expanded = state.expanded === venue.id;
+  const st = HappyCowHours.hhStatus(venue.hours, venue.business_hours, now || new Date());
+  const statusClass = st.kind === 'live' ? 'live' : st.kind === 'soon' ? 'soon' : 'done';
   const card = document.createElement('article');
-  card.className = 'venue-card' + (expanded ? ' expanded' : '');
+  card.className = 'venue-card ' + statusClass + (expanded ? ' expanded' : '');
   card.id = `venue-${venue.id}`;
 
-  // Use the pure HTML builder (render.js); then append noise span and manage expand state.
-  card.innerHTML = renderVenueCardHtml(venue, { esc, specialPriceLabel }, new Date());
+  card.innerHTML = renderVenueCardHtml(venue, { esc, specialPriceLabel }, now || new Date());
 
-  // Noise / nickname span is DOM-only (depends on app state); inject after render.
   const actionsEl = card.querySelector('.venue-actions');
   if (actionsEl) {
     const noiseSpan = document.createElement('span');
@@ -351,7 +429,6 @@ function renderVenueCard(venue, container) {
     actionsEl.appendChild(noiseSpan);
   }
 
-  // Restore expanded state (renderVenueCardHtml always renders collapsed).
   const specialsId = `specials-${venue.id}`;
   if (expanded) {
     const toggleBtn = card.querySelector('.venue-toggle');
@@ -537,7 +614,7 @@ const COW_QUESTIONS = [
   { q: "What do you call a cow during an earthquake?", a: ["A milkshake", "A shaky cow", "A trembler", "An udder quake"], correct: 0 },
   { q: "Why do cows moo?", a: ["To communicate", "To annoy the farmer", "As a mating call", "For the applause"], correct: 0 },
   { q: "What genre of music do cows prefer?", a: ["Heavy moo-tal", "Country", "Pop", "Silence"], correct: 0 },
-  { q: "What is the name of the app's roulette button?", a: ["I'm Not Picky — Pick For Me", "Random Cow", "Spin the Udder", "Cow Roulette"], correct: 0 },
+  { q: "What is the name of the app's roulette button?", a: ["Pick for me", "Random Cow", "Spin the Udder", "Cow Roulette"], correct: 0 },
   { q: "What does tapping the 🐍 in the footer do?", a: ["It confesses the site is built with spite", "It bites you", "It turns into a cow", "It orders a drink"], correct: 0 },
   { q: "What does the 'about' link open?", a: ["An arXiv paper about the moo sound", "A boring FAQ", "A contact form", "The owner's resume"], correct: 0 },
   { q: "What is the app's tagline?", a: ["Happy hour, but with cows", "Drink milk", "Bozeman's #1 directory", "We moo"], correct: 0 },
@@ -804,20 +881,32 @@ function formatDate(iso) {
 }
 
 // ─── Mystery Drink ───
+function showAppToast(msg) {
+  let t = document.getElementById('app-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'app-toast';
+    t.className = 'app-toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showAppToast._timer);
+  showAppToast._timer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
 function doMysteryDrink() {
   if (!state.data) return;
   const allSpecials = [];
   state.data.venues.forEach(v => {
     v.specials.forEach(s => {
-      allSpecials.push({ ...s, venue: v.name });
+      allSpecials.push({ ...s, venue: v.name, venueId: v.id });
     });
   });
+  if (!allSpecials.length) return;
   const pick = allSpecials[Math.floor(Math.random() * allSpecials.length)];
-  const btn = document.getElementById('mystery-btn');
-  btn.textContent = `🍸 ${pick.item} — ${specialPriceLabel(pick)} at ${pick.venue}! Tap for another`;
-  setTimeout(() => {
-    btn.textContent = "🍸 I'll Have What They're Having — Surprise Me";
-  }, 8000);
+  showAppToast(`🍸 ${pick.item} — ${specialPriceLabel(pick)} at ${pick.venue}`);
+  if (pick.venueId) scrollToVenue(pick.venueId);
 }
 
 // ─── Sad Hour ───
@@ -955,6 +1044,56 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Roulette (once) ──
   document.getElementById('roulette-btn').onclick = doRoulette;
 
+  // ── Bottom tabs + More sheet (014) ──
+  function setAppTab(name) {
+    document.querySelectorAll('.app-tab').forEach(t => t.classList.toggle('on', t.dataset.tab === name));
+  }
+  function closeMoreSheet() {
+    const sheet = document.getElementById('more-sheet');
+    if (sheet) sheet.hidden = true;
+    setAppTab('deals');
+  }
+  document.querySelectorAll('.app-tab').forEach(tab => {
+    tab.onclick = () => {
+      const name = tab.dataset.tab;
+      if (name === 'deals') {
+        closeMoreSheet();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (name === 'horoscope') {
+        closeMoreSheet();
+        setAppTab('horoscope');
+        document.getElementById('btn-horoscope').click();
+        return;
+      }
+      if (name === 'quiz') {
+        closeMoreSheet();
+        setAppTab('quiz');
+        openModal('quiz-modal');
+        return;
+      }
+      if (name === 'more') {
+        setAppTab('more');
+        document.getElementById('more-sheet').hidden = false;
+      }
+    };
+  });
+  document.getElementById('more-close').onclick = closeMoreSheet;
+  document.getElementById('more-tip').onclick = () => { closeMoreSheet(); openModal('tip-modal'); };
+  document.getElementById('more-what').onclick = () => { closeMoreSheet(); openModal('cowq-modal'); renderCowQuestion(); };
+  document.getElementById('more-moo').onclick = () => { closeMoreSheet(); playMoo(); };
+  document.getElementById('more-deal').onclick = () => {
+    closeMoreSheet();
+    const deal = document.getElementById('deal-day');
+    deal.hidden = false;
+    deal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    deal.click();
+  };
+  document.getElementById('more-sheet').addEventListener('click', (e) => {
+    if (e.target.id === 'more-sheet') closeMoreSheet();
+  });
+
   // ── Quiz submit (once) ──
   document.getElementById('quiz-form').onsubmit = handleQuiz;
 
@@ -963,6 +1102,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tip-people').oninput = renderTipCalc;
 
   // ── Filter (once) — re-renders venues but not the page ──
-  document.getElementById('filter-search').oninput = renderVenues;
-  document.getElementById('filter-tag').onchange = renderVenues;
+  document.getElementById('filter-search').oninput = () => { renderEndingPin(); renderVenues(); };
+  document.getElementById('filter-tag').onchange = () => { renderVibeChips(); renderEndingPin(); renderVenues(); };
 });

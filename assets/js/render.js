@@ -1,4 +1,4 @@
-// assets/js/render.js — pure venue-card HTML builder.
+// assets/js/render.js — pure venue-row HTML builder (014 dense format).
 // Loaded BEFORE app.js. Depends on: hours.js (HappyCowHours), format.js (HappyCowFormat).
 //
 // renderVenueCardHtml(venue, helpers, now) -> HTML string
@@ -10,24 +10,41 @@
 (function (global) {
   'use strict';
 
-  const CLOSED_LABEL = 'Done';
+  function dealHeadline(venue, specialPriceLabel) {
+    const s = (venue.specials || [])[0];
+    if (!s) return 'Tap for specials';
+    const price = specialPriceLabel(s);
+    if (price === '—' || price === 'FREE') return s.item;
+    return `${s.item} · ${price}`;
+  }
+
+  function placeLabel(venue) {
+    if (!venue.address) return '';
+    return String(venue.address).split(',')[0].trim();
+  }
+
+  function whenLabel(st, now) {
+    const d = now || new Date();
+    if (st.kind === 'live' && st.endMin != null) {
+      const left = global.HappyCowHours.timeUntil(st.endMin, d);
+      return left || 'now';
+    }
+    if (st.kind === 'soon' && st.nextStartMin != null) {
+      return global.HappyCowHours.timeUntil(st.nextStartMin, d) || 'soon';
+    }
+    if (st.kind === 'closed') return '—';
+    return '';
+  }
 
   function renderVenueCardHtml(venue, helpers, now) {
     const { esc, specialPriceLabel } = helpers;
-    const st = global.HappyCowHours.hhStatus(venue.hours, venue.business_hours, now || new Date());
-    const status = st.kind;
-    const expanded = false; // card HTML is always initially collapsed; app.js manages state
-
-    const statusText = status === 'live' ? '● Live now' :
-                       status === 'soon' ? `▲ Opens in ${global.HappyCowHours.timeUntil(st.nextStartMin, now || new Date())}` :
-                       status === 'closed' ? `○ ${CLOSED_LABEL}` :
-                       '';
-    const statusBadge = statusText ? `<div class="hh-status ${status}">${statusText}</div>` : '';
-    const nSpecials = (venue.specials || []).length;
-    const specialsChip = nSpecials
-      ? `<div class="hh-status specials">🍸 ${nSpecials} special${nSpecials === 1 ? '' : 's'}</div>` : '';
-    const badges = (statusBadge || specialsChip)
-      ? `<div class="venue-badges">${statusBadge}${specialsChip}</div>` : '';
+    const clock = now || new Date();
+    const st = global.HappyCowHours.hhStatus(venue.hours, venue.business_hours, clock);
+    const status = st.kind === 'unknown' ? 'closed' : st.kind;
+    const when = whenLabel(st, clock);
+    const deal = dealHeadline(venue, specialPriceLabel);
+    const place = placeLabel(venue);
+    const meta = [venue.hours, place].filter(Boolean).join(' · ');
 
     const specialsId = `specials-${venue.id}`;
     const hoursId = `hours-${venue.id}`;
@@ -35,13 +52,13 @@
 
     return `
     <button type="button" class="venue-toggle" aria-expanded="false" aria-controls="${specialsId}" data-venue-id="${esc(venue.id)}">
-      <div class="venue-header">
-        <div>
+      <div class="venue-row-main">
+        <div class="venue-row-l1">
           <h3 class="venue-name">${esc(venue.name)}</h3>
-          <div class="venue-detail">${esc([venue.hours, venue.address].filter(Boolean).join(' · '))}</div>
-          <div class="venue-tags">${(venue.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+          <span class="venue-when">${esc(when)}</span>
         </div>
-        ${badges}
+        <div class="venue-deal">${esc(deal)}</div>
+        <div class="venue-detail">${esc(meta)}</div>
       </div>
     </button>
     <div class="venue-specials" id="${specialsId}" hidden>
@@ -76,5 +93,5 @@
   `;
   }
 
-  global.HappyCowRender = { renderVenueCardHtml };
+  global.HappyCowRender = { renderVenueCardHtml, dealHeadline, placeLabel };
 })(typeof window !== 'undefined' ? window : globalThis);
