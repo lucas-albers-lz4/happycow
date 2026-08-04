@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Mobile deal-first (013)</title>
+<style>
+  :root{
+    --bg:#f7f0e6; --screen:#fdf6ec; --card:#fff; --text:#2c1810; --dim:#8b7355;
+    --gold:#d4a04a; --spot:#c48450; --green:#5a9c69; --line:rgba(44,24,16,.1);
+    --phone:380px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(ellipse 70% 40% at 20% 0%, rgba(212,160,74,.22), transparent),
+      radial-gradient(ellipse 50% 30% at 100% 10%, rgba(196,132,80,.14), transparent),
+      var(--bg);
+    color:var(--text);display:flex;flex-direction:column;align-items:center;
+    padding:24px 16px 40px;
+  }
+  .meta{max-width:var(--phone);width:100%;margin-bottom:14px}
+  .meta h1{font-size:1.05rem;font-weight:850;letter-spacing:-.02em}
+  .meta p{font-size:.78rem;color:var(--dim);font-weight:600;margin-top:4px;line-height:1.4}
+  .meta a{color:var(--spot);font-weight:750}
+
+  /* Phone chrome — locked ~380px composition */
+  .phone{
+    width:min(100%,var(--phone));
+    height:min(780px, calc(100vh - 110px));
+    background:#1a1410;border-radius:36px;padding:12px;
+    box-shadow:0 24px 60px rgba(44,24,16,.22), inset 0 0 0 2px #3a2e24;
+    position:relative;
+  }
+  .phone::before{
+    content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
+    width:90px;height:22px;background:#0d0a08;border-radius:12px;z-index:5;
+  }
+  .screen{
+    height:100%;background:var(--screen);border-radius:26px;overflow:hidden;
+    display:flex;flex-direction:column;position:relative;
+  }
+
+  .app-header{
+    display:flex;align-items:center;gap:10px;padding:36px 14px 10px;
+    background:var(--screen);flex:0 0 auto;
+  }
+  .brand{font-weight:850;font-size:1.15rem;letter-spacing:-.02em}
+  .brand span{color:var(--gold)}
+  .spacer{flex:1}
+  .collected{
+    display:flex;align-items:center;gap:5px;background:var(--card);
+    border:1px solid var(--gold);border-radius:999px;padding:4px 10px;
+    font-size:.72rem;font-weight:800;box-shadow:0 1px 6px rgba(0,0,0,.06);
+  }
+  .collected b{color:var(--spot)}
+
+  .scroll{flex:1;overflow-y:auto;padding:0 14px 12px;-webkit-overflow-scrolling:touch}
+
+  .pin{
+    position:relative;margin:4px 0 12px;
+    background:linear-gradient(135deg,var(--spot),var(--gold));
+    color:#fff;border-radius:16px;padding:14px 14px 14px 16px;
+    box-shadow:0 4px 16px rgba(196,132,80,.35);overflow:hidden;
+  }
+  .pin::after{content:"⏱";position:absolute;right:10px;bottom:6px;font-size:42px;opacity:.2}
+  .pin .kicker{font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+  .pin h2{font-size:1.02rem;margin:5px 0 3px;font-weight:850;padding-right:48px}
+  .pin .deal{font-size:.84rem;font-weight:700;opacity:.95}
+  .pin .meta-line{font-size:.72rem;margin-top:6px;opacity:.92;font-weight:650}
+  .pin .count{
+    position:absolute;top:12px;right:12px;background:rgba(255,255,255,.22);
+    border-radius:999px;padding:3px 9px;font-size:.68rem;font-weight:850;
+  }
+
+  .shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  .shortcut{
+    background:var(--card);border:1.5px solid var(--gold);border-radius:14px;
+    padding:11px 10px;font:inherit;font-weight:800;font-size:.8rem;cursor:pointer;
+    text-align:left;box-shadow:0 1px 6px rgba(0,0,0,.05);color:var(--text);
+  }
+  .shortcut:active{transform:scale(.97)}
+  .shortcut .ico{margin-right:4px}
+  .shortcut small{display:block;font-weight:650;color:var(--dim);font-size:.65rem;margin-top:3px}
+
+  .chips{display:flex;gap:7px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;border:1.5px solid var(--line);background:var(--card);color:var(--text);
+    border-radius:999px;padding:7px 12px;font:inherit;font-size:.74rem;font-weight:750;cursor:pointer;
+  }
+  .chip.on{background:var(--text);border-color:var(--text);color:#fff}
+
+  .list{display:flex;flex-direction:column}
+  .row{
+    display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;
+    padding:11px 4px;border-top:1px solid var(--line);cursor:pointer;
+    background:transparent;border-left:0;border-right:0;border-bottom:0;width:100%;
+    font:inherit;text-align:left;color:var(--text);
+  }
+  .row:active{background:rgba(196,132,80,.08)}
+  .row .name{font-weight:800;font-size:.88rem}
+  .row .special{font-weight:650;color:var(--spot);font-size:.78rem}
+  .row .sub{grid-column:1;font-size:.68rem;color:var(--dim);font-weight:650}
+  .row .chev{grid-row:1 / span 2;color:var(--dim);font-size:1.1rem;font-weight:300;padding-right:2px}
+  .row.live .name::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle}
+  .empty{padding:24px 8px;text-align:center;color:var(--dim);font-size:.8rem;font-weight:650}
+
+  /* Fixed tab bar inside phone */
+  nav.tabs{
+    flex:0 0 auto;display:flex;background:var(--card);
+    border-top:1px solid var(--line);padding:6px 0 10px;
+  }
+  .tab{
+    flex:1;background:none;border:none;font:inherit;cursor:pointer;
+    color:var(--dim);padding:4px 2px;font-size:.58rem;font-weight:750;
+  }
+  .tab .e{display:block;font-size:1.15rem;margin-bottom:2px}
+  .tab.on{color:var(--spot)}
+
+  .toast{
+    position:absolute;left:50%;bottom:72px;transform:translateX(-50%);
+    background:var(--spot);color:#fff;padding:9px 14px;border-radius:999px;
+    font-size:.75rem;font-weight:750;opacity:0;transition:opacity .25s;
+    pointer-events:none;z-index:20;max-width:90%;text-align:center;
+  }
+  .toast.show{opacity:1}
+
+  .stub{
+    flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px;text-align:center;gap:8px;
+  }
+  .stub.show{display:flex}
+  .stub .e{font-size:2.4rem}
+  .stub h3{font-size:1rem}
+  .stub p{font-size:.8rem;color:var(--dim);font-weight:650;max-width:28ch}
+  .stub button{
+    margin-top:8px;border:none;background:var(--spot);color:#fff;border-radius:999px;
+    padding:10px 16px;font:inherit;font-weight:800;font-size:.8rem;cursor:pointer;
+  }
+  #dealsPane{flex:1;display:flex;flex-direction:column;min-height:0}
+  #dealsPane.hide{display:none}
+</style>
+</head>
+<body>
+  <div class="meta">
+    <h1>013 · Mobile deal-first</h1>
+    <p>Locked composition from issue <a href="https://github.com/lucas-albers-lz4/happycow/issues/85">#85</a> (Claude wireframe v2). Phone frame ~380px. Demo clock Wed 5:12pm.</p>
+  </div>
+
+  <div class="phone" aria-label="Mobile prototype">
+    <div class="screen">
+      <div id="dealsPane">
+        <header class="app-header">
+          <div class="brand">🧀 Happy <span>cow</span></div>
+          <div class="spacer"></div>
+          <button class="collected" id="herdBtn" type="button">🏅 <b>4</b>/30 collected</button>
+        </header>
+
+        <div class="scroll">
+          <div class="pin" id="pin">
+            <div class="kicker">Ending soonest</div>
+            <div class="count" id="pinCount">—</div>
+            <h2 id="pinName">…</h2>
+            <div class="deal" id="pinDeal"></div>
+            <div class="meta-line" id="pinMeta"></div>
+          </div>
+
+          <div class="shortcuts">
+            <button class="shortcut" id="pickBtn" type="button">
+              <span class="ico">🎲</span>Pick for me
+              <small>Cow chooses a live deal</small>
+            </button>
+            <button class="shortcut" id="crowdBtn" type="button">
+              <span class="ico">👥</span>What they're having
+              <small>Mock crowd pick</small>
+            </button>
+          </div>
+
+          <div class="chips" id="chips" role="listbox" aria-label="Vibes"></div>
+          <div class="list" id="list"></div>
+        </div>
+      </div>
+
+      <div class="stub" id="stubPane">
+        <div class="e" id="stubEmoji">♈</div>
+        <h3 id="stubTitle">Horoscope</h3>
+        <p id="stubBody">Games live here — demoted out of the decision path. Stub only for this sketch.</p>
+        <button type="button" id="backDeals">Back to Deals</button>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab on" data-tab="deals" type="button"><span class="e">🍺</span>Deals</button>
+        <button class="tab" data-tab="horoscope" type="button"><span class="e">♈</span>Horoscope</button>
+        <button class="tab" data-tab="split" type="button"><span class="e">🧾</span>Split tab</button>
+        <button class="tab" data-tab="quiz" type="button"><span class="e">❓</span>Cow quiz</button>
+      </nav>
+
+      <div class="toast" id="toast"></div>
+    </div>
+  </div>
+
+<script>
+const NOW = new Date('2026-08-05T17:12:00');
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAY = DAYS[NOW.getDay()];
+
+// Compact deal-first rows — specials written for dense scan (wireframe style)
+const VENUES = [
+  {id:'blackbird',name:'Blackbird',area:'Downtown',tags:['downtown','classy','patio'],hours:'Daily 4:30-5:30pm',
+   specials:[{i:'Half-price wine bottles',p:0,d:'Half price'}]},
+  {id:'ale-works',name:'Ale Works',area:'Downtown',tags:['downtown','craft-beer'],hours:'Daily 4-6pm',
+   specials:[{i:'$1 off drafts',p:0,d:'$1.00 off'}]},
+  {id:'copper',name:'Copper Whiskey Bar',area:'Downtown',tags:['whiskey'],hours:'Mon-Fri 3-5pm',
+   specials:[{i:'$5 off whiskey flights',p:0,d:'$5 off'}]},
+  {id:'brigade',name:'Brigade',area:'Downtown',tags:['downtown','patio'],hours:'Daily 3-6pm',
+   specials:[{i:'$3 martinis',p:3,d:''}]},
+  {id:'bar-ix',name:'Bar IX',area:'Downtown',tags:['dive'],hours:'Daily 2-7pm',
+   specials:[{i:'2-for-1 wells',p:0,d:'2-4-1'}]},
+  {id:'club-tavern',name:'The Club Tavern',area:'North',tags:['pub','sports'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'$1 drafts',p:1,d:''}]},
+  {id:'shine',name:'Shine Beer Sanctuary',area:'Downtown',tags:['craft-beer','patio'],hours:'Daily 3-5pm',
+   specials:[{i:'2-for-1 flights',p:0,d:'2-for-1'}]},
+  {id:'rocking-r',name:'Rocking R Bar',area:'Main St',tags:['dive','western'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'50¢ wings + drafts',p:4,d:'50¢ wings'}]},
+  {id:'bourbon',name:'Bourbon',area:'Downtown',tags:['whiskey','downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'Whiskey cocktail specials',p:0,d:''}]},
+  {id:'devils',name:'Devils Toboggan',area:'Downtown',tags:['downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'Beers $3 / wine $4',p:3,d:''}]},
+  {id:'urban-kitchen',name:'Urban Kitchen',area:'Downtown',tags:['classy','patio'],hours:'Daily 3-6pm',
+   specials:[{i:'Half-off small plates',p:0,d:'Half off'}]},
+  {id:'bacchus',name:'The Bacchus Pub',area:'Downtown',tags:['pub'],hours:'Daily 2-6pm',
+   specials:[{i:'Wells $3.50',p:3.5,d:''}]},
+  {id:'pour-house',name:'The Pour House',area:'Downtown',tags:['downtown','craft-beer'],hours:'Mon-Fri 2-6pm',
+   specials:[{i:'Micro drafts $3.75',p:3.75,d:''}]},
+  {id:'old-chicago',name:'Old Chicago',area:'West',tags:['pub'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Domestic $2.50 + ½ apps',p:2.5,d:''}]},
+  {id:'la-brasserie',name:'La Brasserie',area:'Downtown',tags:['classy'],hours:'Daily 4-6pm',
+   specials:[{i:'Select wines $6',p:6,d:''}]},
+  {id:'bww',name:'Buffalo Wild Wings',area:'North',tags:['sports'],hours:'Mon-Fri 3-6pm',
+   specials:[{i:'BOGO wings',p:0,d:'BOGO'}]},
+];
+
+// Wireframe chip labels (not raw tag keys)
+const CHIPS = [
+  {k:'all', label:'All vibes'},
+  {k:'patio', label:'Patio'},
+  {k:'craft-beer', label:'Craft beer'},
+  {k:'dive', label:'Dive'},
+];
+
+function toMin(s){
+  const m=s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);if(!m)return null;
+  let h=+m[1],mi=+(m[2]||0);const ap=m[3].toLowerCase();
+  if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;return h*60+mi;
+}
+function windowsOf(hoursStr){
+  const wins=[];
+  for(const part of hoursStr.split(',')){
+    const m=part.trim().match(/^([A-Za-z,\- ]+?)\s+(\d[^ ]*(?:-\d[^ ]*)?(?:\s*[ap]m)?)/i);if(!m)continue;
+    const daySet=new Set();
+    if(/daily/i.test(m[1])) DAYS.forEach(d=>daySet.add(d));
+    else {
+      for(const range of m[1].trim().split(/\s+(?=[A-Z])/)){
+        const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);if(!r)continue;
+        const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;
+        let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}
+      }
+    }
+    const mm=m[2].match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(\d{1,2}(?::\d{2})?)\s*(am|pm)/i);
+    if(mm){const ss=mm[2]||mm[4];wins.push({days:daySet,s:toMin(mm[1]+' '+ss),e:toMin(mm[3]+' '+mm[4])});}
+  }
+  return wins;
+}
+function status(v){
+  const h=NOW.getHours()*60+NOW.getMinutes();let best=null;
+  for(const w of windowsOf(v.hours)){
+    if(!w.days.has(DAY))continue;
+    if(h>=w.s&&h<=w.e)return{key:'live',label:'LIVE',end:w.e};
+    const until=w.s-h;if(until>0&&(best===null||until<best.until))best={until,start:w.s};
+  }
+  if(best)return{key:'soon',label:`Opens in ${best.until}m`,until:best.until,start:best.start};
+  return{key:'done',label:'Closed'};
+}
+function minsLeft(end){return end-(NOW.getHours()*60+NOW.getMinutes());}
+function hoursLabel(hours){
+  // Dense row copy: "4:00–6:00pm" style from Daily 4-6pm
+  const m=hours.match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)?\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)/i);
+  if(!m)return hours;
+  const ap=(m[6]||'pm').toLowerCase();
+  const sH=+m[1], sM=m[2]||'00', eH=+m[4], eM=m[5]||'00';
+  return `${sH}:${sM}–${eH}:${eM}${ap}`;
+}
+function dealLine(v){return v.specials[0].i;}
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+let activeChip='all';
+
+function filtered(){
+  let list=[...VENUES];
+  if(activeChip!=='all') list=list.filter(v=>v.tags.includes(activeChip));
+  return list.map(v=>({v,st:status(v)})).sort((a,b)=>{
+    const rank={live:0,soon:1,done:2};
+    if(rank[a.st.key]!==rank[b.st.key]) return rank[a.st.key]-rank[b.st.key];
+    if(a.st.key==='live') return minsLeft(a.st.end)-minsLeft(b.st.end);
+    return (a.st.until||9999)-(b.st.until||9999);
+  });
+}
+
+function renderChips(){
+  document.getElementById('chips').innerHTML=CHIPS.map(c=>`
+    <button class="chip ${activeChip===c.k?'on':''}" type="button" data-k="${c.k}">${c.label}</button>
+  `).join('');
+  document.querySelectorAll('.chip').forEach(btn=>{
+    btn.onclick=()=>{activeChip=btn.dataset.k;render();};
+  });
+}
+
+function renderPin(withSt){
+  const live=withSt.filter(x=>x.st.key==='live');
+  const pin=live.length
+    ? live.sort((a,b)=>minsLeft(a.st.end)-minsLeft(b.st.end))[0]
+    : withSt[0];
+  if(!pin)return;
+  document.getElementById('pinName').textContent=pin.v.name;
+  document.getElementById('pinDeal').textContent=dealLine(pin.v);
+  if(pin.st.key==='live'){
+    document.getElementById('pinCount').textContent=`${minsLeft(pin.st.end)} min`;
+    document.getElementById('pinMeta').textContent=`Closes in ${minsLeft(pin.st.end)} min · ${pin.v.area}`;
+  } else {
+    document.getElementById('pinCount').textContent=pin.st.label;
+    document.getElementById('pinMeta').textContent=`${pin.st.label} · ${pin.v.area}`;
+  }
+}
+
+function renderList(withSt){
+  const el=document.getElementById('list');
+  if(!withSt.length){el.innerHTML='<div class="empty">No spots for this vibe — try All vibes</div>';return;}
+  el.innerHTML=withSt.map(({v,st})=>`
+    <button class="row ${st.key}" type="button" data-id="${v.id}">
+      <div class="name">${v.name} <span class="special">— ${dealLine(v)}</span></div>
+      <div class="chev">›</div>
+      <div class="sub">${hoursLabel(v.hours)} · ${v.area}${st.key==='live'?' · live':st.key==='soon'?' · '+st.label:''}</div>
+    </button>
+  `).join('');
+  el.querySelectorAll('.row').forEach(row=>{
+    row.onclick=()=>{
+      const v=VENUES.find(x=>x.id===row.dataset.id);
+      toast(`${v.name} · ${dealLine(v)}`);
+    };
+  });
+}
+
+function render(){
+  const withSt=filtered();
+  renderChips();
+  renderPin(withSt);
+  renderList(withSt);
+}
+
+function showDeals(){
+  document.getElementById('dealsPane').classList.remove('hide');
+  document.getElementById('stubPane').classList.remove('show');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab==='deals'));
+}
+
+function showStub(tab){
+  const map={
+    horoscope:{e:'♈',title:'Horoscope',body:'Your sign wants a patio and something on special. Stub — games stay out of the deal path.'},
+    split:{e:'🧾',title:'Split tab',body:'Split-the-check toy screen. Stub only — not built in this sketch.'},
+    quiz:{e:'❓',title:'Cow quiz',body:'What Cow Are You? Stub — result would feed back into vibes in a later pass.'},
+  };
+  const s=map[tab];if(!s)return;
+  document.getElementById('dealsPane').classList.add('hide');
+  document.getElementById('stubPane').classList.add('show');
+  document.getElementById('stubEmoji').textContent=s.e;
+  document.getElementById('stubTitle').textContent=s.title;
+  document.getElementById('stubBody').textContent=s.body;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===tab));
+}
+
+document.getElementById('pickBtn').onclick=()=>{
+  const live=VENUES.filter(v=>status(v).key==='live');
+  const pool=live.length?live:VENUES;
+  const pick=pool[Math.floor(Math.random()*pool.length)];
+  toast(`🎲 Pick for me → ${pick.name} — ${dealLine(pick)}`);
+};
+document.getElementById('crowdBtn').onclick=()=>{
+  // Mock "what they're having" — bias toward live + cheap-ish
+  const live=VENUES.filter(v=>status(v).key==='live');
+  const pick=(live.length?live:VENUES).slice().sort((a,b)=>(a.specials[0].p||2)-(b.specials[0].p||2))[0];
+  toast(`👥 Crowd's on ${pick.name} — ${dealLine(pick)}`);
+};
+document.getElementById('herdBtn').onclick=()=>toast('🏅 4 of 30 cows collected — visit spots to grow the herd');
+document.getElementById('backDeals').onclick=showDeals;
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    if(t.dataset.tab==='deals') showDeals();
+    else showStub(t.dataset.tab);
+  };
+});
+
+render();
+</script>
+</body>
+</html>

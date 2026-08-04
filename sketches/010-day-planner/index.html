@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Day Planner</title>
+<style>
+  :root{--bg:#fdf6ec;--card:#fff;--text:#2c1810;--dim:#8b7355;--gold:#d4a04a;--spot:#c48450;--green:#5a9c69;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+  body.dark{--bg:#120e0a;--card:#1e1814;--text:#e8ddd0;--dim:#8b7a6a;--shadow:0 2px 12px rgba(0,0,0,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 40px}
+  header{position:sticky;top:0;z-index:10;background:var(--bg);padding:12px 0 8px;display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:1.2rem}.logo span{color:var(--gold)}
+  .spacer{flex:1}
+  .icon-btn{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:50%;width:36px;height:36px;cursor:pointer;box-shadow:var(--shadow)}
+  .kicker{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--spot);margin:8px 0 4px}
+  h1{font-size:1.3rem;margin-bottom:4px}
+  .sub{font-size:.82rem;color:var(--dim);font-weight:600;margin-bottom:12px}
+  .days{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+  .days::-webkit-scrollbar{display:none}
+  .day{flex:0 0 auto;min-width:52px;padding:10px 8px;border-radius:14px;border:1.5px solid rgba(0,0,0,.1);background:var(--card);font:inherit;cursor:pointer;text-align:center;box-shadow:var(--shadow)}
+  body.dark .day{border-color:rgba(255,255,255,.12)}
+  .day .d{font-size:.68rem;font-weight:800;color:var(--dim);text-transform:uppercase}
+  .day .n{font-size:1.05rem;font-weight:850}
+  .day.on{background:var(--spot);border-color:var(--spot);color:#fff}
+  .day.on .d{color:rgba(255,255,255,.85)}
+  .day.today:not(.on){border-color:var(--gold)}
+  .time{display:flex;align-items:center;gap:10px;margin-bottom:14px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow)}
+  .time label{font-size:.72rem;font-weight:800;color:var(--dim);white-space:nowrap}
+  .time input{flex:1;accent-color:var(--spot)}
+  .time .val{font-weight:850;font-size:.9rem;min-width:4.5ch}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .stat{background:var(--card);border-radius:12px;padding:10px;text-align:center;box-shadow:var(--shadow)}
+  .stat b{display:block;font-size:1.2rem;font-weight:850}
+  .stat span{font-size:.65rem;font-weight:750;color:var(--dim);text-transform:uppercase}
+  .stat.live b{color:var(--green)}.stat.soon b{color:var(--gold)}
+  .hint{font-size:.78rem;color:var(--dim);font-weight:700;margin-bottom:10px}
+  .venue{background:var(--card);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid var(--green)}
+  .venue.soon{border-left-color:var(--gold)}
+  .venue.done{border-left-color:#bbb;opacity:.65}
+  .vtop{display:flex;align-items:baseline;gap:8px}
+  .vname{font-weight:800}.vtags{font-size:.68rem;color:var(--dim);font-weight:600}
+  .vstatus{margin-left:auto;font-size:.66rem;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--green);color:#fff;white-space:nowrap}
+  .soon .vstatus{background:var(--gold)}.done .vstatus{background:#ccc;color:#555}
+  .vhours{font-size:.75rem;color:var(--dim);font-weight:600;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🐄 Happy <span>Cow</span></div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeBtn">🌙</button>
+  </header>
+
+  <div class="kicker">Plan ahead</div>
+  <h1>📅 Day Planner</h1>
+  <div class="sub">Not just "what's live now" — pick a day and time. Statuses recompute from the hours grammar.</div>
+
+  <div class="days" id="days"></div>
+  <div class="time">
+    <label>At</label>
+    <input type="range" id="time" min="720" max="1320" step="15" value="1032">
+    <span class="val" id="timeLabel">5:12pm</span>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="hint" id="hint"></div>
+  <div id="list"></div>
+</div>
+
+<script>
+const REAL_NOW=new Date('2026-08-05T17:12:00'); // Wed
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const VENUES=[
+  {id:'ale-works',name:'Ale Works',tags:['downtown'],hours:'Daily 4-6pm'},
+  {id:'bar-ix',name:'Bar IX',tags:['dive'],hours:'Daily 2-7pm'},
+  {id:'blackbird',name:'Blackbird',tags:['classy'],hours:'Daily 4:30-5:30pm'},
+  {id:'brigade',name:'Brigade',tags:['downtown'],hours:'Daily 3-6pm'},
+  {id:'copper',name:'Copper Whiskey',tags:['whiskey'],hours:'Mon-Fri 3-5pm, Sun all day'},
+  {id:'club-tavern',name:'Club Tavern',tags:['pub','sports'],hours:'Mon-Fri 4-7pm'},
+  {id:'dry-hills',name:'Dry Hills',tags:['whiskey'],hours:'Tue 4-8pm'},
+  {id:'finks',name:'Finks Deli',tags:['downtown'],hours:'Daily 2-4pm'},
+  {id:'old-chicago',name:'Old Chicago',tags:['pub'],hours:'Mon-Fri 4-7pm'},
+  {id:'pour-house',name:'Pour House',tags:['downtown'],hours:'Mon-Fri 2-6pm'},
+  {id:'revelry',name:'Revelry',tags:['downtown'],hours:'Daily 2:30-4pm'},
+  {id:'rocking-r',name:'Rocking R',tags:['dive','western'],hours:'Mon-Fri 4-7pm'},
+  {id:'shine',name:'Shine',tags:['craft-beer'],hours:'Daily 3-5pm'},
+  {id:'bacchus',name:'Bacchus Pub',tags:['pub'],hours:'Daily 2-6pm'},
+  {id:'urban-kitchen',name:'Urban Kitchen',tags:['classy'],hours:'Daily 3-6pm'},
+  {id:'bww',name:'Buffalo Wild Wings',tags:['sports'],hours:'Mon-Fri 3-6pm'},
+];
+
+function toMin(s){const m=s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);if(!m)return null;let h=+m[1],mi=+(m[2]||0);const ap=m[3].toLowerCase();if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;return h*60+mi;}
+function windowsOf(hoursStr){
+  const wins=[];
+  for(const part of hoursStr.split(',')){
+    const m=part.trim().match(/^([A-Za-z,\- ]+?)\s+(\d[^ ]*(?:-\d[^ ]*)?(?:\s*[ap]m)?|(?:all day))$/i);if(!m)continue;
+    const daySet=new Set();
+    if(/daily/i.test(m[1]))DAYS.forEach(d=>daySet.add(d));
+    else{for(const range of m[1].trim().split(/\s+(?=[A-Z])/)){const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);if(!r)continue;const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}}}
+    if(/all day/i.test(m[2])){wins.push({days:daySet,s:0,e:1439});continue;}
+    const mm=m[2].match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(\d{1,2}(?::\d{2})?)\s*(am|pm)/i);
+    if(mm){const ss=mm[2]||mm[4];wins.push({days:daySet,s:toMin(mm[1]+' '+ss),e:toMin(mm[3]+' '+mm[4])});}
+  }
+  return wins;
+}
+function status(v, day, mins){
+  const wins=windowsOf(v.hours);
+  if(!wins.length)return{key:'done',label:'No HH'};
+  let best=null;
+  for(const w of wins){
+    if(!w.days.has(day))continue;
+    if(mins>=w.s&&mins<=w.e)return{key:'live',label:`LIVE · to ${fmt(w.e)}`,end:w.e};
+    const until=w.s-mins;
+    if(until>0&&(best===null||until<best.until))best={until,start:w.s};
+  }
+  if(best)return{key:'soon',label:`Opens ${fmt(best.start)}`,until:best.until};
+  return{key:'done',label:'Closed'};
+}
+function fmt(m){let h=Math.floor(m/60),mi=m%60;const ap=h>=12?'pm':'am';h=h%12||12;return h+':'+(mi<10?'0':'')+mi+ap;}
+
+// build week starting from "today" (Wed Aug 5)
+const week=[];
+for(let i=0;i<7;i++){
+  const d=new Date(REAL_NOW);d.setDate(REAL_NOW.getDate()+i);
+  week.push({date:d,day:DAYS[d.getDay()],n:d.getDate(),today:i===0});
+}
+
+let dayIdx=0, mins=17*60+12;
+
+function renderDays(){
+  document.getElementById('days').innerHTML=week.map((w,i)=>`
+    <button class="day ${i===dayIdx?'on':''} ${w.today?'today':''}" data-i="${i}">
+      <div class="d">${w.today?'Today':w.day}</div>
+      <div class="n">${w.n}</div>
+    </button>`).join('');
+  document.querySelectorAll('.day').forEach(b=>b.onclick=()=>{dayIdx=+b.dataset.i;render();});
+}
+
+function render(){
+  renderDays();
+  document.getElementById('timeLabel').textContent=fmt(mins);
+  const day=week[dayIdx].day;
+  const withSt=VENUES.map(v=>({v,st:status(v,day,mins)}));
+  withSt.sort((a,b)=>{
+    const rank={live:0,soon:1,done:2};
+    if(rank[a.st.key]!==rank[b.st.key])return rank[a.st.key]-rank[b.st.key];
+    return (a.st.until||a.st.end||0)-(b.st.until||b.st.end||0);
+  });
+  const live=withSt.filter(x=>x.st.key==='live').length;
+  const soon=withSt.filter(x=>x.st.key==='soon').length;
+  const done=withSt.filter(x=>x.st.key==='done').length;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat live"><b>${live}</b><span>Live</span></div>
+    <div class="stat soon"><b>${soon}</b><span>Soon</span></div>
+    <div class="stat"><b>${done}</b><span>Closed</span></div>`;
+  const label=week[dayIdx].today?`Today ${week[dayIdx].day}`:`${week[dayIdx].day} ${week[dayIdx].n}`;
+  document.getElementById('hint').textContent=`${label} at ${fmt(mins)} · ${live} happy hours running`;
+  document.getElementById('list').innerHTML=withSt.map(({v,st})=>`
+    <div class="venue ${st.key}">
+      <div class="vtop"><span class="vname">${v.name}</span><span class="vtags">${v.tags.join(' · ')}</span><span class="vstatus">${st.label}</span></div>
+      <div class="vhours">🕒 ${v.hours}</div>
+    </div>`).join('');
+}
+
+document.getElementById('time').oninput=e=>{mins=+e.target.value;render();};
+document.getElementById('themeBtn').onclick=()=>{document.body.classList.toggle('dark');document.getElementById('themeBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';};
+render();
+</script>
+</body>
+</html>

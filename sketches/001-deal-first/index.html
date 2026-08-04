@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Deal First</title>
+<style>
+  :root{
+    --bg:#fdf6ec; --card:#ffffff; --text:#2c1810; --dim:#8b7355;
+    --gold:#d4a04a; --red:#d46a6a; --green:#5a9c69; --spot1:#d4a04a; --spot2:#c48450;
+    --radius:16px; --radius-sm:10px; --shadow:0 2px 12px rgba(0,0,0,0.08);
+  }
+  body.dark{
+    --bg:#120e0a; --card:#1e1814; --text:#e8ddd0; --dim:#8b7a6a;
+    --gold:#c48450; --red:#c44a4a; --green:#4a7c59; --shadow:0 2px 12px rgba(0,0,0,0.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;transition:background .3s,color .3s}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 90px}
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:var(--bg);backdrop-filter:blur(8px);padding:12px 0 8px;border-bottom:1px solid transparent}
+  .row{display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+  .logo span{color:var(--gold)}
+  .herd{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--spot1);border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+  .herd b{color:var(--spot2)}
+  .spacer{flex:1}
+  .icon-btn{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;box-shadow:var(--shadow)}
+  /* live deal pin */
+  .pin{position:relative;margin:10px 0 12px;background:linear-gradient(135deg,var(--spot2),var(--gold));color:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);overflow:hidden}
+  .pin::after{content:"🐄";position:absolute;right:-8px;bottom:-14px;font-size:64px;opacity:.18;transform:rotate(-12deg)}
+  .pin .kicker{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .pin h2{font-size:1.05rem;margin:4px 0 2px}
+  .pin .sub{font-size:.8rem;opacity:.95}
+  .pin .count{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:800}
+  /* shortcuts */
+  .shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .shortcut{background:var(--card);border:2px solid var(--spot1);border-radius:var(--radius);padding:12px 10px;font-weight:800;font-size:.88rem;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s}
+  .shortcut:active{transform:scale(.97)}
+  .shortcut small{display:block;font-weight:600;color:var(--dim);font-size:.68rem;margin-top:2px}
+  /* chips */
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1.5px solid rgba(0,0,0,.12);background:var(--card);color:var(--text);border-radius:999px;padding:7px 14px;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .15s}
+  body.dark .chip{border-color:rgba(255,255,255,.15)}
+  .chip.on{background:var(--spot2);border-color:var(--spot2);color:#fff}
+  .chip .n{opacity:.6;font-size:.68rem;margin-left:4px}
+  .chip.on .n{opacity:.9}
+  .count-badge{display:none;margin:0 0 8px;font-size:.72rem;font-weight:700;color:var(--spot2)}
+  .count-badge.show{display:block}
+  /* sort */
+  .sortrow{display:flex;align-items:center;gap:8px;margin:2px 0 10px;font-size:.75rem;color:var(--dim);font-weight:700}
+  .sortrow select{flex:1;background:var(--card);border:1px solid rgba(0,0,0,.1);border-radius:var(--radius-sm);padding:7px 10px;font:inherit;font-size:.78rem;color:var(--text)}
+  /* venue cards */
+  .venue{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:12px;box-shadow:var(--shadow);border-left:4px solid var(--green)}
+  .venue.live{border-left-color:var(--green)}
+  .venue.soon{border-left-color:var(--gold)}
+  .venue.done{border-left-color:#bbb;opacity:.72}
+  .vtop{display:flex;align-items:baseline;gap:8px}
+  .vname{font-weight:800;font-size:1rem}
+  .vtags{font-size:.68rem;color:var(--dim);font-weight:600}
+  .vstatus{margin-left:auto;font-size:.66rem;font-weight:800;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .live .vstatus{background:var(--green);color:#fff}
+  .soon .vstatus{background:var(--gold);color:#fff}
+  .done .vstatus{background:#ccc;color:#555}
+  .vhours{font-size:.75rem;color:var(--dim);font-weight:600;margin:6px 0 8px}
+  .special{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px dashed rgba(0,0,0,.08);font-size:.82rem}
+  body.dark .special{border-color:rgba(255,255,255,.08)}
+  .special .item{font-weight:600}
+  .special .price{font-weight:800;color:var(--spot2);white-space:nowrap}
+  .mystery{width:100%;margin-top:10px;padding:9px;border:2px dashed var(--spot1);border-radius:var(--radius-sm);background:transparent;color:var(--text);font:inherit;font-size:.76rem;font-weight:700;cursor:pointer}
+  /* skeleton */
+  .skel{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .skel .bar{height:14px;border-radius:6px;background:linear-gradient(90deg,rgba(0,0,0,.06),rgba(0,0,0,.12),rgba(0,0,0,.06));background-size:200% 100%;animation:shimmer 1.2s infinite;margin-bottom:8px}
+  body.dark .skel .bar{background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.1),rgba(255,255,255,.05));background-size:200% 100%}
+  .skel .bar:last-child{width:60%}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  /* bottom tabs */
+  nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid rgba(0,0,0,.08);display:flex;z-index:30;padding-bottom:env(safe-area-inset-bottom)}
+  body.dark nav.tabs{border-color:rgba(255,255,255,.08)}
+  .tab{flex:1;padding:9px 0 8px;text-align:center;font-size:.62rem;font-weight:700;color:var(--dim);cursor:pointer;background:none;border:none;border-top:3px solid transparent}
+  .tab .e{font-size:1.15rem;display:block;margin-bottom:2px}
+  .tab.on{color:var(--spot2);border-top-color:var(--spot2)}
+  /* modals */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
+  .overlay.show{display:flex}
+  .sheet{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:20px 18px 28px;max-height:80vh;overflow:auto}
+  .sheet h3{font-size:1.05rem;margin-bottom:10px}
+  .sheet .close{float:right;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--dim)}
+  .sheet .opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;font:inherit;font-size:.85rem;cursor:pointer;font-weight:700}
+  .toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:var(--spot2);color:#fff;padding:10px 18px;border-radius:999px;font-size:.8rem;font-weight:700;opacity:0;transition:opacity .3s;z-index:60;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="row">
+      <div class="logo">🐄 Happy <span>Cow</span></div>
+      <div class="spacer"></div>
+      <button class="herd" id="herdBtn">🐮 <b id="herdCount">12</b>/30</button>
+      <button class="icon-btn" id="themeBtn" title="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <div class="pin" id="pinCard">
+    <div class="kicker">⏰ Ending Soonest</div>
+    <h2 id="pinName">Loading…</h2>
+    <div class="sub" id="pinSub"></div>
+    <div class="count" id="pinCount"></div>
+  </div>
+
+  <div class="shortcuts">
+    <button class="shortcut" id="pickBtn">🎲 I'm Not Picky<small>Pick for me</small></button>
+    <button class="shortcut" id="surpriseBtn">🍸 What They're Having<small>Surprise me</small></button>
+  </div>
+
+  <div class="count-badge" id="countBadge"></div>
+  <div class="chips" id="chips"></div>
+
+  <div class="sortrow">
+    <span>Sort:</span>
+    <select id="sortSel">
+      <option value="closing">Closing soonest</option>
+      <option value="cheap">Cheapest first</option>
+      <option value="alpha">A–Z</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<nav class="tabs">
+  <button class="tab on" data-tab="deals"><span class="e">🍺</span>Deals</button>
+  <button class="tab" data-tab="quiz"><span class="e">❓</span>Cow Quiz</button>
+  <button class="tab" data-tab="horo"><span class="e">♈</span>Horoscope</button>
+  <button class="tab" data-tab="math"><span class="e">🧮</span>Moo Math</button>
+  <button class="tab" data-tab="herd"><span class="e">🐮</span>Herd</button>
+</nav>
+
+<div class="overlay" id="sheetOverlay">
+  <div class="sheet">
+    <button class="close" id="sheetClose">&times;</button>
+    <h3 id="sheetTitle"></h3>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---- demo clock: pretend it's 5:12pm on a Wednesday for lively statuses
+const NOW = new Date('2026-08-05T17:12:00');
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAY = DAYS[NOW.getDay()];
+
+const VENUES = [
+  {id:'ale-works',name:'Ale Works',tags:['downtown','craft-beer'],hours:'Daily 4-6pm',
+   specials:[{i:'Draft beers',p:0,d:'$1.00 off draft beers'},{i:'Wine by the glass',p:0,d:'$1.00 off wine by the glass'}]},
+  {id:'bar-ix',name:'Bar IX',tags:['dive'],hours:'Daily 2-7pm',
+   specials:[{i:'Two drinks for price of one',p:0,d:'2-4-1: buy one drink, get one free'},{i:'Well drinks',p:0,d:'All well drinks 2-for-1'}]},
+  {id:'bitterroot',name:'Bitterroot Bistro',tags:['classy'],hours:'Daily 2-5pm',
+   specials:[{i:'Beef pasty',p:15,d:'Two Butte-style pasties, MT Wagyu'},{i:'Bison tartare',p:13,d:'Hand-chopped bison on focaccia'}]},
+  {id:'blackbird',name:'Blackbird',tags:['downtown','classy'],hours:'Daily 4:30-5:30pm',
+   specials:[{i:'Select bottles of wine',p:0,d:'Half price select bottles of wine'}]},
+  {id:'bourbon',name:'Bourbon',tags:['whiskey','downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'BBQ favorites',p:0,d:'Food specials: classic American BBQ'},{i:'Whiskey cocktails',p:0,d:'Craft whiskey cocktail specials'}]},
+  {id:'brigade',name:'Brigade',tags:['downtown'],hours:'Daily 3-6pm',
+   specials:[{i:'Martinis',p:3,d:'Vodka, gin, cosmo, infused berry'}]},
+  {id:'devils',name:'Devils Toboggan',tags:['downtown'],hours:'Daily 4-6pm',
+   specials:[{i:'Beers',p:3,d:''},{i:'Wine',p:4,d:''}]},
+  {id:'dry-hills',name:'Dry Hills Distillery',tags:['whiskey'],hours:'Tue 4-8pm',
+   specials:[{i:'All cocktails',p:2,d:'Every cocktail on the menu'}]},
+  {id:'finks',name:'Finks Deli',tags:['downtown'],hours:'Daily 2-4pm',
+   specials:[{i:'Beer',p:3,d:''},{i:'Sandwiches',p:0,d:'Half off select sandwiches'}]},
+  {id:'la-brasserie',name:'La Brasserie',tags:['classy'],hours:'Daily 4-6pm',
+   specials:[{i:'Select wines',p:6,d:'By the glass'}]},
+  {id:'revelry',name:'Revelry',tags:['downtown'],hours:'Daily 2:30-4pm',
+   specials:[{i:'Rainier',p:2,d:'Tallboys'},{i:'Well drinks',p:3,d:''}]},
+  {id:'rocking-r',name:'Rocking R Bar',tags:['dive','western'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Drafts',p:4,d:''},{i:'Wings',p:0,d:'50¢ wings'}]},
+  {id:'shine',name:'Shine Beer Sanctuary',tags:['craft-beer'],hours:'Daily 3-5pm',
+   specials:[{i:'Local pints',p:4,d:''},{i:'Taster flights',p:0,d:'2-for-1 flights'}]},
+  {id:'bacchus',name:'The Bacchus Pub',tags:['pub'],hours:'Daily 2-6pm',
+   specials:[{i:'Well drinks',p:3.5,d:''},{i:'Domestic pints',p:4,d:''}]},
+  {id:'club-tavern',name:'The Club Tavern & Grill',tags:['pub','sports'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Draft beer',p:1,d:'$1 drafts'}]},
+  {id:'urban-kitchen',name:'Urban Kitchen',tags:['classy'],hours:'Daily 3-6pm',
+   specials:[{i:'All wines by the glass',p:2,d:''},{i:'Small plates',p:0,d:'Half off small plates'}]},
+  {id:'pour-house',name:'The Pour House',tags:['downtown'],hours:'Mon-Fri 2-6pm',
+   specials:[{i:'Micro drafts',p:3.75,d:''},{i:'Appetizers',p:0,d:'$2 off appetizers'}]},
+  {id:'old-chicago',name:'Old Chicago',tags:['pub'],hours:'Mon-Fri 4-7pm',
+   specials:[{i:'Domestic bottles & pints',p:2.5,d:''},{i:'Appetizers',p:0,d:'Half price'}]},
+  {id:'bww',name:'Buffalo Wild Wings',tags:['sports'],hours:'Mon-Fri 3-6pm',
+   specials:[{i:'Strawberry margarita',p:6,d:''},{i:'Bone-in wings',p:0,d:'BOGO wings'}]},
+  {id:'copper',name:'Copper Whiskey Bar',tags:['whiskey'],hours:'Mon-Fri 3-5pm, Sun all day',
+   specials:[{i:'Draft beer',p:5,d:''},{i:'Whiskey flights',p:0,d:'$5 off flights'}]},
+];
+
+const TAG_FACETS = {downtown:6,dive:2,classy:4,whiskey:3,'craft-beer':2,pub:3,sports:2,western:1};
+
+// ---- hours parser (subset sufficient for mockup)
+function toMin(s){const m=s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);if(!m)return null;let h=+m[1],mi=+(m[2]||0);const ap=m[3].toLowerCase();if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;return h*60+mi;}
+function windowsOf(hoursStr){
+  const wins=[];
+  for(const part of hoursStr.split(',')){
+    const m=part.trim().match(/^([A-Za-z,\- ]+?)\s+(\d[^ ]*(?:-\d[^ ]*)?(?:\s*[ap]m)?)(?:\s*&?\s*(\d[^ ]*(?:-\d[^ ]*)?\s*[ap]m)?)?$/i);
+    if(!m)continue;
+    const days=m[1].trim(), t1=m[2], t2=m[3];
+    const daySet=new Set();
+    if(/daily/i.test(days)){DAYS.forEach(d=>daySet.add(d));}
+    else{
+      for(const range of days.split(/\s+(?=[A-Z])/)){
+        const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);
+        if(!r)continue;
+        const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;
+        let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}
+      }
+    }
+    const ranges=[t1,t2].filter(Boolean);
+    const times=[];
+    for(const r of ranges){
+      const mm=r.match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(?:(\d{1,2}(?::\d{2})?)\s*(am|pm)|(close))$/i);
+      if(mm){const es=mm[4]||mm[5];const end=es==='close'?23*60+59:toMin(mm[3]+' '+es);const ss=mm[2]||(es==='pm'?'pm':(+mm[1].split(':')[0]<12?'pm':'am'));times.push([toMin(mm[1]+' '+ss),end]);}
+    }
+    for(const [s,e] of times)wins.push({days:daySet,s,e});
+  }
+  return wins;
+}
+function status(v){
+  const wins=windowsOf(v.hours);
+  if(!wins.length)return{key:'done',label:'No HH listed'};
+  const now=DAY,h=NOW.getHours()*60+NOW.getMinutes();
+  let best=null;
+  for(const w of wins){
+    if(!w.days.has(DAY))continue;
+    if(h>=w.s&&h<=w.e)return{key:'live',label:'LIVE now',end:w.e};
+    const until=w.s-h;
+    if(until>0&&(best===null||until<best.until))best={until,start:w.s,label:`Opens in ${Math.ceil(until/60)}h ${until%60?until%60+'m':''}`.replace(/\s0m$/,'').replace(/^Opens in 0h /,'Opens in ')};
+  }
+  if(best)return{key:'soon',...best};
+  return{key:'done',label:'Closed today'};
+}
+function priceLabel(sp){
+  if(sp.p>0)return '$'+sp.p.toFixed(2).replace(/\.00$/,'');
+  if(/off|discount|half|bogo|special|price|deal|2 for 1|2-4-1|one free|\$|cents|%/i.test(sp.d||''))return '—';
+  return 'FREE';
+}
+function minsLeft(end){return end-NOW.getHours()*60-NOW.getMinutes();}
+
+// ---- render
+let activeTags=new Set(), sortKey='closing', shown=0, herded=12, collected=new Set(['ale-works','bar-ix','revelry']);
+
+function buildChips(){
+  const el=document.getElementById('chips');el.innerHTML='';
+  for(const [tag,n] of Object.entries(TAG_FACETS)){
+    const b=document.createElement('button');
+    b.className='chip'+(activeTags.has(tag)?' on':'');
+    b.innerHTML=tag.replace('-',' ')+' <span class="n">'+n+'</span>';
+    b.onclick=()=>{activeTags.has(tag)?activeTags.delete(tag):activeTags.add(tag);render();};
+    el.appendChild(b);
+  }
+}
+function cardHTML(v){
+  const st=status(v);
+  const price=Math.min(...v.specials.map(s=>s.p>0?s.p:99));
+  const sp=v.specials.map(s=>`<div class="special"><span class="item">${s.i}</span><span class="price">${priceLabel(s)}</span></div>`).join('');
+  return `<div class="venue ${st.key}">
+    <div class="vtop"><span class="vname">${v.name}</span><span class="vtags">${v.tags.join(' · ')}</span><span class="vstatus">${st.label}</span></div>
+    <div class="vhours">🕒 ${v.hours}</div>${sp}
+    <button class="mystery" data-id="${v.id}">🍸 Surprise me with this venue's drink</button>
+  </div>`;
+}
+function render(){
+  let list=[...VENUES];
+  if(activeTags.size)list=list.filter(v=>v.tags.some(t=>activeTags.has(t)));
+  const withSt=list.map(v=>({v,st:status(v)}));
+  if(sortKey==='closing')withSt.sort((a,b)=>{
+    const la=a.st.key==='live'?minsLeft(a.st.end):(a.st.until||9999);
+    const lb=b.st.key==='live'?minsLeft(b.st.end):(b.st.until||9999);
+    return la-lb;});
+  else if(sortKey==='cheap')withSt.sort((a,b)=>Math.min(...a.v.specials.map(s=>s.p>0?s.p:99))-Math.min(...b.v.specials.map(s=>s.p>0?s.p:99)));
+  else withSt.sort((a,b)=>a.v.name.localeCompare(b.v.name));
+  list=withSt.map(x=>x.v);
+  document.getElementById('list').innerHTML=list.map(cardHTML).join('');
+  document.getElementById('countBadge').className='count-badge'+(activeTags.size?' show':'');
+  document.getElementById('countBadge').textContent=activeTags.size?`${activeTags.size} vibe${activeTags.size>1?'s':''} selected — ${list.length} spots`:'';
+
+  // pin: ending soonest live venue
+  const live=withSt.filter(x=>x.st.key==='live');
+  const pin=live.length?live.sort((a,b)=>minsLeft(a.st.end)-minsLeft(b.st.end))[0]:withSt[0];
+  document.getElementById('pinName').textContent=pin.v.name;
+  document.getElementById('pinSub').textContent=pin.v.tags.join(' · ')+' · '+pin.v.hours+' · '+(()=>{const priced=pin.v.specials.filter(s=>s.p>0);return priced.length?`from $${priced.map(s=>s.p).reduce((a,b)=>Math.min(a,b),99)}`:'specials on now';})();
+  document.getElementById('pinCount').textContent=pin.st.key==='live'?`closes in ${minsLeft(pin.st.end)}m`:pin.st.label;
+  document.getElementById('herdCount').textContent=herded;
+  buildChips();
+}
+// mystery per-venue
+document.getElementById('list').addEventListener('click',e=>{
+  const b=e.target.closest('.mystery');if(!b)return;
+  const v=VENUES.find(x=>x.id===b.dataset.id);
+  toast(`🍸 ${v.name} recommends: "${v.specials[Math.floor(Math.random()*v.specials.length)].i}"`);
+});
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+
+// shortcuts
+document.getElementById('pickBtn').onclick=()=>{
+  const live=VENUES.map(v=>({v,st:status(v)})).filter(x=>x.st.key==='live');
+  const pick=(live.length?live:VENUES.map(v=>({v,st:status(v)})))[Math.floor(Math.random()*(live.length||VENUES.length))].v;
+  toast(`🎲 Fate says: ${pick.name} — ${pick.specials[0].i} (${priceLabel(pick.specials[0])})`);
+};
+document.getElementById('surpriseBtn').onclick=()=>{
+  const live=VENUES.filter(v=>status(v).key==='live');
+  const v=live[Math.floor(Math.random()*live.length)]||VENUES[0];
+  toast(`🍸 Crowd favorite: ${v.name} — "${v.specials[Math.floor(Math.random()*v.specials.length)].i}"`);
+};
+
+// herd sheet
+const herdSheet=()=>{document.getElementById('sheetTitle').textContent='🐮 The Herd — 12/30 collected';
+  const rows=VENUES.slice(0,12).map((v,i)=>`<div class="special"><span class="item">${collected.has(v.id)?'✅':'◌'} ${v.name}</span><span class="price">${collected.has(v.id)?'collected':'visit to collect'}</span></div>`).join('');
+  document.getElementById('sheetBody').innerHTML=rows+`<p style="font-size:.75rem;color:var(--dim);margin-top:10px">Collect cows by visiting venues. Next: ${VENUES[12].name}.</p>`;};
+document.getElementById('herdBtn').onclick=()=>{herdSheet();document.getElementById('sheetOverlay').classList.add('show');};
+document.getElementById('sheetClose').onclick=()=>document.getElementById('sheetOverlay').classList.remove('show');
+document.getElementById('sheetOverlay').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('show')};
+
+// tabs
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');
+  const map={
+    quiz:['❓ What Cow R U?','<p>Do you crave the cheap seat or the corner booth? (Quiz ships in v2 — this tab is the demo shell.)</p>'],
+    horo:['♈ HH Horoscope','<p>Your sign is in the mood for a dive bar tonight. Trust the cow.</p>'],
+    math:['🧮 Moo Math','<p>3 pints × $4 at Bar IX = 2-for-1 = math the cow already did.</p>'],
+    herd:['🐮 The Herd','<p>12/30 cows collected. Keep moo-ving.</p>']};
+  const [title,body]=map[t.dataset.tab];
+  document.getElementById('sheetTitle').textContent=title;
+  document.getElementById('sheetBody').innerHTML=body;
+  document.getElementById('sheetOverlay').classList.add('show');
+});
+
+// theme
+document.getElementById('themeBtn').onclick=()=>{
+  document.body.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';
+};
+
+// sort
+document.getElementById('sortSel').onchange=e=>{sortKey=e.target.value;render();};
+
+// skeleton flash then render
+document.getElementById('list').innerHTML='<div class="skel"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>'.repeat(4);
+setTimeout(()=>{render();},900);
+</script>
+</body>
+</html>

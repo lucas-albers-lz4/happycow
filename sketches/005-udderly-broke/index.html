@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Udderly Broke</title>
+<style>
+  :root{--bg:#fdf6ec;--card:#fff;--text:#2c1810;--dim:#8b7355;--gold:#d4a04a;--spot:#c48450;--green:#5a9c69;--red:#d46a6a;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+  body.dark{--bg:#120e0a;--card:#1e1814;--text:#e8ddd0;--dim:#8b7a6a;--shadow:0 2px 12px rgba(0,0,0,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 40px}
+  header{position:sticky;top:0;z-index:10;background:var(--bg);padding:12px 0 8px;display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:1.2rem}.logo span{color:var(--gold)}
+  .spacer{flex:1}
+  .icon-btn{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:50%;width:36px;height:36px;cursor:pointer;box-shadow:var(--shadow)}
+  .panel{background:var(--card);border-radius:var(--radius);padding:16px;margin:8px 0 14px;box-shadow:var(--shadow)}
+  .panel h2{font-size:1rem;margin-bottom:4px}
+  .panel .sub{font-size:.78rem;color:var(--dim);font-weight:600;margin-bottom:12px}
+  .meter-label{display:flex;justify-content:space-between;font-size:.75rem;font-weight:800;margin-bottom:6px}
+  .meter{height:14px;border-radius:999px;background:rgba(0,0,0,.08);overflow:hidden;position:relative}
+  body.dark .meter{background:rgba(255,255,255,.1)}
+  .meter i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));width:40%;transition:width .2s}
+  input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--spot)}
+  .budget{font-size:1.4rem;font-weight:850;color:var(--spot)}
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .calc label{font-size:.7rem;font-weight:750;color:var(--dim);display:block;margin-bottom:4px}
+  .calc select,.calc input{width:100%;padding:8px 10px;border-radius:10px;border:1px solid rgba(0,0,0,.1);background:var(--bg);color:var(--text);font:inherit;font-size:.85rem;font-weight:700}
+  .chart{margin-top:14px}
+  .chart .row{display:grid;grid-template-columns:1fr 90px 48px;gap:8px;align-items:center;margin-bottom:8px;font-size:.78rem;font-weight:700}
+  .chart .track{height:10px;background:rgba(0,0,0,.08);border-radius:999px;overflow:hidden}
+  body.dark .chart .track{background:rgba(255,255,255,.1)}
+  .chart .track i{display:block;height:100%;background:var(--spot);border-radius:999px}
+  .chart .price{text-align:right;color:var(--spot)}
+  .hint{font-size:.78rem;color:var(--dim);font-weight:700;margin:0 0 10px}
+  .venue{background:var(--card);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow);border-left:4px solid var(--green)}
+  .venue.over{opacity:.45;border-left-color:#bbb}
+  .vtop{display:flex;align-items:baseline;gap:8px}
+  .vname{font-weight:800}.vtags{font-size:.68rem;color:var(--dim);font-weight:600}
+  .vprice{margin-left:auto;font-weight:850;color:var(--spot);font-size:.9rem}
+  .vest{font-size:.75rem;color:var(--dim);font-weight:600;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🐄 Happy <span>Cow</span></div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeBtn">🌙</button>
+  </header>
+
+  <div class="panel">
+    <h2>💸 Udderly Broke</h2>
+    <div class="sub">Milk-money meter filters the list. Cow-culator estimates the tab cheapest-first.</div>
+    <div class="meter-label"><span>Milk money</span><span class="budget" id="budgetLabel">$12</span></div>
+    <div class="meter"><i id="meterFill"></i></div>
+    <input type="range" id="budget" min="4" max="40" value="12" step="1">
+    <div class="calc">
+      <div>
+        <label>Drinks each</label>
+        <input type="number" id="drinks" min="1" max="8" value="2">
+      </div>
+      <div>
+        <label>Herd size</label>
+        <input type="number" id="people" min="1" max="10" value="2">
+      </div>
+    </div>
+    <div class="chart" id="chart"></div>
+  </div>
+
+  <div class="hint" id="hint"></div>
+  <div id="list"></div>
+</div>
+
+<script>
+const VENUES=[
+  {id:'club-tavern',name:'The Club Tavern',tags:['pub'],hours:'Mon-Fri 4-7pm',drink:1,specials:'$1 drafts'},
+  {id:'revelry',name:'Revelry',tags:['downtown'],hours:'Daily 2:30-4pm',drink:2,specials:'Rainier tallboys'},
+  {id:'old-chicago',name:'Old Chicago',tags:['pub'],hours:'Mon-Fri 4-7pm',drink:2.5,specials:'Domestic bottles'},
+  {id:'brigade',name:'Brigade',tags:['downtown'],hours:'Daily 3-6pm',drink:3,specials:'Martinis $3'},
+  {id:'devils',name:'Devils Toboggan',tags:['downtown'],hours:'Daily 4-6pm',drink:3,specials:'Beers $3'},
+  {id:'bacchus',name:'Bacchus Pub',tags:['pub'],hours:'Daily 2-6pm',drink:3.5,specials:'Wells $3.50'},
+  {id:'pour-house',name:'The Pour House',tags:['downtown'],hours:'Mon-Fri 2-6pm',drink:3.75,specials:'Micro drafts'},
+  {id:'shine',name:'Shine',tags:['craft-beer'],hours:'Daily 3-5pm',drink:4,specials:'Local pints'},
+  {id:'rocking-r',name:'Rocking R',tags:['dive'],hours:'Mon-Fri 4-7pm',drink:4,specials:'Drafts + wings'},
+  {id:'copper',name:'Copper Whiskey',tags:['whiskey'],hours:'Mon-Fri 3-5pm',drink:5,specials:'Draft beer $5'},
+  {id:'bww',name:'Buffalo Wild Wings',tags:['sports'],hours:'Mon-Fri 3-6pm',drink:6,specials:'Margs $6'},
+  {id:'la-brasserie',name:'La Brasserie',tags:['classy'],hours:'Daily 4-6pm',drink:6,specials:'Wine by glass'},
+  {id:'bitterroot',name:'Bitterroot',tags:['classy'],hours:'Daily 2-5pm',drink:13,specials:'Bison tartare $13'},
+];
+
+let budget=12, drinks=2, people=2;
+
+function tab(v){return +(v.drink*drinks*people).toFixed(2);}
+
+function render(){
+  document.getElementById('budgetLabel').textContent='$'+budget;
+  document.getElementById('meterFill').style.width=Math.min(100,(budget/40)*100)+'%';
+  const sorted=[...VENUES].sort((a,b)=>a.drink-b.drink);
+  const affordable=sorted.filter(v=>v.drink<=budget);
+  document.getElementById('hint').textContent=`${affordable.length} spots under $${budget}/drink · tab ≈ drinks × herd`;
+
+  const maxTab=Math.max(...sorted.map(tab),1);
+  document.getElementById('chart').innerHTML='<div style="font-size:.72rem;font-weight:800;color:var(--dim);margin-bottom:8px">Cow-culator · estimated tab (cheapest first)</div>'+
+    sorted.slice(0,6).map(v=>{
+      const t=tab(v);
+      return `<div class="row"><span>${v.name}</span><div class="track"><i style="width:${(t/maxTab)*100}%"></i></div><span class="price">$${t}</span></div>`;
+    }).join('');
+
+  document.getElementById('list').innerHTML=sorted.map(v=>{
+    const over=v.drink>budget;
+    return `<div class="venue ${over?'over':''}">
+      <div class="vtop"><span class="vname">${v.name}</span><span class="vtags">${v.tags.join(' · ')}</span><span class="vprice">$${v.drink}</span></div>
+      <div class="vest">${v.specials} · herd tab ~$${tab(v)} ${over?'· over budget':''}</div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('budget').oninput=e=>{budget=+e.target.value;render();};
+document.getElementById('drinks').oninput=e=>{drinks=+e.target.value||1;render();};
+document.getElementById('people').oninput=e=>{people=+e.target.value||1;render();};
+document.getElementById('themeBtn').onclick=()=>{document.body.classList.toggle('dark');document.getElementById('themeBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';};
+render();
+</script>
+</body>
+</html>

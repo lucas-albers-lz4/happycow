@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Cow — Cow-pare</title>
+<style>
+  :root{--bg:#fdf6ec;--card:#fff;--text:#2c1810;--dim:#8b7355;--gold:#d4a04a;--spot:#c48450;--green:#5a9c69;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+  body.dark{--bg:#120e0a;--card:#1e1814;--text:#e8ddd0;--dim:#8b7a6a;--shadow:0 2px 12px rgba(0,0,0,.4)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 40px}
+  header{position:sticky;top:0;z-index:10;background:var(--bg);padding:12px 0 8px;display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:1.2rem}.logo span{color:var(--gold)}
+  .spacer{flex:1}
+  .icon-btn{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:50%;width:36px;height:36px;cursor:pointer;box-shadow:var(--shadow)}
+  .kicker{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--spot);margin:8px 0 4px}
+  h1{font-size:1.3rem;margin-bottom:4px}
+  .sub{font-size:.82rem;color:var(--dim);font-weight:600;margin-bottom:12px}
+  .picks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .picks select{width:100%;padding:10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.1);background:var(--card);color:var(--text);font:inherit;font-size:.85rem;font-weight:750;box-shadow:var(--shadow)}
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch}
+  .col{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);border-top:4px solid var(--spot)}
+  .col.b{border-top-color:var(--green)}
+  .vs-badge{align-self:center;font-weight:900;color:var(--dim);font-size:.85rem}
+  .col h2{font-size:1.05rem;margin-bottom:2px}
+  .status{display:inline-block;font-size:.66rem;font-weight:800;padding:3px 8px;border-radius:999px;margin:6px 0 10px}
+  .status.live{background:var(--green);color:#fff}
+  .status.soon{background:var(--gold);color:#fff}
+  .status.done{background:#ccc;color:#555}
+  .row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px dashed rgba(0,0,0,.08);font-size:.8rem}
+  body.dark .row{border-color:rgba(255,255,255,.08)}
+  .row .k{color:var(--dim);font-weight:700}
+  .row .v{font-weight:800;text-align:right}
+  .special{font-size:.78rem;padding:6px 0;border-top:1px dashed rgba(0,0,0,.08)}
+  .special b{color:var(--spot)}
+  .winner{margin-top:14px;background:linear-gradient(135deg,var(--spot),var(--gold));color:#fff;border-radius:var(--radius);padding:14px;font-weight:750;font-size:.9rem;box-shadow:var(--shadow)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{font-size:.68rem;font-weight:750;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.06)}
+  body.dark .chip{background:rgba(255,255,255,.08)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🐄 Happy <span>Cow</span></div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeBtn">🌙</button>
+  </header>
+
+  <div class="kicker">Side-by-side</div>
+  <h1>🐄 Cow-pare</h1>
+  <div class="sub">Pick two spots. Hours, vibes, and specials face off — cow crowns a lean winner.</div>
+
+  <div class="picks">
+    <select id="a"></select>
+    <select id="b"></select>
+  </div>
+  <div class="vs" id="vs"></div>
+  <div class="winner" id="winner"></div>
+</div>
+
+<script>
+const NOW=new Date('2026-08-05T17:12:00');
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAY=DAYS[NOW.getDay()];
+const VENUES=[
+  {id:'bar-ix',name:'Bar IX',tags:['dive'],hours:'Daily 2-7pm',noise:'loud',specials:[{i:'2-for-1 wells',p:0},{i:'2-for-1 drafts',p:0}]},
+  {id:'blackbird',name:'Blackbird',tags:['classy','downtown'],hours:'Daily 4:30-5:30pm',noise:'quiet',specials:[{i:'Half-price wine bottles',p:0}]},
+  {id:'brigade',name:'Brigade',tags:['downtown'],hours:'Daily 3-6pm',noise:'moderate',specials:[{i:'Martinis',p:3}]},
+  {id:'club-tavern',name:'The Club Tavern',tags:['pub','sports'],hours:'Mon-Fri 4-7pm',noise:'loud',specials:[{i:'Draft beer',p:1}]},
+  {id:'copper',name:'Copper Whiskey',tags:['whiskey'],hours:'Mon-Fri 3-5pm',noise:'moderate',specials:[{i:'Whiskey flights',p:0,d:'$5 off'}]},
+  {id:'rocking-r',name:'Rocking R',tags:['dive','western'],hours:'Mon-Fri 4-7pm',noise:'loud',specials:[{i:'Drafts',p:4},{i:'Wings',p:0,d:'50¢'}]},
+  {id:'shine',name:'Shine',tags:['craft-beer'],hours:'Daily 3-5pm',noise:'quiet',specials:[{i:'Local pints',p:4},{i:'Flights',p:0,d:'2-for-1'}]},
+  {id:'urban-kitchen',name:'Urban Kitchen',tags:['classy'],hours:'Daily 3-6pm',noise:'quiet',specials:[{i:'Wine by glass',p:2},{i:'Small plates',p:0,d:'Half off'}]},
+];
+
+function toMin(s){const m=s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/i);if(!m)return null;let h=+m[1],mi=+(m[2]||0);const ap=m[3].toLowerCase();if(ap==='pm'&&h<12)h+=12;if(ap==='am'&&h===12)h=0;return h*60+mi;}
+function windowsOf(hoursStr){
+  const wins=[];
+  for(const part of hoursStr.split(',')){
+    const m=part.trim().match(/^([A-Za-z,\- ]+?)\s+(\d[^ ]*(?:-\d[^ ]*)?(?:\s*[ap]m)?)/i);if(!m)continue;
+    const daySet=new Set();
+    if(/daily/i.test(m[1]))DAYS.forEach(d=>daySet.add(d));
+    else{for(const range of m[1].trim().split(/\s+(?=[A-Z])/)){const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);if(!r)continue;const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}}}
+    const mm=m[2].match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(\d{1,2}(?::\d{2})?)\s*(am|pm)/i);
+    if(mm){const ss=mm[2]||mm[4];wins.push({days:daySet,s:toMin(mm[1]+' '+ss),e:toMin(mm[3]+' '+mm[4])});}
+  }
+  return wins;
+}
+function status(v){
+  const h=NOW.getHours()*60+NOW.getMinutes();
+  for(const w of windowsOf(v.hours)){
+    if(!w.days.has(DAY))continue;
+    if(h>=w.s&&h<=w.e)return{key:'live',label:`LIVE · closes in ${w.e-h}m`,mins:w.e-h,open:true};
+    if(h<w.s)return{key:'soon',label:`Opens in ${w.s-h}m`,mins:w.s-h,open:false};
+  }
+  return{key:'done',label:'Closed today',mins:9999,open:false};
+}
+function minPrice(v){const p=v.specials.map(s=>s.p).filter(x=>x>0);return p.length?Math.min(...p):0;}
+
+const aSel=document.getElementById('a'), bSel=document.getElementById('b');
+VENUES.forEach(v=>{aSel.innerHTML+=`<option value="${v.id}">${v.name}</option>`;bSel.innerHTML+=`<option value="${v.id}">${v.name}</option>`;});
+aSel.value='bar-ix';bSel.value='blackbird';
+
+function col(v,cls){
+  const st=status(v);
+  return `<div class="col ${cls}">
+    <h2>${v.name}</h2>
+    <span class="status ${st.key}">${st.label}</span>
+    <div class="row"><span class="k">Hours</span><span class="v">${v.hours}</span></div>
+    <div class="row"><span class="k">Noise</span><span class="v">${v.noise}</span></div>
+    <div class="row"><span class="k">From</span><span class="v">${minPrice(v)?('$'+minPrice(v)):'deal pricing'}</span></div>
+    <div class="chips">${v.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+    <div style="margin-top:10px;font-size:.7rem;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:.06em">Specials</div>
+    ${v.specials.map(s=>`<div class="special">${s.i}${s.p?` · <b>$${s.p}</b>`:s.d?` · <b>${s.d}</b>`:''}</div>`).join('')}
+  </div>`;
+}
+
+function render(){
+  const A=VENUES.find(v=>v.id===aSel.value), B=VENUES.find(v=>v.id===bSel.value);
+  document.getElementById('vs').innerHTML=col(A,'')+'<div class="vs-badge">VS</div>'+col(B,'b');
+  const sa=status(A), sb=status(B);
+  let reason;
+  if(sa.open&&!sb.open)reason=`${A.name} is live right now — go before it closes.`;
+  else if(sb.open&&!sa.open)reason=`${B.name} is live right now — go before it closes.`;
+  else if(sa.open&&sb.open)reason=sa.mins<=sb.mins?`${A.name} closes sooner (${sa.mins}m) — catch it first.`:`${B.name} closes sooner (${sb.mins}m) — catch it first.`;
+  else {
+    const pa=minPrice(A)||9, pb=minPrice(B)||9;
+    reason=pa<=pb?`${A.name} edges it on price — or wait for doors.`:`${B.name} edges it on price — or wait for doors.`;
+  }
+  document.getElementById('winner').textContent='👑 Cow says: '+reason;
+}
+
+aSel.onchange=bSel.onchange=render;
+document.getElementById('themeBtn').onclick=()=>{document.body.classList.toggle('dark');document.getElementById('themeBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';};
+render();
+</script>
+</body>
+</html>
