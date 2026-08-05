@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-05T03:16:59Z",
+  "last_updated": "2026-08-05T03:19:15Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -2198,7 +2198,7 @@
       "mood": "casual",
       "hours": "",
       "business_hours": "",
-      "notes": "Closed 2026-05-30 (Audrey's Pizza + Freefall at 806 N 7th). Own site still presents as open — do not treat site HH as live. Freefall reported relocating; 7th Ave co-location is closed. Truth/eval fixture (#77).",
+      "notes": "Closed 2026-05-30 (Audrey's Pizza + Freefall at 806 N 7th). Own site still presents as open — do not treat site HH as live. Freefall reported relocating; 7th Ave co-location is closed. Truth/eval fixture (#77).; (verification: business_status=permanently_closed; happy hour suppressed pending human review)",
       "specials": []
     }
   ]
