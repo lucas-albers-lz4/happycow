@@ -1003,6 +1003,28 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Cow Tall Tale link (beef specials only) — opens the story modal.
+    // Seed from data-tale-* so a missing/renamed special row can't no-op the click.
+    const taleLink = e.target.closest('.tale-link');
+    if (taleLink) {
+      const taleVenueId = taleLink.dataset.taleVenue;
+      const taleItem = taleLink.dataset.taleItem;
+      if (taleVenueId && taleItem && globalThis.HappyCowTales) {
+        const venue = state.data.venues.find(v => v.id === taleVenueId);
+        const tale = globalThis.HappyCowTales.taleFor(
+          taleVenueId,
+          { item: taleItem },
+          venue ? venue.name : taleVenueId
+        );
+        document.getElementById('tale-modal-title').textContent = `🐄 ${tale.cow}'s Tale`;
+        document.getElementById('tale-modal-subtitle').textContent =
+          `as told by the ${tale.item} at ${tale.venue}`;
+        document.getElementById('tale-modal-story').textContent = tale.story;
+        openModal('tale-modal');
+      }
+      return;
+    }
+
     // Venue card expand/collapse
     const toggle = e.target.closest('.venue-toggle');
     if (!toggle) return;
