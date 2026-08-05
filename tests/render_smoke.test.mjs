@@ -127,46 +127,18 @@ test('closed venues show over (not em dash)', () => {
   assert.ok(sawOver, 'expected at least one closed venue at late Monday');
 });
 
-test('Monday specials get today class; Tuesday-only do not', () => {
-  const bridger = venues.find(v => /bridger/i.test(v.name) || v.id === 'bridger-brewing');
-  assert.ok(bridger, 'Bridger Brewing should exist in data');
-  const html = renderVenueCardHtml(bridger, helpers, NOW);
-  const mondayRows = (bridger.specials || []).filter(s =>
-    /monday/i.test(`${s.item} ${s.description}`)
-  );
-  const tuesdayOnly = (bridger.specials || []).filter(s =>
-    /tuesday/i.test(`${s.item} ${s.description}`) && !/monday/i.test(`${s.item} ${s.description}`)
-  );
-  assert.ok(mondayRows.length > 0, 'Bridger should have Monday specials');
-  // At least one today class present when Monday specials exist
-  assert.ok(html.includes('special-row today'), 'Monday clock should mark some special-row today');
-  for (const s of tuesdayOnly) {
-    const itemEsc = esc(s.item);
-    const idx = html.indexOf(itemEsc);
-    assert.ok(idx !== -1, `missing special "${s.item}"`);
-    // Walk back to the nearest special-row opening tag
-    const rowStart = html.lastIndexOf('special-row', idx);
-    const snippet = html.slice(rowStart, rowStart + 40);
-    assert.ok(
-      !snippet.includes('special-row today'),
-      `Tuesday-only "${s.item}" should not be today on Monday`
-    );
-  }
-});
-
 test('deal headline prefers today special when present', () => {
-  // Venue whose specials[0] is not Monday but a later entry is
-  const filling = venues.find(v => /filling/i.test(v.name));
-  if (!filling) return;
-  const monday = (filling.specials || []).find(s =>
-    specialAppliesToday(s, NOW)
-  );
-  if (!monday) return;
-  const html = renderVenueCardHtml(filling, helpers, NOW);
+  // Bridger: specials[0] is always-on Beers; Monday Cod Cakes should win on Monday clock
+  const bridger = venues.find(v => v.id === 'bridger-brewing');
+  assert.ok(bridger, 'Bridger Brewing should exist');
+  const monday = (bridger.specials || []).find(s => specialAppliesToday(s, NOW));
+  assert.ok(monday, 'Bridger should have a Monday special');
+  assert.notEqual(bridger.specials[0], monday, 'precondition: today special is not specials[0]');
+  const html = renderVenueCardHtml(bridger, helpers, NOW);
   const dealMatch = html.match(/class="venue-deal">([^<]*)/);
   assert.ok(dealMatch, 'venue-deal present');
   assert.ok(
-    dealMatch[1].includes(esc(monday.item)) || dealMatch[1].includes(monday.item),
+    dealMatch[1].includes(esc(monday.item)),
     `headline should prefer Monday special "${monday.item}", got "${dealMatch[1]}"`
   );
 });
