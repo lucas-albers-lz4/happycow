@@ -18,7 +18,12 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from common import is_aggregator  # noqa: E402
 from scraper.extract import normalize_hours  # noqa: E402
-from scraper.fetch import page_matches_venue  # noqa: E402
+from scraper.fetch import (  # noqa: E402
+    FetchResult,
+    _should_browser_fallback,
+    is_challenge_page,
+    page_matches_venue,
+)
 from scraper.merge import venue_to_site_record  # noqa: E402
 
 
@@ -147,6 +152,61 @@ class VenueToSiteRecord(unittest.TestCase):
         record = venue_to_site_record(self.BASE_VENUE, None, None)
         self.assertEqual(record["hours"], "")
         self.assertEqual(record["specials"], [])
+
+
+class ChallengePageDetection(unittest.TestCase):
+    def test_just_a_moment_title(self):
+        html = "<html><head><title>Just a moment...</title></head><body>Checking</body></html>"
+        self.assertTrue(is_challenge_page(html))
+
+    def test_real_venue_page_with_captcha_script_mention(self):
+        # Filling Station-class: long HTML that mentions captcha in JS must pass
+        html = (
+            "<html><head><title>The Filling Station</title></head>"
+            "<body>" + ("x" * 25_000) + " happy hour specials captcha gform</body></html>"
+        )
+        self.assertFalse(is_challenge_page(html))
+
+    def test_empty_is_not_challenge(self):
+        self.assertFalse(is_challenge_page(""))
+
+
+class BrowserFallbackGate(unittest.TestCase):
+    def test_own_site_403_triggers(self):
+        self.assertTrue(
+            _should_browser_fallback(
+                "https://tanoshiimt.com/",
+                FetchResult(None, "http403"),
+                "",
+            )
+        )
+
+    def test_aggregator_never_triggers(self):
+        self.assertFalse(
+            _should_browser_fallback(
+                "https://mthappyhour.com/locations/x/",
+                FetchResult(None, "http403"),
+                "",
+            )
+        )
+
+    def test_empty_extract_on_ok_html_triggers(self):
+        self.assertTrue(
+            _should_browser_fallback(
+                "https://www.madisonriverbrewing.com/",
+                FetchResult("<html></html>", "ok"),
+                "",
+            )
+        )
+
+    def test_ok_with_text_skips(self):
+        self.assertFalse(
+            _should_browser_fallback(
+                "https://example.com/",
+                FetchResult("<html>hi</html>", "ok"),
+                "Happy hour 3-6",
+            )
+        )
 
 
 class NormalizeHours(unittest.TestCase):
