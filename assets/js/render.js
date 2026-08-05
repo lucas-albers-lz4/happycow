@@ -3,15 +3,22 @@
 //
 // renderVenueCardHtml(venue, helpers, now) -> HTML string
 //   venue   — site venue record
-//   helpers — { esc, specialPriceLabel } from HappyCowFormat
+//   helpers — { esc, specialPriceLabel, specialAppliesToday } from HappyCowFormat
 //   now     — injectable Date (defaults to new Date()) for deterministic tests
 //
 // DOM wiring (toggle listeners, panel expand, scrolling) stays in app.js.
 (function (global) {
   'use strict';
 
-  function dealHeadline(venue, specialPriceLabel) {
-    const s = (venue.specials || [])[0];
+  function pickSpecial(venue, specialAppliesToday, now) {
+    const list = venue.specials || [];
+    const today = list.find(s => specialAppliesToday(s, now));
+    return today || list[0] || null;
+  }
+
+  function dealHeadline(venue, specialPriceLabel, now, specialAppliesToday) {
+    const applies = specialAppliesToday || global.HappyCowFormat?.specialAppliesToday || (() => false);
+    const s = pickSpecial(venue, applies, now || new Date());
     if (!s) return 'Tap for specials';
     const price = specialPriceLabel(s);
     if (price === '—' || price === 'FREE') return s.item;
@@ -32,17 +39,34 @@
     if (st.kind === 'soon' && st.nextStartMin != null) {
       return global.HappyCowHours.timeUntil(st.nextStartMin, d) || 'soon';
     }
-    if (st.kind === 'closed') return '—';
+    if (st.kind === 'closed') return 'over';
+    return '';
+  }
+
+  function whenAria(st, now) {
+    const d = now || new Date();
+    if (st.kind === 'live' && st.endMin != null) {
+      const left = global.HappyCowHours.timeUntil(st.endMin, d);
+      return left ? `Ends in ${left}` : 'Happy hour live now';
+    }
+    if (st.kind === 'soon' && st.nextStartMin != null) {
+      const left = global.HappyCowHours.timeUntil(st.nextStartMin, d);
+      return left ? `Opens in ${left}` : 'Happy hour soon';
+    }
+    if (st.kind === 'closed') return 'Happy hour over';
     return '';
   }
 
   function renderVenueCardHtml(venue, helpers, now) {
     const { esc, specialPriceLabel } = helpers;
+    const specialAppliesToday = helpers.specialAppliesToday
+      || global.HappyCowFormat?.specialAppliesToday
+      || (() => false);
     const clock = now || new Date();
     const st = global.HappyCowHours.hhStatus(venue.hours, venue.business_hours, clock);
-    const status = st.kind === 'unknown' ? 'closed' : st.kind;
     const when = whenLabel(st, clock);
-    const deal = dealHeadline(venue, specialPriceLabel);
+    const aria = whenAria(st, clock);
+    const deal = dealHeadline(venue, specialPriceLabel, clock, specialAppliesToday);
     const place = placeLabel(venue);
     const meta = [venue.hours, place].filter(Boolean).join(' · ');
 
@@ -55,22 +79,25 @@
       <div class="venue-row-main">
         <div class="venue-row-l1">
           <h3 class="venue-name">${esc(venue.name)}</h3>
-          <span class="venue-when">${esc(when)}</span>
+          <span class="venue-when"${aria ? ` aria-label="${esc(aria)}"` : ''}>${esc(when)}</span>
         </div>
         <div class="venue-deal">${esc(deal)}</div>
         <div class="venue-detail">${esc(meta)}</div>
       </div>
     </button>
     <div class="venue-specials" id="${specialsId}" hidden>
-      ${(venue.specials || []).map(s => `
-        <div class="special-row">
+      ${(venue.specials || []).map(s => {
+        const today = specialAppliesToday(s, clock);
+        return `
+        <div class="special-row${today ? ' today' : ''}">
           <div>
             <div>${esc(s.item)}</div>
             <div class="special-desc">${esc(s.description)}</div>
           </div>
           <div class="special-price">${specialPriceLabel(s)}</div>
         </div>
-      `).join('')}
+      `;
+      }).join('')}
       ${!venue.hours && venue.notes ? `<div class="hours-notes">${esc(venue.notes)}</div>` : ''}
       <div class="venue-actions">
         <a href="${venue.maps}" target="_blank" rel="noopener" class="venue-link">📍 Directions</a>
@@ -93,5 +120,5 @@
   `;
   }
 
-  global.HappyCowRender = { renderVenueCardHtml, dealHeadline, placeLabel };
+  global.HappyCowRender = { renderVenueCardHtml, dealHeadline, placeLabel, whenLabel, whenAria };
 })(typeof window !== 'undefined' ? window : globalThis);

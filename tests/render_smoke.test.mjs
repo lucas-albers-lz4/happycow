@@ -14,9 +14,9 @@ eval(readFileSync(join(root, 'assets/js/hours.js'), 'utf8'));
 eval(readFileSync(join(root, 'assets/js/format.js'), 'utf8'));
 eval(readFileSync(join(root, 'assets/js/render.js'), 'utf8'));
 
-const { esc, specialPriceLabel } = globalThis.HappyCowFormat;
+const { esc, specialPriceLabel, specialAppliesToday } = globalThis.HappyCowFormat;
 const { renderVenueCardHtml } = globalThis.HappyCowRender;
-const helpers = { esc, specialPriceLabel };
+const helpers = { esc, specialPriceLabel, specialAppliesToday };
 
 const data = JSON.parse(readFileSync(join(root, 'data/happy_hour_data.json'), 'utf8'));
 const venues = data.venues;
@@ -109,4 +109,64 @@ test('no raw unescaped angle brackets from venue fields in card HTML', () => {
       );
     }
   }
+});
+
+test('closed venues show over (not em dash)', () => {
+  // Late Monday night — most HH windows closed
+  const late = new Date(2026, 7, 3, 23, 0);
+  let sawOver = false;
+  for (const venue of venues) {
+    if (!venue.hours) continue;
+    const st = globalThis.HappyCowHours.hhStatus(venue.hours, venue.business_hours, late);
+    if (st.kind !== 'closed') continue;
+    const html = renderVenueCardHtml(venue, helpers, late);
+    assert.ok(html.includes('>over<'), `closed venue "${venue.id}" should show over`);
+    assert.ok(!html.includes('>—<') || html.includes('special-price'), `closed venue "${venue.id}" should not use em dash as when label`);
+    sawOver = true;
+  }
+  assert.ok(sawOver, 'expected at least one closed venue at late Monday');
+});
+
+test('Monday specials get today class; Tuesday-only do not', () => {
+  const bridger = venues.find(v => /bridger/i.test(v.name) || v.id === 'bridger-brewing');
+  assert.ok(bridger, 'Bridger Brewing should exist in data');
+  const html = renderVenueCardHtml(bridger, helpers, NOW);
+  const mondayRows = (bridger.specials || []).filter(s =>
+    /monday/i.test(`${s.item} ${s.description}`)
+  );
+  const tuesdayOnly = (bridger.specials || []).filter(s =>
+    /tuesday/i.test(`${s.item} ${s.description}`) && !/monday/i.test(`${s.item} ${s.description}`)
+  );
+  assert.ok(mondayRows.length > 0, 'Bridger should have Monday specials');
+  // At least one today class present when Monday specials exist
+  assert.ok(html.includes('special-row today'), 'Monday clock should mark some special-row today');
+  for (const s of tuesdayOnly) {
+    const itemEsc = esc(s.item);
+    const idx = html.indexOf(itemEsc);
+    assert.ok(idx !== -1, `missing special "${s.item}"`);
+    // Walk back to the nearest special-row opening tag
+    const rowStart = html.lastIndexOf('special-row', idx);
+    const snippet = html.slice(rowStart, rowStart + 40);
+    assert.ok(
+      !snippet.includes('special-row today'),
+      `Tuesday-only "${s.item}" should not be today on Monday`
+    );
+  }
+});
+
+test('deal headline prefers today special when present', () => {
+  // Venue whose specials[0] is not Monday but a later entry is
+  const filling = venues.find(v => /filling/i.test(v.name));
+  if (!filling) return;
+  const monday = (filling.specials || []).find(s =>
+    specialAppliesToday(s, NOW)
+  );
+  if (!monday) return;
+  const html = renderVenueCardHtml(filling, helpers, NOW);
+  const dealMatch = html.match(/class="venue-deal">([^<]*)/);
+  assert.ok(dealMatch, 'venue-deal present');
+  assert.ok(
+    dealMatch[1].includes(esc(monday.item)) || dealMatch[1].includes(monday.item),
+    `headline should prefer Monday special "${monday.item}", got "${dealMatch[1]}"`
+  );
 });

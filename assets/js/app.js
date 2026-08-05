@@ -169,9 +169,9 @@ function assetUrl(relPath) {
   return new URL(relPath, pageBaseUrl()).toString();
 }
 
-// globals provided: HappyCowFormat.{esc, specialPriceLabel} (assets/js/format.js)
+// globals provided: HappyCowFormat.{esc, specialPriceLabel, specialAppliesToday} (assets/js/format.js)
 // globals provided: HappyCowRender.{renderVenueCardHtml} (assets/js/render.js)
-const { esc, specialPriceLabel } = globalThis.HappyCowFormat;
+const { esc, specialPriceLabel, specialAppliesToday } = globalThis.HappyCowFormat;
 const { renderVenueCardHtml } = globalThis.HappyCowRender;
 
 async function loadData() {
@@ -344,8 +344,8 @@ function renderVibeChips() {
   });
 }
 
-function dealHeadlineFor(venue) {
-  return HappyCowRender.dealHeadline(venue, specialPriceLabel);
+function dealHeadlineFor(venue, now) {
+  return HappyCowRender.dealHeadline(venue, specialPriceLabel, now || new Date(), specialAppliesToday);
 }
 
 function renderEndingPin() {
@@ -366,7 +366,7 @@ function renderEndingPin() {
   pin.hidden = false;
   document.getElementById('ending-pin-name').textContent = top.v.name;
   document.getElementById('ending-pin-count').textContent = `${left} left`;
-  document.getElementById('ending-pin-deal').textContent = dealHeadlineFor(top.v);
+  document.getElementById('ending-pin-deal').textContent = dealHeadlineFor(top.v, now);
   document.getElementById('ending-pin-meta').textContent =
     [top.v.hours, HappyCowRender.placeLabel(top.v)].filter(Boolean).join(' · ');
   pin.onclick = () => scrollToVenue(top.v.id);
@@ -418,7 +418,7 @@ function renderVenueCard(venue, container, now) {
   card.className = 'venue-card ' + statusClass + (expanded ? ' expanded' : '');
   card.id = `venue-${venue.id}`;
 
-  card.innerHTML = renderVenueCardHtml(venue, { esc, specialPriceLabel }, now || new Date());
+  card.innerHTML = renderVenueCardHtml(venue, { esc, specialPriceLabel, specialAppliesToday }, now || new Date());
 
   const actionsEl = card.querySelector('.venue-actions');
   if (actionsEl) {

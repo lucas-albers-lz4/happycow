@@ -1,8 +1,14 @@
 # UI Prototype Sketches
 
-Throwaway HTML mockups exploring new visual directions for Happy Cow. Not wired into the app — these are for comparison and iteration (see issues #79–#83).
+Throwaway HTML mockups exploring new visual directions for Happy Cow. Not wired into the app — these are for comparison and iteration.
 
-**Open the [gallery](index.html) to compare all variants side-by-side.** Start with Wave D (#85) or Wave C (synthesis).
+**Open the [gallery](index.html) to compare all variants side-by-side.** Start with Wave E (status + today specials).
+
+## Wave E — status clarity + day specials
+
+| Sketch | Stance | Key ideas |
+|---|---|---|
+| [015-status-and-today-specials](015-status-and-today-specials/) | Production dense-row fork | Red **over** (not `—`); green today’s weekday specials; headline prefers today’s deal |
 
 ## Wave D — mobile wireframe capture (#85)
 
