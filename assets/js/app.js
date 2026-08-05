@@ -1003,15 +1003,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Cow Tall Tale link (beef specials only) — opens the story modal
+    // Cow Tall Tale link (beef specials only) — opens the story modal.
+    // Seed from data-tale-* so a missing/renamed special row can't no-op the click.
     const taleLink = e.target.closest('.tale-link');
     if (taleLink) {
       const taleVenueId = taleLink.dataset.taleVenue;
       const taleItem = taleLink.dataset.taleItem;
-      const venue = state.data.venues.find(v => v.id === taleVenueId);
-      const special = venue && (venue.specials || []).find(s => s.item === taleItem);
-      if (venue && special && globalThis.HappyCowTales) {
-        const tale = globalThis.HappyCowTales.taleFor(venue.id, special, venue.name);
+      if (taleVenueId && taleItem && globalThis.HappyCowTales) {
+        const venue = state.data.venues.find(v => v.id === taleVenueId);
+        const tale = globalThis.HappyCowTales.taleFor(
+          taleVenueId,
+          { item: taleItem },
+          venue ? venue.name : taleVenueId
+        );
         document.getElementById('tale-modal-title').textContent = `🐄 ${tale.cow}'s Tale`;
         document.getElementById('tale-modal-subtitle').textContent =
           `as told by the ${tale.item} at ${tale.venue}`;

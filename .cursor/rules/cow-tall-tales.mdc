@@ -1,0 +1,33 @@
+---
+description: Cow Tall Tales classifier + template quality rules (issue #100)
+globs: assets/js/tales.js,tests/tales.test.mjs,docs/plans/cow-tall-tales.md
+alwaysApply: false
+---
+
+# Cow Tall Tales
+
+Procedural client-side gag for beef specials. **No LLM / scrape / data fields** for stories — seed `hash(venueId + '::' + item)` → cow + template.
+
+## Classifier (`isBeefSpecial`)
+
+Order matters — keep it:
+
+1. **Override → true:** `chicken-fried steak` / `country-fried steak` (any spacing/hyphenation).
+2. **Fake beef → false:** Beyond, Impossible, veggie/vegan/vegetarian, plant-based, mushroom, portobello.
+3. **Competing protein → false:** chicken, turkey, fish, **catfish** (not matched by `\bfish\b`), salmon, shrimp, crab, cod, tilapia, tuna, lamb, duck. Mixed menus ("birria or catfish", "beef and chicken") get **no** tale.
+4. **Else** positive beef keywords (`beef`, `burger`, `steak`, `birria`, …).
+
+When changing the classifier, update **both** the comment block in `tales.js` and the positive/negative cases in `tests/tales.test.mjs`.
+
+## Templates
+
+- Every template must include `{cow}`, `{item}`, `{venue}`.
+- `{item}` may be an **event**, **priced string**, or **plural** — prefer "the {item} special/deal", "tonight's {item}", "ordering the {item}". Never edible-only metaphors.
+- Never reintroduce phrases in `BANNED_TEMPLATE_PHRASES` (sunny / medal / models / 10% off / bites of / guards / supervising / flat top).
+- Vary ending shapes; do not make every closer "She now … at {venue} … {item}."
+- Keep `TALE_COWS` disjoint from Cow of the Day `COW_NAMES` in `app.js`.
+
+## Click / XSS
+
+- Modal body via `textContent`; card HTML via `esc()`.
+- Tale click handler seeds from `data-tale-venue` / `data-tale-item` (do not require a live `specials.find` match).
