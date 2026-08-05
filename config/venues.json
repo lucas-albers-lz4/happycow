@@ -476,10 +476,11 @@
       ],
       "address": "422 Plum Ave, Bozeman, MT 59715",
       "phone": "",
-      "website": "",
+      "website": "https://www.mountainswalking.com/",
       "scrape_urls": [
-        "https://mthappyhour.com/locations/mountains-walking-brewery/",
-        "https://www.mountainswalking.com/"
+        "https://www.mountainswalking.com/food",
+        "https://www.mountainswalking.com/",
+        "https://mthappyhour.com/locations/mountains-walking-brewery/"
       ],
       "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
       "tags": [
