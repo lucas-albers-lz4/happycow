@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-08-05T03:19:15Z",
+  "updated_at": "2026-08-05T03:39:16Z",
   "fetches": 53,
   "llm_calls": 0,
   "tokens": 0,
   "cache_hits": 0,
   "cache_misses": 0,
   "escalations": 10,
-  "overture_matches": 2,
+  "overture_matches": 1,
   "overpass_signals": 0,
   "scrape_observations": 53,
-  "venues_processed": 54,
+  "venues_processed": 53,
   "top_n_selected": [
     "urban-kitchen",
     "the-pour-house",

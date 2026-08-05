@@ -51,10 +51,47 @@
       "id": "freefall-audreys-closed",
       "venue_id": "freefall-brewery-audreys-pizza",
       "scenario": "closed_aggregator_only",
+      "synthetic": true,
+      "venue": {
+        "id": "freefall-brewery-audreys-pizza",
+        "name": "Freefall Brewery & Audrey's Pizza",
+        "address": "806 N 7th Ave, Bozeman",
+        "website": "https://freefallbreweryandaudreyspizza.com/",
+        "scrape_urls": ["https://freefallbreweryandaudreyspizza.com/"]
+      },
+      "observations": [
+        {
+          "source_type": "overture",
+          "source_family": "overture",
+          "source_url": "overture:places:overture-freefall-fixture",
+          "payload": {"business_status": "permanently_closed", "overture_confidence": 0.0},
+          "observed_at": "2026-08-01T00:00:00Z",
+          "evidence_excerpt": "Overture permanently_closed"
+        },
+        {
+          "source_type": "aggregator",
+          "source_family": "mthappyhour",
+          "source_url": "https://mthappyhour.com/locations/freefall/",
+          "payload": {
+            "business_status": "open",
+            "hours": "Wed-Sun 2-5pm",
+            "specials": [
+              {"item": "Hoppy Hour pint", "price": 5, "category": "drinks", "description": ""}
+            ]
+          },
+          "observed_at": "2026-07-01T00:00:00Z"
+        }
+      ],
       "expected_status_kind": "suppressed",
       "expected_status_value": ["permanently_closed", "likely_closed"],
       "expected_specials_kind": "suppressed",
-      "notes": "Recent closure (2026-05-30); stale own-site still looks open — #77"
+      "notes": "Recent closure (2026-05-30); synthetic after live tombstone — stale site still looks open (#77)"
+    },
+    {
+      "id": "freefall-audreys-tombstoned",
+      "venue_id": "freefall-brewery-audreys-pizza",
+      "expect_tombstoned": true,
+      "notes": "Human-confirmed removal via remove_venue.py — must not appear in published app data"
     },
     {
       "id": "confirmed-open-primary",
