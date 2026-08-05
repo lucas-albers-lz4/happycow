@@ -178,7 +178,12 @@ class ApplyMerge(unittest.TestCase):
         }
         data = {
             "venues": [
-                {"id": "good", "hours": "", "specials": [], "notes": ""},
+                {
+                    "id": "good",
+                    "hours": "",
+                    "specials": [],
+                    "notes": "Site probed — no HH page",
+                },
                 {"id": "low", "hours": "", "specials": [], "notes": ""},
             ]
         }
@@ -219,12 +224,110 @@ class ApplyMerge(unittest.TestCase):
         good = next(v for v in data["venues"] if v["id"] == "good")
         self.assertEqual(len(good["specials"]), 1)
         self.assertEqual(good["hours"], "Mon-Fri 3-5pm")
+        self.assertIn("Site probed — no HH page", good["notes"])
+        self.assertIn("from own site", good["notes"])
+        self.assertIn("enriched", good["notes"])
         low = next(v for v in data["venues"] if v["id"] == "low")
         self.assertEqual(low["specials"], [])
 
         cfg_good = next(v for v in cfg["venues"] if v["id"] == "good")
         self.assertIn("https://good.example/specials", cfg_good["scrape_urls"])
         self.assertTrue(cfg_good["website"].startswith("https://good.example"))
+
+    def test_apply_skips_venues_that_already_have_specials(self):
+        cfg = {
+            "venues": [
+                {"id": "filled", "name": "Filled", "scrape_urls": [], "website": "https://f.example/"}
+            ]
+        }
+        data = {
+            "venues": [
+                {
+                    "id": "filled",
+                    "hours": "Daily 3-5pm",
+                    "specials": [
+                        {"item": "Beer", "price": 4, "category": "drinks", "description": ""}
+                    ],
+                    "notes": "from weekly scrape",
+                }
+            ]
+        }
+        candidates = {
+            "filled": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "Mon-Fri 4-6pm",
+                "specials": [
+                    {"item": "Stale", "price": 1, "category": "drinks", "description": ""}
+                ],
+                "source_urls": ["https://f.example/hh"],
+                "notes": "stale candidate",
+            }
+        }
+        applied, skipped, needs_site = enrich.apply_candidates(cfg, data, candidates)
+        self.assertEqual(applied, 0)
+        self.assertEqual(skipped, 1)
+        self.assertEqual(needs_site, 0)
+        filled = data["venues"][0]
+        self.assertEqual(filled["specials"][0]["item"], "Beer")
+        self.assertEqual(filled["hours"], "Daily 3-5pm")
+        self.assertEqual(filled["notes"], "from weekly scrape")
+
+    def test_apply_only_ids_filters_store(self):
+        cfg = {
+            "venues": [
+                {"id": "a", "name": "A", "scrape_urls": [], "website": "https://a.example/"},
+                {"id": "b", "name": "B", "scrape_urls": [], "website": "https://b.example/"},
+            ]
+        }
+        data = {
+            "venues": [
+                {"id": "a", "hours": "", "specials": [], "notes": ""},
+                {"id": "b", "hours": "", "specials": [], "notes": ""},
+            ]
+        }
+        candidates = {
+            "a": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "",
+                "specials": [
+                    {"item": "A deal", "price": 3, "category": "drinks", "description": ""}
+                ],
+                "source_urls": ["https://a.example/"],
+                "notes": "",
+            },
+            "b": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "",
+                "specials": [
+                    {"item": "B deal", "price": 3, "category": "drinks", "description": ""}
+                ],
+                "source_urls": ["https://b.example/"],
+                "notes": "",
+            },
+        }
+        applied, skipped, _ = enrich.apply_candidates(
+            cfg, data, candidates, only_ids={"a"}
+        )
+        self.assertEqual(applied, 1)
+        self.assertEqual(len(next(v for v in data["venues"] if v["id"] == "a")["specials"]), 1)
+        self.assertEqual(next(v for v in data["venues"] if v["id"] == "b")["specials"], [])
+
+
+class MergeNotes(unittest.TestCase):
+    def test_preserves_existing(self):
+        out = enrich.merge_notes("Site probed — no HH", "Wing Wednesday", "medium")
+        self.assertTrue(out.startswith("Site probed — no HH"))
+        self.assertIn("Wing Wednesday", out)
+        self.assertIn("conf=medium", out)
+
+    def test_avoids_duplicate_enrich_note(self):
+        once = enrich.merge_notes("keep", "same note", "high")
+        twice = enrich.merge_notes(once, "same note", "high")
+        self.assertEqual(once.count("same note"), 1)
+        self.assertEqual(twice.count("same note"), 1)
 
 
 if __name__ == "__main__":

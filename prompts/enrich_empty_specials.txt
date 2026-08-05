@@ -10,21 +10,21 @@ PAGE TEXT:
 ---
 
 Return ONLY valid JSON (no markdown fences) matching this schema:
-{{
+{
   "found": true | false,
   "confidence": "high" | "medium" | "low",
   "hours": "string — happy hour window(s) in canonical grammar, or empty",
   "specials": [
-    {{
+    {
       "item": "string",
       "price": number,
       "category": "drinks" | "food",
       "description": "string"
-    }}
+    }
   ],
   "notes": "short curator note (caveats, why not found, etc.)",
   "source_urls": ["urls that actually contained the deals"]
-}}
+}
 
 Rules:
 1. Extract only WEEKLY-RECURRING deals (happy hour, late night, daily specials, Wing Wednesday-style). Exclude one-off events, holiday menus, restaurant-week, private dining.

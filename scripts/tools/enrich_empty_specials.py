@@ -328,12 +328,34 @@ def should_apply(rec: dict) -> bool:
     return bool(rec.get("specials"))
 
 
+def merge_notes(existing: str, enrich_note: str, confidence: str | None) -> str:
+    """Preserve prior publish notes; append enrich note + provenance once."""
+    parts: list[str] = []
+    prev = (existing or "").strip()
+    if prev:
+        parts.append(prev)
+    note = (enrich_note or "").strip()
+    if note and note not in prev:
+        parts.append(note)
+    prov = f"enriched {utc_now()[:10]} conf={confidence or '?'}"
+    if prov not in prev:
+        parts.append(f"({prov})")
+    return "; ".join(parts)
+
+
 def apply_candidates(
     cfg: dict,
     data: dict,
     candidates: dict[str, dict],
+    *,
+    only_ids: set[str] | None = None,
 ) -> tuple[int, int, int]:
-    """Merge medium/high ok candidates. Returns (applied, skipped, needs_site)."""
+    """Merge medium/high ok candidates into venues that still have empty specials.
+
+    only_ids — when set, only consider those venue ids (this-run / --venue filter).
+    Never overwrites venues that already have published specials.
+    Returns (applied, skipped, needs_site).
+    """
     cfg_by_id = {v["id"]: v for v in cfg.get("venues") or []}
     data_by_id = {v["id"]: v for v in data.get("venues") or []}
     applied = skipped = needs_site = 0
@@ -342,6 +364,8 @@ def apply_candidates(
     pending_apply: list[tuple[str, dict]] = []
 
     for vid, rec in candidates.items():
+        if only_ids is not None and vid not in only_ids:
+            continue
         if rec.get("status") == "needs_site":
             needs_site += 1
             skipped += 1
@@ -352,8 +376,16 @@ def apply_candidates(
         if vid not in data_by_id or vid not in cfg_by_id:
             skipped += 1
             continue
+        site = data_by_id[vid]
+        if site.get("specials"):
+            # Already published — do not clobber weekly scrape / prior apply
+            skipped += 1
+            continue
         pending_apply.append((vid, rec))
-        extracts_for_hours[vid] = {"hours": rec.get("hours") or "", "specials": rec.get("specials") or []}
+        extracts_for_hours[vid] = {
+            "hours": rec.get("hours") or "",
+            "specials": rec.get("specials") or [],
+        }
 
     bad_hours = set(reject_unparseable_hours(extracts_for_hours))
 
@@ -364,9 +396,11 @@ def apply_candidates(
         if hours:
             site["hours"] = hours
         site["specials"] = list(rec.get("specials") or [])
-        note = (rec.get("notes") or "").strip()
-        prov = f"enriched {utc_now()[:10]} conf={rec.get('confidence')}"
-        site["notes"] = f"{note}; ({prov})" if note else f"({prov})"
+        site["notes"] = merge_notes(
+            site.get("notes") or "",
+            rec.get("notes") or "",
+            rec.get("confidence"),
+        )
 
         for url in rec.get("source_urls") or []:
             if not url or is_aggregator(url):
@@ -420,10 +454,13 @@ def main() -> int:
     city = cfg.get("city") or CITY_DEFAULT
     store = load_candidates()
     venues_store: dict[str, dict] = dict(store.get("venues") or {})
+    venue_filter = set(args.venues) if args.venues else None
 
     if args.apply_only:
-        applied, skipped, needs_site = apply_candidates(cfg, data, venues_store)
-        if not args.dry_run:
+        applied, skipped, needs_site = apply_candidates(
+            cfg, data, venues_store, only_ids=venue_filter
+        )
+        if not args.dry_run and applied:
             save_json(VENUES_PATH, cfg)
             save_json(DATA_PATH, data)
         print(f"\nApply-only: applied={applied} skipped={skipped} needs_site={needs_site}")
@@ -446,6 +483,7 @@ def main() -> int:
         print("No venues to enrich (empty specials set is empty, or --venue unknown).")
         return 0
 
+    run_ids = {cfg_v["id"] for cfg_v, _ in targets}
     print(f"Enriching {len(targets)} venues (model={MODEL}, force={args.force})")
     counts = {"ok": 0, "not_found": 0, "needs_site": 0, "no_page_text": 0, "error": 0}
 
@@ -472,7 +510,10 @@ def main() -> int:
     )
 
     if args.apply:
-        applied, skipped, needs_site = apply_candidates(cfg, data, venues_store)
+        # Only this-run venues — never re-apply stale store entries for others
+        applied, skipped, needs_site = apply_candidates(
+            cfg, data, venues_store, only_ids=run_ids
+        )
         if not args.dry_run and applied:
             save_json(VENUES_PATH, cfg)
             save_json(DATA_PATH, data)
