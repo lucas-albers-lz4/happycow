@@ -1239,28 +1239,6 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local"
-    },
-    {
-      "id": "freefall-brewery-audreys-pizza",
-      "name": "Freefall Brewery & Audrey's Pizza",
-      "nickname": "The Soft Landing",
-      "nickname_alts": [
-        "Audrey's Last Slice",
-        "Freefall From Grace"
-      ],
-      "address": "806 N 7th Ave, Bozeman",
-      "phone": "(406) 522-5456",
-      "website": "https://freefallbreweryandaudreyspizza.com/",
-      "scrape_urls": [
-        "https://freefallbreweryandaudreyspizza.com/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Freefall%20Brewery%20Audrey%27s%20Pizza%20Bozeman%20MT",
-      "tags": [
-        "craft-beer",
-        "brewery"
-      ],
-      "noise_level": "moderate",
-      "mood": "casual"
     }
   ]
 }
