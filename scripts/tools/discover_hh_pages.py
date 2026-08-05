@@ -83,8 +83,8 @@ def own_site_urls(venue: dict) -> list[str]:
 def page_text(resp: httpx.Response) -> str:
     """Rough text extraction: strip scripts/styles/tags."""
     raw = resp.text
-    raw = re.sub(r"<script[^>]*>.*?</script>", " ", raw, flags=re.DOTALL | re.IGNORECASE)
-    raw = re.sub(r"<style[^>]*>.*?</style>", " ", raw, flags=re.DOTALL | re.IGNORECASE)
+    raw = re.sub(r"<script[^>]*>.*?</script[^>]*>", " ", raw, flags=re.DOTALL | re.IGNORECASE)
+    raw = re.sub(r"<style[^>]*>.*?</style[^>]*>", " ", raw, flags=re.DOTALL | re.IGNORECASE)
     return re.sub(r"<[^>]+>", " ", raw)
 
 

@@ -31,9 +31,14 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
-
-from common import CLOSURE_REPORT_PATH, CLOSURE_STATE_PATH, is_aggregator, save_json, save_text
+from common import (
+    CLOSURE_REPORT_PATH,
+    CLOSURE_STATE_PATH,
+    host_of,
+    is_aggregator,
+    save_json,
+    save_text,
+)
 
 import httpx
 
@@ -82,15 +87,21 @@ def site_ok(client: httpx.Client, url: str) -> bool:
 
 def probe_mthappyhour(client: httpx.Client, venue: dict) -> bool:
     """True if the venue's mthappyhour entry carries closure wording."""
-    mthh = next((u for u in (venue.get("scrape_urls") or [])
-                 if "mthappyhour.com" in (urlsplit(u).hostname or "")), None)
+    mthh = next(
+        (
+            u
+            for u in (venue.get("scrape_urls") or [])
+            if (h := host_of(u)) == "mthappyhour.com" or h.endswith(".mthappyhour.com")
+        ),
+        None,
+    )
     if not mthh:
         return False
     try:
         r = client.get(mthh)
         if r.status_code != 200:
             return False
-        text = re.sub(r"<script[^>]*>.*?</script>", " ", r.text, flags=re.DOTALL | re.I)
+        text = re.sub(r"<script[^>]*>.*?</script[^>]*>", " ", r.text, flags=re.DOTALL | re.I)
         text = re.sub(r"<[^>]+>", " ", text)
         name = re.escape(venue["name"].split("(")[0].strip())
         for m in CLOSED_RE.finditer(text):
