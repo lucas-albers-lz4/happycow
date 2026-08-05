@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05T03:16:59Z",
+  "updated_at": "2026-08-05T03:41:31Z",
   "venues": {
     "ale-works": {
       "content_hash": "161877540d194b88",
@@ -76,7 +76,7 @@
             "description": ""
           }
         ],
-        "notes": "Weekend happy hours from 9pm–11pm"
+        "notes": "Weekend happy hours from 9pm\u201311pm"
       }
     },
     "bar-ix": {
@@ -238,7 +238,7 @@
             "item": "Men's drinks",
             "price": 7.0,
             "category": "drinks",
-            "description": "Mondays: Men’s night, $7 for all mens drinks"
+            "description": "Mondays: Men\u2019s night, $7 for all mens drinks"
           },
           {
             "item": "Mule",
@@ -256,7 +256,7 @@
             "item": "Women's drinks",
             "price": 7.0,
             "category": "drinks",
-            "description": "Thursday: Ladies night all day. $7 for all women’s drinks"
+            "description": "Thursday: Ladies night all day. $7 for all women\u2019s drinks"
           },
           {
             "item": "All drinks",
@@ -539,20 +539,6 @@
         "business_hours": "",
         "specials": [],
         "notes": null
-      }
-    },
-    "mountains-walking-brewery": {
-      "content_hash": "20229670afc80964",
-      "fetched_at": "2026-08-05T03:15:04Z",
-      "sources": [
-        "https://www.mountainswalking.com/"
-      ],
-      "extract": {
-        "status": "not_found",
-        "hours": "",
-        "business_hours": "Daily 11:30am-9pm",
-        "specials": [],
-        "notes": ""
       }
     },
     "revelry": {
@@ -889,7 +875,7 @@
             "description": "Cocktail"
           },
           {
-            "item": "Wild Herd Kölsch by Goose Island",
+            "item": "Wild Herd K\u00f6lsch by Goose Island",
             "price": 4.0,
             "category": "drinks",
             "description": "Tall draft beer, house beer"

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-05T03:39:16Z",
+  "last_updated": "2026-08-05T03:41:31Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -46,7 +46,7 @@
     },
     {
       "id": "applebees-bozeman",
-      "name": "Applebee’s Bozeman",
+      "name": "Applebee\u2019s Bozeman",
       "nickname": "The Half-Off House",
       "nickname_alts": [
         "App Half Hour",
@@ -334,7 +334,7 @@
           "item": "Men's drinks",
           "price": 7.0,
           "category": "drinks",
-          "description": "Mondays: Men’s night, $7 for all mens drinks"
+          "description": "Mondays: Men\u2019s night, $7 for all mens drinks"
         },
         {
           "item": "Mule",
@@ -352,7 +352,7 @@
           "item": "Women's drinks",
           "price": 7.0,
           "category": "drinks",
-          "description": "Thursday: Ladies night all day. $7 for all women’s drinks"
+          "description": "Thursday: Ladies night all day. $7 for all women\u2019s drinks"
         },
         {
           "item": "All drinks",
@@ -468,7 +468,7 @@
           "description": "Saturday special"
         },
         {
-          "item": "Nana Rose’s Meatball Dinner",
+          "item": "Nana Rose\u2019s Meatball Dinner",
           "price": 0.0,
           "category": "food",
           "description": "Sunday special"
@@ -572,7 +572,7 @@
     },
     {
       "id": "daves-sushi",
-      "name": "Dave’s Sushi",
+      "name": "Dave\u2019s Sushi",
       "nickname": "The Monday Roll",
       "nickname_alts": [
         "Half-Off, Full Roll",
@@ -886,7 +886,7 @@
       ],
       "address": "422 Plum Ave, Bozeman, MT 59715",
       "phone": "",
-      "website": "",
+      "website": "https://www.mountainswalking.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
       "tags": [
         "craft-beer",
@@ -895,9 +895,16 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "hours": "",
-      "business_hours": "Mon-Sun 11:30am-8:00pm",
-      "notes": "Site probed (mountainswalking.com) — no HH published (verified 2026-08-02)",
-      "specials": []
+      "business_hours": "Mon-Sun 11:30am-9pm",
+      "notes": "No classic happy-hour window published; weekly Wing Wednesday on /food (verified 2026-08-05).",
+      "specials": [
+        {
+          "item": "1/2 off draft pour with wings (Wing Wednesday)",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "Wednesdays dine-in only \u2014 half off a full pour draft with purchase of chicken or cauliflower wings; flights not included. Source: mountainswalking.com/food"
+        }
+      ]
     },
     {
       "id": "revelry",
@@ -1042,7 +1049,7 @@
       "mood": "bozeman-local",
       "hours": "Daily 3-5pm",
       "business_hours": "Mon-Thu 11:00am-9:00pm, Fri-Sat 11:00am-10:00pm, Sun 11:00am-9:00pm",
-      "notes": "Site probed — no HH page found (verified 2026-08-02)",
+      "notes": "Site probed \u2014 no HH page found (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1288,7 +1295,7 @@
           "item": "Fried Bison Short Rib Ravioli",
           "price": 12.0,
           "category": "food",
-          "description": "$12 — red sauce"
+          "description": "$12 \u2014 red sauce"
         },
         {
           "item": "Sirloin Steak Tostadas",
@@ -1317,7 +1324,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm",
-      "notes": "Site menu probed — regular prices only, no HH (verified 2026-08-02)",
+      "notes": "Site menu probed \u2014 regular prices only, no HH (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1384,7 +1391,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Sun 11:00am-2:00am",
-      "notes": "Menu + drink menu probed — regular prices, no HH (verified 2026-08-02)",
+      "notes": "Menu + drink menu probed \u2014 regular prices, no HH (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1458,7 +1465,7 @@
       "name": "The Haufbrau",
       "nickname": "The Day-Long Dive",
       "nickname_alts": [
-        "Hauf the Day, Bräu the Night",
+        "Hauf the Day, Br\u00e4u the Night",
         "The 15-Hour German"
       ],
       "address": "22 S 8th Ave, Bozeman",
@@ -1495,7 +1502,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm",
-      "notes": "Site menu probed — no HH (verified 2026-08-02)",
+      "notes": "Site menu probed \u2014 no HH (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1547,7 +1554,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Sun 12:00am-8:00pm",
-      "notes": "Site probed — no HH published (verified 2026-08-02)",
+      "notes": "Site probed \u2014 no HH published (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1592,7 +1599,7 @@
       "mood": "bozeman-local",
       "hours": "Mon-Fri 2-6pm",
       "business_hours": "Mon-Sun 10:30am-2:00am",
-      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells — that post predates 2021 (IG shortcode era), mthappyhour pricing used as current. Source: mthappyhour.com",
+      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells \u2014 that post predates 2021 (IG shortcode era), mthappyhour pricing used as current. Source: mthappyhour.com",
       "specials": [
         {
           "item": "Micro drafts",
@@ -1628,7 +1635,7 @@
           "item": "Wings & a pint",
           "price": 8.75,
           "category": "food",
-          "description": "$8.75 Mondays — 1/2 lb wings & a pint"
+          "description": "$8.75 Mondays \u2014 1/2 lb wings & a pint"
         },
         {
           "item": "White Claw",
@@ -1657,7 +1664,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm",
-      "notes": "Site probed — no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)",
+      "notes": "Site probed \u2014 no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -1679,7 +1686,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Tue-Sat 4pm-close",
-      "notes": "Site exists (tanoshiimt.com) but blocks automated fetch (403); HH unverified — manual check needed",
+      "notes": "Site exists (tanoshiimt.com) but blocks automated fetch (403); HH unverified \u2014 manual check needed",
       "specials": []
     },
     {
@@ -1701,7 +1708,7 @@
       "mood": "bozeman-local",
       "hours": "Mon-Fri 3-5pm",
       "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm",
-      "notes": "Site probed — mead pricing only, no HH (verified 2026-08-02)",
+      "notes": "Site probed \u2014 mead pricing only, no HH (verified 2026-08-02)",
       "specials": [
         {
           "item": "Take 2 Combo",
@@ -1768,7 +1775,7 @@
           "description": "Cocktail"
         },
         {
-          "item": "Wild Herd Kölsch by Goose Island",
+          "item": "Wild Herd K\u00f6lsch by Goose Island",
           "price": 4.0,
           "category": "drinks",
           "description": "Tall draft beer, house beer"
@@ -1830,7 +1837,7 @@
       "mood": "bozeman-local",
       "hours": "Mon-Fri 3-5pm & Sun all day",
       "business_hours": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am",
-      "notes": "The $5 happy hour — Mon-Fri 3-5pm & all-day Sunday (3pm-close). Sources: OpenTable, Facebook, Instagram (agree).",
+      "notes": "The $5 happy hour \u2014 Mon-Fri 3-5pm & all-day Sunday (3pm-close). Sources: OpenTable, Facebook, Instagram (agree).",
       "specials": [
         {
           "item": "Draft beer",
@@ -1878,31 +1885,31 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Sun 2pm-8pm",
-      "notes": "No single HH window — weekly deals (Sun 12-2 all beer $3; Mon pint night; Tue growler fills; Thu ladies night). $3 Happy Hour Mug/Pint branded glassware sold on site. Source: mthappyhour.com + madisonriverbrewing.com.",
+      "notes": "No single HH window \u2014 weekly deals (Sun 12-2 all beer $3; Mon pint night; Tue growler fills; Thu ladies night). $3 Happy Hour Mug/Pint branded glassware sold on site. Source: mthappyhour.com + madisonriverbrewing.com.",
       "specials": [
         {
           "item": "All beer",
           "price": 3.0,
           "category": "drinks",
-          "description": "$3 — Sundays 12-2pm happy hour"
+          "description": "$3 \u2014 Sundays 12-2pm happy hour"
         },
         {
           "item": "Pint Night",
           "price": 0.0,
           "category": "drinks",
-          "description": "Mondays — $1 off all beer all day"
+          "description": "Mondays \u2014 $1 off all beer all day"
         },
         {
           "item": "Growler fills",
           "price": 0.0,
           "category": "drinks",
-          "description": "Tuesdays — $2 off growler fills all day"
+          "description": "Tuesdays \u2014 $2 off growler fills all day"
         },
         {
           "item": "Ladies Night",
           "price": 0.0,
           "category": "drinks",
-          "description": "Thursdays — $1 off all day for ladies"
+          "description": "Thursdays \u2014 $1 off all day for ladies"
         }
       ]
     },
@@ -1925,7 +1932,7 @@
       "mood": "bozeman-local",
       "hours": "Mon-Fri 4-7pm",
       "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
-      "notes": "Per thehappyhourfinder.com — official location page does not list HH deals statically.",
+      "notes": "Per thehappyhourfinder.com \u2014 official location page does not list HH deals statically.",
       "specials": [
         {
           "item": "Domestic bottles & pints",
@@ -1997,13 +2004,13 @@
           "item": "Pints",
           "price": 0.0,
           "category": "drinks",
-          "description": "Military Monday & Tough Guy/Gal Tuesday — 50¢ off per pint"
+          "description": "Military Monday & Tough Guy/Gal Tuesday \u2014 50\u00a2 off per pint"
         },
         {
           "item": "Growler deal",
           "price": 0.0,
           "category": "drinks",
-          "description": "Thirsty Thursday — fill a 64oz growler, get a pint for $1"
+          "description": "Thirsty Thursday \u2014 fill a 64oz growler, get a pint for $1"
         }
       ]
     },
@@ -2026,7 +2033,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Sun 3pm-1:30am",
-      "notes": "Site probed (plonkwine.com) — no HH published (verified 2026-08-02)",
+      "notes": "Site probed (plonkwine.com) \u2014 no HH published (verified 2026-08-02)",
       "specials": []
     },
     {
@@ -2048,7 +2055,7 @@
       "mood": "bozeman-local",
       "hours": "Mon-Fri 3-6pm",
       "business_hours": "Mon-Sun 11am-2am",
-      "notes": "mthappyhour lists 3:17-6:17pm (their quirk) — normalized to 3-6pm. Source: mthappyhour.com",
+      "notes": "mthappyhour lists 3:17-6:17pm (their quirk) \u2014 normalized to 3-6pm. Source: mthappyhour.com",
       "specials": [
         {
           "item": "Drafts & well drinks",
@@ -2060,7 +2067,7 @@
     },
     {
       "id": "rialto-bar-burn-box",
-      "name": "Rialto Bar – Burn Box",
+      "name": "Rialto Bar \u2013 Burn Box",
       "nickname": "The Bridge to Burn",
       "nickname_alts": [
         "Venice, MT",
@@ -2099,7 +2106,7 @@
       "mood": "bozeman-local",
       "hours": "",
       "business_hours": "Mon-Sat 11:30am-10pm, Sun 4pm-10pm",
-      "notes": "Site HH page exists but is an empty template (Squarespace 'Your Custom Text Here') — no published HH",
+      "notes": "Site HH page exists but is an empty template (Squarespace 'Your Custom Text Here') \u2014 no published HH",
       "specials": []
     },
     {
@@ -2127,13 +2134,13 @@
           "item": "Draft beer",
           "price": 4.0,
           "category": "drinks",
-          "description": "$4 Mondays — all day"
+          "description": "$4 Mondays \u2014 all day"
         },
         {
           "item": "Pitcher & pizza",
           "price": 0.0,
           "category": "food",
-          "description": "Tuesdays — pitcher and pizza deal"
+          "description": "Tuesdays \u2014 pitcher and pizza deal"
         },
         {
           "item": "Steak Night",
@@ -2145,7 +2152,7 @@
           "item": "B.A.B.B. night",
           "price": 0.0,
           "category": "food",
-          "description": "Thursdays — big ass burger and a pint of beer (price not specified)"
+          "description": "Thursdays \u2014 big ass burger and a pint of beer (price not specified)"
         },
         {
           "item": "Breakfast sandwich or burrito",
