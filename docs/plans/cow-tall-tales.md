@@ -17,10 +17,11 @@ the deals themselves are currently lore-free. Every beef special deserves an ori
 `isBeefSpecial(special)` in `assets/js/tales.js`, matching against `item + description`.
 **Order is load-bearing** (also documented in `.cursor/rules/cow-tall-tales.mdc`):
 
-1. **Override → beef:** `chicken-fried steak` / `country-fried steak` (hyphen or spaces).
-   Wins even though the string contains `chicken`.
-2. **Fake beef → not beef:** Beyond, Impossible, veggie/vegan/vegetarian, plant-based,
-   mushroom, portobello.
+1. **Fake beef → not beef FIRST:** Beyond, Impossible, veggie, plant-based, mushroom,
+   portobello; `vegan`/`vegetarian` only when not preceded by `non-`/`non `
+   ("non-vegetarian ribeye" stays beef). Plant-based CFS-style names die here.
+2. **Override → beef:** `chicken-fried steak` / `country-fried steak` (hyphen or spaces).
+   Wins even though the string contains `chicken` (after fake-beef is cleared).
 3. **Competing protein → not beef:** chicken, turkey, fish, **catfish** (explicit —
    `\bfish\b` does not match it), salmon, shrimp, crab, cod, tilapia, tuna, lamb, duck.
    Mixed menus ("Catfish or Birria", "beef and chicken options") get **no** tale.

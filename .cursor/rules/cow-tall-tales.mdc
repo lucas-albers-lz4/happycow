@@ -12,8 +12,8 @@ Procedural client-side gag for beef specials. **No LLM / scrape / data fields** 
 
 Order matters — keep it:
 
-1. **Override → true:** `chicken-fried steak` / `country-fried steak` (any spacing/hyphenation).
-2. **Fake beef → false:** Beyond, Impossible, veggie/vegan/vegetarian, plant-based, mushroom, portobello.
+1. **Fake beef → false FIRST:** Beyond, Impossible, veggie, plant-based, mushroom, portobello; `vegan`/`vegetarian` only when **not** preceded by `non-` / `non ` (so "non-vegetarian ribeye" stays beef). Plant-based "chicken fried steak" names die here before the override.
+2. **Override → true:** `chicken-fried steak` / `country-fried steak` (any spacing/hyphenation).
 3. **Competing protein → false:** chicken, turkey, fish, **catfish** (not matched by `\bfish\b`), salmon, shrimp, crab, cod, tilapia, tuna, lamb, duck. Mixed menus ("birria or catfish", "beef and chicken") get **no** tale.
 4. **Else** positive beef keywords (`beef`, `burger`, `steak`, `birria`, …).
 

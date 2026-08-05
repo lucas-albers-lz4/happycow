@@ -60,6 +60,9 @@ test('classifier: unambiguous beef items are detected', () => {
     sp('Country fried steak', 'beef cutlet'),
     sp('Birria Tacos', 'slow cooked'),
     sp('Carne asada fries'),
+    // "non-vegetarian" must not trip the vegan/vegetarian fake-beef gate
+    sp('Ribeye', 'non-vegetarian entree, 12oz'),
+    sp('Smash Burger', 'non vegan — real beef patty'),
   ];
   for (const s of positives) {
     assert.ok(isBeefSpecial(s), `should detect: ${s.item} — ${s.description}`);
@@ -82,6 +85,9 @@ test('classifier: non-beef, fake-beef, and ambiguous mixed menus are rejected', 
     sp('Slider night', 'beef and chicken options'),      // mixed → no tale
     sp('Tacos', 'including the famous Catfish taco or Birria tacos'), // mixed
     sp('Catfish Basket', 'fried catfish'),               // catfish ≠ fish word-boundary
+    // fake-beef wins over chicken-fried-steak override
+    sp('Chicken fried steak', 'plant-based'),
+    sp('Country-fried steak', 'vegan mushroom cutlet'),
   ];
   for (const s of negatives) {
     assert.ok(!isBeefSpecial(s), `should reject: ${s.item} — ${s.description}`);

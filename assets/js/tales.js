@@ -12,12 +12,14 @@
 // distinct across specials, and future-proof for new beef specials.
 //
 // ── Classifier rules (keep tests/tales.test.mjs in sync) ──
-// 1. Override FIRST: chicken-/country-fried steak is beef even though it says
-//    "chicken".
-// 2. Fake-beef brands / plant signals reject (Beyond, Impossible, veggie…).
+// 1. Fake-beef brands / plant signals reject FIRST (Beyond, Impossible,
+//    veggie…, and plant-based "chicken fried steak" style names).
+// 2. Override: chicken-/country-fried steak is beef even though it says
+//    "chicken" (only after fake-beef is cleared).
 // 3. Competing proteins anywhere reject (chicken, catfish, fish, lamb…).
 //    Mixed "birria or catfish" menus do NOT get a tale — too ambiguous.
 // 4. Else positive beef keywords (burger/steak/birria/…) win.
+// Note: "non-vegetarian" / "non-vegan" must NOT trip the fake-beef gate.
 //
 // ── Template writing rules (enforced by tests) ──
 // - Every template must include {cow}, {item}, and {venue}.
@@ -43,11 +45,14 @@
     'cheesesteak', 'corned beef', 'bison'
   ];
 
-  // Wins even when a competing-protein token is present ("chicken-fried steak").
+  // Wins even when a competing-protein token is present ("chicken-fried steak"),
+  // but only after fake-beef is cleared (plant-based CFS stays out).
   const BEEF_OVERRIDE_RE = /\b(?:chicken[\s-]*fried[\s-]*steak|country[\s-]*fried[\s-]*steak)\b/i;
 
-  // Plant / fake-beef signals — reject before positives.
-  const FAKE_BEEF_RE = /\b(?:beyond|impossible|veggie|vegan|vegetarian|plant[\s-]?based|portobello|mushroom)\b/i;
+  // Plant / fake-beef signals — reject before override/positives.
+  // vegan/vegetarian use negative lookbehind so "non-vegan" / "non-vegetarian"
+  // (hyphen or space) do not suppress a real beef special.
+  const FAKE_BEEF_RE = /\b(?:beyond|impossible|veggie|plant[\s-]?based|portobello|mushroom)\b|(?<!non-)(?<!non\s)\b(?:vegan|vegetarian)\b/i;
 
   // Competing proteins. catfish is listed explicitly: \bfish\b does not match it.
   // A negative anywhere suppresses the tale (mixed "beef and chicken" menus → no tale).
@@ -58,8 +63,8 @@
   function isBeefSpecial(special) {
     if (!special) return false;
     const text = String(special.item || '') + ' ' + String(special.description || '');
-    if (BEEF_OVERRIDE_RE.test(text)) return true;
     if (FAKE_BEEF_RE.test(text)) return false;
+    if (BEEF_OVERRIDE_RE.test(text)) return true;
     if (NOT_BEEF_RE.test(text)) return false;
     return BEEF_RE.test(text);
   }
