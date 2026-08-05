@@ -1174,27 +1174,6 @@
       "mood": "bozeman-local"
     },
     {
-      "id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "nickname": "The Red Chile Recess",
-      "nickname_alts": [
-        "New Mexico, North",
-        "Red Hot Hours"
-      ],
-      "address": "1235 N 7th Ave, Bozeman",
-      "phone": "",
-      "website": "",
-      "scrape_urls": [
-        "https://mthappyhour.com/locations/santa-fe-reds/"
-      ],
-      "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
-      "tags": [
-        "downtown"
-      ],
-      "noise_level": "moderate",
-      "mood": "bozeman-local"
-    },
-    {
       "id": "seven-sushi",
       "name": "Seven Sushi",
       "nickname": "Lucky Seven Rolls",

@@ -15,6 +15,14 @@
       "norm_address": "120 big pine dr big sky (meadow village)",
       "removed_at": "2026-08-02T03:09:45Z",
       "reason": "Out of coverage area — Big Sky Meadow Village, ~45 min from Bozeman; removal decision 2026-08-02"
+    },
+    {
+      "id": "santa-fe-reds",
+      "name": "Santa Fe Reds",
+      "norm_name": "santa fe reds",
+      "norm_address": "1235 n 7th ave bozeman",
+      "removed_at": "2026-08-05T03:18:18Z",
+      "reason": "permanently closed; Overture + local confirm"
     }
   ]
 }

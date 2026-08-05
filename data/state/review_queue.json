@@ -1,59 +1,7 @@
 {
-  "updated_at": "2026-08-05T03:17:42Z",
+  "updated_at": "2026-08-05T03:18:18Z",
   "items": [
     {
-      "venue_id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "field": "business_status",
-      "kind": "suppressed",
-      "value": "permanently_closed",
-      "rationale": "strong closed signal from overture/overture",
-      "cited_sources": [
-        "overture:places:overture-santa-fe-reds-fixture",
-        "https://mthappyhour.com/locations/santa-fe-reds/"
-      ],
-      "queued_at": "2026-08-05T03:17:42Z"
-    },
-    {
-      "venue_id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "field": "hours",
-      "kind": "suppressed",
-      "value": "Daily 3-6pm, Fri-Sat 10pm-12am",
-      "rationale": "suppressed due to business_status=permanently_closed",
-      "cited_sources": [
-        "overture:places:overture-santa-fe-reds-fixture",
-        "https://mthappyhour.com/locations/santa-fe-reds/"
-      ],
-      "queued_at": "2026-08-05T03:17:42Z"
-    },
-    {
-      "venue_id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "field": "business_hours",
-      "kind": "suppressed",
-      "value": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
-      "rationale": "suppressed due to business_status=permanently_closed",
-      "cited_sources": [
-        "overture:places:overture-santa-fe-reds-fixture",
-        "https://mthappyhour.com/locations/santa-fe-reds/"
-      ],
-      "queued_at": "2026-08-05T03:17:42Z"
-    },
-    {
-      "venue_id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "field": "specials",
-      "kind": "suppressed",
-      "value": null,
-      "rationale": "suppressed due to business_status=permanently_closed",
-      "cited_sources": [
-        "overture:places:overture-santa-fe-reds-fixture",
-        "https://mthappyhour.com/locations/santa-fe-reds/"
-      ],
-      "queued_at": "2026-08-05T03:17:42Z"
-    },
-    {
       "venue_id": "freefall-brewery-audreys-pizza",
       "name": "Freefall Brewery & Audrey's Pizza",
       "field": "business_status",
@@ -63,7 +11,7 @@
       "cited_sources": [
         "overture:places:overture-freefall-fixture"
       ],
-      "queued_at": "2026-08-05T03:17:42Z"
+      "queued_at": "2026-08-05T03:18:18Z"
     },
     {
       "venue_id": "freefall-brewery-audreys-pizza",
@@ -75,7 +23,7 @@
       "cited_sources": [
         "overture:places:overture-freefall-fixture"
       ],
-      "queued_at": "2026-08-05T03:17:42Z"
+      "queued_at": "2026-08-05T03:18:18Z"
     },
     {
       "venue_id": "freefall-brewery-audreys-pizza",
@@ -87,7 +35,7 @@
       "cited_sources": [
         "overture:places:overture-freefall-fixture"
       ],
-      "queued_at": "2026-08-05T03:17:42Z"
+      "queued_at": "2026-08-05T03:18:18Z"
     },
     {
       "venue_id": "freefall-brewery-audreys-pizza",
@@ -99,7 +47,7 @@
       "cited_sources": [
         "overture:places:overture-freefall-fixture"
       ],
-      "queued_at": "2026-08-05T03:17:42Z"
+      "queued_at": "2026-08-05T03:18:18Z"
     }
   ]
 }

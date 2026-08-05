@@ -2081,47 +2081,6 @@
       "specials": []
     },
     {
-      "id": "santa-fe-reds",
-      "name": "Santa Fe Reds",
-      "nickname": "The Red Chile Recess",
-      "nickname_alts": [
-        "New Mexico, North",
-        "Red Hot Hours"
-      ],
-      "address": "1235 N 7th Ave, Bozeman",
-      "phone": "",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
-      "tags": [
-        "downtown"
-      ],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
-      "business_hours": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
-      "notes": "Source: mthappyhour.com",
-      "specials": [
-        {
-          "item": "Draft pints",
-          "price": 2.0,
-          "category": "drinks",
-          "description": "$2 draft pints"
-        },
-        {
-          "item": "Red's margaritas",
-          "price": 4.0,
-          "category": "drinks",
-          "description": "$4 Red's margaritas"
-        },
-        {
-          "item": "Flavored margaritas",
-          "price": 5.0,
-          "category": "drinks",
-          "description": "$5 flavored margaritas"
-        }
-      ]
-    },
-    {
       "id": "seven-sushi",
       "name": "Seven Sushi",
       "nickname": "Lucky Seven Rolls",

@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-08-05T03:17:42Z",
-  "fetches": 54,
+  "updated_at": "2026-08-05T03:18:18Z",
+  "fetches": 53,
   "llm_calls": 0,
   "tokens": 0,
   "cache_hits": 0,
   "cache_misses": 0,
   "escalations": 10,
-  "overture_matches": 3,
+  "overture_matches": 2,
   "overpass_signals": 0,
-  "scrape_observations": 54,
-  "venues_processed": 55,
+  "scrape_observations": 53,
+  "venues_processed": 54,
   "top_n_selected": [
     "urban-kitchen",
     "the-pour-house",
@@ -19,7 +19,7 @@
     "dry-hills-distillery",
     "cafe-fresco",
     "bozeman-spirits-distillery",
-    "santa-fe-reds",
-    "the-bacchus-pub"
+    "the-bacchus-pub",
+    "revelry"
   ]
 }

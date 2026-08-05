@@ -5,10 +5,47 @@
       "id": "santa-fe-reds-closed",
       "venue_id": "santa-fe-reds",
       "scenario": "closed_aggregator_only",
+      "synthetic": true,
+      "venue": {
+        "id": "santa-fe-reds",
+        "name": "Santa Fe Reds",
+        "address": "1235 N 7th Ave, Bozeman",
+        "website": "",
+        "scrape_urls": ["https://mthappyhour.com/locations/santa-fe-reds/"]
+      },
+      "observations": [
+        {
+          "source_type": "overture",
+          "source_family": "overture",
+          "source_url": "overture:places:overture-santa-fe-reds-fixture",
+          "payload": {"business_status": "permanently_closed", "overture_confidence": 0.0},
+          "observed_at": "2026-08-01T00:00:00Z",
+          "evidence_excerpt": "Overture permanently_closed"
+        },
+        {
+          "source_type": "aggregator",
+          "source_family": "mthappyhour",
+          "source_url": "https://mthappyhour.com/locations/santa-fe-reds/",
+          "payload": {
+            "business_status": "open",
+            "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
+            "specials": [
+              {"item": "$5 Margarita", "price": 5, "category": "drinks", "description": ""}
+            ]
+          },
+          "observed_at": "2026-07-01T00:00:00Z"
+        }
+      ],
       "expected_status_kind": "suppressed",
       "expected_status_value": ["permanently_closed", "likely_closed"],
       "expected_specials_kind": "suppressed",
-      "notes": "Canonical Santa Fe Reds failure — aggregator HH + closed prior"
+      "notes": "Canonical Santa Fe class (synthetic after live tombstone) — aggregator HH + closed prior"
+    },
+    {
+      "id": "santa-fe-reds-tombstoned",
+      "venue_id": "santa-fe-reds",
+      "expect_tombstoned": true,
+      "notes": "Human-confirmed removal via remove_venue.py (#73)"
     },
     {
       "id": "freefall-audreys-closed",

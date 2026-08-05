@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from common import EVAL_DIR, VENUES_PATH, load_json
+from common import EVAL_DIR, TOMBSTONES_PATH, VENUES_PATH, load_json
 from adapters.overture import match_venues_to_candidates, observations_from_matches, load_fixture
 from truth.agreement import agree_venue, venue_has_primary
 from truth.schema import ExtractionMethod, Observation
@@ -38,6 +38,18 @@ def obs_from_spec(venue_id: str, spec: dict) -> Observation:
 def check_case(case: dict, venues_by_id: dict, fixture_places: list) -> list[str]:
     errors = []
     cid = case["id"]
+
+    if case.get("expect_tombstoned"):
+        vid = case["venue_id"]
+        if vid in venues_by_id:
+            errors.append(f"{cid}: venue_id {vid} still in config (expected tombstone)")
+        tomb_ids = set()
+        if TOMBSTONES_PATH.exists():
+            tomb = load_json(TOMBSTONES_PATH)
+            tomb_ids = {v.get("id") for v in (tomb.get("venues") or []) if v.get("id")}
+        if vid not in tomb_ids:
+            errors.append(f"{cid}: venue_id {vid} missing from {TOMBSTONES_PATH.name}")
+        return errors
 
     if case.get("expect_no_overture_match"):
         venue = case["venue"]
