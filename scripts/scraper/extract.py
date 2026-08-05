@@ -24,6 +24,8 @@ from tenacity import (
     wait_exponential,
 )
 
+from common import is_aggregator
+
 from .fetch import TRANSIENT_HTTP, _is_transient_http_error, gather_page_text
 
 ANTHROPIC_API_KEY = (
@@ -263,7 +265,12 @@ def extract_venue(
     """Returns (extract_dict_or_None, cache_hit)."""
     page_text, urls = gather_page_text(client, venue)
     if not page_text:
-        print(f"  SKIP {venue['id']}: no page text")
+        dedicated = [u for u in (venue.get("scrape_urls") or []) if not is_aggregator(u)]
+        website = venue.get("website") or ""
+        if not dedicated and not website:
+            print(f"  SKIP {venue['id']}: no page text (no_own_site)")
+        else:
+            print(f"  SKIP {venue['id']}: no page text")
         return None, False
 
     digest = content_hash(page_text)

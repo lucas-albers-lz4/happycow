@@ -16,6 +16,7 @@ import httpx
 
 from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, save_json
 from scraper.extract import ANTHROPIC_API_KEY, MODEL, extract_venue
+from scraper.fetch import BROWSER_HEADERS
 from scraper.merge import reject_unparseable_hours, venue_to_site_record
 
 # Optional truth-pipeline provenance (shadow; suppress gated by truth_config)
@@ -30,7 +31,6 @@ except Exception:  # noqa: BLE001
     _TRUTH_AVAILABLE = False
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-USER_AGENT = "happycow-scraper/1.0 (+https://github.com/lucas-albers-lz4/happycow)"
 REQUEST_TIMEOUT = 30.0
 
 
@@ -77,8 +77,9 @@ def run(
     # one batched Node parse check across the whole run (issue #41).
     pending: list[tuple[dict, dict | None, bool]] = []
     cache_hits = 0
-    headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/json"}
-    with httpx.Client(headers=headers, follow_redirects=True, timeout=REQUEST_TIMEOUT) as client:
+    with httpx.Client(
+        headers=BROWSER_HEADERS, follow_redirects=True, timeout=REQUEST_TIMEOUT
+    ) as client:
         for venue in venues:
             print(f"\n== {venue['name']} ({venue['id']}) ==")
             extract, from_cache = extract_venue(
