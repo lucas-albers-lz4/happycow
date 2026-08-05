@@ -266,6 +266,7 @@ body.dark .venue-card { border-top-color: rgba(255,255,255,0.08); }
 }
 .venue-card.live .venue-when { color: var(--green); }
 .venue-card.soon .venue-when { color: var(--cow-spot-1); }
+.venue-card.done .venue-when { color: var(--red); }
 .venue-deal {
   margin-top: 1px;
   font-size: 0.8rem;
@@ -316,11 +317,21 @@ body.dark .venue-card { border-top-color: rgba(255,255,255,0.08); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 0;
+  padding: 6px 8px;
   border-bottom: 1px solid #f5eee5;
+  border-left: 3px solid transparent;
+  border-radius: 0 8px 8px 0;
   font-size: 0.85rem;
 }
 .special-row:last-child { border-bottom: none; }
+.special-row.today {
+  border-left-color: var(--green);
+  background: rgba(74, 124, 89, 0.1);
+}
+.special-row.today > div:first-child > div:first-child {
+  color: var(--green);
+  font-weight: 700;
+}
 .special-price {
   font-weight: 700;
   color: var(--green);
@@ -633,6 +644,9 @@ body.dark .tag { background: var(--dark-surface); }
 body.dark #cowq-options button { background: var(--dark-surface); border-color: var(--dark-border); }
 body.dark .tip-result { background: var(--dark-surface); }
 body.dark .special-row { border-color: var(--dark-surface); }
+body.dark .special-row.today {
+  background: rgba(90, 156, 105, 0.18);
+}
 body.dark .status-pill { border-color: var(--dark-border); }
 body.dark .controls input, body.dark .controls select { border-color: var(--dark-border); }
 body.dark .feature-btn { border-color: var(--dark-border); }

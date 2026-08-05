@@ -67,9 +67,11 @@
 <body>
 <header>
   <h1>🐄 Happy <span>Cow</span> prototypes</h1>
-  <p>Throwaway sketches for head-to-head comparison. Start with <b>Wave C</b> — the synthesis based on your feedback. Demo clock Wed 5:12pm.</p>
+  <p>Throwaway sketches for head-to-head comparison. Start with <b>Wave E</b> — status clarity + today’s day specials. Demo clocks vary per sketch.</p>
   <div class="meta">
-    <span class="pill wave">Wave D · wireframe #85 ← start here</span>
+    <span class="pill wave">Wave E · status + today ← start here</span>
+    <span class="pill">015</span>
+    <span class="pill wave">Wave D · wireframe #85</span>
     <span class="pill">013–014</span>
     <span class="pill wave">Wave C · synthesis</span>
     <span class="pill">011–012</span>
@@ -81,7 +83,8 @@
 </header>
 
 <nav class="waves">
-  <button class="on" data-f="d">Wave D — wireframe</button>
+  <button class="on" data-f="e">Wave E — status</button>
+  <button data-f="d">Wave D — wireframe</button>
   <button data-f="c">Wave C — synthesis</button>
   <button data-f="a">Wave A — directions</button>
   <button data-f="b">Wave B — ideas</button>
@@ -93,6 +96,7 @@
 
 <script>
 const SKETCHES = [
+  {n:'015', wave:'e', dir:'015-status-and-today-specials', title:'Status + today specials', blurb:'014 fork — red “over” instead of —, green highlight for today’s weekday specials, headline prefers today’s deal. Demo clock Mon 5:12pm.'},
   {n:'014', wave:'d', dir:'014-mobile-dense-rows', title:'Dense venue rows', blurb:'013 iteration — left-aligned name / deal / hours·place. No chevron. Compact time status. More list on screen.'},
   {n:'013', wave:'d', dir:'013-mobile-deal-first', title:'Mobile deal-first', blurb:'Issue #85 wireframe capture — phone frame, ending-soonest pin, Pick for me / What they\'re having, compact rows, games in tab bar.'},
   {n:'011', wave:'c', dir:'011-form-follows-fun', title:'Form Follows Fun', blurb:'Deal-First spine. Bottom: Deals · Vibe · Spin · More. Compare tray on demand. Crawl buried in More.'},
@@ -116,7 +120,7 @@ grid.innerHTML = SKETCHES.map(s => `
       <iframe src="${s.dir}/index.html" title="${s.title}" loading="lazy" tabindex="-1"></iframe>
     </div></div>
     <div class="info">
-      <div class="num">Sketch ${s.n} · ${s.wave === 'd' ? 'wireframe' : s.wave === 'c' ? 'synthesis' : s.wave === 'a' ? 'direction' : 'idea'}</div>
+      <div class="num">Sketch ${s.n} · ${s.wave === 'e' ? 'status' : s.wave === 'd' ? 'wireframe' : s.wave === 'c' ? 'synthesis' : s.wave === 'a' ? 'direction' : 'idea'}</div>
       <h2>${s.title}</h2>
       <p>${s.blurb}</p>
       <div class="actions">
@@ -139,7 +143,7 @@ document.querySelectorAll('nav.waves button').forEach(btn => {
     applyFilter(btn.dataset.f);
   };
 });
-applyFilter('d');
+applyFilter('e');
 </script>
 </body>
 </html>
