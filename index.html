@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="assets/cows/cow-0.png">
   <title>Happy Cow — Happy Hour Deals</title>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260804b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260805">
 </head>
 <body>
 
@@ -270,6 +270,16 @@
     </div>
   </div>
 
+  <!-- Cow Tall Tale Modal -->
+  <div class="modal-overlay" id="tale-modal">
+    <div class="modal-content" style="max-width:520px;text-align:left;">
+      <button class="modal-close">&times;</button>
+      <div class="modal-title" id="tale-modal-title">🐄 A Cow's Tale</div>
+      <div id="tale-modal-subtitle" class="horoscope-sign">as told by the special</div>
+      <div class="tale-story" id="tale-modal-story">Loading the tale...</div>
+    </div>
+  </div>
+
   <!-- Tip Calculator Modal -->
   <div class="modal-overlay" id="tip-modal">
     <div class="modal-content">
@@ -310,8 +320,9 @@
 
   <script src="assets/js/hours.js?v=20260804"></script>
   <script src="assets/js/format.js?v=20260804"></script>
-  <script src="assets/js/render.js?v=20260804"></script>
-  <script src="assets/js/app.js?v=20260804"></script>
+  <script src="assets/js/tales.js?v=20260805"></script>
+  <script src="assets/js/render.js?v=20260805"></script>
+  <script src="assets/js/app.js?v=20260805"></script>
   <script>
     // Inject quiz questions
     const QUIZ = [
