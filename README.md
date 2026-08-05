@@ -1,5 +1,7 @@
 # Happy Cow 🐄🍸
 
+[![Tests](https://github.com/lucas-albers-lz4/happycow/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-albers-lz4/happycow/actions/workflows/ci.yml)
+
 A self-funding happy hour directory for small cities. It has 30 rotating cow cartoons, daily prophecies, venue roulette, and all the happy hour deals you can drink.
 
 ## How it works
