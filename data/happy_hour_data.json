@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30T15:48:12Z",
+  "last_updated": "2026-08-05T03:11:04Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -15,39 +15,34 @@
       "phone": "406-587-7700",
       "website": "https://www.montanaaleworks.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Ale%20Works%20Bozeman%20MT",
-      "hours": "Daily 4-6pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 4-6pm",
+      "business_hours": "Daily 4pm-close",
+      "notes": "",
       "specials": [
         {
-          "item": "Draft beers",
+          "item": "All draft beer",
           "price": 0.0,
           "category": "drinks",
-          "description": "$1.00 off draft beers"
+          "description": "$1 off"
         },
         {
-          "item": "Wine by the glass",
+          "item": "Wines by the glass",
           "price": 0.0,
           "category": "drinks",
-          "description": "$1.00 off wine by the glass"
+          "description": "$1 off"
         },
         {
           "item": "Well drinks",
           "price": 0.0,
           "category": "drinks",
-          "description": "$1.00 off well drinks"
-        },
-        {
-          "item": "Double shot signature cocktails",
-          "price": 6.0,
-          "category": "drinks",
-          "description": "$6.00 double shot signature cocktails – Hop the tracks – Rosemary Poloma – Cherry wine sour – Rasberrie cosmo – Kaffir gin and tonic"
+          "description": "$1 off"
         }
-      ],
-      "business_hours": "Mon-Sun 4pm-10pm"
+      ]
     },
     {
       "id": "applebees-bozeman",
@@ -61,12 +56,14 @@
       "phone": "406-587-3445",
       "website": "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019",
       "maps": "https://www.google.com/maps/search/?api=1&query=Applebee%E2%80%99s%20Bozeman%20Bozeman%20MT",
-      "hours": "Mon-Fri 3-6pm",
       "tags": [
         "sports"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 3-6pm",
+      "business_hours": "Mon-Thu 11am-11pm, Fri-Sat 11am-12pm, Sun 11am-11pm",
+      "notes": "",
       "specials": [
         {
           "item": "Appetizers",
@@ -98,8 +95,7 @@
           "category": "drinks",
           "description": ""
         }
-      ],
-      "business_hours": "Mon-Thu 11am-11pm, Fri-Sat 11am-12pm, Sun 11am-11pm"
+      ]
     },
     {
       "id": "bar-ix",
@@ -113,12 +109,14 @@
       "phone": "406-551-2185",
       "website": "https://bar-ix.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%20IX%20Bozeman%20MT",
-      "hours": "Daily 2-7pm",
       "tags": [
         "dive"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2-7pm",
+      "business_hours": "Mon-Fri 4pm-2am, Sat-Sun 11am-2am",
+      "notes": "",
       "specials": [
         {
           "item": "Two drinks for price of one",
@@ -126,8 +124,7 @@
           "category": "drinks",
           "description": "2-4-1: buy one drink, get one free"
         }
-      ],
-      "business_hours": "Mon-Fri 4pm-2am, Sat-Sun 11am-2am"
+      ]
     },
     {
       "id": "bitterroot-bistro",
@@ -141,46 +138,64 @@
       "phone": "",
       "website": "https://www.bitterrootbistro.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bitterroot%20Bistro%20Bozeman%20MT",
-      "hours": "Daily 2-5pm",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2-5pm & 9-10pm, Thu all day",
+      "business_hours": "Daily 2-10pm",
+      "notes": "Thursday is all day happy hour.",
       "specials": [
         {
-          "item": "Beef pasty",
+          "item": "Beef Pasty",
           "price": 15.0,
           "category": "food",
-          "description": "$15 — two Butte-style pasties, MT Wagyu, served with brown gravy"
+          "description": "Two 'Butte Style' pasties, Montana Wagyu ground beef, fingerling potatoes, & onion. Served with a side of house made brown gravy."
         },
         {
-          "item": "Bison tartare",
+          "item": "Bison Tartare",
           "price": 13.0,
           "category": "food",
-          "description": "$13 — hand-chopped bison on focaccia crostini, cured egg yolk"
+          "description": "Hand chopped Bison, vinaigrette, and charred shallots on a focaccia crostini, topped with cured egg yolk."
         },
         {
-          "item": "Hand-cut fries",
+          "item": "Smash Burger",
+          "price": 18.0,
+          "category": "food",
+          "description": "MT Wagyu burger patty, lettuce, pickles, bacon aioli, fry sauce, American cheese, served with hand cut fries. ($18 single | $23 double)"
+        },
+        {
+          "item": "Trout Dip",
+          "price": 16.0,
+          "category": "food",
+          "description": "Cream cheese trout dip, topped with broiled huckleberry Amaltheia chevre, served with local grilled bread."
+        },
+        {
+          "item": "Hand Cut French Fries",
           "price": 7.0,
           "category": "food",
-          "description": "$7 — with house fry sauce"
+          "description": "With house fry sauce."
         },
         {
-          "item": "All draft beer",
+          "item": "Bacon Mac & Cheese",
+          "price": 13.0,
+          "category": "food",
+          "description": "Shell pasta, house cheddar bechamel, parmesan, house bread crumbs."
+        },
+        {
+          "item": "All Draft Beer",
           "price": 5.0,
           "category": "drinks",
-          "description": "$5"
+          "description": "All draft beer."
         },
         {
-          "item": "House wine",
+          "item": "House Red, House White, or Sparkling Wine",
           "price": 7.0,
           "category": "drinks",
-          "description": "$7 — house red, white, or sparkling"
+          "description": "House red, house white, or sparkling wine."
         }
-      ],
-      "business_hours": "Mon-Sun 2pm-10pm",
-      "notes": "HH food + drink menu published on site. Source: bitterrootbistro.com/menu"
+      ]
     },
     {
       "id": "blackbird",
@@ -194,12 +209,14 @@
       "phone": "406.586.0010",
       "website": "https://www.blackbirdkitchen.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Blackbird%20Bozeman%20MT",
-      "hours": "Daily 4:30-5:30pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 4:30-5:30pm",
+      "business_hours": "Mon-Sun 4:30pm-9:00pm",
+      "notes": "",
       "specials": [
         {
           "item": "Select bottles of wine",
@@ -207,8 +224,7 @@
           "category": "drinks",
           "description": "Half price select bottles of wine"
         }
-      ],
-      "business_hours": "Mon-Sun 4:30pm-9:00pm"
+      ]
     },
     {
       "id": "bourbon",
@@ -222,27 +238,40 @@
       "phone": "(406) 586-3443",
       "website": "https://bourbonmt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bourbon%20Bozeman%20MT",
-      "hours": "Daily 4-6pm",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 4-6pm",
+      "business_hours": "Mon-Thu 11:30am-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-9pm",
+      "notes": "",
       "specials": [
         {
-          "item": "Classic American BBQ favorites",
-          "price": 0.0,
+          "item": "Tacos",
+          "price": 12.0,
           "category": "food",
-          "description": "Food specials featuring classic American BBQ favorites"
+          "description": "Choose from any of our amazing tacos including the famous Catfish taco or Birria tacos"
         },
         {
-          "item": "Craft whiskey cocktails",
-          "price": 0.0,
+          "item": "House margarita",
+          "price": 6.0,
           "category": "drinks",
-          "description": "Drink specials featuring craft whiskey cocktails"
+          "description": "Add a house margarita for $6"
+        },
+        {
+          "item": "Dry Rubbed Smoked Wings",
+          "price": 7.0,
+          "category": "food",
+          "description": "6 wings for $7, on special every Wednesday starting at 11:30am"
+        },
+        {
+          "item": "Line dance lessons",
+          "price": 10.0,
+          "category": "food",
+          "description": "Line dance lessons starting at 8pm, includes food and drink specials"
         }
-      ],
-      "business_hours": "Mon-Thu 11:30am-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-9pm"
+      ]
     },
     {
       "id": "bozeman-brewing-company",
@@ -256,13 +285,15 @@
       "phone": "406-585-9142",
       "website": "https://bozemanbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Brewing%20Company%20Bozeman%20MT",
-      "hours": "Fri 12-8pm",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Fri 12-8pm",
+      "business_hours": "Mon-Thu 2pm-8pm, Fri 12pm-8pm, Sat-Sun 2pm-8pm",
+      "notes": "",
       "specials": [
         {
           "item": "64oz. growler refills",
@@ -276,8 +307,7 @@
           "category": "drinks",
           "description": "50 cents of every pint sold goes to the non-profit of the day (Sundays 2-8 pm)"
         }
-      ],
-      "business_hours": "Mon-Thu 2pm-8pm, Fri 12pm-8pm, Sat-Sun 2pm-8pm"
+      ]
     },
     {
       "id": "bozeman-spirits-distillery",
@@ -291,12 +321,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Spirits%20Distillery%20Bozeman%20MT",
-      "hours": "Fri 3-6pm",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Fri 3-6pm",
+      "business_hours": "Mon-Sat 10am-8pm, Sun 12pm-8pm",
+      "notes": "",
       "specials": [
         {
           "item": "Men's drinks",
@@ -334,8 +366,7 @@
           "category": "drinks",
           "description": "Sunday: All huckleberry drinks are $7"
         }
-      ],
-      "business_hours": "Mon-Sat 10am-8pm, Sun 12pm-8pm"
+      ]
     },
     {
       "id": "bozeman-taproom",
@@ -349,57 +380,28 @@
       "phone": "",
       "website": "https://www.bozemantaproom.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bozeman%20Taproom%20Bozeman%20MT",
-      "hours": "Daily 11am-3pm",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Sun-Thu 2-5pm",
+      "business_hours": "Mon-Thu 11:00am-12:00am, Fri 11:00am-1:00am, Sat Sunday, Sun 11:00am-1:00am",
+      "notes": "",
       "specials": [
         {
-          "item": "Lunch with 10 oz beer",
-          "price": 10.0,
-          "category": "food",
-          "description": "$8 lunches, add on a 10 oz beer for $2. Options include 1/2 sandwich (Turkey Club or Dagwood) with chips and pickle, 1/4 lb Cheeseburger with chips and pickle, Sausage with chips and pickle, Taco Combo (2 tacos with tortilla chips and salsa), or Soup and Salad Combo."
-        },
-        {
-          "item": "1/2 sandwich lunch",
-          "price": 8.0,
-          "category": "food",
-          "description": "Turkey Club or Dagwood with chips and a pickle"
-        },
-        {
-          "item": "1/4 lb Cheeseburger lunch",
-          "price": 8.0,
-          "category": "food",
-          "description": "with chips and a pickle"
-        },
-        {
-          "item": "Sausage lunch",
-          "price": 8.0,
-          "category": "food",
-          "description": "with chips and a pickle"
-        },
-        {
-          "item": "Taco Combo",
-          "price": 8.0,
-          "category": "food",
-          "description": "2 tacos with tortilla chips and salsa"
-        },
-        {
-          "item": "Soup and Salad Combo",
-          "price": 8.0,
-          "category": "food",
-          "description": "soup and salad"
-        },
-        {
-          "item": "10 oz beer add-on",
-          "price": 2.0,
+          "item": "Drink specials",
+          "price": 0.0,
           "category": "drinks",
-          "description": "Add a 10 oz beer to any lunch special"
+          "description": "Unbeatable drink specials"
+        },
+        {
+          "item": "Appetizer specials",
+          "price": 0.0,
+          "category": "food",
+          "description": "Unbeatable appetizer specials"
         }
-      ],
-      "business_hours": "Mon-Thu 11:00am-12:00am, Fri 11:00am-1:00am, Sat Sunday, Sun 11:00am-1:00am"
+      ]
     },
     {
       "id": "bridger-brewing",
@@ -413,13 +415,15 @@
       "phone": "406-587-2124",
       "website": "http://www.bridgerbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bridger%20Brewing%20Bozeman%20MT",
-      "hours": "Daily 2-4pm",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2-4pm",
+      "business_hours": "Mon-Sun 11:30am-9pm",
+      "notes": "",
       "specials": [
         {
           "item": "Beers",
@@ -469,8 +473,7 @@
           "category": "food",
           "description": "Sunday special"
         }
-      ],
-      "business_hours": "Mon-Sun 11:30am-9pm"
+      ]
     },
     {
       "id": "brigade",
@@ -484,12 +487,14 @@
       "phone": "(406) 624-6161",
       "website": "https://brigadebozeman.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Brigade%20Bozeman%20MT",
-      "hours": "Daily 3-6pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 3-6pm",
+      "business_hours": "Mon-Fri 3pm-10pm, Sat-Sun 9am-10pm",
+      "notes": "",
       "specials": [
         {
           "item": "Martinis (vodka, gin, cosmo, infused berry)",
@@ -563,8 +568,7 @@
           "category": "food",
           "description": "Happy Hour Prices on Brigade Burger"
         }
-      ],
-      "business_hours": "Mon-Fri 3pm-10pm, Sat-Sun 9am-10pm"
+      ]
     },
     {
       "id": "daves-sushi",
@@ -578,12 +582,14 @@
       "phone": "406-556-1351",
       "website": "http://daves-sushi.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Dave%E2%80%99s%20Sushi%20Bozeman%20MT",
-      "hours": "Mon 3-close",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon 3-close",
+      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm",
+      "notes": "",
       "specials": [
         {
           "item": "Beer",
@@ -603,8 +609,7 @@
           "category": "drinks",
           "description": "1/2 off"
         }
-      ],
-      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm"
+      ]
     },
     {
       "id": "devils-toboggan",
@@ -618,12 +623,14 @@
       "phone": "406 587 4829",
       "website": "https://www.devilstoboggan.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Devils%20Toboggan%20Bozeman%20MT",
-      "hours": "Daily 4-6pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 4-6pm",
+      "business_hours": "Sun-Thu 4-8pm, Fri-Sat 4-10pm",
+      "notes": "",
       "specials": [
         {
           "item": "Beers",
@@ -649,8 +656,7 @@
           "category": "food",
           "description": "Appetizer specials (price not specified)"
         }
-      ],
-      "business_hours": "Sun-Thu 4-11pm, Fri-Sat 4pm-Midnight (Kitchen Sun-Thu 4-8pm, Fri-Sat 4-10pm)"
+      ]
     },
     {
       "id": "dry-hills-distillery",
@@ -664,12 +670,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Dry%20Hills%20Distillery%20Bozeman%20MT",
-      "hours": "Tue 4-8pm",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Tue 4-8pm",
+      "business_hours": "Mon Closed, Tue-Sun 12pm-8pm",
+      "notes": "",
       "specials": [
         {
           "item": "All Cocktails",
@@ -713,8 +721,7 @@
           "category": "drinks",
           "description": "$5 Screwdrivers all day"
         }
-      ],
-      "business_hours": "Mon Closed, Tue-Sun 12pm-8pm"
+      ]
     },
     {
       "id": "est-1864-noir-bar-restaurant",
@@ -728,12 +735,14 @@
       "phone": "(406) 404-1066",
       "website": "http://www.est1864bozeman.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Est.1864%20Noir%20Bar%20%26%20Restaurant%20Bozeman%20MT",
-      "hours": "Thu-Sat 4-6pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Thu-Sat 4-6pm",
+      "business_hours": "Mon-Wed 4pm-10pm, Thu-Sat 4pm-1:30am, Sun 4pm-10pm",
+      "notes": "",
       "specials": [
         {
           "item": "Cocktails",
@@ -759,8 +768,7 @@
           "category": "food",
           "description": "Plus late-night bites (price not specified)"
         }
-      ],
-      "business_hours": "Mon-Wed 4pm-10pm, Thu-Sat 4pm-1:30am, Sun 4pm-10pm"
+      ]
     },
     {
       "id": "finks-deli",
@@ -774,12 +782,14 @@
       "phone": "406.577.2706",
       "website": "https://www.finksdeli.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Finks%20Deli%20Bozeman%20MT",
-      "hours": "Daily 2-4pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2-4pm",
+      "business_hours": "Mon Closed, Tue-Sat 10am-6pm, Sun 10am-4pm",
+      "notes": "",
       "specials": [
         {
           "item": "Beer",
@@ -793,8 +803,7 @@
           "category": "drinks",
           "description": "$1 Off"
         }
-      ],
-      "business_hours": "Mon Closed, Tue-Sat 10am-6pm, Sun 10am-4pm"
+      ]
     },
     {
       "id": "la-brasserie",
@@ -808,12 +817,14 @@
       "phone": "",
       "website": "https://www.labrasseriemt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=La%20Brasserie%20Bozeman%20MT",
-      "hours": "Daily 4-6pm",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 4-6pm",
+      "business_hours": "Mon Closed, Tue-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun Closed",
+      "notes": "",
       "specials": [
         {
           "item": "Select wines",
@@ -833,8 +844,7 @@
           "category": "drinks",
           "description": "$7 cocktails"
         }
-      ],
-      "business_hours": "Mon Closed, Tue-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun Closed"
+      ]
     },
     {
       "id": "map-brewing",
@@ -848,13 +858,15 @@
       "phone": "406-587-4070",
       "website": "https://www.mapbrewing.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=MAP%20Brewing%20Company%20Bozeman%20MT",
-      "hours": "Mon-Thu 2-4pm",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Thu 2-4pm",
+      "business_hours": "Mon-Sun 12pm-8pm",
+      "notes": "",
       "specials": [
         {
           "item": "Pints",
@@ -862,8 +874,7 @@
           "category": "drinks",
           "description": "$1 off pints"
         }
-      ],
-      "business_hours": "Mon-Sun 12pm-8pm"
+      ]
     },
     {
       "id": "mountains-walking-brewery",
@@ -877,16 +888,16 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Mountains%20Walking%20Brewery%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sun 11:30am-8:00pm",
-      "notes": "Site probed (mountainswalking.com) — no HH published (verified 2026-08-02)"
+      "notes": "Site probed (mountainswalking.com) — no HH published (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "revelry",
@@ -900,12 +911,14 @@
       "phone": "",
       "website": "https://www.revelrymt.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Revelry%20Bozeman%20MT",
-      "hours": "Daily 2:30-4pm",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2:30-4pm",
+      "business_hours": "Mon-Fri 11am-10pm, Sat-Sun 10am-10pm",
+      "notes": "",
       "specials": [
         {
           "item": "Rainier",
@@ -961,8 +974,7 @@
           "category": "drinks",
           "description": "30% off"
         }
-      ],
-      "business_hours": "Mon-Fri 11am-10pm, Sat-Sun 10am-10pm"
+      ]
     },
     {
       "id": "rocking-r",
@@ -976,12 +988,14 @@
       "phone": "406-587-9355",
       "website": "https://rockingrbar.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Rocking%20R%20Bar%20Bozeman%20MT",
-      "hours": "Mon-Fri 4-7pm",
       "tags": [
         "dive"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 4-7pm",
+      "business_hours": "Daily 11am-2am, Sat-Sun 10am-2am",
+      "notes": "Only 'Happy Hour Drink Specials' mentioned; no specific items or prices listed.",
       "specials": [
         {
           "item": "Drafts",
@@ -1007,8 +1021,7 @@
           "category": "drinks",
           "description": "$10 boozy milkshakes"
         }
-      ],
-      "business_hours": "Mon-Sun 11am-2am"
+      ]
     },
     {
       "id": "shine-beer-sanctuary",
@@ -1022,15 +1035,15 @@
       "phone": "4065512019",
       "website": "https://www.shinebeer.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Shine%20Beer%20Sanctuary%20Bozeman%20MT",
-      "hours": "Daily 3-5pm",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "Daily 3-5pm",
       "business_hours": "Mon-Thu 11:00am-9:00pm, Fri-Sat 11:00am-10:00pm, Sun 11:00am-9:00pm",
-      "notes": "Site probed — no HH page found (verified 2026-08-02)"
+      "notes": "Site probed — no HH page found (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "the-bacchus-pub",
@@ -1044,12 +1057,14 @@
       "phone": "",
       "website": "https://www.bacchuspub.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bacchus%20Pub%20Bozeman%20MT",
-      "hours": "Daily 2-6pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 2-6pm",
+      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm",
+      "notes": "",
       "specials": [
         {
           "item": "Well Drinks",
@@ -1075,8 +1090,7 @@
           "category": "food",
           "description": "$1.00 off"
         }
-      ],
-      "business_hours": "Mon-Thu 11am-9:30pm, Fri-Sat 11am-10pm, Sun 11am-9:30pm"
+      ]
     },
     {
       "id": "the-club",
@@ -1090,51 +1104,34 @@
       "phone": "406-556-6212",
       "website": "https://www.theclubtavernandgrill.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Club%20Tavern%20%26%20Grill%20Bozeman%20MT",
-      "hours": "Mon-Fri 4-7pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 4-7pm",
+      "business_hours": "Mon-Sun 6am-2am",
+      "notes": "",
       "specials": [
         {
           "item": "Draft beer",
-          "price": 1.0,
+          "price": 0.0,
           "category": "drinks",
           "description": "$1 off"
         },
         {
-          "item": "Well drink",
-          "price": 1.0,
-          "category": "drinks",
-          "description": "$1 off"
-        },
-        {
-          "item": "Glass of wine",
-          "price": 2.0,
+          "item": "Glass of house wine",
+          "price": 0.0,
           "category": "drinks",
           "description": "$2 off"
         },
         {
-          "item": "2 for 1 drinks",
+          "item": "Well drink",
           "price": 0.0,
           "category": "drinks",
-          "description": "Tuesday/Thursday: 2 for 1 drinks"
-        },
-        {
-          "item": "BBQ ribs and mash potatoes",
-          "price": 6.0,
-          "category": "food",
-          "description": "$6 for 2 BBQ ribs and mash potatoes (Tuesday/Thursday)"
-        },
-        {
-          "item": "Strawberry goat cheese crostinis",
-          "price": 6.0,
-          "category": "food",
-          "description": "$6 strawberry goat cheese crostinis (Tuesday/Thursday)"
+          "description": "$1 off"
         }
-      ],
-      "business_hours": "Mon-Sun 6am-2am"
+      ]
     },
     {
       "id": "urban-kitchen",
@@ -1148,12 +1145,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Urban%20Kitchen%20Bozeman%20MT",
-      "hours": "Daily 3-6pm",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 3-6pm",
+      "business_hours": "Mon-Thu 11am-9pm, Fri-Sat 11am-10pm, Sun 11am-9pm",
+      "notes": "",
       "specials": [
         {
           "item": "All wines by the glass",
@@ -1173,8 +1172,7 @@
           "category": "drinks",
           "description": "$4 Deep Eddy Shots"
         }
-      ],
-      "business_hours": "Mon-Thu 11am-9pm, Fri-Sat 11am-10pm, Sun 11am-9pm"
+      ]
     },
     {
       "id": "wild-rye-distilling",
@@ -1188,12 +1186,14 @@
       "phone": "406.577.2288",
       "website": "https://www.wildryedistilling.com/",
       "maps": "https://www.google.com/maps/search/?api=1&query=Wild%20Rye%20Distilling%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Mon-Wed 3pm-8pm, Thu-Sun 12pm-8pm",
+      "notes": "",
       "specials": [
         {
           "item": "Any mule team cocktail",
@@ -1207,114 +1207,7 @@
           "category": "drinks",
           "description": "2 for 1 Tuesday: buy a drink and get a second free drink from the special menu"
         }
-      ],
-      "business_hours": "Mon-Wed 3pm-8pm, Thu-Sun 12pm-8pm"
-    },
-    {
-      "id": "the-filling-station",
-      "name": "The Filling Station",
-      "nickname": "The 2AM Pit Stop",
-      "nickname_alts": [
-        "The Un-Filled Station",
-        "Gas 'n' Gigs"
-      ],
-      "address": "2005 N. Rouse Ave",
-      "phone": "(406) 587-0585",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Filling%20Station%20Bozeman%20MT",
-      "hours": "",
-      "tags": [
-        "dive",
-        "live-music"
-      ],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [
-        {
-          "item": "Wings",
-          "price": 1.0,
-          "category": "food",
-          "description": "$1 wings Mondays — traditional or boneless (small upcharge for ranch/blue cheese)"
-        },
-        {
-          "item": "Pot roast & fries",
-          "price": 13.0,
-          "category": "food",
-          "description": "$13 Tuesdays"
-        },
-        {
-          "item": "Wrap & fries",
-          "price": 11.0,
-          "category": "food",
-          "description": "$11 Wednesdays"
-        },
-        {
-          "item": "Cheese pizza",
-          "price": 10.0,
-          "category": "food",
-          "description": "$10 Thursdays (toppings regular price)"
-        },
-        {
-          "item": "Italian sub & fries",
-          "price": 11.0,
-          "category": "food",
-          "description": "$11 Fridays"
-        },
-        {
-          "item": "Mug night",
-          "price": 6.5,
-          "category": "drinks",
-          "description": "Mondays — first mug $6.50, refills $5.50"
-        }
-      ],
-      "business_hours": "Mon-Sat 11am-2am, Sun Closed",
-      "notes": "No formal happy hour; daily food/drink features per site (dine-in only). Source: yourfillingstation.com/daily-specials"
-    },
-    {
-      "id": "the-haufbrau",
-      "name": "The Haufbrau",
-      "nickname": "The Day-Long Dive",
-      "nickname_alts": [
-        "Hauf the Day, Bräu the Night",
-        "The 15-Hour German"
-      ],
-      "address": "22 S 8th Ave, Bozeman",
-      "phone": "(406) 587-4931",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Haufbrau%20Bozeman%20MT",
-      "hours": "",
-      "tags": [
-        "dive",
-        "live-music"
-      ],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Sun-Thu 11am-2am, Fri-Sat 1pm-2am",
-      "notes": "No published HH details found (verified 2026-08-02); CVB nightlife blog describes the bar without HH specifics"
-    },
-    {
-      "id": "the-molly-brown",
-      "name": "The Molly Brown",
-      "nickname": "The Unsinkable",
-      "nickname_alts": [
-        "Of Course I'm Here at 2am",
-        "The Titanic Survivor's Casino"
-      ],
-      "address": "703 W. Babcock",
-      "phone": "(406) 552-7362",
-      "website": "",
-      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Molly%20Brown%20Bozeman%20MT",
-      "hours": "",
-      "tags": [
-        "dive",
-        "casino"
-      ],
-      "noise_level": "moderate",
-      "mood": "bozeman-local",
-      "specials": [],
-      "business_hours": "Daily 11am-2am",
-      "notes": "No published HH program found (verified 2026-08-02); reviews mention HH drinks but no details"
+      ]
     },
     {
       "id": "the-bay",
@@ -1328,12 +1221,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bay%20Bozeman%20MT",
-      "hours": "Daily 3-5pm & 8-9pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 3-5pm & 8-9pm",
+      "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm",
+      "notes": "Happy hour every day 3-5pm & 8-9pm. Source: thebaybarandgrille.com/happy-hour menu image (Aug 2026).",
       "specials": [
         {
           "item": "Draft beers",
@@ -1401,9 +1296,7 @@
           "category": "food",
           "description": "$15"
         }
-      ],
-      "business_hours": "Mon-Thu 11:30am-10:00pm, Fri-Sat 11:30am-10:30pm, Sun 11:30am-9:00pm",
-      "notes": "Happy hour every day 3-5pm & 8-9pm. Source: thebaybarandgrille.com/happy-hour menu image (Aug 2026)."
+      ]
     },
     {
       "id": "the-buck",
@@ -1417,15 +1310,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Buck%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Tue 11:00am-10:00pm, Wed 11:00am, Thu-Sun 11:00am-10:00pm",
-      "notes": "Site menu probed — regular prices only, no HH (verified 2026-08-02)"
+      "notes": "Site menu probed — regular prices only, no HH (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "the-bunkhouse-brewery",
@@ -1439,16 +1332,16 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Bunkhouse%20Brewery%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sun 2pm-8pm",
-      "notes": "Site unreachable (404s); no published HH (verified 2026-08-02)"
+      "notes": "Site unreachable (404s); no published HH (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "cafe-fresco",
@@ -1462,15 +1355,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Cafe%20Fresco%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sat 11am-9pm, Sun Closed",
-      "notes": "No official site found; no published happy hour as of 2026-08-02"
+      "notes": "No official site found; no published happy hour as of 2026-08-02",
+      "specials": []
     },
     {
       "id": "the-cannery",
@@ -1484,15 +1377,104 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Cannery%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sun 11:00am-2:00am",
-      "notes": "Menu + drink menu probed — regular prices, no HH (verified 2026-08-02)"
+      "notes": "Menu + drink menu probed — regular prices, no HH (verified 2026-08-02)",
+      "specials": []
+    },
+    {
+      "id": "the-filling-station",
+      "name": "The Filling Station",
+      "nickname": "The 2AM Pit Stop",
+      "nickname_alts": [
+        "The Un-Filled Station",
+        "Gas 'n' Gigs"
+      ],
+      "address": "2005 N. Rouse Ave",
+      "phone": "(406) 587-0585",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Filling%20Station%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "hours": "Daily all day",
+      "business_hours": "Mon-Sat 11am-2am, Sun Closed",
+      "notes": "All day happy hour daily; Saturday and Sunday have additional specials listed.",
+      "specials": [
+        {
+          "item": "Lemon Shake Up",
+          "price": 5.0,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Jameson",
+          "price": 5.0,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Espolon Blanco",
+          "price": 5.0,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Meatball Sliders",
+          "price": 12.0,
+          "category": "food",
+          "description": "3 beef & pork meatballs, marinara, mozzarella, balsamic caramelized onions, brioche slider buns, and garlic & herb butter"
+        },
+        {
+          "item": "Blue Gatorade Shot",
+          "price": 4.0,
+          "category": "drinks",
+          "description": "Three Olives Vodka, Maui Blue Hawaiian Schnapps, sour, and Sprite"
+        },
+        {
+          "item": "Tall Boy",
+          "price": 3.0,
+          "category": "drinks",
+          "description": ""
+        },
+        {
+          "item": "Shot of the Month",
+          "price": 3.0,
+          "category": "drinks",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "the-haufbrau",
+      "name": "The Haufbrau",
+      "nickname": "The Day-Long Dive",
+      "nickname_alts": [
+        "Hauf the Day, Bräu the Night",
+        "The 15-Hour German"
+      ],
+      "address": "22 S 8th Ave, Bozeman",
+      "phone": "(406) 587-4931",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Haufbrau%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "live-music"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Sun-Thu 11am-2am, Fri-Sat 1pm-2am",
+      "notes": "No published HH details found (verified 2026-08-02); CVB nightlife blog describes the bar without HH specifics",
+      "specials": []
     },
     {
       "id": "hooked-sushi",
@@ -1506,15 +1488,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Hooked%20Sushi%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Thu 4pm-9pm, Fri-Sat 4pm-10pm, Sun 4pm-9pm",
-      "notes": "Site menu probed — no HH (verified 2026-08-02)"
+      "notes": "Site menu probed — no HH (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "korner-klub",
@@ -1528,12 +1510,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Korner%20Klub%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Mon-Sun 11:00am-12:00am",
+      "notes": "No formal HH published; daily lunch specials + Sunday Funday per site",
       "specials": [
         {
           "item": "Sunday Funday",
@@ -1541,9 +1525,7 @@
           "category": "drinks",
           "description": "Pitcher of domestic draft + 20oz of wings at a special price, Sundays"
         }
-      ],
-      "business_hours": "Mon-Sun 11:00am-12:00am",
-      "notes": "No formal HH published; daily lunch specials + Sunday Funday per site"
+      ]
     },
     {
       "id": "last-best-place-brewery",
@@ -1557,16 +1539,39 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Last%20Best%20Place%20Brewery%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sun 12:00am-8:00pm",
-      "notes": "Site probed — no HH published (verified 2026-08-02)"
+      "notes": "Site probed — no HH published (verified 2026-08-02)",
+      "specials": []
+    },
+    {
+      "id": "the-molly-brown",
+      "name": "The Molly Brown",
+      "nickname": "The Unsinkable",
+      "nickname_alts": [
+        "Of Course I'm Here at 2am",
+        "The Titanic Survivor's Casino"
+      ],
+      "address": "703 W. Babcock",
+      "phone": "(406) 552-7362",
+      "website": "",
+      "maps": "https://www.google.com/maps/search/?api=1&query=The%20Molly%20Brown%20Bozeman%20MT",
+      "tags": [
+        "dive",
+        "casino"
+      ],
+      "noise_level": "moderate",
+      "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Daily 11am-2am",
+      "notes": "No published HH program found (verified 2026-08-02); reviews mention HH drinks but no details",
+      "specials": []
     },
     {
       "id": "the-pour-house",
@@ -1580,12 +1585,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=The%20Pour%20House%20Bozeman%20MT",
-      "hours": "Mon-Fri 2-6pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 2-6pm",
+      "business_hours": "Mon-Sun 10:30am-2:00am",
+      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells — that post predates 2021 (IG shortcode era), mthappyhour pricing used as current. Source: mthappyhour.com",
       "specials": [
         {
           "item": "Micro drafts",
@@ -1629,9 +1636,7 @@
           "category": "drinks",
           "description": "$3 Wednesdays"
         }
-      ],
-      "business_hours": "Mon-Sun 10:30am-2:00am",
-      "notes": "Late-night menu Thu-Sat 10:30pm-1am ($6). Instagram reports $4 drafts/$6 double wells — that post predates 2021 (IG shortcode era), mthappyhour pricing used as current. Source: mthappyhour.com"
+      ]
     },
     {
       "id": "sidewall-pizza-company",
@@ -1645,15 +1650,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Sidewall%20Pizza%20Company%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon Closed, Tue 11:00am-9:00pm, Wed 11:00am, Thu-Sun 11:00am-9:00pm",
-      "notes": "Site probed — no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)"
+      "notes": "Site probed — no HH; 'special stuffed pizza' is a menu item, not a deal (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "tanoshii",
@@ -1667,15 +1672,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Tanoshii%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Tue-Sat 4pm-close",
-      "notes": "Site exists (tanoshiimt.com) but blocks automated fetch (403); HH unverified — manual check needed"
+      "notes": "Site exists (tanoshiimt.com) but blocks automated fetch (403); HH unverified — manual check needed",
+      "specials": []
     },
     {
       "id": "valhalla-meadery",
@@ -1689,15 +1694,28 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Valhalla%20Meadery%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "craft-beer"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "Mon-Fri 3-5pm",
       "business_hours": "Mon Closed, Tue-Sun 3:00pm-10:00pm",
-      "notes": "Site probed — mead pricing only, no HH (verified 2026-08-02)"
+      "notes": "Site probed — mead pricing only, no HH (verified 2026-08-02)",
+      "specials": [
+        {
+          "item": "Take 2 Combo",
+          "price": 12.0,
+          "category": "food",
+          "description": "Pick two: cup of salmon chowder, cup of seasonal soup, half grilled cheese with prosciutto or smoked salmon, half caprese grilled cheese, or a side salad."
+        },
+        {
+          "item": "Valhalla Dog",
+          "price": 8.0,
+          "category": "food",
+          "description": "Smoked prosciutto wrapped 1/4 lb hot dog with caramelized onions, homemade mead mustard aioli, and cornichons."
+        }
+      ]
     },
     {
       "id": "bar-3-bbq-and-brewery",
@@ -1711,16 +1729,16 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Bar%203%20BBQ%20and%20Brewery%20Belgrade%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Fri 11am-8pm, Sat-Sun 9am-8pm",
-      "notes": "Weekday lunch specials advertised on site; no formal HH; details not published (verified 2026-08-02)"
+      "notes": "Weekday lunch specials advertised on site; no formal HH; details not published (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "buffalo-wild-wings",
@@ -1734,64 +1752,64 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Buffalo%20Wild%20Wings%20Bozeman%20MT",
-      "hours": "Mon-Fri 3-6pm",
       "tags": [
         "sports"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 3-6pm",
+      "business_hours": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am",
+      "notes": "Monday through Friday only. At participating locations; taxes and other fees (including service fees) apply. Dine-in only. Offer may vary by location.",
       "specials": [
         {
-          "item": "Strawberry margarita",
+          "item": "Strawberry Margarita",
           "price": 6.0,
           "category": "drinks",
-          "description": "$6 Strawberry Margarita cocktail"
+          "description": "Cocktail"
         },
         {
-          "item": "House draft beer",
+          "item": "Wild Herd Kölsch by Goose Island",
           "price": 4.0,
           "category": "drinks",
-          "description": "$4 tall draft — Wild Herd Kölsch by Goose Island"
+          "description": "Tall draft beer, house beer"
         },
         {
-          "item": "Bud Light tall draft",
+          "item": "Bud Light",
           "price": 5.0,
           "category": "drinks",
-          "description": "$5 tall draft"
+          "description": "Tall draft beer"
         },
         {
-          "item": "Voodoo Ranger IPA tall draft",
+          "item": "Voodoo Ranger IPA",
           "price": 6.0,
           "category": "drinks",
-          "description": "$6 tall draft"
+          "description": "Tall draft beer"
         },
         {
-          "item": "Chips & salsa",
+          "item": "Chips & Salsa",
           "price": 3.0,
           "category": "food",
-          "description": "$3"
+          "description": ""
         },
         {
-          "item": "Tater tots",
+          "item": "Tater Tots",
           "price": 3.0,
           "category": "food",
-          "description": "$3"
+          "description": ""
         },
         {
-          "item": "Mozzarella sticks",
+          "item": "Mozzarella Sticks",
           "price": 5.0,
           "category": "food",
-          "description": "$5"
+          "description": ""
         },
         {
-          "item": "Everything pretzel knots",
+          "item": "Everything Pretzel Knots",
           "price": 6.0,
           "category": "food",
-          "description": "$6"
+          "description": ""
         }
-      ],
-      "business_hours": "Mon-Thu 11am-12am, Fri-Sat 11am-1am, Sun 11am-12am",
-      "notes": "Dine-in only; at participating locations. Source: buffalowildwings.com/happy-hour"
+      ]
     },
     {
       "id": "copper-whiskey-bar",
@@ -1805,12 +1823,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Copper%20Whiskey%20Bar%20Bozeman%20MT",
-      "hours": "Mon-Fri 3-5pm, Sun all day",
       "tags": [
         "whiskey"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 3-5pm & Sun all day",
+      "business_hours": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am",
+      "notes": "The $5 happy hour — Mon-Fri 3-5pm & all-day Sunday (3pm-close). Sources: OpenTable, Facebook, Instagram (agree).",
       "specials": [
         {
           "item": "Draft beer",
@@ -1836,9 +1856,7 @@
           "category": "food",
           "description": "$2.00 off ALL appetizers"
         }
-      ],
-      "business_hours": "Mon-Thu 4pm-12am, Fri-Sat 4pm-2am, Sun 4pm-12am",
-      "notes": "The $5 happy hour — Mon-Fri 3-5pm & all-day Sunday (3pm-close). Sources: OpenTable, Facebook, Instagram (agree)."
+      ]
     },
     {
       "id": "madison-river-brewing-co",
@@ -1852,13 +1870,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Madison%20River%20Brewing%20Co%20Belgrade%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Mon-Sun 2pm-8pm",
+      "notes": "No single HH window — weekly deals (Sun 12-2 all beer $3; Mon pint night; Tue growler fills; Thu ladies night). $3 Happy Hour Mug/Pint branded glassware sold on site. Source: mthappyhour.com + madisonriverbrewing.com.",
       "specials": [
         {
           "item": "All beer",
@@ -1884,9 +1904,7 @@
           "category": "drinks",
           "description": "Thursdays — $1 off all day for ladies"
         }
-      ],
-      "business_hours": "Mon-Sun 2pm-8pm",
-      "notes": "No single HH window — weekly deals (Sun 12-2 all beer $3; Mon pint night; Tue growler fills; Thu ladies night). $3 Happy Hour Mug/Pint branded glassware sold on site. Source: mthappyhour.com + madisonriverbrewing.com."
+      ]
     },
     {
       "id": "old-chicago",
@@ -1900,12 +1918,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Old%20Chicago%20Bozeman%20MT",
-      "hours": "Mon-Fri 4-7pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 4-7pm",
+      "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
+      "notes": "Per thehappyhourfinder.com — official location page does not list HH deals statically.",
       "specials": [
         {
           "item": "Domestic bottles & pints",
@@ -1949,9 +1969,7 @@
           "category": "food",
           "description": "$3.00 food specials"
         }
-      ],
-      "business_hours": "Mon-Wed 11am-12am, Thu-Sat 11am-2am, Sun 11am-12am",
-      "notes": "Per thehappyhourfinder.com — official location page does not list HH deals statically."
+      ]
     },
     {
       "id": "outlaw-brewing",
@@ -1965,13 +1983,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Outlaw%20Brewing%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "craft-beer",
         "brewery"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Mon-Thu 2pm-8pm, Fri-Sun 12pm-8pm",
+      "notes": "No formal HH window; weekly specials per site. Taproom hours Mon-Thu 2-8pm, Fri-Sun 12-8pm",
       "specials": [
         {
           "item": "Pints",
@@ -1985,9 +2005,7 @@
           "category": "drinks",
           "description": "Thirsty Thursday — fill a 64oz growler, get a pint for $1"
         }
-      ],
-      "business_hours": "Mon-Thu 2pm-8pm, Fri-Sun 12pm-8pm",
-      "notes": "No formal HH window; weekly specials per site. Taproom hours Mon-Thu 2-8pm, Fri-Sun 12-8pm"
+      ]
     },
     {
       "id": "plonk",
@@ -2001,15 +2019,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Plonk%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "classy"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sun 3pm-1:30am",
-      "notes": "Site probed (plonkwine.com) — no HH published (verified 2026-08-02)"
+      "notes": "Site probed (plonkwine.com) — no HH published (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "pub-317",
@@ -2023,12 +2041,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Pub%20317%20Bozeman%20MT",
-      "hours": "Mon-Fri 3-6pm",
       "tags": [
         "pub"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Mon-Fri 3-6pm",
+      "business_hours": "Mon-Sun 11am-2am",
+      "notes": "mthappyhour lists 3:17-6:17pm (their quirk) — normalized to 3-6pm. Source: mthappyhour.com",
       "specials": [
         {
           "item": "Drafts & well drinks",
@@ -2036,9 +2056,7 @@
           "category": "drinks",
           "description": "$1.00 off all drafts and well drinks"
         }
-      ],
-      "business_hours": "Mon-Sun 11am-2am",
-      "notes": "mthappyhour lists 3:17-6:17pm (their quirk) — normalized to 3-6pm. Source: mthappyhour.com"
+      ]
     },
     {
       "id": "rialto-bar-burn-box",
@@ -2052,15 +2070,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Rialto%20Bar%20%E2%80%93%20Burn%20Box%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Thu Closed, Fri-Sat 7pm-Close, Sun Closed",
-      "notes": "Rialto is The Lark hotel's venue; no HH published (verified 2026-08-02)"
+      "notes": "Rialto is The Lark hotel's venue; no HH published (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "santa-fe-reds",
@@ -2074,12 +2092,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Santa%20Fe%20Reds%20Bozeman%20MT",
-      "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "Daily 3-6pm, Fri-Sat 10pm-12am",
+      "business_hours": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
+      "notes": "Source: mthappyhour.com",
       "specials": [
         {
           "item": "Draft pints",
@@ -2099,9 +2119,7 @@
           "category": "drinks",
           "description": "$5 flavored margaritas"
         }
-      ],
-      "business_hours": "Mon-Thu 11am-10pm, Fri-Sat 11am-12am, Sun 11am-9pm",
-      "notes": "Source: mthappyhour.com"
+      ]
     },
     {
       "id": "seven-sushi",
@@ -2115,15 +2133,15 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Seven%20Sushi%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "downtown"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon-Sat 11:30am-10pm, Sun 4pm-10pm",
-      "notes": "Site HH page exists but is an empty template (Squarespace 'Your Custom Text Here') — no published HH"
+      "notes": "Site HH page exists but is an empty template (Squarespace 'Your Custom Text Here') — no published HH",
+      "specials": []
     },
     {
       "id": "spectators-bar-and-grill",
@@ -2137,12 +2155,14 @@
       "phone": "",
       "website": "",
       "maps": "https://www.google.com/maps/search/?api=1&query=Spectators%20Bar%20and%20Grill%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "sports"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
+      "hours": "",
+      "business_hours": "Mon-Sun 10am-12am",
+      "notes": "No formal HH window; daily specials per site (food-menu page). Details posted on Instagram story. Source: specsbzn.com",
       "specials": [
         {
           "item": "Draft beer",
@@ -2174,9 +2194,7 @@
           "category": "food",
           "description": "Saturdays & Sundays (price not specified)"
         }
-      ],
-      "business_hours": "Mon-Sun 10am-12am",
-      "notes": "No formal HH window; daily specials per site (food-menu page). Details posted on Instagram story. Source: specsbzn.com"
+      ]
     },
     {
       "id": "stacey-s-old-faithful-bar-steakhouse",
@@ -2190,16 +2208,16 @@
       "phone": "(406) 763-4425",
       "website": "http://www.staceysbar.com",
       "maps": "https://www.google.com/maps/search/?api=1&query=Stacey%27s%20Old%20Faithful%20Bar%20%26%20Steakhouse%20Bozeman%20MT",
-      "hours": "",
       "tags": [
         "western",
         "steakhouse"
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "specials": [],
+      "hours": "",
       "business_hours": "Mon Closed, Tue 4-9pm, Wed-Sun 11am-close",
-      "notes": "Site (staceysbar.com) has no HH page; no published HH found (verified 2026-08-02)"
+      "notes": "Site (staceysbar.com) has no HH page; no published HH found (verified 2026-08-02)",
+      "specials": []
     },
     {
       "id": "freefall-brewery-audreys-pizza",
@@ -2220,9 +2238,9 @@
       "noise_level": "moderate",
       "mood": "casual",
       "hours": "",
-      "specials": [],
       "business_hours": "",
-      "notes": "Closed 2026-05-30 (Audrey's Pizza + Freefall at 806 N 7th). Own site still presents as open — do not treat site HH as live. Freefall reported relocating; 7th Ave co-location is closed. Truth/eval fixture (#77)."
+      "notes": "Closed 2026-05-30 (Audrey's Pizza + Freefall at 806 N 7th). Own site still presents as open — do not treat site HH as live. Freefall reported relocating; 7th Ave co-location is closed. Truth/eval fixture (#77).",
+      "specials": []
     }
   ]
 }
