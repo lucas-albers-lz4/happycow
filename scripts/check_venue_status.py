@@ -101,7 +101,7 @@ def probe_mthappyhour(client: httpx.Client, venue: dict) -> bool:
         r = client.get(mthh)
         if r.status_code != 200:
             return False
-        text = re.sub(r"<script[^>]*>.*?</script\s*>", " ", r.text, flags=re.DOTALL | re.I)
+        text = re.sub(r"<script[^>]*>.*?</script[^>]*>", " ", r.text, flags=re.DOTALL | re.I)
         text = re.sub(r"<[^>]+>", " ", text)
         name = re.escape(venue["name"].split("(")[0].strip())
         for m in CLOSED_RE.finditer(text):
