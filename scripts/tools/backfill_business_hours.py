@@ -23,6 +23,7 @@ from pathlib import Path
 
 import httpx
 from bs4 import BeautifulSoup
+from common import host_of
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "data" / "happy_hour_data.json"
@@ -127,7 +128,11 @@ def main() -> int:
             if venue.get("business_hours"):
                 continue  # already filled
             cfg = cfg_by_id.get(venue["id"], {})
-            urls = [u for u in (cfg.get("scrape_urls") or []) if "mthappyhour.com" in u]
+            urls = [
+                u
+                for u in (cfg.get("scrape_urls") or [])
+                if (h := host_of(u)) == "mthappyhour.com" or h.endswith(".mthappyhour.com")
+            ]
             if not urls:
                 continue
             html = fetch(client, urls[0])
