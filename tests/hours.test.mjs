@@ -91,6 +91,18 @@ test('parseBusinessHours: midnight close + messy kitchen suffix', () => {
   assert.equal(b[6], 1440);
 });
 
+test('parseBusinessHours: close end token is FALLBACK_CLOSE not NaN (#103)', () => {
+  const b = parseBusinessHours('Daily 4pm-close');
+  for (let d = 1; d <= 7; d++) {
+    assert.equal(b[d], 23 * 60 + 59);
+  }
+});
+
+test('parseBusinessHours: midnight stays 1440 (#103)', () => {
+  const b = parseBusinessHours('Mon-Sun 11am-Midnight');
+  assert.equal(b[1], 1440);
+});
+
 // ─── hhStatus — the reported bug and friends ───
 test('BUG FIX: The Bay live in its second window (8-9pm)', () => {
   assert.equal(hhStatus('Daily 3-5pm & 8-9pm', '', sun(20, 41)).kind, 'live'); // was 'closed'
@@ -112,6 +124,16 @@ test('Dave\u2019s 3-close resolves via business hours', () => {
   assert.equal(hhStatus('Mon 3-close', biz, mon(22, 30)).kind, 'closed'); // after 10pm close
   // fallback when business hours missing/unparseable
   assert.equal(hhStatus('Mon 3-close', '', mon(20, 0)).kind, 'live');
+});
+
+test('close-window × past-midnight biz hours is live mid-afternoon (#103)', () => {
+  const st = hhStatus('Mon 3-close', 'Mon-Sun 11am-2am', mon(18, 0));
+  assert.equal(st.kind, 'live');
+  assert.ok(st.endMin > 1440, `expected absolute end >1440, got ${st.endMin}`);
+  // Still live just before 2am next morning (Tue spill of Mon window)
+  const tue = (h, m = 0) => new Date(2026, 7, 4, h, m);
+  assert.equal(hhStatus('Mon 3-close', 'Mon-Sun 11am-2am', tue(1, 30)).kind, 'live');
+  assert.equal(hhStatus('Mon 3-close', 'Mon-Sun 11am-2am', tue(2, 30)).kind, 'closed');
 });
 
 test('Copper all-day Sunday', () => {
