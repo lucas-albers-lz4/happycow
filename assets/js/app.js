@@ -262,7 +262,7 @@ function render() {
 function renderDealOfDay() {
   const allSpecials = [];
   state.data.venues.forEach(v => {
-    v.specials.forEach(s => {
+    (v.specials || []).forEach(s => {
       allSpecials.push({ ...s, venue: v.name });
     });
   });
@@ -383,7 +383,7 @@ function renderVenues() {
 
   let filtered = state.data.venues.filter(v => {
     if (search && !v.name.toLowerCase().includes(search) &&
-        !v.specials.some(s => s.item.toLowerCase().includes(search)))
+        !(v.specials || []).some(s => s.item.toLowerCase().includes(search)))
       return false;
     if (tagFilter && !v.tags.includes(tagFilter)) return false;
     return true;
@@ -899,7 +899,7 @@ function doMysteryDrink() {
   if (!state.data) return;
   const allSpecials = [];
   state.data.venues.forEach(v => {
-    v.specials.forEach(s => {
+    (v.specials || []).forEach(s => {
       allSpecials.push({ ...s, venue: v.name, venueId: v.id });
     });
   });

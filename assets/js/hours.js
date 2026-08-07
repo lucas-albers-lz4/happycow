@@ -103,6 +103,7 @@
       if (!t) continue;
       let endMin;
       if (/^midnight$/i.test(t[4])) endMin = DAY_MIN;
+      else if (/^close$/i.test(t[4])) endMin = FALLBACK_CLOSE; // no bound → end of day
       else endMin = toMin(+t[5], +(t[6] || 0), t[7] || t[3] || 'pm');
       for (let d = rng.startDay; ; d = d === 7 ? 1 : d + 1) {
         out[d] = endMin;
@@ -131,12 +132,14 @@
     return false;
   }
 
-  // Effective end minute-of-day for a live window at (day, min).
+  // Effective end minute for a live window at (day, min). Spanning windows
+  // keep an absolute end (>1440) on the start day so "Xm left" counts past
+  // midnight; early-morning spill returns the wall-clock end (<1440).
   function liveEndMin(w, day, min) {
     if (w.endMin > DAY_MIN && dayInRange(prevDay(day), w.startDay, w.endDay) && min < w.endMin - DAY_MIN) {
       return w.endMin - DAY_MIN;
     }
-    return Math.min(w.endMin, DAY_MIN);
+    return w.endMin;
   }
 
   // hhStatus(hoursStr, bizHoursStr, now) -> {kind, nextStartMin, endMin}
@@ -152,7 +155,10 @@
 
     for (const w of windows) {
       if (w.close && biz[day] != null) {
-        const rw = { ...w, endMin: biz[day], spansNextDay: biz[day] <= w.startMin };
+        // Past-midnight biz close (e.g. 2am=120) is earlier than a daytime
+        // start (3pm=900) — offset by a day so the window spans midnight.
+        const closeMin = biz[day] <= w.startMin ? biz[day] + DAY_MIN : biz[day];
+        const rw = { ...w, endMin: closeMin, spansNextDay: closeMin > DAY_MIN };
         if (windowActive(rw, day, min)) {
           return { kind: 'live', nextStartMin: null, endMin: liveEndMin(rw, day, min) };
         }
@@ -163,17 +169,10 @@
 
     let best = null;
     for (const w of windows) {
-      const endMin = w.close && biz[day] != null ? biz[day] : w.endMin;
       if (dayInRange(day, w.startDay, w.endDay) && min < w.startMin) {
         const delta = w.startMin - min;
         if (delta <= 120 && (best === null || delta < best.delta)) {
           best = { delta, startMin: w.startMin };
-        }
-      }
-      if (w.close && endMin > DAY_MIN) {
-        // close lands after midnight: a same-day start still applies today
-        if (dayInRange(day, w.startDay, w.endDay) && min < w.startMin && (best === null || w.startMin - min < best.delta)) {
-          best = { delta: w.startMin - min, startMin: w.startMin };
         }
       }
     }
