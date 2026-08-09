@@ -198,7 +198,4 @@
   global.timeUntil = function timeUntilCompat(startMin) {
     return timeUntil(startMin, new Date());
   };
-  global.getStartMinutes = function getStartMinutes(hoursStr) {
-    return hhStatus(hoursStr, '', new Date()).nextStartMin || 0;
-  };
 })(typeof window !== 'undefined' ? window : globalThis);

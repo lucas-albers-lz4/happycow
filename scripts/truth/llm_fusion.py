@@ -1,4 +1,7 @@
-"""LLM data fusion fallback — deferred for residual high-uncertainty conflicts."""
+"""STUB: LLM data fusion fallback — deferred for residual high-uncertainty conflicts.
+
+Not wired into the truth pipeline. Call `available()` before use.
+"""
 
 from __future__ import annotations
 

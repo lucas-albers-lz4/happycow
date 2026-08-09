@@ -110,12 +110,8 @@ def _value_key(value: Any) -> str:
     return str(value).strip().lower()
 
 
-def _agree_status(claims: list[Claim], _has_primary: bool) -> Decision:
-    """business_status with closure asymmetry + aggregator-only cap.
-
-    ``_has_primary`` is retained for call-site compat but unused: a curated
-    primary URL is not observation corroboration for verified:open.
-    """
+def _agree_status(claims: list[Claim]) -> Decision:
+    """business_status with closure asymmetry + aggregator-only cap."""
     now_iso = utc_now_iso()
     if not claims:
         return Decision(
@@ -327,7 +323,7 @@ def agree_venue(
 
     decisions: dict[str, Decision] = {}
     status_claims = by_field.get(FactField.BUSINESS_STATUS, [])
-    status_dec = _agree_status(status_claims, has_primary_source)
+    status_dec = _agree_status(status_claims)
     status_dec.venue_id = venue_id
     decisions[FactField.BUSINESS_STATUS.value] = status_dec
 

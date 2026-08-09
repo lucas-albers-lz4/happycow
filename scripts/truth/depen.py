@@ -1,6 +1,6 @@
-"""Depen_Simple iterative truth discovery — deferred until agreement v1 plateaus.
+"""STUB: Depen_Simple iterative truth discovery — deferred until agreement v1 plateaus.
 
-Extension point only. Call `available()` before use; raise if not ready.
+Not wired into the truth pipeline. Call `available()` before use; raise if not ready.
 """
 
 from __future__ import annotations
