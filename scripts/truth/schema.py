@@ -11,6 +11,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
+from common import save_text
+
 
 class ExtractionMethod(str, Enum):
     REGEX = "regex"
@@ -135,10 +137,7 @@ class ObservationStore:
         d = self.venue_dir(obs.venue_id)
         d.mkdir(parents=True, exist_ok=True)
         path = d / f"{obs.filename_stem()}.json"
-        path.write_text(
-            obs.model_dump_json(indent=2) + "\n",
-            encoding="utf-8",
-        )
+        save_text(path, obs.model_dump_json(indent=2) + "\n")
         self.compact(obs.venue_id)
         return path
 
