@@ -316,6 +316,91 @@ class ApplyMerge(unittest.TestCase):
         self.assertEqual(next(v for v in data["venues"] if v["id"] == "b")["specials"], [])
 
 
+    def test_apply_rejects_price0_without_wording(self):
+        cfg = {
+            "venues": [
+                {"id": "bad", "name": "Bad", "scrape_urls": [], "website": "https://bad.example/"}
+            ]
+        }
+        data = {
+            "venues": [
+                {"id": "bad", "hours": "", "specials": [], "notes": ""},
+            ]
+        }
+        candidates = {
+            "bad": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "",
+                "specials": [
+                    {"item": "Mystery", "price": 0, "category": "drinks", "description": "house pour"}
+                ],
+                "source_urls": ["https://bad.example/"],
+                "notes": "",
+            }
+        }
+        applied, skipped, _ = enrich.apply_candidates(cfg, data, candidates)
+        self.assertEqual(applied, 0)
+        self.assertEqual(skipped, 1)
+        self.assertEqual(data["venues"][0]["specials"], [])
+
+    def test_apply_accepts_price0_with_half_off(self):
+        cfg = {
+            "venues": [
+                {"id": "ok0", "name": "Ok", "scrape_urls": [], "website": "https://ok.example/"}
+            ]
+        }
+        data = {
+            "venues": [
+                {"id": "ok0", "hours": "", "specials": [], "notes": ""},
+            ]
+        }
+        candidates = {
+            "ok0": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "",
+                "specials": [
+                    {
+                        "item": "Well",
+                        "price": 0,
+                        "category": "drinks",
+                        "description": "half off wells",
+                    }
+                ],
+                "source_urls": ["https://ok.example/"],
+                "notes": "",
+            }
+        }
+        applied, skipped, _ = enrich.apply_candidates(cfg, data, candidates)
+        self.assertEqual(applied, 1)
+        self.assertEqual(len(data["venues"][0]["specials"]), 1)
+
+
+class Price0Helpers(unittest.TestCase):
+    def test_price0_context(self):
+        self.assertFalse(
+            enrich.price0_has_context(
+                {"item": "X", "price": 0, "description": "house pour"}, ""
+            )
+        )
+        self.assertTrue(
+            enrich.price0_has_context(
+                {"item": "X", "price": 0, "description": "half off"}, ""
+            )
+        )
+        self.assertTrue(
+            enrich.price0_has_context({"item": "X", "price": 4, "description": ""}, "")
+        )
+
+
+class PageTextCap(unittest.TestCase):
+    def test_cap_matches_scraper(self):
+        from scraper.fetch import MAX_PAGE_CHARS
+
+        self.assertEqual(enrich.PAGE_TEXT_CAP, MAX_PAGE_CHARS * 2)
+
+
 class MergeNotes(unittest.TestCase):
     def test_preserves_existing(self):
         out = enrich.merge_notes("Site probed — no HH", "Wing Wednesday", "medium")

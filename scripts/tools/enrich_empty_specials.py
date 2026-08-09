@@ -56,17 +56,21 @@ from scraper.extract import (  # noqa: E402
 )
 from scraper.fetch import (  # noqa: E402
     BROWSER_HEADERS,
+    MAX_PAGE_CHARS,
     fetch_html,
     fetch_html_playwright,
     html_to_trimmed_text,
+    page_matches_venue,
     _should_browser_fallback,
 )
 from scraper.merge import reject_unparseable_hours  # noqa: E402
+from validate_data import PRICE0_CONTEXT  # noqa: E402
 
 ENRICH_PROMPT_PATH = ROOT / "prompts" / "enrich_empty_specials.txt"
 CITY_DEFAULT = "Bozeman, MT"
 APPLY_CONFIDENCE = frozenset({"medium", "high"})
 INTER_SLEEP = 0.5
+PAGE_TEXT_CAP = MAX_PAGE_CHARS * 2
 
 
 Confidence = Literal["high", "medium", "low"]
@@ -153,7 +157,11 @@ def select_targets(
     return pairs
 
 
-def fetch_own_site_text(client: httpx.Client, urls: list[str]) -> tuple[str, list[str], str]:
+def fetch_own_site_text(
+    client: httpx.Client,
+    urls: list[str],
+    venue: dict,
+) -> tuple[str, list[str], str]:
     """Fetch + trim own-site pages. Returns (page_text, used_urls, miss_summary)."""
     chunks: list[str] = []
     used: list[str] = []
@@ -175,12 +183,16 @@ def fetch_own_site_text(client: httpx.Client, urls: list[str]) -> tuple[str, lis
         if not result.ok or not result.html or not text:
             misses.append(f"{url}:{result.reason if not text else 'empty_extract'}")
             continue
+        # Own-site hard guard: page must mention venue name (skip parking/corporate redirects)
+        if not page_matches_venue(text, venue, require_address=False):
+            print(f"  SKIP {url}: page text lacks venue name (page-match guard)")
+            misses.append(f"{url}:page_mismatch")
+            continue
         chunks.append(f"[source: {url}]\n{text}")
         used.append(url)
 
     page_text = "\n\n".join(chunks)
-    # Cap like weekly scrape
-    page_text = page_text[:16_000]
+    page_text = page_text[:PAGE_TEXT_CAP]
     return page_text, used, ", ".join(misses[:6])
 
 
@@ -264,7 +276,7 @@ def enrich_venue(
         print("  SKIP needs_site")
         return candidate_record(status="needs_site", notes="no own-site URL in config/data")
 
-    page_text, used, miss = fetch_own_site_text(client, urls)
+    page_text, used, miss = fetch_own_site_text(client, urls, cfg_venue)
     if not page_text:
         print(f"  SKIP no_page_text ({miss or 'all fetches failed'})")
         return candidate_record(
@@ -328,6 +340,19 @@ def should_apply(rec: dict) -> bool:
     return bool(rec.get("specials"))
 
 
+def price0_has_context(special: dict, venue_notes: str = "") -> bool:
+    """Mirror validate_data price-0 rule: free/discount wording required."""
+    if special.get("price") != 0:
+        return True
+    desc = (special.get("description") or "").lower()
+    note = (venue_notes or "").lower()
+    return any(w in desc for w in PRICE0_CONTEXT) or "free" in note
+
+
+def specials_pass_price0(specials: list[dict], notes: str = "") -> bool:
+    return all(price0_has_context(s, notes) for s in specials if isinstance(s, dict))
+
+
 def merge_notes(existing: str, enrich_note: str, confidence: str | None) -> str:
     """Preserve prior publish notes; append enrich note + provenance once."""
     parts: list[str] = []
@@ -381,10 +406,20 @@ def apply_candidates(
             # Already published — do not clobber weekly scrape / prior apply
             skipped += 1
             continue
+        specials = list(rec.get("specials") or [])
+        notes_preview = merge_notes(
+            site.get("notes") or "",
+            rec.get("notes") or "",
+            rec.get("confidence"),
+        )
+        if not specials_pass_price0(specials, notes_preview):
+            print(f"  SKIP {vid}: price-0 special lacks free/discount wording")
+            skipped += 1
+            continue
         pending_apply.append((vid, rec))
         extracts_for_hours[vid] = {
             "hours": rec.get("hours") or "",
-            "specials": rec.get("specials") or [],
+            "specials": specials,
         }
 
     bad_hours = set(reject_unparseable_hours(extracts_for_hours))
@@ -425,6 +460,35 @@ def apply_candidates(
     return applied, skipped, needs_site
 
 
+def commit_apply(cfg: dict, data: dict) -> bool:
+    """Validate then write DATA_PATH before VENUES_PATH (crash-safe order).
+
+    Returns False if validate_data fails (nothing written).
+    """
+    import tempfile
+
+    import validate_data as vd
+
+    with tempfile.TemporaryDirectory(prefix="enrich-apply-") as tmp:
+        tmp_path = Path(tmp)
+        data_tmp = tmp_path / "data.json"
+        cfg_tmp = tmp_path / "venues.json"
+        save_json(data_tmp, data)
+        save_json(cfg_tmp, cfg)
+        # Reset module error list between validate runs
+        vd.errors = []
+        rc = vd.main(["--data", str(data_tmp), "--config", str(cfg_tmp)])
+        if rc != 0:
+            print("ERROR: validate_data failed — apply not committed", file=sys.stderr)
+            return False
+    # Data first: config scrape_urls without matching specials is worse than the reverse
+    save_json(DATA_PATH, data)
+    save_json(VENUES_PATH, cfg)
+    print(f"Wrote {DATA_PATH}")
+    print(f"Wrote {VENUES_PATH}")
+    return True
+
+
 def load_candidates() -> dict:
     raw = load_json(ENRICHMENT_CANDIDATES_PATH, fallback={"venues": {}}) or {}
     if not isinstance(raw.get("venues"), dict):
@@ -447,6 +511,11 @@ def main() -> int:
         action="store_true",
         help="skip fetch/LLM; merge from existing enrichment_candidates.json",
     )
+    ap.add_argument(
+        "--apply-all",
+        action="store_true",
+        help="with --apply-only: allow applying every store candidate (default requires --venue)",
+    )
     args = ap.parse_args()
 
     cfg = load_json(VENUES_PATH)
@@ -457,12 +526,18 @@ def main() -> int:
     venue_filter = set(args.venues) if args.venues else None
 
     if args.apply_only:
+        if venue_filter is None and not args.apply_all:
+            print(
+                "ERROR: --apply-only requires --venue ID (repeatable) or --apply-all",
+                file=sys.stderr,
+            )
+            return 1
         applied, skipped, needs_site = apply_candidates(
             cfg, data, venues_store, only_ids=venue_filter
         )
         if not args.dry_run and applied:
-            save_json(VENUES_PATH, cfg)
-            save_json(DATA_PATH, data)
+            if not commit_apply(cfg, data):
+                return 1
         print(f"\nApply-only: applied={applied} skipped={skipped} needs_site={needs_site}")
         return 0
 
@@ -515,10 +590,8 @@ def main() -> int:
             cfg, data, venues_store, only_ids=run_ids
         )
         if not args.dry_run and applied:
-            save_json(VENUES_PATH, cfg)
-            save_json(DATA_PATH, data)
-            print(f"Wrote {DATA_PATH}")
-            print(f"Wrote {VENUES_PATH}")
+            if not commit_apply(cfg, data):
+                return 1
         print(f"Apply: applied={applied} skipped={skipped} needs_site={needs_site}")
 
     return 0
