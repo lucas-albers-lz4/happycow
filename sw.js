@@ -6,13 +6,14 @@
 // CACHE-bump-on-shell-change: increment CACHE (e.g. happycow-v2 → happycow-v3)
 // whenever you add, remove, or rename a file in SHELL. The activate handler
 // deletes all old caches so users immediately get the new shell.
-const CACHE = 'happycow-v5';
+const CACHE = 'happycow-v6';
 const SHELL = [
   './',
   './index.html',
   './assets/css/style.css',
   './assets/js/hours.js',
   './assets/js/format.js',
+  './assets/js/tales.js',
   './assets/js/render.js',
   './assets/js/app.js',
 ];
