@@ -3,252 +3,252 @@
     "ale-works": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:00Z"
+      "checked_at": "2026-08-09T14:27:37Z"
     },
     "applebees-bozeman": {
-      "fail_count": 2,
+      "fail_count": 3,
       "last": "site_dead",
-      "checked_at": "2026-08-05T03:17:01Z"
+      "checked_at": "2026-08-09T14:27:38Z"
     },
     "bar-ix": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:04Z"
+      "checked_at": "2026-08-09T14:27:40Z"
     },
     "bitterroot-bistro": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:04Z"
+      "checked_at": "2026-08-09T14:27:40Z"
     },
     "blackbird": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:05Z"
+      "checked_at": "2026-08-09T14:27:41Z"
     },
     "bourbon": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:06Z"
+      "checked_at": "2026-08-09T14:27:42Z"
     },
     "bozeman-brewing-company": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:07Z"
+      "checked_at": "2026-08-09T14:27:43Z"
     },
     "bozeman-spirits-distillery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:08Z"
+      "checked_at": "2026-08-09T14:27:44Z"
     },
     "bozeman-taproom": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:09Z"
+      "checked_at": "2026-08-09T14:27:44Z"
     },
     "bridger-brewing": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:09Z"
+      "checked_at": "2026-08-09T14:27:45Z"
     },
     "brigade": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:10Z"
+      "checked_at": "2026-08-09T14:27:46Z"
     },
     "daves-sushi": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:11Z"
+      "checked_at": "2026-08-09T14:27:47Z"
     },
     "devils-toboggan": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:11Z"
+      "checked_at": "2026-08-09T14:27:48Z"
     },
     "dry-hills-distillery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:12Z"
+      "checked_at": "2026-08-09T14:27:48Z"
     },
     "est-1864-noir-bar-restaurant": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:13Z"
+      "checked_at": "2026-08-09T14:27:51Z"
     },
     "finks-deli": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:13Z"
+      "checked_at": "2026-08-09T14:27:52Z"
     },
     "la-brasserie": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:14Z"
+      "checked_at": "2026-08-09T14:27:53Z"
     },
     "map-brewing": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:15Z"
+      "checked_at": "2026-08-09T14:27:55Z"
     },
     "mountains-walking-brewery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:16Z"
+      "checked_at": "2026-08-09T14:27:55Z"
     },
     "revelry": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:17Z"
+      "checked_at": "2026-08-09T14:27:56Z"
     },
     "rocking-r": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:18Z"
+      "checked_at": "2026-08-09T14:27:58Z"
     },
     "shine-beer-sanctuary": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:20Z"
+      "checked_at": "2026-08-09T14:28:01Z"
     },
     "the-bacchus-pub": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:20Z"
+      "checked_at": "2026-08-09T14:28:02Z"
     },
     "the-club": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:22Z"
+      "checked_at": "2026-08-09T14:28:03Z"
     },
     "urban-kitchen": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:22Z"
+      "checked_at": "2026-08-09T14:28:04Z"
     },
     "wild-rye-distilling": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:23Z"
+      "checked_at": "2026-08-09T14:28:05Z"
     },
     "the-bay": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:24Z"
+      "checked_at": "2026-08-09T14:28:06Z"
     },
     "the-buck": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:25Z"
+      "checked_at": "2026-08-09T14:28:07Z"
     },
     "the-bunkhouse-brewery": {
-      "fail_count": 2,
+      "fail_count": 3,
       "last": "site_dead",
-      "checked_at": "2026-08-05T03:17:25Z"
+      "checked_at": "2026-08-09T14:28:08Z"
     },
     "cafe-fresco": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:26Z"
+      "checked_at": "2026-08-09T14:28:08Z"
     },
     "the-cannery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:27Z"
+      "checked_at": "2026-08-09T14:28:09Z"
     },
     "the-filling-station": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:27Z"
+      "checked_at": "2026-08-09T14:28:09Z"
     },
     "the-haufbrau": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:27Z"
+      "checked_at": "2026-08-09T14:28:09Z"
     },
     "hooked-sushi": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:28Z"
+      "checked_at": "2026-08-09T14:28:10Z"
     },
     "korner-klub": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:28Z"
+      "checked_at": "2026-08-09T14:28:11Z"
     },
     "last-best-place-brewery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:29Z"
+      "checked_at": "2026-08-09T14:28:12Z"
     },
     "the-molly-brown": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:29Z"
+      "checked_at": "2026-08-09T14:28:12Z"
     },
     "the-pour-house": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:30Z"
+      "checked_at": "2026-08-09T14:28:13Z"
     },
     "sidewall-pizza-company": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:30Z"
+      "checked_at": "2026-08-09T14:28:14Z"
     },
     "tanoshii": {
-      "fail_count": 2,
+      "fail_count": 3,
       "last": "site_dead",
-      "checked_at": "2026-08-05T03:17:31Z"
+      "checked_at": "2026-08-09T14:28:14Z"
     },
     "valhalla-meadery": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:32Z"
+      "checked_at": "2026-08-09T14:28:15Z"
     },
     "bar-3-bbq-and-brewery": {
-      "fail_count": 2,
+      "fail_count": 3,
       "last": "site_dead",
-      "checked_at": "2026-08-05T03:17:33Z"
+      "checked_at": "2026-08-09T14:28:16Z"
     },
     "buffalo-wild-wings": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:33Z"
+      "checked_at": "2026-08-09T14:28:17Z"
     },
     "copper-whiskey-bar": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:34Z"
+      "checked_at": "2026-08-09T14:28:18Z"
     },
     "madison-river-brewing-co": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:35Z"
+      "checked_at": "2026-08-09T14:28:19Z"
     },
     "old-chicago": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:36Z"
+      "checked_at": "2026-08-09T14:28:21Z"
     },
     "outlaw-brewing": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:37Z"
+      "checked_at": "2026-08-09T14:28:22Z"
     },
     "plonk": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:38Z"
+      "checked_at": "2026-08-09T14:28:22Z"
     },
     "pub-317": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:39Z"
+      "checked_at": "2026-08-09T14:28:23Z"
     },
     "rialto-bar-burn-box": {
-      "fail_count": 2,
+      "fail_count": 3,
       "last": "site_dead",
-      "checked_at": "2026-08-05T03:17:39Z"
+      "checked_at": "2026-08-09T14:28:24Z"
     },
     "santa-fe-reds": {
       "fail_count": 0,
@@ -258,17 +258,17 @@
     "seven-sushi": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:40Z"
+      "checked_at": "2026-08-09T14:28:24Z"
     },
     "spectators-bar-and-grill": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:41Z"
+      "checked_at": "2026-08-09T14:28:25Z"
     },
     "stacey-s-old-faithful-bar-steakhouse": {
       "fail_count": 0,
       "last": "ok",
-      "checked_at": "2026-08-05T03:17:42Z"
+      "checked_at": "2026-08-09T14:28:25Z"
     },
     "freefall-brewery-audreys-pizza": {
       "fail_count": 0,
@@ -276,5 +276,5 @@
       "checked_at": "2026-08-05T03:17:42Z"
     }
   },
-  "last_run": "2026-08-05T03:17:42Z"
+  "last_run": "2026-08-09T14:28:25Z"
 }

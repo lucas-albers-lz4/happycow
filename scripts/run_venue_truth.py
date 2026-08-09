@@ -46,7 +46,7 @@ from adapters import overture as overture_adapter  # noqa: E402
 from adapters import overpass as overpass_adapter  # noqa: E402
 from adapters.scrape_bridge import observation_from_scrape  # noqa: E402
 from truth.agreement import agree_venue, venue_has_primary  # noqa: E402
-from truth.budget import empty_counters, rank_uncertain  # noqa: E402
+from truth.budget import empty_counters, merge_counters, rank_uncertain  # noqa: E402
 from truth.schema import ObservationStore, utc_now_iso  # noqa: E402
 from truth.synthesize import apply_decisions_to_record, decisions_needing_review  # noqa: E402
 
@@ -208,7 +208,9 @@ def run(
     if write:
         save_json(SHADOW_DECISIONS_PATH, shadow)
         save_json(REVIEW_QUEUE_PATH, {"updated_at": utc_now_iso(), "items": review})
-        save_json(COST_COUNTERS_PATH, {"updated_at": utc_now_iso(), **counters})
+        prior = load_json(COST_COUNTERS_PATH, fallback={})
+        merged = merge_counters(prior, counters)
+        save_json(COST_COUNTERS_PATH, {"updated_at": utc_now_iso(), **merged})
         if not TRUTH_CONFIG_PATH.exists():
             save_json(TRUTH_CONFIG_PATH, default_truth_config())
         print(f"Wrote {SHADOW_DECISIONS_PATH}")

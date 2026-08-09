@@ -88,11 +88,16 @@
     <div class="venue-specials" id="${specialsId}" hidden>
       ${(venue.specials || []).map(s => {
         const today = specialAppliesToday(s, clock);
+        const tale = global.HappyCowTales && global.HappyCowTales.isBeefSpecial(s)
+          ? global.HappyCowTales.taleFor(venue.id, s, venue.name)
+          : null;
         return `
         <div class="special-row${today ? ' today' : ''}">
           <div>
             <div>${esc(s.item)}</div>
             <div class="special-desc">${esc(s.description)}</div>
+            ${tale ? `
+            <button type="button" class="tale-link" data-tale-venue="${esc(venue.id)}" data-tale-item="${esc(s.item)}" aria-label="Read ${esc(tale.cow)}'s tale about the ${esc(s.item)}">🐄 ${esc(tale.cow)}'s tale</button>` : ''}
           </div>
           <div class="special-price">${specialPriceLabel(s)}</div>
         </div>

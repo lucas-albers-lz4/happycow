@@ -98,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         vid = v.get("id")
         ids.append(vid or "")
-        check(bool(vid) and bool(ID_RE.match(str(vid))), f"{vid}: bad id (want [a-z0-9-]+)")
+        check(bool(vid) and bool(ID_RE.match(str(vid))), f"{vid!r}: bad id (want [a-z0-9-]+)")
         for k in REQUIRED_KEYS:
             check(k in v, f"{vid}: missing required key '{k}'")
         for k in PIPELINE_ONLY_KEYS:

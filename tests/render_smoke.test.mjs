@@ -170,3 +170,36 @@ test('deal headline prefers today special when present', () => {
     `headline should prefer Monday special "${monday.item}", got "${dealMatch[1]}"`
   );
 });
+
+test('missing specials key does not throw when aggregating (#104)', () => {
+  const mixed = [
+    { name: 'Good', specials: [{ item: 'Beer', price: 3 }] },
+    { name: 'NoKey' },
+    { name: 'NullKey', specials: null },
+  ];
+  const all = [];
+  assert.doesNotThrow(() => {
+    mixed.forEach(v => {
+      (v.specials || []).forEach(s => all.push({ ...s, venue: v.name }));
+    });
+  });
+  assert.equal(all.length, 1);
+  // Card path already uses || []; venue without specials still renders
+  const html = renderVenueCardHtml(
+    { id: 'no-specials', name: 'Bare Venue', hours: 'Daily 4-6pm', business_hours: '', tags: [] },
+    helpers,
+    NOW
+  );
+  assert.ok(html.includes('Bare Venue'));
+});
+
+test('app.js guards specials iteration sites (#104)', () => {
+  const src = readFileSync(join(root, 'assets/js/app.js'), 'utf8');
+  const guarded = (src.match(/\(v\.specials \|\| \[\]\)\.forEach/g) || []).length;
+  assert.ok(guarded >= 2, `expected ≥2 guarded specials.forEach sites, got ${guarded}`);
+  assert.equal(
+    (src.match(/(?<!\|\| \[\]\))\bv\.specials\.forEach\b/g) || []).length,
+    0,
+    'unguarded v.specials.forEach must not remain'
+  );
+});

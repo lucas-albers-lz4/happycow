@@ -83,3 +83,21 @@ def empty_counters() -> dict[str, Any]:
         "venues_processed": 0,
         "top_n_selected": [],
     }
+
+
+def merge_counters(existing: dict[str, Any] | None, run: dict[str, Any]) -> dict[str, Any]:
+    """Add numeric run counters onto prior disk totals; refresh list fields from run."""
+    prior = existing or {}
+    out = empty_counters()
+    for key, value in out.items():
+        if isinstance(value, list):
+            out[key] = list(run.get(key) or [])
+            continue
+        prev = prior.get(key, 0)
+        curr = run.get(key, 0)
+        if not isinstance(prev, (int, float)):
+            prev = 0
+        if not isinstance(curr, (int, float)):
+            curr = 0
+        out[key] = prev + curr
+    return out

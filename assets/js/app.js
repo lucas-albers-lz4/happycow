@@ -262,7 +262,7 @@ function render() {
 function renderDealOfDay() {
   const allSpecials = [];
   state.data.venues.forEach(v => {
-    v.specials.forEach(s => {
+    (v.specials || []).forEach(s => {
       allSpecials.push({ ...s, venue: v.name });
     });
   });
@@ -383,7 +383,7 @@ function renderVenues() {
 
   let filtered = state.data.venues.filter(v => {
     if (search && !v.name.toLowerCase().includes(search) &&
-        !v.specials.some(s => s.item.toLowerCase().includes(search)))
+        !(v.specials || []).some(s => s.item.toLowerCase().includes(search)))
       return false;
     if (tagFilter && !v.tags.includes(tagFilter)) return false;
     return true;
@@ -899,7 +899,7 @@ function doMysteryDrink() {
   if (!state.data) return;
   const allSpecials = [];
   state.data.venues.forEach(v => {
-    v.specials.forEach(s => {
+    (v.specials || []).forEach(s => {
       allSpecials.push({ ...s, venue: v.name, venueId: v.id });
     });
   });
@@ -999,6 +999,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const open = !panel.hidden;
         panel.hidden = open;
         panelToggle.setAttribute('aria-expanded', String(!open));
+      }
+      return;
+    }
+
+    // Cow Tall Tale link (beef specials only) — opens the story modal.
+    // Seed from data-tale-* so a missing/renamed special row can't no-op the click.
+    const taleLink = e.target.closest('.tale-link');
+    if (taleLink) {
+      const taleVenueId = taleLink.dataset.taleVenue;
+      const taleItem = taleLink.dataset.taleItem;
+      if (taleVenueId && taleItem && globalThis.HappyCowTales) {
+        const venue = state.data.venues.find(v => v.id === taleVenueId);
+        const tale = globalThis.HappyCowTales.taleFor(
+          taleVenueId,
+          { item: taleItem },
+          venue ? venue.name : taleVenueId
+        );
+        document.getElementById('tale-modal-title').textContent = `🐄 ${tale.cow}'s Tale`;
+        document.getElementById('tale-modal-subtitle').textContent =
+          `as told by the ${tale.item} at ${tale.venue}`;
+        document.getElementById('tale-modal-story').textContent = tale.story;
+        openModal('tale-modal');
       }
       return;
     }
