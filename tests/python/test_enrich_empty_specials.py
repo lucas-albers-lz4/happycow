@@ -233,6 +233,35 @@ class ApplyMerge(unittest.TestCase):
         cfg_good = next(v for v in cfg["venues"] if v["id"] == "good")
         self.assertIn("https://good.example/specials", cfg_good["scrape_urls"])
         self.assertTrue(cfg_good["website"].startswith("https://good.example"))
+        self.assertEqual(good.get("website"), cfg_good["website"])
+
+    def test_apply_sets_data_website_with_config(self):
+        cfg = {
+            "venues": [
+                {"id": "w", "name": "W", "scrape_urls": [], "website": ""}
+            ]
+        }
+        data = {
+            "venues": [
+                {"id": "w", "hours": "", "specials": [], "notes": "", "website": ""},
+            ]
+        }
+        candidates = {
+            "w": {
+                "status": "ok",
+                "confidence": "high",
+                "hours": "",
+                "specials": [
+                    {"item": "Beer", "price": 4, "category": "drinks", "description": ""}
+                ],
+                "source_urls": ["https://w.example/hh"],
+                "notes": "",
+            }
+        }
+        applied, _, _ = enrich.apply_candidates(cfg, data, candidates)
+        self.assertEqual(applied, 1)
+        self.assertEqual(cfg["venues"][0]["website"], "https://w.example/")
+        self.assertEqual(data["venues"][0]["website"], "https://w.example/")
 
     def test_apply_skips_venues_that_already_have_specials(self):
         cfg = {
