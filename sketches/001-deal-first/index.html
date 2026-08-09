@@ -229,7 +229,7 @@ function windowsOf(hoursStr){
 function status(v){
   const wins=windowsOf(v.hours);
   if(!wins.length)return{key:'done',label:'No HH listed'};
-  const now=DAY,h=NOW.getHours()*60+NOW.getMinutes();
+  const h=NOW.getHours()*60+NOW.getMinutes();
   let best=null;
   for(const w of wins){
     if(!w.days.has(DAY))continue;
@@ -262,7 +262,6 @@ function buildChips(){
 }
 function cardHTML(v){
   const st=status(v);
-  const price=Math.min(...v.specials.map(s=>s.p>0?s.p:99));
   const sp=v.specials.map(s=>`<div class="special"><span class="item">${s.i}</span><span class="price">${priceLabel(s)}</span></div>`).join('');
   return `<div class="venue ${st.key}">
     <div class="vtop"><span class="vname">${v.name}</span><span class="vtags">${v.tags.join(' · ')}</span><span class="vstatus">${st.label}</span></div>

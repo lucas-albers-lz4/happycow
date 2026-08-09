@@ -11,7 +11,6 @@ A final smoke test asserts the live data/happy_hour_data.json exits 0.
 
 from __future__ import annotations
 
-import json
 import sys
 import unittest
 from pathlib import Path

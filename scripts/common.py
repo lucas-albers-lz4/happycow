@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import contextlib
 import tempfile
 import unicodedata
 from pathlib import Path
@@ -30,10 +31,10 @@ PROMPT_PATH = ROOT / "prompts" / "extract_happy_hour.txt"
 # NOTE: this repo is served by GitHub Pages, so anything committed here is
 # public by nature. State contains content hashes + flags only — no secrets.
 STATE_DIR = ROOT / "data" / "state"
-CACHE_PATH = STATE_DIR / "scrape_cache.json"          # scraper page cache
-TOMBSTONES_PATH = STATE_DIR / "removed_venues.json"   # removed-venue blocklist
-CLOSURE_STATE_PATH = STATE_DIR / "closure_state.json" # consecutive-failure flags
-CLOSURE_REPORT_PATH = STATE_DIR / "closure_report.md" # human-review report
+CACHE_PATH = STATE_DIR / "scrape_cache.json"  # scraper page cache
+TOMBSTONES_PATH = STATE_DIR / "removed_venues.json"  # removed-venue blocklist
+CLOSURE_STATE_PATH = STATE_DIR / "closure_state.json"  # consecutive-failure flags
+CLOSURE_REPORT_PATH = STATE_DIR / "closure_report.md"  # human-review report
 
 # ─── Venue truth pipeline (observation → claim → decision) ───
 EVIDENCE_DIR = ROOT / "data" / "evidence"
@@ -83,7 +84,7 @@ def norm_name(name: str) -> str:
     s = re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
     for art in ("the ", "a ", "an "):
         if s.startswith(art) and len(s) > len(art):
-            s = s[len(art):]
+            s = s[len(art) :]
     return re.sub(r"\s+", " ", s).strip()
 
 
@@ -120,7 +121,9 @@ def host_of(url: str) -> str:
 def is_aggregator(url: str) -> bool:
     """True for aggregator/directory hosts (suffix match; www handled)."""
     host = host_of(url)
-    return bool(host) and any(host == a or host.endswith("." + a) for a in AGGREGATOR_HOSTS)
+    return bool(host) and any(
+        host == a or host.endswith("." + a) for a in AGGREGATOR_HOSTS
+    )
 
 
 def load_json(path: Path, fallback=None):
@@ -149,8 +152,6 @@ def _atomic_write(path: Path, content: str) -> None:
             f.write(content)
         os.replace(tmp, path)
     except BaseException:
-        try:
+        with contextlib.suppress(OSError):
             os.unlink(tmp)
-        except OSError:
-            pass
         raise

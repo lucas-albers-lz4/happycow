@@ -20,7 +20,6 @@ Does NOT modify happy_hour_data.json unless truth_config.suppress_enabled
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from pathlib import Path
 

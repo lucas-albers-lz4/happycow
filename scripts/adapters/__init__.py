@@ -12,8 +12,6 @@ class SourceAdapter(Protocol):
 
     def discover(self, venue: dict) -> list[str]:
         """Return candidate URLs or signal ids for the venue."""
-        ...
 
     def fetch_observations(self, venue: dict) -> list[Observation]:
         """Fetch and return observations (may be empty)."""
-        ...
