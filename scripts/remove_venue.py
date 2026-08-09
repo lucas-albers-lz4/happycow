@@ -41,6 +41,9 @@ def main() -> int:
     if not cfg.get("venues"):
         print("ERROR: config unreadable or empty", file=sys.stderr)
         return 2
+    if not isinstance(data.get("venues"), list):
+        print("ERROR: data unreadable or missing venues list", file=sys.stderr)
+        return 2
 
     cfg_by_id = {v["id"]: v for v in cfg["venues"]}
     missing = [i for i in args.venue_ids if i not in cfg_by_id]
