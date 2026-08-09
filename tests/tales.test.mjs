@@ -63,6 +63,9 @@ test('classifier: unambiguous beef items are detected', () => {
     // "non-vegetarian" must not trip the vegan/vegetarian fake-beef gate
     sp('Ribeye', 'non-vegetarian entree, 12oz'),
     sp('Smash Burger', 'non vegan — real beef patty'),
+    // Mushroom sauce in description must not suppress a beef item (#108)
+    sp('Ribeye', '12oz ribeye with roasted mushroom demi'),
+    sp('Steak Frites', 'portobello gravy on the side'),
   ];
   for (const s of positives) {
     assert.ok(isBeefSpecial(s), `should detect: ${s.item} — ${s.description}`);
@@ -79,6 +82,7 @@ test('classifier: non-beef, fake-beef, and ambiguous mixed menus are rejected', 
     sp('Chicken Burger', 'grilled chicken patty'),
     sp('Veggie Burger', 'plant-based patty'),
     sp('Portobello Mushroom Sliders', 'roasted mushroom'),
+    sp('Mushroom Swiss Burger', 'swiss and sauteed mushrooms'), // mushroom in item
     sp('Lamb Chops', 'with mint'),
     sp('Beyond Burger'),                                 // brand alone
     sp('Impossible Burger', 'plant protein'),

@@ -52,7 +52,10 @@
   // Plant / fake-beef signals — reject before override/positives.
   // vegan/vegetarian use negative lookbehind so "non-vegan" / "non-vegetarian"
   // (hyphen or space) do not suppress a real beef special.
-  const FAKE_BEEF_RE = /\b(?:beyond|impossible|veggie|plant[\s-]?based|portobello|mushroom)\b|(?<!non-)(?<!non\s)\b(?:vegan|vegetarian)\b/i;
+  // Brand/diet fakes apply to item+description. Mushroom/portobello only reject
+  // when they appear in the item name (a ribeye with mushroom demi stays beef).
+  const FAKE_BEEF_RE = /\b(?:beyond|impossible|veggie|plant[\s-]?based)\b|(?<!non-)(?<!non\s)\b(?:vegan|vegetarian)\b/i;
+  const FAKE_BEEF_ITEM_RE = /\b(?:portobello|mushroom)\b/i;
 
   // Competing proteins. catfish is listed explicitly: \bfish\b does not match it.
   // A negative anywhere suppresses the tale (mixed "beef and chicken" menus → no tale).
@@ -62,8 +65,10 @@
 
   function isBeefSpecial(special) {
     if (!special) return false;
-    const text = String(special.item || '') + ' ' + String(special.description || '');
+    const item = String(special.item || '');
+    const text = item + ' ' + String(special.description || '');
     if (FAKE_BEEF_RE.test(text)) return false;
+    if (FAKE_BEEF_ITEM_RE.test(item)) return false;
     if (BEEF_OVERRIDE_RE.test(text)) return true;
     if (NOT_BEEF_RE.test(text)) return false;
     return BEEF_RE.test(text);
