@@ -147,7 +147,7 @@ function windowsOf(hoursStr){
     if(/daily/i.test(days)){DAYS.forEach(d=>daySet.add(d));}
     else{for(const range of days.split(/\s+(?=[A-Z])/)){const r=range.match(/^([A-Z][a-z]{2})(?:-([A-Z][a-z]{2}))?$/);if(!r)continue;const a=DAYS.indexOf(r[1]),b=r[2]?DAYS.indexOf(r[2]):a;let i=a;for(;;){daySet.add(DAYS[i]);if(i===b)break;i=(i+1)%7;if(i===a)break;}}}
     const times=[m[2],m[3]].filter(Boolean).map(r=>{const mm=r.match(/^(\d{1,2}(?::\d{2})?)(?:\s*(am|pm))?\s*-\s*(?:(\d{1,2}(?::\d{2})?)\s*(am|pm)|(close))$/i);if(!mm)return null;const es=mm[4]||mm[5];const end=es==='close'?1439:toMin(mm[3]+' '+es);const ss=mm[2]||(es==='pm'?'pm':(+mm[1].split(':')[0]<12?'pm':'am'));return[toMin(mm[1]+' '+ss),end];}).filter(Boolean);
-    for(const [s,e] of times)wins.push({days:daySet,s:e});
+    for(const [,e] of times)wins.push({days:daySet,s:e});
   }
   return wins;
 }
@@ -204,8 +204,6 @@ function drawPins(){
   VENUES.forEach((v,i)=>pinGroup.appendChild(cowPin(v,i)));
   // selection rings + path
   const sel=[...selected].map(id=>VENUES.find(v=>v.id===id));
-  let pathSvg='';
-  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
   if(sel.length>=2){
     const pts=sel.map(v=>({x:v.x,y:v.y-6}));
     const p=document.createElementNS('http://www.w3.org/2000/svg','path');

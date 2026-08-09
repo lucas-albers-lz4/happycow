@@ -127,13 +127,12 @@ function render(){
   const f=FRIENDS.find(x=>x.id===active);
   document.getElementById('hint').textContent=`Voting as ${f.name} — tap a spot below (${Object.keys(votes).length}/${FRIENDS.length} voted)`;
   const t=tallies();
-  const total=Object.keys(votes).length||1;
   const max=Math.max(0,...Object.values(t));
   const winnerId=max>0&&Object.keys(votes).length>=2?Object.entries(t).sort((a,b)=>b[1]-a[1])[0][0]:null;
 
   document.getElementById('list').innerHTML=VENUES.map(v=>{
     const st=status(v);
-    const n=t[v.id], pct=Math.round((n/FRIENDS.length)*100);
+    const n=t[v.id];
     const mine=votes[active]===v.id;
     return `<div class="venue ${mine?'picked':''} ${v.id===winnerId?'winner':''}" data-id="${v.id}">
       <div>

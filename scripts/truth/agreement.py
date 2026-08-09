@@ -10,7 +10,6 @@ from truth.schema import (
     Claim,
     Decision,
     DecisionKind,
-    ExtractionMethod,
     FactField,
     Observation,
     utc_now_iso,
@@ -59,7 +58,9 @@ def observations_to_claims(observations: list[Observation]) -> list[Claim]:
                     source_type=obs.source_type,
                     source_family=obs.source_family,
                     evidence_excerpt=obs.evidence_excerpt[:400],
-                    weight=claim_weight(obs.source_type, FactField.BUSINESS_STATUS, obs.observed_at),
+                    weight=claim_weight(
+                        obs.source_type, FactField.BUSINESS_STATUS, obs.observed_at
+                    ),
                 )
             )
         for key, field in (
@@ -133,7 +134,8 @@ def _agree_status(claims: list[Claim], _has_primary: bool) -> Decision:
     strong_closed = [
         c
         for c in closed
-        if c.source_type in ("overture", "own_site", "human", "overpass") and c.weight >= 0.4
+        if c.source_type in ("overture", "own_site", "human", "overpass")
+        and c.weight >= 0.4
     ]
     weak_closed = [c for c in closed if c not in strong_closed]
 
@@ -143,7 +145,8 @@ def _agree_status(claims: list[Claim], _has_primary: bool) -> Decision:
         primary = max(strong_closed, key=lambda c: c.weight)
         kind = DecisionKind.SUPPRESSED
         if primary.source_type == "human" or (
-            primary.source_type == "overture" and str(primary.value) == "permanently_closed"
+            primary.source_type == "overture"
+            and str(primary.value) == "permanently_closed"
         ):
             val = str(primary.value)
         else:
@@ -194,7 +197,11 @@ def _agree_status(claims: list[Claim], _has_primary: bool) -> Decision:
         families = {c.source_family for c in open_c}
         corroborated = own_or_human or len(families) >= 2
         if only_agg or not corroborated:
-            why = "aggregator-only open" if only_agg else "single-source open (need own-site or second family)"
+            why = (
+                "aggregator-only open"
+                if only_agg
+                else "single-source open (need own-site or second family)"
+            )
             return Decision(
                 venue_id=best.venue_id,
                 field=FactField.BUSINESS_STATUS,
@@ -256,7 +263,9 @@ def _agree_generic(claims: list[Claim], field: FactField) -> Decision:
         by_val[_value_key(c.value)].append(c)
 
     if len(by_val) > 1:
-        top = sorted(by_val.values(), key=lambda cs: sum(c.weight for c in cs), reverse=True)
+        top = sorted(
+            by_val.values(), key=lambda cs: sum(c.weight for c in cs), reverse=True
+        )
         if abs(sum(c.weight for c in top[0]) - sum(c.weight for c in top[1])) < 0.15:
             return Decision(
                 venue_id=claims[0].venue_id,
@@ -274,7 +283,9 @@ def _agree_generic(claims: list[Claim], field: FactField) -> Decision:
     weight_sum = sum(c.weight for c in best_group)
     if is_stale(best.observed_at, field):
         kind = DecisionKind.STALE
-    elif weight_sum >= 0.7 and any(c.source_type in ("own_site", "human") for c in best_group):
+    elif weight_sum >= 0.7 and any(
+        c.source_type in ("own_site", "human") for c in best_group
+    ):
         kind = DecisionKind.VERIFIED
     elif weight_sum >= 0.5:
         kind = DecisionKind.UNVERIFIED
@@ -337,7 +348,9 @@ def agree_venue(
                 venue_id=venue_id,
                 field=f,
                 kind=DecisionKind.SUPPRESSED,
-                value=None if f == FactField.SPECIALS else (existing.value if existing else None),
+                value=None
+                if f == FactField.SPECIALS
+                else (existing.value if existing else None),
                 rationale=f"suppressed due to business_status={status_dec.value}",
                 cited_sources=status_dec.cited_sources,
                 confidence=status_dec.confidence,
