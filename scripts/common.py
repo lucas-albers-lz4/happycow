@@ -45,6 +45,7 @@ TRUTH_CONFIG_PATH = STATE_DIR / "truth_config.json"
 OVERTURE_CACHE_PATH = STATE_DIR / "overture_priors.json"
 OVERPASS_CACHE_PATH = STATE_DIR / "overpass_snapshot.json"
 COST_COUNTERS_PATH = STATE_DIR / "cost_counters.json"
+ENRICHMENT_CANDIDATES_PATH = STATE_DIR / "enrichment_candidates.json"
 
 # Gallatin Valley bbox for Overture / Overpass (approx Bozeman + Belgrade)
 BOZEMAN_BBOX = {

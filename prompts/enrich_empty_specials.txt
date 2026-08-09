@@ -1,0 +1,46 @@
+You extract recurring happy hour / weekly special deals from restaurant/bar web pages for a Bozeman, MT guide (HappyCow).
+
+Venue: {name}
+City: {city}
+Source URL(s): {urls}
+
+PAGE TEXT:
+---
+{page_text}
+---
+
+Return ONLY valid JSON (no markdown fences) matching this schema:
+{
+  "found": true | false,
+  "confidence": "high" | "medium" | "low",
+  "hours": "string — happy hour window(s) in canonical grammar, or empty",
+  "specials": [
+    {
+      "item": "string",
+      "price": number,
+      "category": "drinks" | "food",
+      "description": "string"
+    }
+  ],
+  "notes": "short curator note (caveats, why not found, etc.)",
+  "source_urls": ["urls that actually contained the deals"]
+}
+
+Rules:
+1. Extract only WEEKLY-RECURRING deals (happy hour, late night, daily specials, Wing Wednesday-style). Exclude one-off events, holiday menus, restaurant-week, private dining.
+2. Invent nothing. Never invent or estimate a price. If the page says "half off wine" with no dollar amount, set price to 0 and put the discount wording in description (e.g. "half off — Wednesdays").
+3. hours format MUST use HappyCow canonical grammar when a schedule is stated. Examples:
+   - "Mon-Fri 4-6pm"
+   - "Daily 3-5pm & 8-9pm"
+   - "Daily 3-6pm, Fri-Sat 10pm-12am"
+   - "Mon-Fri 3-5pm, Sun all day"
+   Short weekday names; lowercase am/pm; no spaces around day-range hyphens.
+   If there is no classic HH time window (only a day deal like Wing Wednesday), leave hours empty and encode the day in the special description.
+4. categories are only "drinks" or "food".
+5. confidence:
+   - high = explicit schedule AND prices on the page
+   - medium = schedule clear but no prices, OR priced items with a vague schedule
+   - low = inferred, ambiguous, or likely stale
+6. If pages have no recurring deal information, return found=false, specials=[], and explain in notes.
+7. If pages have a HH menu with prices but no days/times anywhere, return found=false and describe what is there in notes so a curator can follow up.
+8. source_urls should list only the URLs from the input that contributed deal evidence (may be a subset of Source URL(s)).
