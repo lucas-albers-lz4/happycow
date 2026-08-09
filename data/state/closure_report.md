@@ -1,14 +1,14 @@
-# Venue Closure Check — 2026-08-05 03:17 UTC
+# Venue Closure Check — 2026-08-09 14:28 UTC
 
-Checked 55 venues. **5 flagged for review.**
+Checked 53 venues. **5 flagged for review.**
 
 | Venue | Signal |
 |---|---|
-| Applebee’s Bozeman | `SITE_DEAD x2 (https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019)` |
-| The Bunkhouse Brewery | `SITE_DEAD x2 (https://www.bunkhousebrewery.com/)` |
-| Tanoshii | `SITE_DEAD x2 (https://tanoshiimt.com/)` |
-| Bar 3 BBQ and Brewery | `SITE_DEAD x2 (https://bar3bbq.com/)` |
-| Rialto Bar – Burn Box | `SITE_DEAD x2 (https://www.larkbozeman.com/)` |
+| Applebee’s Bozeman | `SITE_DEAD x3 (https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019)` |
+| The Bunkhouse Brewery | `SITE_DEAD x3 (https://www.bunkhousebrewery.com/)` |
+| Tanoshii | `SITE_DEAD x3 (https://tanoshiimt.com/)` |
+| Bar 3 BBQ and Brewery | `SITE_DEAD x3 (https://bar3bbq.com/)` |
+| Rialto Bar – Burn Box | `SITE_DEAD x3 (https://www.larkbozeman.com/)` |
 
 No venue is auto-removed — review the flags, then update data manually.
 To remove a confirmed-closed venue:
