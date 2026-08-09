@@ -22,7 +22,6 @@ replay from existing candidates (use --apply with no re-extract: pass
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 import time
 from datetime import datetime, timezone
@@ -270,7 +269,6 @@ def enrich_venue(
     prev: dict | None,
     force: bool,
 ) -> dict:
-    vid = cfg_venue["id"]
     urls = own_site_urls(cfg_venue, data_venue)
     if not urls:
         print("  SKIP needs_site")

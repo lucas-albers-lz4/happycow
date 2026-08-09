@@ -232,7 +232,7 @@ class ApplyMerge(unittest.TestCase):
 
         cfg_good = next(v for v in cfg["venues"] if v["id"] == "good")
         self.assertIn("https://good.example/specials", cfg_good["scrape_urls"])
-        self.assertTrue(cfg_good["website"].startswith("https://good.example"))
+        self.assertEqual(cfg_good["website"], "https://good.example/")
         self.assertEqual(good.get("website"), cfg_good["website"])
 
     def test_apply_sets_data_website_with_config(self):
