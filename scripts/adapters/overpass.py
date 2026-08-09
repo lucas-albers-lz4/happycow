@@ -9,6 +9,7 @@ from typing import Any
 
 import httpx
 
+from common import save_json
 from truth.identity import names_match, street_token
 from truth.schema import ExtractionMethod, Observation, utc_now_iso
 
@@ -160,14 +161,5 @@ def run_patrol(
     hits = match_removed_to_venues(diff["removed"], venues)
     meta["matched"] = len(hits)
 
-    cache_path.parent.mkdir(parents=True, exist_ok=True)
-    cache_path.write_text(
-        json.dumps(
-            {"updated_at": utc_now_iso(), "places": current},
-            indent=2,
-            ensure_ascii=False,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
+    save_json(cache_path, {"updated_at": utc_now_iso(), "places": current})
     return observations_from_removals(hits), meta

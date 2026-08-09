@@ -19,7 +19,7 @@ from adapters.overture import (  # noqa: E402
 from adapters.overpass import diff_snapshots, match_removed_to_venues  # noqa: E402
 from adapters.scrape_bridge import observation_from_scrape  # noqa: E402
 from truth.agreement import agree_venue, venue_has_primary  # noqa: E402
-from truth.budget import rank_uncertain  # noqa: E402
+from truth.budget import empty_counters, merge_counters, rank_uncertain  # noqa: E402
 from truth import depen, llm_fusion  # noqa: E402
 from adapters import social  # noqa: E402
 from truth.identity import page_matches_venue, venue_matches_candidate  # noqa: E402
@@ -326,6 +326,47 @@ class ObservationStoreRetention(unittest.TestCase):
                 )
             remaining = store.list_for_venue("v1")
             self.assertEqual(len(remaining), 2)
+
+    def test_write_is_readable_json(self):
+        with TempDir() as tmp:
+            store = ObservationStore(tmp / "evidence", retain_per_family=5)
+            path = store.write(
+                Observation(
+                    venue_id="v1",
+                    observed_at="2026-08-01T00:00:00Z",
+                    source_type="overture",
+                    source_family="overture",
+                    payload={"business_status": "open"},
+                    content_hash="abc",
+                )
+            )
+            self.assertTrue(path.is_file())
+            data = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(data["venue_id"], "v1")
+
+
+class CostCounterMerge(unittest.TestCase):
+    def test_merge_sums_numeric_keys(self):
+        prior = empty_counters()
+        prior["fetches"] = 3
+        prior["venues_processed"] = 10
+        prior["top_n_selected"] = ["old"]
+        run = empty_counters()
+        run["fetches"] = 2
+        run["venues_processed"] = 5
+        run["top_n_selected"] = ["a", "b"]
+        merged = merge_counters(prior, run)
+        self.assertEqual(merged["fetches"], 5)
+        self.assertEqual(merged["venues_processed"], 15)
+        self.assertEqual(merged["top_n_selected"], ["a", "b"])
+        self.assertEqual(merged["llm_calls"], 0)
+
+    def test_merge_tolerates_missing_prior(self):
+        run = empty_counters()
+        run["escalations"] = 4
+        merged = merge_counters(None, run)
+        self.assertEqual(merged["escalations"], 4)
+        self.assertEqual(merged["fetches"], 0)
 
 
 class BudgetRank(unittest.TestCase):

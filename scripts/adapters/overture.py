@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from common import save_json
 from truth.identity import match_score, venue_matches_candidate
 from truth.schema import ExtractionMethod, Observation, utc_now_iso
 
@@ -232,20 +233,14 @@ def fetch_or_cache(
                     "check release pin / S3 access / bbox filters",
                     file=sys.stderr,
                 )
-            cache_path.parent.mkdir(parents=True, exist_ok=True)
-            cache_path.write_text(
-                json.dumps(
-                    {
-                        "updated_at": utc_now_iso(),
-                        "release": release,
-                        "bbox": bbox,
-                        "candidates": candidates,
-                    },
-                    indent=2,
-                    ensure_ascii=False,
-                )
-                + "\n",
-                encoding="utf-8",
+            save_json(
+                cache_path,
+                {
+                    "updated_at": utc_now_iso(),
+                    "release": release,
+                    "bbox": bbox,
+                    "candidates": candidates,
+                },
             )
         except Exception as e:  # noqa: BLE001
             meta["failed"] = True
