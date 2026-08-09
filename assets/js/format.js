@@ -37,10 +37,27 @@
 
   // Collect weekday numbers mentioned in free-text (item + description).
   // Word boundaries so "fri" ≠ "fries". Full names accept trailing "s"
-  // (Wednesdays). Slash pairs like "Tue/Thu" are covered by separate tokens.
+  // (Wednesdays). Hyphenated ranges (Mon-Fri) expand to every day in range
+  // (wrap-aware). Slash pairs like "Tue/Thu" stay as separate endpoint tokens.
   function daysMentionedInSpecial(special) {
     const text = `${special?.item || ''} ${special?.description || ''}`.toLowerCase();
     const days = new Set();
+
+    const rangeRe = /\b(mon|tue|wed|thu|fri|sat|sun)-(mon|tue|wed|thu|fri|sat|sun)\b/g;
+    let m;
+    while ((m = rangeRe.exec(text)) !== null) {
+      const start = ABBR_DAYS[m[1]];
+      const end = ABBR_DAYS[m[2]];
+      if (!start || !end) continue;
+      if (end >= start) {
+        for (let d = start; d <= end; d++) days.add(d);
+      } else {
+        // Wrap: Fri-Mon → Fri,Sat,Sun,Mon
+        for (let d = start; d <= 7; d++) days.add(d);
+        for (let d = 1; d <= end; d++) days.add(d);
+      }
+    }
+
     for (const [name, n] of Object.entries(FULL_DAYS)) {
       if (new RegExp('\\b' + name + 's?\\b').test(text)) days.add(n);
     }
