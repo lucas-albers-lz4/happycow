@@ -101,8 +101,11 @@ def norm_address(addr: str) -> str:
     # Normalize unit markers: "#1e" == "suite 1e" == "unit 1e" == "ste 1e"
     s = re.sub(r"\b(suite|unit|ste|apt)\b", "#", s)
     s = re.sub(r"#\s*", "#", s)
-    # Collapse repeated city tokens ("bozeman bozeman" -> "bozeman")
-    s = re.sub(r"\b(\w+)\s+\1\b", r"\1", s)
+    # Collapse repeated city tokens ("bozeman bozeman" -> "bozeman").
+    # Bound \w{1,24}: backref patterns can be super-linear on adversarial input;
+    # curated venue addresses are short — bound keeps matching linear in practice
+    # (regexproof/#115; recheck not available in CI).
+    s = re.sub(r"\b(\w{1,24})\s+\1\b", r"\1", s)
     return re.sub(r"\s+", " ", s).strip()
 
 
