@@ -55,9 +55,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 # ─── Thresholds (adjust here; keep as named constants so diffs are auditable)
-SPECIALS_DROP_THRESHOLD = 2   # more than this many venues losing all specials = fail
-HOURS_WIPE_THRESHOLD = 1      # more than this many venues losing hours entirely = fail
-HASH_CHANGE_THRESHOLD = 5     # more than this many venues with changed hours/specials → PR (--pr-mode)
+SPECIALS_DROP_THRESHOLD = 2  # more than this many venues losing all specials = fail
+HOURS_WIPE_THRESHOLD = 1  # more than this many venues losing hours entirely = fail
+HASH_CHANGE_THRESHOLD = (
+    5  # more than this many venues with changed hours/specials → PR (--pr-mode)
+)
 
 CANDIDATE_DEFAULT = ROOT / "data" / "happy_hour_data.json"
 
@@ -77,7 +79,7 @@ def _load_json_from_path(path: Path) -> dict:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception as exc:  # noqa: BLE001
         print(f"FAIL: cannot read {path}: {exc}", file=sys.stderr)
-        sys.exit(1)
+        raise SystemExit(1)
 
 
 def _load_baseline_from_git() -> dict | None:
@@ -103,16 +105,32 @@ def _check(failures: list[str], cond: bool, msg: str) -> None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--candidate", type=Path, default=CANDIDATE_DEFAULT,
-                    help="Path to candidate data file (default: data/happy_hour_data.json)")
-    ap.add_argument("--baseline", type=Path, default=None,
-                    help="Path to baseline data file (default: git show HEAD:…)")
-    ap.add_argument("--allow-regression", action="store_true",
-                    help="Print regression report but exit 0 (CI escape hatch)")
-    ap.add_argument("--pr-mode", action="store_true",
-                    default=(os.environ.get("PR_MODE", "") == "1"),
-                    help="Convert hard-fails and large-delta into exit 2 (open PR) instead of exit 1 (fail job)")
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    ap.add_argument(
+        "--candidate",
+        type=Path,
+        default=CANDIDATE_DEFAULT,
+        help="Path to candidate data file (default: data/happy_hour_data.json)",
+    )
+    ap.add_argument(
+        "--baseline",
+        type=Path,
+        default=None,
+        help="Path to baseline data file (default: git show HEAD:…)",
+    )
+    ap.add_argument(
+        "--allow-regression",
+        action="store_true",
+        help="Print regression report but exit 0 (CI escape hatch)",
+    )
+    ap.add_argument(
+        "--pr-mode",
+        action="store_true",
+        default=(os.environ.get("PR_MODE", "") == "1"),
+        help="Convert hard-fails and large-delta into exit 2 (open PR) instead of exit 1 (fail job)",
+    )
     args = ap.parse_args()
 
     candidate_data = _load_json_from_path(args.candidate)
@@ -124,52 +142,74 @@ def main() -> int:
         baseline_data = _load_baseline_from_git()
 
     if baseline_data is None:
-        print("INFO: no HEAD baseline found (first run or git unavailable) — skipping regression check")
+        print(
+            "INFO: no HEAD baseline found (first run or git unavailable) — skipping regression check"
+        )
         return 0
 
     baseline_venues = baseline_data.get("venues") or []
-    baseline_by_id: dict[str, dict] = {v["id"]: v for v in baseline_venues if v.get("id")}
-    candidate_by_id: dict[str, dict] = {v["id"]: v for v in candidate_venues if v.get("id")}
+    baseline_by_id: dict[str, dict] = {
+        v["id"]: v for v in baseline_venues if v.get("id")
+    }
+    candidate_by_id: dict[str, dict] = {
+        v["id"]: v for v in candidate_venues if v.get("id")
+    }
 
     failures: list[str] = []
 
     # 1. Venue count must not drop
-    _check(failures,
-           len(candidate_venues) >= len(baseline_venues),
-           f"VENUE_COUNT_DROP: {len(baseline_venues)} -> {len(candidate_venues)} venues")
+    _check(
+        failures,
+        len(candidate_venues) >= len(baseline_venues),
+        f"VENUE_COUNT_DROP: {len(baseline_venues)} -> {len(candidate_venues)} venues",
+    )
 
     # 2. Baseline ids must all be present in candidate
     missing_ids = sorted(set(baseline_by_id) - set(candidate_by_id))
-    _check(failures, not missing_ids, f"MISSING_IDS: baseline venue ids absent from candidate: {missing_ids}")
+    _check(
+        failures,
+        not missing_ids,
+        f"MISSING_IDS: baseline venue ids absent from candidate: {missing_ids}",
+    )
 
     # 3. Specials coverage: count venues that lost ALL specials
     specials_lost = [
-        vid for vid, bv in baseline_by_id.items()
+        vid
+        for vid, bv in baseline_by_id.items()
         if bv.get("specials") and not (candidate_by_id.get(vid) or {}).get("specials")
     ]
-    _check(failures,
-           len(specials_lost) <= SPECIALS_DROP_THRESHOLD,
-           f"SPECIALS_COVERAGE: {len(specials_lost)} venues lost all specials "
-           f"(threshold {SPECIALS_DROP_THRESHOLD}): {specials_lost}")
+    _check(
+        failures,
+        len(specials_lost) <= SPECIALS_DROP_THRESHOLD,
+        f"SPECIALS_COVERAGE: {len(specials_lost)} venues lost all specials "
+        f"(threshold {SPECIALS_DROP_THRESHOLD}): {specials_lost}",
+    )
 
     # 4. Hours retention: count venues that had hours and now have none
     hours_wiped = [
-        vid for vid, bv in baseline_by_id.items()
+        vid
+        for vid, bv in baseline_by_id.items()
         if (bv.get("hours") or "").strip()
         and not ((candidate_by_id.get(vid) or {}).get("hours") or "").strip()
     ]
-    _check(failures,
-           len(hours_wiped) <= HOURS_WIPE_THRESHOLD,
-           f"HOURS_WIPE: {len(hours_wiped)} venues lost hours "
-           f"(threshold {HOURS_WIPE_THRESHOLD}): {hours_wiped}")
+    _check(
+        failures,
+        len(hours_wiped) <= HOURS_WIPE_THRESHOLD,
+        f"HOURS_WIPE: {len(hours_wiped)} venues lost hours "
+        f"(threshold {HOURS_WIPE_THRESHOLD}): {hours_wiped}",
+    )
 
     # 5. Coverage invariant: every venue must have specials OR a non-empty notes
     uncovered = [
-        v.get("id") for v in candidate_venues
+        v.get("id")
+        for v in candidate_venues
         if not v.get("specials") and not (v.get("notes") or "").strip()
     ]
-    _check(failures, not uncovered,
-           f"COVERAGE_BROKEN: venues with no specials AND no notes: {uncovered}")
+    _check(
+        failures,
+        not uncovered,
+        f"COVERAGE_BROKEN: venues with no specials AND no notes: {uncovered}",
+    )
 
     # ─── Content-hash report (always printed; feeds issue #46 attribution) ───
     changed_ids: list[str] = []
@@ -181,8 +221,10 @@ def main() -> int:
         if _venue_hash(cv) != _venue_hash(bv):
             changed_ids.append(vid)
 
-    print(f"REGRESSION CHECK: {len(candidate_venues)} venues | "
-          f"{len(changed_ids)} changed (hours/specials): {changed_ids}")
+    print(
+        f"REGRESSION CHECK: {len(candidate_venues)} venues | "
+        f"{len(changed_ids)} changed (hours/specials): {changed_ids}"
+    )
 
     # ─── Large-delta check (PR mode only) ───
     large_delta = len(changed_ids) > HASH_CHANGE_THRESHOLD
@@ -193,10 +235,14 @@ def main() -> int:
             for f in failures:
                 print(f"  - {f}")
         if large_delta and not failures:
-            print(f"LARGE_DELTA: {len(changed_ids)} venues changed "
-                  f"(threshold {HASH_CHANGE_THRESHOLD}) — PR review recommended")
+            print(
+                f"LARGE_DELTA: {len(changed_ids)} venues changed "
+                f"(threshold {HASH_CHANGE_THRESHOLD}) — PR review recommended"
+            )
         if args.allow_regression:
-            print("INFO: --allow-regression set — exiting 0 despite failures/large-delta")
+            print(
+                "INFO: --allow-regression set — exiting 0 despite failures/large-delta"
+            )
             return 0
         if args.pr_mode:
             print("INFO: --pr-mode — exiting 2 (caller should open a scrape PR)")

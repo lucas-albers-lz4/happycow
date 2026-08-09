@@ -6,6 +6,7 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from enum import Enum
+import contextlib
 from pathlib import Path
 from typing import Any, Literal
 
@@ -149,7 +150,9 @@ class ObservationStore:
         out: list[Observation] = []
         for p in sorted(d.glob("*.json")):
             try:
-                out.append(Observation.model_validate_json(p.read_text(encoding="utf-8")))
+                out.append(
+                    Observation.model_validate_json(p.read_text(encoding="utf-8"))
+                )
             except Exception:  # noqa: BLE001
                 continue
         return out
@@ -169,7 +172,5 @@ class ObservationStore:
         for _fam, items in by_family.items():
             items.sort(key=lambda t: t[1].observed_at, reverse=True)
             for path, _ in items[self.retain_per_family :]:
-                try:
+                with contextlib.suppress(OSError):
                     path.unlink()
-                except OSError:
-                    pass
