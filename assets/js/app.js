@@ -193,8 +193,8 @@ async function loadData() {
 // ─── Time Helpers ───
 // ─── Hours/status logic lives in assets/js/hours.js (loaded before app.js) ───
 // globals provided: HappyCowHours.{parseHours, parseBusinessHours, hhStatus,
-// timeUntil} + isHHLive(hoursStr, bizHoursStr) / timeUntil(min) /
-// getStartMinutes(hoursStr) back-compat wrappers. Phase 1, issue #30.
+// timeUntil, dayOfDate} + isHHLive(hoursStr, bizHoursStr) / timeUntil(min)
+// back-compat wrappers. Phase 1, issue #30.
 
 // ─── Render ───
 function render() {
@@ -270,26 +270,7 @@ function renderDealOfDay() {
   };
 }
 
-// ─── Status Bar (legacy; hidden in 014 shell) ───
-const CLOSED_LABEL = 'Done'; // funny stand-in for "closed" (happy hour not running)
-function renderStatusBar() {
-  const bar = document.getElementById('status-bar');
-  if (!bar || bar.hidden) return;
-  bar.innerHTML = '';
-  state.data.venues.forEach(v => {
-    const status = isHHLive(v.hours, v.business_hours);
-    const pill = document.createElement('button');
-    pill.type = 'button';
-    pill.className = 'status-pill' + (status === 'live' ? ' active' : status === 'soon' ? ' ending' : status === 'closed' ? ' closed' : '');
-    pill.textContent = status === 'live' ? `● ${v.name}` :
-                       status === 'soon' ? `▲ ${v.name}` :
-                       status === 'closed' ? `○ ${v.name}` :
-                       v.name;
-    pill.setAttribute('aria-label', `${v.name}: ${status === 'live' ? 'live now' : status === 'soon' ? 'opening soon' : status === 'closed' ? 'closed' : 'hours unknown'}`);
-    pill.onclick = () => scrollToVenue(v.id);
-    bar.appendChild(pill);
-  });
-}
+
 
 const VIBE_CHIP_ORDER = [
   'patio', 'craft-beer', 'dive', 'downtown', 'brewery', 'whiskey',

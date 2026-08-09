@@ -84,12 +84,7 @@ def venue_matches_candidate(
     # (still risky — callers should prefer address). Used as last resort.
     if not (v_addr or v_phone):
         return True
-    # Name matched but no address corroboration — accept only if candidate
-    # address street token is contained in venue address text or vice versa.
-    if address and v_addr:
-        return street_token(v_addr) is not None and street_token(address) is not None and (
-            street_token(v_addr) == street_token(address)
-        )
+    # Name matched but address/phone present without corroboration → reject
     return False
 
 
