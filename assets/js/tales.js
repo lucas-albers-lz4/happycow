@@ -79,21 +79,8 @@
     return BEEF_RE.test(text);
   }
 
-  // ── Deterministic seed machinery (same idiom as app.js nicknames) ──
-  function hashStr(s) {
-    let h = 0;
-    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
-    return Math.abs(h);
-  }
-
-  function seededRandom(seed) {
-    let s = seed % 2147483647;
-    if (s <= 0) s += 2147483646;
-    return function () {
-      s = (s * 16807) % 2147483647;
-      return (s - 1) / 2147483646;
-    };
-  }
+  // ── Deterministic seed machinery (HappyCowFormat — shared with app.js) ──
+  const { hashStr, seededRandom } = global.HappyCowFormat;
 
   // ── The cursed (names are cow-adjacent but never drawn by Cow of the Day) ──
   const TALE_COWS = [

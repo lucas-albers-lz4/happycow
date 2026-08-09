@@ -27,25 +27,13 @@ function dateSeed() {
   return d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
 }
 
-// Simple seeded random
-function seededRandom(seed) {
-  let s = seed % 2147483647;
-  if (s <= 0) s += 2147483646;
-  return function() {
-    s = (s * 16807) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
-}
+// Simple seeded random — HappyCowFormat.seededRandom / hashStr (format.js)
+const { seededRandom, hashStr: nicknameSeed } = globalThis.HappyCowFormat || window.HappyCowFormat;
 
 // ─── Venue Nicknames ───
 // Every venue has a nickname; 1 in 10 draws (seeded per-day) show a ridiculous one.
 // Seeded by todaySeed + venue id so cards don't flicker between renders —
 // the whole app just gets weirder on some days.
-function nicknameSeed(id) {
-  let h = 0;
-  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
-  return Math.abs(h);
-}
 function venueNickname(venue) {
   if (!venue.nickname) return '';
   const alts = venue.nickname_alts || [];

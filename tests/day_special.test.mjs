@@ -7,12 +7,15 @@ import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
+eval(readFileSync(join(root, 'assets/js/hours.js'), 'utf8'));
 eval(readFileSync(join(root, 'assets/js/format.js'), 'utf8'));
 
 const {
   specialAppliesToday,
   daysMentionedInSpecial,
-  dayOfDate
+  dayOfDate,
+  seededRandom,
+  hashStr
 } = globalThis.HappyCowFormat;
 
 const MON = new Date(2026, 7, 3, 17, 0); // Mon Aug 3 2026
@@ -78,4 +81,14 @@ test('always-on specials are not today', () => {
   const s = { item: '$3 martinis', description: 'Happy Hour Prices' };
   assert.equal(specialAppliesToday(s, MON), false);
   assert.equal(daysMentionedInSpecial(s).size, 0);
+});
+
+test('seededRandom + hashStr are stable (shared helpers)', () => {
+  assert.equal(hashStr('plonk'), hashStr('plonk'));
+  const a = seededRandom(42);
+  const b = seededRandom(42);
+  assert.equal(a(), b());
+  assert.equal(a(), b());
+  // dayOfDate comes from hours.js via format re-export
+  assert.equal(dayOfDate(MON), globalThis.HappyCowHours.dayOfDate(MON));
 });
