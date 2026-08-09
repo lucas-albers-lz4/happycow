@@ -92,6 +92,7 @@ test('classifier: non-beef, fake-beef, and ambiguous mixed menus are rejected', 
     // fake-beef wins over chicken-fried-steak override
     sp('Chicken fried steak', 'plant-based'),
     sp('Country-fried steak', 'vegan mushroom cutlet'),
+    sp('Chicken-fried steak', 'mushroom cutlet'), // override + mushroom desc → reject
   ];
   for (const s of negatives) {
     assert.ok(!isBeefSpecial(s), `should reject: ${s.item} — ${s.description}`);

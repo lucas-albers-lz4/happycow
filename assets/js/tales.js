@@ -66,10 +66,15 @@
   function isBeefSpecial(special) {
     if (!special) return false;
     const item = String(special.item || '');
-    const text = item + ' ' + String(special.description || '');
+    const description = String(special.description || '');
+    const text = item + ' ' + description;
     if (FAKE_BEEF_RE.test(text)) return false;
     if (FAKE_BEEF_ITEM_RE.test(item)) return false;
-    if (BEEF_OVERRIDE_RE.test(text)) return true;
+    if (BEEF_OVERRIDE_RE.test(text)) {
+      // CFS override must still reject mushroom/portobello cutlets in the description
+      if (FAKE_BEEF_ITEM_RE.test(description)) return false;
+      return true;
+    }
     if (NOT_BEEF_RE.test(text)) return false;
     return BEEF_RE.test(text);
   }
