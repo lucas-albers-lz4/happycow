@@ -307,7 +307,9 @@ def enrich_venue(
 
     specials = [s.model_dump() for s in result.specials]
     src = result.source_urls or used
-    if result.found and specials:
+    # Treat non-empty specials as found even if the model omitted `found: true`
+    found = bool(result.found) or bool(specials)
+    if found and specials:
         print(f"  found {len(specials)} special(s) conf={result.confidence}")
         return candidate_record(
             status="ok",
