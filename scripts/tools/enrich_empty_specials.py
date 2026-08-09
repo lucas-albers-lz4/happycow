@@ -450,8 +450,14 @@ def apply_candidates(
                 if url and not is_aggregator(url):
                     parts = urlsplit(url)
                     if parts.scheme and parts.netloc:
-                        cfg_v["website"] = urlunsplit((parts.scheme, parts.netloc, "/", "", ""))
+                        website = urlunsplit((parts.scheme, parts.netloc, "/", "", ""))
+                        cfg_v["website"] = website
+                        # Deep parity: config website must match data website
+                        site["website"] = website
                     break
+        elif not (site.get("website") or "").strip() and (cfg_v.get("website") or "").strip():
+            # Config already had website; keep data in parity for validate_data
+            site["website"] = cfg_v["website"]
         applied += 1
         print(f"  APPLY {vid}: {len(site['specials'])} special(s)")
 
