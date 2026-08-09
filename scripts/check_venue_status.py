@@ -26,7 +26,6 @@ Exit code is always 0 — the report is for a human to review.
 from __future__ import annotations
 
 import argparse
-import json
 import re
 import sys
 from datetime import datetime, timezone
@@ -34,6 +33,7 @@ from pathlib import Path
 from common import (
     CLOSURE_REPORT_PATH,
     CLOSURE_STATE_PATH,
+    load_json,
     host_of,
     is_aggregator,
     save_json,
@@ -41,6 +41,7 @@ from common import (
 )
 
 import httpx
+from scraper.fetch import BROWSER_HEADERS, is_challenge_page
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
@@ -48,7 +49,6 @@ DATA_PATH = ROOT / "data" / "happy_hour_data.json"
 STATE_PATH = CLOSURE_STATE_PATH
 REPORT_PATH = CLOSURE_REPORT_PATH
 
-USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) HappyCowClosureCheck/1.0"
 TIMEOUT = 10.0
 FLAG_AFTER_CONSECUTIVE = 2
 
@@ -59,13 +59,6 @@ CLOSED_RE = re.compile(
     r"venue (is|has) closed|restaurant (is|has) closed",
     re.IGNORECASE,
 )
-
-
-def load_json(path: Path, fallback=None):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return fallback if fallback is not None else {}
 
 
 def own_site_urls(venue: dict) -> list[str]:
@@ -80,7 +73,12 @@ def site_ok(client: httpx.Client, url: str) -> bool:
     try:
         r = client.get(url)
         # 401/403 (auth-protected/parked — Open Range's case) counts as dead.
-        return r.status_code < 400
+        if r.status_code >= 400:
+            return False
+        # HTTP 200 WAF/challenge pages are not evidence the venue site is live
+        if is_challenge_page(r.text or ""):
+            return False
+        return True
     except Exception:
         return False
 
@@ -103,6 +101,8 @@ def probe_mthappyhour(client: httpx.Client, venue: dict) -> bool:
             return False
         text = re.sub(r"<script[^>]*>.*?</script[^>]*>", " ", r.text, flags=re.DOTALL | re.I)
         text = re.sub(r"<[^>]+>", " ", text)
+        # re.escape: venue names are matched as literals (linear time; no ReDoS).
+        # Keep escape on any future edit of this probe.
         name = re.escape(venue["name"].split("(")[0].strip())
         for m in CLOSED_RE.finditer(text):
             window = text[max(0, m.start() - 200): m.end() + 200]
@@ -120,7 +120,7 @@ def probe_yelp(client: httpx.Client, venue: dict) -> bool:
         r = client.get(f"https://www.yelp.com/biz/{slug}", headers={"Accept-Language": "en-US"})
         if r.status_code != 200:
             return False
-        return bool(re.search(r"permanently closed|closed", r.text, re.I))
+        return bool(re.search(r"permanently\s+closed", r.text, re.I))
     except Exception:
         return False
 
@@ -137,7 +137,7 @@ def main() -> int:
     state_venues = state.setdefault("venues", {})
 
     rows: list[dict] = []
-    with httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT,
+    with httpx.Client(headers=BROWSER_HEADERS, timeout=TIMEOUT,
                       follow_redirects=True) as client:
         for venue in venues:
             vid = venue["id"]

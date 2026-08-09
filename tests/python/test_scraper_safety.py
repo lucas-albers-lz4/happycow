@@ -249,6 +249,10 @@ class NormalizeHours(unittest.TestCase):
         result = normalize_hours("Daily  4pm-6pm")
         self.assertNotIn("  ", result)
 
+    def test_noon_midnight(self):
+        self.assertIn("12pm-6pm", normalize_hours("Noon-6pm").lower())
+        self.assertIn("12am", normalize_hours("Fri 10pm-midnight").lower())
+
 
 if __name__ == "__main__":
     unittest.main()

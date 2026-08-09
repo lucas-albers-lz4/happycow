@@ -14,7 +14,7 @@ from pathlib import Path
 
 import httpx
 
-from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, save_json
+from common import CACHE_PATH, DATA_PATH, PROMPT_PATH, VENUES_PATH, load_json, save_json
 from scraper.extract import ANTHROPIC_API_KEY, MODEL, extract_venue
 from scraper.fetch import BROWSER_HEADERS
 from scraper.merge import reject_unparseable_hours, venue_to_site_record
@@ -22,7 +22,7 @@ from scraper.merge import reject_unparseable_hours, venue_to_site_record
 # Optional truth-pipeline provenance (shadow; suppress gated by truth_config)
 try:
     from adapters.scrape_bridge import observation_from_scrape
-    from common import EVIDENCE_DIR, TRUTH_CONFIG_PATH, SHADOW_DECISIONS_PATH, load_json as _load
+    from common import EVIDENCE_DIR, TRUTH_CONFIG_PATH, SHADOW_DECISIONS_PATH
     from truth.schema import ObservationStore
     from truth.synthesize import apply_decisions_to_record
 
@@ -32,11 +32,6 @@ except Exception:  # noqa: BLE001
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 REQUEST_TIMEOUT = 30.0
-
-
-def load_json(path: Path) -> dict:
-    with open(path) as f:
-        return json.load(f)
 
 
 def run(
@@ -110,9 +105,9 @@ def run(
     shadow_by_id: dict = {}
     if _TRUTH_AVAILABLE:
         truth_store = ObservationStore(EVIDENCE_DIR)
-        tcfg = _load(TRUTH_CONFIG_PATH, fallback={}) or {}
+        tcfg = load_json(TRUTH_CONFIG_PATH, fallback={}) or {}
         suppress_enabled = bool(tcfg.get("suppress_enabled"))
-        shadow = _load(SHADOW_DECISIONS_PATH, fallback={}) or {}
+        shadow = load_json(SHADOW_DECISIONS_PATH, fallback={}) or {}
         for vid, fields in (shadow.get("venues") or {}).items():
             from truth.schema import Decision
 
