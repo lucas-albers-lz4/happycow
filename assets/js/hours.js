@@ -189,7 +189,7 @@
     return h > 0 ? `${h}h ${m}m` : `${m}m`;
   }
 
-  const api = { parseHours, parseBusinessHours, hhStatus, timeUntil };
+  const api = { parseHours, parseBusinessHours, hhStatus, timeUntil, dayOfDate };
   global.HappyCowHours = api;
   // Back-compat wrappers so app.js call sites keep working during the migration.
   global.isHHLive = function isHHLive(hoursStr, bizHoursStr) {

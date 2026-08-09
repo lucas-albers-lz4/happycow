@@ -30,9 +30,26 @@
     return 'FREE';
   }
 
-  // 1=Mon … 7=Sun (same convention as hours.js dayOfDate).
+  // 1=Mon … 7=Sun — single definition lives in hours.js (loaded first).
   function dayOfDate(d) {
-    return (d.getDay() + 6) % 7 + 1;
+    return global.HappyCowHours.dayOfDate(d);
+  }
+
+  // Park-Miller LCG — shared by nicknames (app.js) and tall tales (tales.js).
+  function seededRandom(seed) {
+    let s = seed % 2147483647;
+    if (s <= 0) s += 2147483646;
+    return function () {
+      s = (s * 16807) % 2147483647;
+      return (s - 1) / 2147483646;
+    };
+  }
+
+  function hashStr(s) {
+    let h = 0;
+    const str = String(s || '');
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
+    return Math.abs(h);
   }
 
   // Collect weekday numbers mentioned in free-text (item + description).
@@ -80,6 +97,8 @@
     specialPriceLabel,
     specialAppliesToday,
     daysMentionedInSpecial,
-    dayOfDate
+    dayOfDate,
+    seededRandom,
+    hashStr
   };
 })(typeof window !== 'undefined' ? window : globalThis);
