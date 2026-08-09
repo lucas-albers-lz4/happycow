@@ -39,12 +39,22 @@ test('slash pairs Tuesday/Thursday', () => {
   assert.ok(days.has(4));
 });
 
-test('abbrevs as whole tokens', () => {
+test('hyphenated Mon-Fri expands to all five weekdays', () => {
   const days = daysMentionedInSpecial({ item: 'deal', description: 'Mon-Fri special' });
-  // "Mon" and "Fri" as tokens via \bmon\b — but "Mon-Fri" has mon then - then fri
-  // \bmon\b matches Mon; \bfri\b matches Fri
-  assert.ok(days.has(1), 'mon');
-  assert.ok(days.has(5), 'fri');
+  assert.deepEqual([...days].sort((a, b) => a - b), [1, 2, 3, 4, 5]);
+  const wed = new Date(2026, 7, 5, 17, 0); // Wed
+  assert.equal(
+    specialAppliesToday({ item: 'deal', description: 'Mon-Fri special' }, wed),
+    true
+  );
+});
+
+test('slash pairs Tuesday/Thursday stay endpoints only', () => {
+  const days = daysMentionedInSpecial({
+    item: '2 for 1',
+    description: 'Tue/Thu special'
+  });
+  assert.deepEqual([...days].sort((a, b) => a - b), [2, 4]);
 });
 
 test('fries does not match fri', () => {
