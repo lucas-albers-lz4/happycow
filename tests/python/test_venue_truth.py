@@ -344,6 +344,16 @@ class ObservationStoreRetention(unittest.TestCase):
             data = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(data["venue_id"], "v1")
 
+    def test_compact_unlinks_corrupt(self):
+        with TempDir() as tmp:
+            store = ObservationStore(tmp / "evidence", retain_per_family=5)
+            d = store.venue_dir("v1")
+            d.mkdir(parents=True)
+            bad = d / "corrupt.json"
+            bad.write_text("{not json", encoding="utf-8")
+            store.compact("v1")
+            self.assertFalse(bad.exists())
+
 
 class CostCounterMerge(unittest.TestCase):
     def test_merge_sums_numeric_keys(self):

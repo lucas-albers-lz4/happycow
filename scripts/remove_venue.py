@@ -15,12 +15,11 @@ Run with --dry-run to preview what would change.
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from common import TOMBSTONES_PATH, norm_address, norm_name, save_json
+from common import TOMBSTONES_PATH, load_json, norm_address, norm_name, save_json
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "venues.json"
@@ -34,9 +33,14 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    cfg = json.loads(CONFIG_PATH.read_text())
-    data = json.loads(DATA_PATH.read_text())
-    removed = json.loads(TOMBSTONES_PATH.read_text()) if TOMBSTONES_PATH.exists() else {"venues": []}
+    cfg = load_json(CONFIG_PATH, fallback={})
+    data = load_json(DATA_PATH, fallback={})
+    removed = load_json(TOMBSTONES_PATH, fallback={"venues": []})
+    if not isinstance(removed.get("venues"), list):
+        removed = {"venues": []}
+    if not cfg.get("venues"):
+        print("ERROR: config unreadable or empty", file=sys.stderr)
+        return 2
 
     cfg_by_id = {v["id"]: v for v in cfg["venues"]}
     missing = [i for i in args.venue_ids if i not in cfg_by_id]

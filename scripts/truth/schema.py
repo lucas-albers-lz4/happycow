@@ -9,6 +9,7 @@ from enum import Enum
 import contextlib
 from pathlib import Path
 from typing import Any, Literal
+import sys
 
 from pydantic import BaseModel, Field
 
@@ -165,7 +166,13 @@ class ObservationStore:
         for p in d.glob("*.json"):
             try:
                 obs = Observation.model_validate_json(p.read_text(encoding="utf-8"))
-            except Exception:  # noqa: BLE001
+            except Exception as exc:  # noqa: BLE001
+                print(
+                    f"WARN evidence corrupt — unlinking {p}: {exc}",
+                    file=sys.stderr,
+                )
+                with contextlib.suppress(OSError):
+                    p.unlink()
                 continue
             by_family.setdefault(obs.source_family, []).append((p, obs))
         for _fam, items in by_family.items():

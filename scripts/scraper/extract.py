@@ -87,6 +87,9 @@ def normalize_hours(hours: str) -> str:
     if not hours:
         return ""
     h = " ".join(hours.strip().split())
+    # Map noon/midnight before other rewrites so parseHours accepts them
+    h = re.sub(r"\bnoon\b", "12pm", h, flags=re.I)
+    h = re.sub(r"\bmidnight\b", "12am", h, flags=re.I)
     h = re.sub(r"\bevery\s*day\b", "Daily", h, flags=re.I)
     h = re.sub(r"\beveryday\b", "Daily", h, flags=re.I)
     # Collapse day-range spaces: "Mon - Fri" → "Mon-Fri"
