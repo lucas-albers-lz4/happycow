@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-09T14:28:25Z",
+  "last_updated": "2026-08-13T14:54:29Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -116,7 +116,7 @@
       "mood": "bozeman-local",
       "hours": "Daily 2-7pm",
       "business_hours": "Mon-Fri 4pm-2am, Sat-Sun 11am-2am",
-      "notes": "",
+      "notes": "Happy hour window is stated as 2-7pm, but no specific drink or food specials are listed.",
       "specials": [
         {
           "item": "Two drinks for price of one",
