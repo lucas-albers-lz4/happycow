@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-13T14:54:29Z",
+  "last_updated": "2026-08-16T14:16:22Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -894,15 +894,21 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "hours": "",
-      "business_hours": "Mon-Sun 11:30am-9pm",
-      "notes": "No classic happy-hour window published; weekly Wing Wednesday on /food (verified 2026-08-05).",
+      "hours": "Wed 4-9pm",
+      "business_hours": "Daily 11:30am-9pm",
+      "notes": "Wing Wednesdays special, dine-in only, flights not included",
       "specials": [
         {
-          "item": "1/2 off draft pour with wings (Wing Wednesday)",
+          "item": "Full pour draft beverage",
           "price": 0.0,
           "category": "drinks",
-          "description": "Wednesdays dine-in only — half off a full pour draft with purchase of chicken or cauliflower wings; flights not included. Source: mountainswalking.com/food"
+          "description": "1/2 off with purchase of wings (chicken or cauliflower), dine-in only, flights not included"
+        },
+        {
+          "item": "Wings (chicken or cauliflower)",
+          "price": 0.0,
+          "category": "food",
+          "description": "Purchase wings to get 1/2 off a full pour draft beverage"
         }
       ]
     },
@@ -1997,20 +2003,32 @@
       "noise_level": "moderate",
       "mood": "bozeman-local",
       "hours": "",
-      "business_hours": "Mon-Thu 2pm-8pm, Fri-Sun 12pm-8pm",
-      "notes": "No formal HH window; weekly specials per site. Taproom hours Mon-Thu 2-8pm, Fri-Sun 12-8pm",
+      "business_hours": "Mon-Thu 2-8pm, Fri-Sun 12-8pm",
+      "notes": "Daily specials listed, not a standard happy hour window.",
       "specials": [
         {
-          "item": "Pints",
+          "item": "Pint (Military Monday)",
           "price": 0.0,
           "category": "drinks",
-          "description": "Military Monday & Tough Guy/Gal Tuesday — 50¢ off per pint"
+          "description": "Flash your military ID and get 50 cents off per pint."
         },
         {
-          "item": "Growler deal",
+          "item": "Pint (Tough Guy/Gal Tuesday)",
           "price": 0.0,
           "category": "drinks",
-          "description": "Thirsty Thursday — fill a 64oz growler, get a pint for $1"
+          "description": "Show off your guns and get 50 cents off your first pint for each pull-up you can do."
+        },
+        {
+          "item": "Pint (Wednesday Ladies Day)",
+          "price": 0.0,
+          "category": "drinks",
+          "description": "All the Outlaw Ladies get 50 cents off per pint all day."
+        },
+        {
+          "item": "Pint (Thirsty Thursday)",
+          "price": 1.0,
+          "category": "drinks",
+          "description": "Fill a 64 ounce growler and get a pint for only a $1."
         }
       ]
     },
