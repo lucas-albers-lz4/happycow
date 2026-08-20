@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-16T14:16:22Z",
+  "updated_at": "2026-08-20T14:29:02Z",
   "venues": {
     "ale-works": {
       "business_status": {
@@ -13,7 +13,7 @@
           "https://www.montanaaleworks.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "address": {
         "venue_id": "ale-works",
@@ -25,7 +25,7 @@
           "overture:places:overture-ale-works-fixture"
         ],
         "confidence": 0.3,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "phone": {
         "venue_id": "ale-works",
@@ -37,7 +37,7 @@
           "overture:places:overture-ale-works-fixture"
         ],
         "confidence": 0.3,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "ale-works",
@@ -49,7 +49,7 @@
           "https://www.montanaaleworks.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "ale-works",
@@ -61,7 +61,7 @@
           "https://www.montanaaleworks.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "ale-works",
@@ -92,7 +92,7 @@
           "https://www.montanaaleworks.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "applebees-bozeman": {
@@ -106,7 +106,7 @@
           "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "applebees-bozeman",
@@ -118,7 +118,7 @@
           "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "applebees-bozeman",
@@ -130,7 +130,7 @@
           "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "applebees-bozeman",
@@ -173,7 +173,7 @@
           "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bar-ix": {
@@ -187,7 +187,7 @@
           "https://bar-ix.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bar-ix",
@@ -199,7 +199,7 @@
           "https://bar-ix.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bar-ix",
@@ -211,7 +211,7 @@
           "https://bar-ix.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bar-ix",
@@ -230,7 +230,7 @@
           "https://bar-ix.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bitterroot-bistro": {
@@ -244,7 +244,7 @@
           "https://www.bitterrootbistro.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bitterroot-bistro",
@@ -256,7 +256,7 @@
           "https://www.bitterrootbistro.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bitterroot-bistro",
@@ -268,7 +268,7 @@
           "https://www.bitterrootbistro.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bitterroot-bistro",
@@ -329,7 +329,7 @@
           "https://www.bitterrootbistro.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "blackbird": {
@@ -343,7 +343,7 @@
           "https://www.blackbirdkitchen.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "blackbird",
@@ -355,7 +355,7 @@
           "https://www.blackbirdkitchen.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "blackbird",
@@ -367,7 +367,7 @@
           "https://www.blackbirdkitchen.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "blackbird",
@@ -386,7 +386,7 @@
           "https://www.blackbirdkitchen.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bourbon": {
@@ -400,7 +400,7 @@
           "https://bourbonmt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bourbon",
@@ -412,7 +412,7 @@
           "https://bourbonmt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bourbon",
@@ -424,7 +424,7 @@
           "https://bourbonmt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bourbon",
@@ -461,7 +461,7 @@
           "https://bourbonmt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bozeman-brewing-company": {
@@ -475,7 +475,7 @@
           "https://bozemanbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bozeman-brewing-company",
@@ -487,7 +487,7 @@
           "https://bozemanbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bozeman-brewing-company",
@@ -499,7 +499,7 @@
           "https://bozemanbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bozeman-brewing-company",
@@ -524,7 +524,7 @@
           "https://bozemanbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bozeman-spirits-distillery": {
@@ -538,7 +538,7 @@
           "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bozeman-spirits-distillery",
@@ -550,7 +550,7 @@
           "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bozeman-spirits-distillery",
@@ -562,7 +562,7 @@
           "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bozeman-spirits-distillery",
@@ -611,7 +611,7 @@
           "https://mthappyhour.com/locations/bozeman-spirits-distillery/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bozeman-taproom": {
@@ -625,7 +625,7 @@
           "https://mthappyhour.com/locations/bozeman-taproom/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bozeman-taproom",
@@ -637,7 +637,7 @@
           "https://mthappyhour.com/locations/bozeman-taproom/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bozeman-taproom",
@@ -649,7 +649,7 @@
           "https://mthappyhour.com/locations/bozeman-taproom/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bozeman-taproom",
@@ -674,7 +674,7 @@
           "https://mthappyhour.com/locations/bozeman-taproom/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bridger-brewing": {
@@ -688,7 +688,7 @@
           "http://www.bridgerbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "bridger-brewing",
@@ -700,7 +700,7 @@
           "http://www.bridgerbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bridger-brewing",
@@ -712,7 +712,7 @@
           "http://www.bridgerbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "bridger-brewing",
@@ -773,7 +773,7 @@
           "http://www.bridgerbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "brigade": {
@@ -787,7 +787,7 @@
           "https://mthappyhour.com/locations/brigade/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "brigade",
@@ -799,7 +799,7 @@
           "https://mthappyhour.com/locations/brigade/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "brigade",
@@ -811,7 +811,7 @@
           "https://mthappyhour.com/locations/brigade/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "brigade",
@@ -896,7 +896,7 @@
           "https://mthappyhour.com/locations/brigade/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "daves-sushi": {
@@ -910,7 +910,7 @@
           "http://daves-sushi.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "daves-sushi",
@@ -922,7 +922,7 @@
           "http://daves-sushi.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "daves-sushi",
@@ -934,7 +934,7 @@
           "http://daves-sushi.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "daves-sushi",
@@ -965,7 +965,7 @@
           "http://daves-sushi.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "devils-toboggan": {
@@ -979,7 +979,7 @@
           "https://www.devilstoboggan.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "devils-toboggan",
@@ -991,7 +991,7 @@
           "https://www.devilstoboggan.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "devils-toboggan",
@@ -1003,7 +1003,7 @@
           "https://www.devilstoboggan.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "devils-toboggan",
@@ -1040,7 +1040,7 @@
           "https://www.devilstoboggan.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "dry-hills-distillery": {
@@ -1054,7 +1054,7 @@
           "https://mthappyhour.com/locations/dry-hills-distillery/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "dry-hills-distillery",
@@ -1066,7 +1066,7 @@
           "https://mthappyhour.com/locations/dry-hills-distillery/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "dry-hills-distillery",
@@ -1078,7 +1078,7 @@
           "https://mthappyhour.com/locations/dry-hills-distillery/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "dry-hills-distillery",
@@ -1133,7 +1133,7 @@
           "https://mthappyhour.com/locations/dry-hills-distillery/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "est-1864-noir-bar-restaurant": {
@@ -1147,7 +1147,7 @@
           "http://www.est1864bozeman.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "est-1864-noir-bar-restaurant",
@@ -1159,7 +1159,7 @@
           "http://www.est1864bozeman.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "est-1864-noir-bar-restaurant",
@@ -1171,7 +1171,7 @@
           "http://www.est1864bozeman.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "est-1864-noir-bar-restaurant",
@@ -1208,7 +1208,7 @@
           "http://www.est1864bozeman.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "finks-deli": {
@@ -1222,7 +1222,7 @@
           "https://www.finksdeli.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "finks-deli",
@@ -1234,7 +1234,7 @@
           "https://www.finksdeli.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "finks-deli",
@@ -1246,7 +1246,7 @@
           "https://www.finksdeli.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "finks-deli",
@@ -1271,7 +1271,7 @@
           "https://www.finksdeli.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "la-brasserie": {
@@ -1285,7 +1285,7 @@
           "https://www.labrasseriemt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "la-brasserie",
@@ -1297,7 +1297,7 @@
           "https://www.labrasseriemt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "la-brasserie",
@@ -1309,7 +1309,7 @@
           "https://www.labrasseriemt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "la-brasserie",
@@ -1340,7 +1340,7 @@
           "https://www.labrasseriemt.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "map-brewing": {
@@ -1354,7 +1354,7 @@
           "https://www.mapbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "map-brewing",
@@ -1366,7 +1366,7 @@
           "https://www.mapbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "map-brewing",
@@ -1378,7 +1378,7 @@
           "https://www.mapbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "map-brewing",
@@ -1397,7 +1397,7 @@
           "https://www.mapbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "mountains-walking-brewery": {
@@ -1411,7 +1411,7 @@
           "https://www.mountainswalking.com/food"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "mountains-walking-brewery",
@@ -1423,7 +1423,7 @@
           "https://www.mountainswalking.com/food"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "mountains-walking-brewery",
@@ -1435,7 +1435,7 @@
           "https://www.mountainswalking.com/food"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "mountains-walking-brewery",
@@ -1460,7 +1460,7 @@
           "https://www.mountainswalking.com/food"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "revelry": {
@@ -1474,7 +1474,7 @@
           "https://mthappyhour.com/locations/revelry/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "revelry",
@@ -1486,7 +1486,7 @@
           "https://mthappyhour.com/locations/revelry/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "revelry",
@@ -1498,7 +1498,7 @@
           "https://mthappyhour.com/locations/revelry/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "revelry",
@@ -1565,7 +1565,7 @@
           "https://mthappyhour.com/locations/revelry/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "rocking-r": {
@@ -1579,7 +1579,7 @@
           "https://rockingrbar.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "rocking-r",
@@ -1591,7 +1591,7 @@
           "https://rockingrbar.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "rocking-r",
@@ -1603,7 +1603,7 @@
           "https://rockingrbar.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "rocking-r",
@@ -1640,7 +1640,7 @@
           "https://rockingrbar.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "shine-beer-sanctuary": {
@@ -1654,7 +1654,7 @@
           "https://www.shinebeer.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "shine-beer-sanctuary",
@@ -1666,7 +1666,7 @@
           "https://www.shinebeer.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "shine-beer-sanctuary",
@@ -1678,7 +1678,7 @@
           "https://www.shinebeer.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-bacchus-pub": {
@@ -1692,7 +1692,7 @@
           "https://mthappyhour.com/locations/the-bacchus-pub/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "the-bacchus-pub",
@@ -1704,7 +1704,7 @@
           "https://mthappyhour.com/locations/the-bacchus-pub/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-bacchus-pub",
@@ -1716,7 +1716,7 @@
           "https://mthappyhour.com/locations/the-bacchus-pub/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "the-bacchus-pub",
@@ -1753,7 +1753,7 @@
           "https://mthappyhour.com/locations/the-bacchus-pub/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-club": {
@@ -1767,7 +1767,7 @@
           "https://www.theclubtavernandgrill.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "the-club",
@@ -1779,7 +1779,7 @@
           "https://www.theclubtavernandgrill.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-club",
@@ -1791,7 +1791,7 @@
           "https://www.theclubtavernandgrill.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "the-club",
@@ -1822,7 +1822,7 @@
           "https://www.theclubtavernandgrill.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "urban-kitchen": {
@@ -1836,7 +1836,7 @@
           "https://mthappyhour.com/locations/urban-kitchen/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "urban-kitchen",
@@ -1848,7 +1848,7 @@
           "https://mthappyhour.com/locations/urban-kitchen/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "urban-kitchen",
@@ -1860,7 +1860,7 @@
           "https://mthappyhour.com/locations/urban-kitchen/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "urban-kitchen",
@@ -1891,7 +1891,7 @@
           "https://mthappyhour.com/locations/urban-kitchen/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "wild-rye-distilling": {
@@ -1905,7 +1905,7 @@
           "https://www.wildryedistilling.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "wild-rye-distilling",
@@ -1917,7 +1917,7 @@
           "https://www.wildryedistilling.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "wild-rye-distilling",
@@ -1942,7 +1942,7 @@
           "https://www.wildryedistilling.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-bay": {
@@ -1956,7 +1956,7 @@
           "https://www.thebaybarandgrille.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "the-bay",
@@ -1968,7 +1968,7 @@
           "https://www.thebaybarandgrille.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-bay",
@@ -1980,7 +1980,7 @@
           "https://www.thebaybarandgrille.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "the-bay",
@@ -2059,7 +2059,7 @@
           "https://www.thebaybarandgrille.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-buck": {
@@ -2073,7 +2073,7 @@
           "https://thebuckbozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-buck",
@@ -2085,7 +2085,7 @@
           "https://thebuckbozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-bunkhouse-brewery": {
@@ -2099,7 +2099,7 @@
           "https://www.bunkhousebrewery.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-bunkhouse-brewery",
@@ -2111,7 +2111,7 @@
           "https://www.bunkhousebrewery.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "cafe-fresco": {
@@ -2125,7 +2125,7 @@
           "https://mthappyhour.com/locations/cafe-fresco/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "cafe-fresco",
@@ -2137,7 +2137,7 @@
           "https://mthappyhour.com/locations/cafe-fresco/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-cannery": {
@@ -2151,7 +2151,7 @@
           "https://thecannerybozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-cannery",
@@ -2163,7 +2163,7 @@
           "https://thecannerybozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-filling-station": {
@@ -2177,7 +2177,7 @@
           "https://yourfillingstation.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "the-filling-station",
@@ -2189,7 +2189,7 @@
           "https://yourfillingstation.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-filling-station",
@@ -2201,7 +2201,7 @@
           "https://yourfillingstation.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "the-filling-station",
@@ -2256,7 +2256,7 @@
           "https://yourfillingstation.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-haufbrau": {
@@ -2270,7 +2270,7 @@
           "https://visit-bozeman.com/listings/haufbrau-house"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-haufbrau",
@@ -2282,7 +2282,7 @@
           "https://visit-bozeman.com/listings/haufbrau-house"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "hooked-sushi": {
@@ -2296,7 +2296,7 @@
           "https://www.hookedmt.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "hooked-sushi",
@@ -2308,7 +2308,7 @@
           "https://www.hookedmt.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "korner-klub": {
@@ -2322,7 +2322,7 @@
           "https://kornerklub.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "korner-klub",
@@ -2334,7 +2334,7 @@
           "https://kornerklub.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "korner-klub",
@@ -2353,7 +2353,7 @@
           "https://kornerklub.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "last-best-place-brewery": {
@@ -2367,7 +2367,7 @@
           "https://www.lbpbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "last-best-place-brewery",
@@ -2379,7 +2379,7 @@
           "https://www.lbpbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-molly-brown": {
@@ -2393,7 +2393,7 @@
           "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-molly-brown",
@@ -2405,7 +2405,7 @@
           "https://bozemanmagazine.com/locations/bozeman-mt/85/585-the-molly-brown"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "the-pour-house": {
@@ -2419,7 +2419,7 @@
           "https://mthappyhour.com/locations/the-pour-house/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "the-pour-house",
@@ -2431,7 +2431,7 @@
           "https://mthappyhour.com/locations/the-pour-house/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "the-pour-house",
@@ -2443,7 +2443,7 @@
           "https://mthappyhour.com/locations/the-pour-house/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "the-pour-house",
@@ -2498,7 +2498,7 @@
           "https://mthappyhour.com/locations/the-pour-house/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "sidewall-pizza-company": {
@@ -2512,7 +2512,7 @@
           "https://www.sidewallpizzabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "sidewall-pizza-company",
@@ -2524,7 +2524,7 @@
           "https://www.sidewallpizzabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "tanoshii": {
@@ -2538,7 +2538,7 @@
           "https://tanoshiimt.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "tanoshii",
@@ -2550,7 +2550,7 @@
           "https://tanoshiimt.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "valhalla-meadery": {
@@ -2564,7 +2564,7 @@
           "https://valhallabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "valhalla-meadery",
@@ -2576,7 +2576,7 @@
           "https://valhallabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "valhalla-meadery",
@@ -2588,7 +2588,7 @@
           "https://valhallabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "valhalla-meadery",
@@ -2613,7 +2613,7 @@
           "https://valhallabozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "bar-3-bbq-and-brewery": {
@@ -2627,7 +2627,7 @@
           "https://bar3bbq.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "bar-3-bbq-and-brewery",
@@ -2639,7 +2639,7 @@
           "https://bar3bbq.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "buffalo-wild-wings": {
@@ -2653,7 +2653,7 @@
           "https://www.buffalowildwings.com/happy-hour/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "buffalo-wild-wings",
@@ -2665,7 +2665,7 @@
           "https://www.buffalowildwings.com/happy-hour/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "buffalo-wild-wings",
@@ -2677,7 +2677,7 @@
           "https://www.buffalowildwings.com/happy-hour/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "buffalo-wild-wings",
@@ -2738,7 +2738,7 @@
           "https://www.buffalowildwings.com/happy-hour/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "copper-whiskey-bar": {
@@ -2752,7 +2752,7 @@
           "https://coppermontana.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "copper-whiskey-bar",
@@ -2764,7 +2764,7 @@
           "https://coppermontana.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "copper-whiskey-bar",
@@ -2776,7 +2776,7 @@
           "https://coppermontana.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "copper-whiskey-bar",
@@ -2813,7 +2813,7 @@
           "https://coppermontana.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "madison-river-brewing-co": {
@@ -2827,7 +2827,7 @@
           "https://www.madisonriverbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "madison-river-brewing-co",
@@ -2839,7 +2839,7 @@
           "https://www.madisonriverbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "madison-river-brewing-co",
@@ -2876,7 +2876,7 @@
           "https://www.madisonriverbrewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "old-chicago": {
@@ -2890,7 +2890,7 @@
           "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "old-chicago",
@@ -2902,7 +2902,7 @@
           "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "old-chicago",
@@ -2914,7 +2914,7 @@
           "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "old-chicago",
@@ -2969,7 +2969,7 @@
           "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "outlaw-brewing": {
@@ -2983,7 +2983,7 @@
           "https://outlaw-brewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "outlaw-brewing",
@@ -2995,7 +2995,7 @@
           "https://outlaw-brewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "outlaw-brewing",
@@ -3032,7 +3032,7 @@
           "https://outlaw-brewing.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "plonk": {
@@ -3046,7 +3046,7 @@
           "https://plonkwine.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "plonk",
@@ -3058,7 +3058,7 @@
           "https://plonkwine.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "pub-317": {
@@ -3072,7 +3072,7 @@
           "https://mthappyhour.com/locations/pub-317/"
         ],
         "confidence": 0.35,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "hours": {
         "venue_id": "pub-317",
@@ -3084,7 +3084,7 @@
           "https://mthappyhour.com/locations/pub-317/"
         ],
         "confidence": 0.45,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "pub-317",
@@ -3096,7 +3096,7 @@
           "https://mthappyhour.com/locations/pub-317/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "pub-317",
@@ -3115,7 +3115,7 @@
           "https://mthappyhour.com/locations/pub-317/"
         ],
         "confidence": 0.4,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "rialto-bar-burn-box": {
@@ -3129,7 +3129,7 @@
           "https://www.larkbozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "rialto-bar-burn-box",
@@ -3141,7 +3141,7 @@
           "https://www.larkbozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "seven-sushi": {
@@ -3155,7 +3155,7 @@
           "https://www.7bozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "seven-sushi",
@@ -3167,7 +3167,7 @@
           "https://www.7bozeman.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "spectators-bar-and-grill": {
@@ -3181,7 +3181,7 @@
           "https://specsbzn.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "spectators-bar-and-grill",
@@ -3193,7 +3193,7 @@
           "https://specsbzn.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "specials": {
         "venue_id": "spectators-bar-and-grill",
@@ -3236,7 +3236,7 @@
           "https://specsbzn.com/"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     },
     "stacey-s-old-faithful-bar-steakhouse": {
@@ -3250,7 +3250,7 @@
           "http://www.staceysbar.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       },
       "business_hours": {
         "venue_id": "stacey-s-old-faithful-bar-steakhouse",
@@ -3262,7 +3262,7 @@
           "http://www.staceysbar.com"
         ],
         "confidence": 1.0,
-        "decided_at": "2026-08-16T14:16:22Z"
+        "decided_at": "2026-08-20T14:29:02Z"
       }
     }
   }
