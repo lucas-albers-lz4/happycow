@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T14:28:09Z",
+  "updated_at": "2026-08-27T23:22:52Z",
   "venues": {
     "ale-works": {
       "content_hash": "161877540d194b88",
@@ -37,7 +37,7 @@
     },
     "applebees-bozeman": {
       "content_hash": "2ac0b526593f3e7e",
-      "fetched_at": "2026-08-20T14:24:41Z",
+      "fetched_at": "2026-08-27T23:19:18Z",
       "sources": [
         "https://www.applebees.com/en/restaurants-bozeman-mt/1108-north-7th-avenue-91019"
       ],
@@ -129,7 +129,7 @@
     },
     "blackbird": {
       "content_hash": "504db9c14b714439",
-      "fetched_at": "2026-08-20T14:24:54Z",
+      "fetched_at": "2026-08-27T23:19:30Z",
       "sources": [
         "https://www.blackbirdkitchen.com/"
       ],
@@ -142,22 +142,29 @@
       }
     },
     "bourbon": {
-      "content_hash": "e6893db8b0b10a9a",
-      "fetched_at": "2026-08-20T14:24:58Z",
+      "content_hash": "28e4ced52d366019",
+      "fetched_at": "2026-08-27T23:19:35Z",
       "sources": [
         "https://bourbonmt.com"
       ],
       "extract": {
-        "status": "not_found",
+        "status": "unclear",
         "hours": "",
         "business_hours": "",
-        "specials": [],
-        "notes": ""
+        "specials": [
+          {
+            "item": "Memphis style baby back ribs (full rack)",
+            "price": 27.0,
+            "category": "food",
+            "description": "Smoked fresh every day, available starting at 4pm every Sunday."
+          }
+        ],
+        "notes": "No explicit happy hour stated; page mentions food and drink specials on Aug 27, but details not provided."
       }
     },
     "bozeman-brewing-company": {
       "content_hash": "50dde074a3635757",
-      "fetched_at": "2026-08-20T14:25:02Z",
+      "fetched_at": "2026-08-27T23:19:39Z",
       "sources": [
         "https://bozemanbrewing.com/"
       ],
@@ -248,7 +255,7 @@
     },
     "bridger-brewing": {
       "content_hash": "7d71d08be2f2c6bc",
-      "fetched_at": "2026-08-20T14:25:10Z",
+      "fetched_at": "2026-08-27T23:19:48Z",
       "sources": [
         "http://www.bridgerbrewing.com/"
       ],
@@ -257,7 +264,7 @@
         "hours": "",
         "business_hours": "",
         "specials": [],
-        "notes": null
+        "notes": ""
       }
     },
     "brigade": {
@@ -348,7 +355,7 @@
     },
     "daves-sushi": {
       "content_hash": "a3825f9fbea7e4e5",
-      "fetched_at": "2026-08-20T14:25:20Z",
+      "fetched_at": "2026-08-27T23:19:58Z",
       "sources": [
         "http://daves-sushi.com/"
       ],
@@ -432,7 +439,7 @@
     },
     "est-1864-noir-bar-restaurant": {
       "content_hash": "3a3bcb8b97f75d87",
-      "fetched_at": "2026-08-20T14:25:29Z",
+      "fetched_at": "2026-08-27T23:20:07Z",
       "sources": [
         "http://www.est1864bozeman.com"
       ],
@@ -441,12 +448,12 @@
         "hours": "",
         "business_hours": "Mon-Wed 4-10pm, Thu-Sat 4pm-2am, Sun 4-10pm",
         "specials": [],
-        "notes": ""
+        "notes": null
       }
     },
     "finks-deli": {
       "content_hash": "f51eb092e85e8173",
-      "fetched_at": "2026-08-20T14:25:32Z",
+      "fetched_at": "2026-08-27T23:20:11Z",
       "sources": [
         "https://www.finksdeli.com/"
       ],
@@ -460,7 +467,7 @@
     },
     "la-brasserie": {
       "content_hash": "43c778b63b786c08",
-      "fetched_at": "2026-08-20T14:25:36Z",
+      "fetched_at": "2026-08-27T23:20:15Z",
       "sources": [
         "https://www.labrasseriemt.com"
       ],
@@ -473,8 +480,8 @@
       }
     },
     "map-brewing": {
-      "content_hash": "b54e5260dc081461",
-      "fetched_at": "2026-08-20T14:25:40Z",
+      "content_hash": "dbf294ea6ab4ce85",
+      "fetched_at": "2026-08-27T23:20:20Z",
       "sources": [
         "https://www.mapbrewing.com/"
       ],
@@ -483,12 +490,12 @@
         "hours": "",
         "business_hours": "",
         "specials": [],
-        "notes": null
+        "notes": ""
       }
     },
     "revelry": {
       "content_hash": "0d09e60de03a0802",
-      "fetched_at": "2026-08-20T14:25:48Z",
+      "fetched_at": "2026-08-27T23:20:28Z",
       "sources": [
         "https://www.revelrymt.com"
       ],
@@ -515,22 +522,22 @@
       }
     },
     "shine-beer-sanctuary": {
-      "content_hash": "474063f857cf2f57",
-      "fetched_at": "2026-08-20T14:25:57Z",
+      "content_hash": "11ed4b63a928ea99",
+      "fetched_at": "2026-08-27T23:20:37Z",
       "sources": [
         "https://www.shinebeer.com/"
       ],
       "extract": {
-        "status": "not_found",
-        "hours": "",
-        "business_hours": "Daily 11am-9pm",
+        "status": "ok",
+        "hours": "Sun-Thu 3-6pm",
+        "business_hours": "",
         "specials": [],
-        "notes": ""
+        "notes": "Après Happy Hour features cold beer, tacos, and an early evening start."
       }
     },
     "the-bacchus-pub": {
       "content_hash": "5b52d64fdc1b3eee",
-      "fetched_at": "2026-08-20T14:26:01Z",
+      "fetched_at": "2026-08-27T23:20:41Z",
       "sources": [
         "https://www.bacchuspub.com"
       ],
@@ -539,7 +546,7 @@
         "hours": "",
         "business_hours": "Sun-Thu 11am-10pm, Fri-Sat 11am-10:30pm",
         "specials": [],
-        "notes": "No happy hour information found on the page."
+        "notes": ""
       }
     },
     "the-club": {
@@ -609,21 +616,21 @@
     },
     "wild-rye-distilling": {
       "content_hash": "901f7b6ee3d217fe",
-      "fetched_at": "2026-08-20T14:26:11Z",
+      "fetched_at": "2026-08-27T23:20:52Z",
       "sources": [
         "https://www.wildryedistilling.com/"
       ],
       "extract": {
         "status": "not_found",
         "hours": "",
-        "business_hours": "Daily 12pm-8pm",
+        "business_hours": "Daily 12-8pm",
         "specials": [],
         "notes": ""
       }
     },
     "the-bay": {
       "content_hash": "a0dd237560c07c05",
-      "fetched_at": "2026-08-20T14:26:16Z",
+      "fetched_at": "2026-08-27T23:20:59Z",
       "sources": [
         "https://www.thebaybarandgrille.com/"
       ],
@@ -637,21 +644,21 @@
     },
     "the-buck": {
       "content_hash": "c557c0b13402da58",
-      "fetched_at": "2026-08-20T14:26:20Z",
+      "fetched_at": "2026-08-27T23:21:03Z",
       "sources": [
         "https://thebuckbozeman.com/"
       ],
       "extract": {
         "status": "not_found",
         "hours": "",
-        "business_hours": "Daily 11am-9pm (food), Daily 11am-10pm (cocktail bar)",
+        "business_hours": "Daily 11am-9pm, Daily 11am-10pm",
         "specials": [],
         "notes": ""
       }
     },
     "the-cannery": {
       "content_hash": "79a887fa12274acb",
-      "fetched_at": "2026-08-20T14:26:32Z",
+      "fetched_at": "2026-08-27T23:21:15Z",
       "sources": [
         "https://thecannerybozeman.com/"
       ],
@@ -723,7 +730,7 @@
     },
     "hooked-sushi": {
       "content_hash": "bce6fcacded75684",
-      "fetched_at": "2026-08-20T14:26:44Z",
+      "fetched_at": "2026-08-27T23:21:27Z",
       "sources": [
         "https://www.hookedmt.com/"
       ],
@@ -737,21 +744,21 @@
     },
     "korner-klub": {
       "content_hash": "83d3652abffd85f6",
-      "fetched_at": "2026-08-20T14:26:47Z",
+      "fetched_at": "2026-08-27T23:21:31Z",
       "sources": [
         "https://kornerklub.com/"
       ],
       "extract": {
         "status": "not_found",
         "hours": "",
-        "business_hours": "Daily 10am-12am",
+        "business_hours": "Daily 11am-10pm",
         "specials": [],
         "notes": ""
       }
     },
     "last-best-place-brewery": {
       "content_hash": "4db57f662430573c",
-      "fetched_at": "2026-08-16T14:14:48Z",
+      "fetched_at": "2026-08-27T23:21:35Z",
       "sources": [
         "https://www.lbpbrewing.com/"
       ],
@@ -869,7 +876,7 @@
     },
     "old-chicago": {
       "content_hash": "94d2a0c1d49cb898",
-      "fetched_at": "2026-08-16T14:15:30Z",
+      "fetched_at": "2026-08-27T23:22:21Z",
       "sources": [
         "https://oldchicago.com/locations/us/mt/bozeman/1940-north-19th-ave/"
       ],
@@ -922,7 +929,7 @@
     },
     "plonk": {
       "content_hash": "45e81ddc4da18398",
-      "fetched_at": "2026-08-20T14:27:48Z",
+      "fetched_at": "2026-08-27T23:22:28Z",
       "sources": [
         "https://plonkwine.com/"
       ],
@@ -936,7 +943,7 @@
     },
     "seven-sushi": {
       "content_hash": "3e8c09d553278875",
-      "fetched_at": "2026-08-20T14:28:02Z",
+      "fetched_at": "2026-08-27T23:22:45Z",
       "sources": [
         "https://www.7bozeman.com/"
       ],
@@ -950,7 +957,7 @@
     },
     "stacey-s-old-faithful-bar-steakhouse": {
       "content_hash": "294cea7d2fb42f7a",
-      "fetched_at": "2026-08-20T14:28:09Z",
+      "fetched_at": "2026-08-27T23:22:52Z",
       "sources": [
         "http://www.staceysbar.com"
       ],
@@ -992,7 +999,7 @@
     },
     "sidewall-pizza-company": {
       "content_hash": "41011ba3b5f0592c",
-      "fetched_at": "2026-08-20T14:27:00Z",
+      "fetched_at": "2026-08-27T23:21:43Z",
       "sources": [
         "https://www.sidewallpizzabozeman.com/"
       ],
@@ -1006,7 +1013,7 @@
     },
     "tanoshii": {
       "content_hash": "58daa566a3887e13",
-      "fetched_at": "2026-08-20T14:27:12Z",
+      "fetched_at": "2026-08-27T23:21:51Z",
       "sources": [
         "https://tanoshiimt.com/"
       ],
@@ -1020,7 +1027,7 @@
     },
     "bar-3-bbq-and-brewery": {
       "content_hash": "49e1ff13d79ed9eb",
-      "fetched_at": "2026-08-20T14:27:24Z",
+      "fetched_at": "2026-08-27T23:22:02Z",
       "sources": [
         "https://bar3bbq.com/"
       ],
@@ -1034,7 +1041,7 @@
     },
     "madison-river-brewing-co": {
       "content_hash": "49b6e898494f2d85",
-      "fetched_at": "2026-08-20T14:27:38Z",
+      "fetched_at": "2026-08-27T23:22:16Z",
       "sources": [
         "https://www.madisonriverbrewing.com/"
       ],
@@ -1043,12 +1050,12 @@
         "hours": "",
         "business_hours": "",
         "specials": [],
-        "notes": null
+        "notes": ""
       }
     },
     "rialto-bar-burn-box": {
       "content_hash": "eb477c10e671809d",
-      "fetched_at": "2026-08-20T14:27:58Z",
+      "fetched_at": "2026-08-27T23:22:41Z",
       "sources": [
         "https://www.larkbozeman.com/"
       ],
@@ -1057,12 +1064,12 @@
         "hours": "",
         "business_hours": "",
         "specials": [],
-        "notes": null
+        "notes": ""
       }
     },
     "spectators-bar-and-grill": {
       "content_hash": "b9e6df08dcc48252",
-      "fetched_at": "2026-08-20T14:28:06Z",
+      "fetched_at": "2026-08-27T23:22:48Z",
       "sources": [
         "https://specsbzn.com/"
       ],
@@ -1071,7 +1078,7 @@
         "hours": "",
         "business_hours": "",
         "specials": [],
-        "notes": ""
+        "notes": null
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-20T14:29:02Z",
+  "last_updated": "2026-08-27T23:23:45Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -1053,9 +1053,9 @@
       ],
       "noise_level": "moderate",
       "mood": "bozeman-local",
-      "hours": "Daily 3-5pm",
+      "hours": "Sun-Thu 3-6pm",
       "business_hours": "Mon-Thu 11:00am-9:00pm, Fri-Sat 11:00am-10:00pm, Sun 11:00am-9:00pm",
-      "notes": "Site probed — no HH page found (verified 2026-08-02)",
+      "notes": "Après Happy Hour features cold beer, tacos, and an early evening start.",
       "specials": []
     },
     {
