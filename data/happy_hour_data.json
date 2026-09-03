@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-30T17:54:22Z",
+  "last_updated": "2026-09-03T17:27:05Z",
   "city": "Bozeman, MT",
   "population": 55000,
   "venues": [
@@ -1127,7 +1127,7 @@
       "notes": "",
       "specials": [
         {
-          "item": "Draft beer",
+          "item": "Draft beers",
           "price": 0.0,
           "category": "drinks",
           "description": "$1 off"
